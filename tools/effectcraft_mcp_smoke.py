@@ -93,15 +93,31 @@ def smoke(cli: str, output: Path):
         if not required.issubset(names):
             raise RuntimeError(f"MCP missing tools: {sorted(required - names)}")
         client.tool("get_state")
+        # The upstream demo fills its entire canvas; EffectCraft correctly encodes
+        # fully opaque images as RGB even when transparent=True. Test a *real*
+        # alpha composition instead of incorrectly requiring RGBA for the demo.
+        client.tool("execute_command", {"command": "comp.new", "params": {
+            "name": "VFX Smoke", "width": 128, "height": 128,
+            "frameRate": 24, "duration": 0.5
+        }})
+        client.tool("execute_command", {"command": "layer.newShape", "params": {
+            "name": "Alpha Circle", "kind": "ellipse",
+            "size": [64, 64], "position": [64, 64],
+            "fill": "#ff8a00"
+        }})
         output.parent.mkdir(parents=True, exist_ok=True)
-        client.tool("render_frame", {"time": 0.0, "max_side": 256,
-                                     "transparent": True, "path": str(output.resolve())})
+        client.tool("render_frame", {"comp": "VFX Smoke", "time": 0.0, "max_side": 256,
+                                     "transparent": True, "path": str(output.resolve())}
         if not output.is_file():
             raise RuntimeError("MCP render_frame did not produce a PNG")
         with Image.open(output) as im:
             if im.format != "PNG" or "A" not in im.getbands():
                 raise RuntimeError(f"Expected alpha-enabled PNG; got {im.format} {im.mode}")
-            print(f"PASS: EffectCraft MCP, {len(names)} tools, RGBA PNG {im.size}")
+            if im.getpixel((0, 0))[3] != 0:
+                raise RuntimeError("Corner should be fully transparent")
+            if im.getpixel((64, 64))[3] == 0:
+                raise RuntimeError("Expected visible shape at composition centre")
+            print(f"PASS: EffectCraft MCP, {len(names)} tools, transparent PNG {im.size}")
     finally:
         client.close()
 

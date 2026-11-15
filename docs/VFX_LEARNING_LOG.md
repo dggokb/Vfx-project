@@ -27,3 +27,7 @@ Atualizar **após toda tentativa relevante de novo efeito**. Este documento guar
 - **Resultado:** WIP / tecnicamente validado / arte aprovada / rejeitado:
 - **Lição reutilizável:** regra concreta para a próxima criação:
 - **Atualização do guia principal (se necessária):**
+
+### 2026-11-15 — Hit Heavy, auditoria independente
+
+O núcleo atinge o máximo no quadro 2. As onze lascas mantêm movimento depois que ele some. Aos 320 px a cauda já perde leitura nos quadros 12–14. Para o próximo impacto, compare no jogo uma cauda mais curta antes de adicionar glow. O último quadro vazio é intencional. Evidência em [projeto e frames](../projects/hit-heavy/) e [auditoria](AUDIT_REPORT.md). Estado artístico WIP.

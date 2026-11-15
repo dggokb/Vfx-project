@@ -32,3 +32,5 @@ Estas regras valem **em toda tarefa de criação, revisão, exportação ou auto
 6. **Conhecimento:** registrar o que funcionou e o que falhou.
 
 Se qualquer portão falhar, classifique como **WIP**; não chame de VFX profissional concluído.
+
+Cada receita precisa de um arquivo vizinho `<id>.brief.json`. Cite um trecho literal do diário e um do guia, explique a decisão específica e indique comandos nativos, margem mínima em pixels e índices que podem ficar vazios. Use as duas receitas versionadas como exemplos. O pipeline confronta essas decisões com comandos e pixels. Ao revisar, verifique se as citações e os limites escolhidos fazem sentido para o golpe.

@@ -1,0 +1,6 @@
+Glow edit difference RGBA extrema ((0, 255), (0, 255), (0, 255), (0, 69))
+Verified 16 atlas cells, pixel equality with separate render, 15 visible and one final empty.
+14160469159 14 None
+14160923362 15 None
+14145764649 1 None
+20 historical frame comparisons passed.

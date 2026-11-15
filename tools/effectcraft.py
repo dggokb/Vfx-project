@@ -85,7 +85,7 @@ def main() -> int:
             install()
             require("cargo")
             if args.action == "build":
-                cmd = ["cargo", "build", "--release", "-p", "effectcraft", "-p", "effectcraft-cli"]
+                cmd = ["cargo", "build", "--locked", "--release", "-p", "effectcraft", "-p", "effectcraft-cli"]
             elif args.action == "editor":
                 cmd = ["cargo", "run", "--release", "-p", "effectcraft"]
             elif args.action == "demo":

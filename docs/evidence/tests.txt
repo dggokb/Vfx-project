@@ -1,0 +1,13 @@
+test_alpha_preserved_and_natural_order (test_pack_spritesheet.SpriteSheetTests.test_alpha_preserved_and_natural_order) ... ok
+test_rejects_different_canvas_sizes (test_pack_spritesheet.SpriteSheetTests.test_rejects_different_canvas_sizes) ... ok
+test_rejects_rgb_without_alpha (test_pack_spritesheet.SpriteSheetTests.test_rejects_rgb_without_alpha) ... ok
+test_cli_generate_render_and_atlas (test_vfx_pipeline.PipelineTests.test_cli_generate_render_and_atlas) ... ok
+test_invalid_effect_id_fails (test_vfx_preflight.KnowledgeGateTests.test_invalid_effect_id_fails) ... ok
+test_preflight_emits_versioned_provenance (test_vfx_preflight.KnowledgeGateTests.test_preflight_emits_versioned_provenance) ... ok
+test_rejects_empty_static_and_edge_touching_sequences (test_vfx_review.FrameReviewTests.test_rejects_empty_static_and_edge_touching_sequences) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.736s
+
+OK
+PASS: EffectCraft MCP, 27 tools, transparent PNG (128, 128)

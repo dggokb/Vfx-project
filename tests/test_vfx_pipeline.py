@@ -27,7 +27,7 @@ class PipelineTests(unittest.TestCase):
                 "out=Path(a[a.index('--save-as')+1] if a[0]=='run' else a[a.index('--out')+1])\n"
                 "out.parent.mkdir(parents=True, exist_ok=True)\n"
                 "if a[0]=='run': out.write_text('mock project')\n"
-                "else: Image.new('RGBA',(8,8),(230,120,15,150)).save(out)\n",
+                "else:\n img=Image.new('RGBA',(8,8)); img.putpixel((1,1),(230,120,15,150+int(out.stem[-1]))); img.save(out)\n",
                 encoding="utf-8",
             )
             fake.chmod(0o755)
@@ -35,6 +35,9 @@ class PipelineTests(unittest.TestCase):
             recipe.write_text(json.dumps([
                 {"command":"comp.new","params":{"width":8,"height":8}}
             ]), encoding="utf-8")
+            brief = json.loads((ROOT / "recipes/hit-light.brief.json").read_text())
+            brief["required_commands"] = ["comp.new"]
+            recipe.with_suffix(".brief.json").write_text(json.dumps(brief))
             output = root / "output"
             result = subprocess.run([
                 sys.executable, str(SCRIPT), "--cli", str(fake), "--recipe", str(recipe),
@@ -43,7 +46,7 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stderr)
             with Image.open(output / "atlas.png") as atlas:
                 self.assertEqual(atlas.size, (24,16))
-                self.assertEqual(atlas.getpixel((0,0)), (230,120,15,150))
+                self.assertEqual(atlas.getpixel((1,1)), (230,120,15,150))
                 self.assertEqual(atlas.getpixel((23,15)), (0,0,0,0))
             manifest = json.loads((output / "atlas.json").read_text())
             self.assertEqual(manifest["frame_count"],5)

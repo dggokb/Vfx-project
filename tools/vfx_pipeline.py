@@ -5,10 +5,13 @@ Recipe is a JSON array of EffectCraft engine commands, not an invented .ecproj f
 """
 import argparse
 import json
+import hashlib
 import math
 import subprocess
 import sys
 from pathlib import Path
+
+from vfx_review import inspect_frames, read_decision
 
 ROOT = Path(__file__).resolve().parents[1]
 PACK = ROOT / "tools" / "pack_spritesheet.py"
@@ -45,6 +48,9 @@ def main() -> int:
     )
     knowledge = json.loads(preflight.stdout)
     print("VFX knowledge preflight OK: master guide + lessons + sources checked.", flush=True)
+    decision = read_decision(args.recipe, recipe, ROOT)
+    knowledge["decision"] = decision
+    knowledge["recipe_sha256"] = hashlib.sha256(args.recipe.read_bytes()).hexdigest()
     cli = str(args.cli.resolve())
     destination = args.out.resolve()
     destination.mkdir(parents=True, exist_ok=True)
@@ -52,7 +58,6 @@ def main() -> int:
     knowledge_path = destination / "knowledge.json"
     if project.exists() or knowledge_path.exists():
         p.error("refusing to overwrite existing project or knowledge record")
-    knowledge_path.write_text(json.dumps(knowledge, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     frame_dir = destination / "frames"
     frame_dir.mkdir(parents=True, exist_ok=True)
     if list(frame_dir.glob("*.png")):
@@ -66,12 +71,14 @@ def main() -> int:
              f"{n / args.fps:.9f}", "--out", str(name), "--transparent"])
         if not name.is_file():
             raise RuntimeError(f"EffectCraft returned success without frame {n}")
+    knowledge["observed_frames"] = inspect_frames(frame_dir, decision)
     atlas = destination / "atlas.png"
     run([sys.executable, str(PACK), "--input", str(frame_dir), "--output",
          str(atlas), "--columns", str(args.columns), "--fps", str(args.fps)])
     manifest = json.loads(atlas.with_suffix(".json").read_text(encoding="utf-8"))
     if manifest["frame_count"] != args.frames:
         raise RuntimeError("frame count mismatch after packing")
+    knowledge_path.write_text(json.dumps(knowledge, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"Success: {project}, {atlas}, {atlas.with_suffix('.json')}")
     return 0
 

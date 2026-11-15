@@ -8,6 +8,10 @@ on:
       - 'tools/vfx_pipeline.py'
       - 'tools/pack_spritesheet.py'
       - 'recipes/**'
+      - 'tools/vfx_review.py'
+      - 'tools/vfx_preflight.py'
+      - 'docs/VFX_*.md'
+      - 'AGENTS.md'
   workflow_dispatch:
 
 permissions:
@@ -36,6 +40,7 @@ jobs:
           curl --fail --location --retry 3 --silent --show-error \
             https://github.com/storytold/effectcraft/releases/download/v0.24.1/effectcraft-0.24.1-linux-x86_64.tar.gz \
             -o /tmp/effectcraft-release.tar.gz
+          echo "5ce0393690144227fa9186e82308ad638a6ef6d9f976c996e6d03b5b51b65a7b  /tmp/effectcraft-release.tar.gz" | sha256sum --check
           tar -xzf /tmp/effectcraft-release.tar.gz -C vendor/release
           cli="$(find "$PWD/vendor/release" -type f -name 'effectcraft-cli' -print -quit)"
           if [[ -z "$cli" ]]; then

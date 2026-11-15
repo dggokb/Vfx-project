@@ -10,6 +10,10 @@ on:
       - 'tools/vfx_pipeline.py'
       - 'tools/pack_spritesheet.py'
       - 'recipes/**'
+      - 'tools/vfx_review.py'
+      - 'tools/vfx_preflight.py'
+      - 'docs/VFX_*.md'
+      - 'AGENTS.md'
   workflow_dispatch:
 
 permissions:

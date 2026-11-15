@@ -1,0 +1,171 @@
+{
+  "effect": "hit-heavy",
+  "learning_log_update_required_after_iteration": true,
+  "purpose": "VFX production knowledge provenance; not an artistic approval",
+  "required_reading_sha256": {
+    "AGENTS.md": "457ea86fcbf3e939b6f2eb0691af4a15393713eabb0b65513b8bbaa29f0633c1",
+    "docs/EFFECTCRAFT_INTEGRATION.md": "bf87a5a5c01930c14463d66edc62d341399acd7bc321084ffc24d58de0c7b425",
+    "docs/VFX_BRIEF_TEMPLATE.md": "5eae97d6787037c2dc40a5dce3ebbed0f584eddac202fbe6a9cd3664b3e703ef",
+    "docs/VFX_LEARNING_LOG.md": "e792fdc82a53fe8bcc59e2d839d541ee3568ab542fa8009a60a1d8ee784ba230",
+    "docs/VFX_MASTER_GUIDE.md": "c3b34aa2467312a9bbb89702db03230b383f1fe9e87936be7cc8189b472456f8",
+    "docs/VFX_SOURCES.md": "b843cd22e4a566a2b890f1e16c3aef872d7adde76e82f0ae7926820f612ad84d"
+  },
+  "review_required": true,
+  "schema_version": 1,
+  "decision": {
+    "lesson": "o primeiro hit-light em círculos é **somente smoke test técnico**",
+    "principle": "Primeiro, a forma e o ritmo",
+    "decision": "Desenhar quatro massas poligonais e onze lascas independentes. O núcleo recua antes das lascas.",
+    "required_commands": [
+      "prop.addKey",
+      "layer.newShape",
+      "shape.newPath"
+    ],
+    "margin": 18,
+    "allowed_empty": [
+      15
+    ]
+  },
+  "recipe_sha256": "83e2ddca1ed22b7de5946e1e842882e18c13899adb380712bec134b0923e1cd2",
+  "observed_frames": [
+    {
+      "frame": "frame_0000.png",
+      "alpha_bbox": [
+        124,
+        139,
+        198,
+        178
+      ]
+    },
+    {
+      "frame": "frame_0001.png",
+      "alpha_bbox": [
+        54,
+        89,
+        271,
+        219
+      ]
+    },
+    {
+      "frame": "frame_0002.png",
+      "alpha_bbox": [
+        43,
+        78,
+        283,
+        227
+      ]
+    },
+    {
+      "frame": "frame_0003.png",
+      "alpha_bbox": [
+        56,
+        87,
+        269,
+        227
+      ]
+    },
+    {
+      "frame": "frame_0004.png",
+      "alpha_bbox": [
+        63,
+        73,
+        257,
+        239
+      ]
+    },
+    {
+      "frame": "frame_0005.png",
+      "alpha_bbox": [
+        50,
+        61,
+        263,
+        251
+      ]
+    },
+    {
+      "frame": "frame_0006.png",
+      "alpha_bbox": [
+        46,
+        58,
+        266,
+        254
+      ]
+    },
+    {
+      "frame": "frame_0007.png",
+      "alpha_bbox": [
+        43,
+        55,
+        269,
+        256
+      ]
+    },
+    {
+      "frame": "frame_0008.png",
+      "alpha_bbox": [
+        39,
+        51,
+        273,
+        259
+      ]
+    },
+    {
+      "frame": "frame_0009.png",
+      "alpha_bbox": [
+        35,
+        47,
+        276,
+        262
+      ]
+    },
+    {
+      "frame": "frame_0010.png",
+      "alpha_bbox": [
+        33,
+        45,
+        278,
+        265
+      ]
+    },
+    {
+      "frame": "frame_0011.png",
+      "alpha_bbox": [
+        34,
+        45,
+        279,
+        265
+      ]
+    },
+    {
+      "frame": "frame_0012.png",
+      "alpha_bbox": [
+        36,
+        45,
+        278,
+        266
+      ]
+    },
+    {
+      "frame": "frame_0013.png",
+      "alpha_bbox": [
+        35,
+        44,
+        278,
+        266
+      ]
+    },
+    {
+      "frame": "frame_0014.png",
+      "alpha_bbox": [
+        35,
+        44,
+        278,
+        266
+      ]
+    },
+    {
+      "frame": "frame_0015.png",
+      "alpha_bbox": null
+    }
+  ]
+}

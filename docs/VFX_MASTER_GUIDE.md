@@ -193,7 +193,7 @@ A experiência de treino de timing no Real Time VFX mostra que blocos simples co
 | Shape layers | `layer.newShape` com `kind`, `size`, `fill`, `position` | Confirmado no recipe/render |
 | Keyframes | `prop.addKey` em `transform/scale` / `opacity` | Integrado no recipe/render |
 | Prévia com alpha | `effectcraft-cli render-frame --transparent` / MCP `render_frame` | Confirmado com canvas transparente |
-| Render multipass | Sequência PNG via CLI + packer Python | Confirmado no pipeline |
+| Render de sequência | Sequência PNG via CLI + packer Python | Confirmado no pipeline |
 | MCP | `effectcraft-cli mcp` com `tools/list` e `tools/call` | Confirmado em CI |
 | Path trim/offset/repeater | Operações de path e shape pelo editor/engine | Documentado upstream; **parâmetros de comando requerem inspeção antes do uso** |
 | Blur, glow, motion blur | Lista de efeitos e propriedades do EffectCraft | Documentado upstream; qualidade específica ainda requer render e review |

@@ -107,7 +107,7 @@ def smoke(cli: str, output: Path):
         }})
         output.parent.mkdir(parents=True, exist_ok=True)
         client.tool("render_frame", {"comp": "VFX Smoke", "time": 0.0, "max_side": 256,
-                                     "transparent": True, "path": str(output.resolve())}
+                                     "transparent": True, "path": str(output.resolve())})
         if not output.is_file():
             raise RuntimeError("MCP render_frame did not produce a PNG")
         with Image.open(output) as im:

@@ -1,0 +1,53 @@
+name: EffectCraft CLI and MCP integration
+
+on:
+  push:
+    paths:
+      - '.github/workflows/effectcraft-smoke.yml'
+      - 'effectcraft.lock.json'
+      - 'tools/effectcraft.py'
+      - 'tools/effectcraft_mcp_smoke.py'
+      - 'tools/vfx_pipeline.py'
+      - 'tools/pack_spritesheet.py'
+      - 'recipes/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compile-and-smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: System build requirements
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pkg-config libxkbcommon-dev libwayland-dev libx11-dev libxcb1-dev libxcursor-dev libxrandr-dev libxi-dev libfontconfig1-dev libfreetype-dev mesa-vulkan-drivers libgl1-mesa-dev libasound2-dev
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: vendor/effectcraft
+      - name: Python dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Get pinned EffectCraft sources
+        run: python tools/effectcraft.py install
+      - name: Compile original EffectCraft CLI
+        working-directory: vendor/effectcraft
+        run: cargo build -p effectcraft-cli --locked
+      - name: MCP protocol and transparent frame smoke
+        run: python tools/effectcraft_mcp_smoke.py --cli vendor/effectcraft/target/debug/effectcraft-cli --out dist/mcp-smoke.png
+      - name: Create and render editable light impact from EffectCraft engine commands
+        run: |
+          python tools/vfx_pipeline.py --cli vendor/effectcraft/target/debug/effectcraft-cli --recipe recipes/hit-light.json --out dist/hit-light --frames 10 --fps 24 --columns 4
+      - name: Upload rendered outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: effectcraft-vfx-smoke
+          path: dist/
+          if-no-files-found: ignore

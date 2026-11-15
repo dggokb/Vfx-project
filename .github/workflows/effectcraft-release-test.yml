@@ -27,7 +27,7 @@ jobs:
       - name: Required Linux runtime libraries
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq libxkbcommon0 libwayland-client0 libx11-6 libxcb1 libxcursor1 libxrandr2 libxi6 libfontconfig1 libfreetype6 libasound2 libgl1 libvulkan1
+          sudo apt-get install -y -qq libxkbcommon0 libwayland-client0 libx11-6 libxcb1 libxcursor1 libxrandr2 libxi6 libfontconfig1 libfreetype6 libasound2t64 libgl1 libvulkan1
       - name: Fetch EffectCraft 0.24.1 official Linux binaries
         shell: bash
         run: |

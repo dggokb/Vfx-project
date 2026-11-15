@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "id": "hit-light",
+  "status": "technical-fixture",
+  "gameplay": {
+    "event": "hit",
+    "strength": "light",
+    "collision_frame": 0,
+    "hitbox_reference": "unlinked-fixture",
+    "hitbox_verification": "pending",
+    "hitstop_policy": "engine_defined",
+    "direction": "outward_from_contact",
+    "occlusion_review": "pending",
+    "layer_strategy": "single_flattened"
+  },
+  "camera": {
+    "projection": "side",
+    "orientation": "right",
+    "locked": true
+  },
+  "render": {
+    "width": 256,
+    "height": 256,
+    "fps": 24,
+    "frames": 10,
+    "pivot": [128, 128],
+    "alpha": "required"
+  },
+  "timing": {
+    "contact": 0,
+    "peak": 2,
+    "breakup": 4,
+    "settle": 7,
+    "clear": 9
+  },
+  "art": {
+    "silhouette_goal": "Simple editable integration fixture; not an approved hit silhouette",
+    "direction_goal": "Radial around hit origin for integration smoke only",
+    "palette": ["#FFFFFF", "#FF8A00"],
+    "layers": [
+      {"name": "Orange Halo", "role": "body", "plane": "character_plane"},
+      {"name": "White Core", "role": "contact_core", "plane": "character_plane"}
+    ],
+    "references": [
+      {
+        "title": "Arc System Works Academy — fighting game effects",
+        "url": "https://www.arcsystemworks.jp/academy/",
+        "usage": "Gameplay/visibility direction reference; this fixture does not copy ASW art"
+      }
+    ]
+  },
+  "verification": {
+    "review_status": "technical-fixture",
+    "gameplay_preview": "pending",
+    "evidence": [
+      "https://github.com/dggokb/Vfx-project/actions/runs/43711782704"
+    ],
+    "known_limitations": [
+      "Only technical pipeline verification; circles are not professional animation",
+      "Does not verify real game hitbox, hit-stop, or visual occlusion",
+      "A single flattened atlas cannot independently place back/front layers"
+    ]
+  }
+}

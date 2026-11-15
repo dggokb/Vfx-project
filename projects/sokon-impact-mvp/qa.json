@@ -1,0 +1,155 @@
+{
+  "render_engine": "EffectCraft official 0.24.1",
+  "frame_count": 12,
+  "fps": 24,
+  "duration_seconds": 0.5,
+  "source_drawings": 10,
+  "intentional_hold": [
+    2,
+    3
+  ],
+  "portability_pixel_equal": true,
+  "reopened_edit_changed_pixels": true,
+  "gameplay_review": "pending",
+  "frames": [
+    {
+      "frame": 0,
+      "alpha_bbox": [
+        110,
+        190,
+        521,
+        606
+      ],
+      "margin": 110,
+      "sha256": "815989c38f4d6d96923b075c724296755b0b1cca988a7c19fc2084d85264a5b9",
+      "atlas_equal": true
+    },
+    {
+      "frame": 1,
+      "alpha_bbox": [
+        130,
+        174,
+        582,
+        602
+      ],
+      "margin": 130,
+      "sha256": "3cffcf4138866c77be8b38b6e05d870bd415eebe73965b9f04f163cb04b687bf",
+      "atlas_equal": true
+    },
+    {
+      "frame": 2,
+      "alpha_bbox": [
+        99,
+        62,
+        699,
+        673
+      ],
+      "margin": 62,
+      "sha256": "b882d38729ce220ec4b6b28f67d94f9866edb01315118dc3c46de1d39b354c76",
+      "atlas_equal": true
+    },
+    {
+      "frame": 3,
+      "alpha_bbox": [
+        99,
+        62,
+        699,
+        673
+      ],
+      "margin": 62,
+      "sha256": "b882d38729ce220ec4b6b28f67d94f9866edb01315118dc3c46de1d39b354c76",
+      "atlas_equal": true
+    },
+    {
+      "frame": 4,
+      "alpha_bbox": [
+        228,
+        156,
+        680,
+        602
+      ],
+      "margin": 88,
+      "sha256": "94700d450374474fe2489ea2521dfe0feae58e09f979d897c364b5f1ab5158a8",
+      "atlas_equal": true
+    },
+    {
+      "frame": 5,
+      "alpha_bbox": [
+        229,
+        156,
+        680,
+        604
+      ],
+      "margin": 88,
+      "sha256": "9b8b1d3f3e22470fe749ad9d4443e30ebcc5ec5d4eacdbda09aa36564c93bd7e",
+      "atlas_equal": true
+    },
+    {
+      "frame": 6,
+      "alpha_bbox": [
+        230,
+        156,
+        678,
+        569
+      ],
+      "margin": 90,
+      "sha256": "5065b5a1b844b8e0d1a2ccf35eb5e8a2d5c9398659c802208d8a61c29cc3f58f",
+      "atlas_equal": true
+    },
+    {
+      "frame": 7,
+      "alpha_bbox": [
+        246,
+        156,
+        676,
+        607
+      ],
+      "margin": 92,
+      "sha256": "b972c289455386bfec1f3327a3145dd83a46ed96f519ef1360cdff06b2c206d1",
+      "atlas_equal": true
+    },
+    {
+      "frame": 8,
+      "alpha_bbox": [
+        259,
+        166,
+        680,
+        586
+      ],
+      "margin": 88,
+      "sha256": "f40915749c0512b3a13fe3735791d98833ae4620e810592cc0701bbb282bab9b",
+      "atlas_equal": true
+    },
+    {
+      "frame": 9,
+      "alpha_bbox": [
+        294,
+        225,
+        513,
+        473
+      ],
+      "margin": 225,
+      "sha256": "4ca041fdd79fcfeff089e3db776aa40c270be2e12db695d87a96134263271dd4",
+      "atlas_equal": true
+    },
+    {
+      "frame": 10,
+      "alpha_bbox": [
+        369,
+        272,
+        432,
+        456
+      ],
+      "margin": 272,
+      "sha256": "ea786b8d915fcabdbd5cff0b11db438a631b7cac37b6ac6f817fa9f4413aada5",
+      "atlas_equal": true
+    },
+    {
+      "frame": 11,
+      "alpha_bbox": null,
+      "margin": null,
+      "sha256": "96a12deebdc8a3421e923d2fc00a649326f0b5167b48ffd231941a415777308c",
+      "atlas_equal": true
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "description": "Planned VFX families. No rendered presets shipped yet.",
+  "presets": [
+    {"id": "hit-light", "name": "Light hit", "status": "planned"},
+    {"id": "hit-medium", "name": "Medium hit", "status": "planned"},
+    {"id": "hit-heavy", "name": "Heavy hit", "status": "planned"},
+    {"id": "guard-pressure", "name": "Guard air-pressure shockwave", "status": "planned"},
+    {"id": "dash-smoke", "name": "Dash dust and smoke", "status": "planned"},
+    {"id": "strike-trail", "name": "Strike motion trail", "status": "planned"}
+  ]
+}

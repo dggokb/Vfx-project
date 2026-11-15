@@ -31,15 +31,17 @@ The source will live in `vendor/effectcraft/` (excluded from our Git repository)
 **Before every new VFX**, agents and collaborators must read:
 
 1. [AGENTS.md](AGENTS.md) — mandatory production rules.
-2. [docs/VFX_MASTER_GUIDE.md](docs/VFX_MASTER_GUIDE.md) — researched After Effects techniques adapted to EffectCraft.
-3. [docs/VFX_LEARNING_LOG.md](docs/VFX_LEARNING_LOG.md) — living record of failures, corrections and approved patterns.
-4. [docs/VFX_SOURCES.md](docs/VFX_SOURCES.md) — primary references and provenance.
-5. [docs/VFX_BRIEF_TEMPLATE.md](docs/VFX_BRIEF_TEMPLATE.md) — storyboard/acceptance template.
+2. [docs/ARCSYS_FIGHTING_VFX.md](docs/ARCSYS_FIGHTING_VFX.md) — **fighting game VFX craft based on Arc System Works sources**.
+3. [docs/VFX_MASTER_GUIDE.md](docs/VFX_MASTER_GUIDE.md) — researched After Effects techniques adapted to EffectCraft.
+4. [docs/VFX_LEARNING_LOG.md](docs/VFX_LEARNING_LOG.md) — living record of failures, corrections and approved patterns.
+5. [docs/VFX_SOURCES.md](docs/VFX_SOURCES.md) — primary references and provenance.
+6. [docs/VFX_BRIEF_TEMPLATE.md](docs/VFX_BRIEF_TEMPLATE.md) — storyboard/acceptance template.
 
-The exporter runs an **automatic knowledge preflight** and records SHA-256 digests of these documents in its `knowledge.json` output for traceability. It cannot replace a human/agent actually reading the docs or visually reviewing the result.
+Every fighting-game recipe now needs a `recipes/briefs/<name>.json` with gameplay/timing/draw-order metadata validated by `tools/validate_fighting_recipe.py`. The exporter runs an **automatic knowledge preflight** and records SHA-256 digests of these documents in its `knowledge.json` output for traceability. It cannot replace a human/agent actually reading the docs or visually reviewing the result.
 
 ```bash
 python tools/vfx_preflight.py --effect hit-light
+python tools/validate_fighting_recipe.py --recipe recipes/hit-light.json --brief recipes/briefs/hit-light.json --frames 10 --fps 24
 ```
 
 ## Export a game spritesheet

@@ -12,6 +12,14 @@ Atualizar **após toda tentativa relevante de novo efeito**. Este documento guar
 - **Lição de arte:** o primeiro hit-light em círculos é **somente smoke test técnico**, não um efeito final de qualidade profissional. Próxima iteração precisa de silhueta irregular, lascas, ritmo mais orgânico e avaliação em escala real.
 - **Status:** integração **headless** verificada; editor desktop/UI e paridade total de expressão/effects **não verificados**.
 
+## 2026-11-15 — Pesquisa direcionada: Arc System Works como referência principal de luta
+
+- **Descoberta com fonte pública:** a [ASW Academy](https://www.arcsystemworks.jp/academy/) tem aulas de 2026 dedicadas a VFX de jogos de luta (hit/slash e gelo/fluídos) e aulas de 2025 sobre os efeitos de *Guilty Gear -Strive-*.
+- **Relato específico (fonte secundária):** para preservar a leitura, separar massas grandes atrás dos lutadores e detalhes pequenos à frente. O efeito deve ajudar a comunicar trajetória/alcance em concordância com a área de ataque; ver [manual ArcSys](ARCSYS_FIGHTING_VFX.md).
+- **Nossa adaptação:** exigir plano de oclusão, frame de colisão, política de hit-stop, pivô, perspectiva, frames de poses e restrições de render na recipe; sem brief, não executar o pipeline.
+- **Lacuna identificada:** o atlas único do pipeline não implementa desenho atrás e à frente do personagem ao mesmo tempo. Futuros efeitos que exigem passes separados **não estão prontos para uso final**.
+- **Estado:** pesquisa aplicada a documentação e regras de pré-validação; **não houve ainda revisão visual de uma nova arte ArcSys-style**. Não declarar qualidade artística aprovada.
+
 ## Template para nova entrada
 
 ### AAAA-MM-DD — Nome do VFX / versão

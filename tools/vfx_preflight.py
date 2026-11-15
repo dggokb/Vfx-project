@@ -14,6 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = [
     "AGENTS.md",
+    "docs/ARCSYS_FIGHTING_VFX.md",
     "docs/VFX_MASTER_GUIDE.md",
     "docs/VFX_LEARNING_LOG.md",
     "docs/VFX_SOURCES.md",
@@ -57,7 +58,7 @@ def main():
         print(json.dumps(data, ensure_ascii=False, sort_keys=True))
     else:
         print(f"VFX knowledge base OK for {args.effect}: {len(data['required_reading_sha256'])} references")
-        print("READ FIRST: docs/VFX_MASTER_GUIDE.md + docs/VFX_LEARNING_LOG.md")
+        print("READ FIRST: docs/ARCSYS_FIGHTING_VFX.md + docs/VFX_MASTER_GUIDE.md + docs/VFX_LEARNING_LOG.md")
         print("WORKFLOW: silhouette -> timing blockout -> layers -> color/glow -> real render -> QA")
         print("AFTER ITERATION: update docs/VFX_LEARNING_LOG.md, preserving failures and evidence.")
 

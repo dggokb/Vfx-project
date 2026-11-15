@@ -9,8 +9,8 @@
 
 | ID | Fonte | Aprendizado fundamentado |
 |---|---|---|
-| ARC01 | [ASW Academy — Como fazer efeitos de jogos de luta, parte 1 (22/abr/2026)](https://www.arcsystemworks.jp/movie/movie-31203/) e [índice oficial ASW Academy](https://www.arcsystemworks.jp/academy/) | Introduz papel de VFX em jogo de luta; exemplos de **hit** e **slash**; conceitos de comunicação visual |
-| ARC02 | [ASW Academy — Como fazer efeitos de jogos de luta, parte 2 (29/abr/2026)](https://www.arcsystemworks.jp/movie/movie-31206/) | Exemplos de gelo e efeitos fluidos; storyboards, texturas, ajustes no motor. Não confundir simulação 3D com recurso pronto do EffectCraft |
+| ARC01 | [ASW Academy — Como fazer efeitos de jogos de luta, parte 1 (22/abr/2026)](https://www.arcsystemworks.jp/movie/movie-31203/), [vídeo oficial](https://www.youtube.com/watch?v=iJwbiIa7D3E) e [índice oficial ASW Academy](https://www.arcsystemworks.jp/academy/) | Introduz papel de VFX em jogo de luta; exemplos de **hit** e **slash**; conceitos de comunicação visual |
+| ARC02 | [ASW Academy — Como fazer efeitos de jogos de luta, parte 2 (29/abr/2026)](https://www.arcsystemworks.jp/movie/movie-31206/) e [vídeo oficial](https://www.youtube.com/watch?v=cfPC4ptxYgU) | Exemplos de gelo e efeitos fluidos; storyboards, texturas, ajustes no motor. Não confundir simulação 3D com recurso pronto do EffectCraft |
 | ARC03 | [ASW Academy — Técnicas de produção de efeitos em *Guilty Gear -Strive-* 1 (8/out/2025)](https://www.youtube.com/watch?v=vha6dkrVvZ0) | Segundo a descrição oficial, efeitos vistosos **sem sacrificar a visibilidade** |
 | ARC04 | [ASW Academy — *Guilty Gear -Strive-* 2 (15/out/2025)](https://www.youtube.com/watch?v=nTZM-1SDAp4) | Produção de efeitos para story mode / encenação; separar cutscene de gameplay |
 | ARC05 | [Unreal Engine — entrevista com a equipe de *Guilty Gear -Strive-*](https://www.unrealengine.com/developer-interviews/how-guilty-gear--strive--hits-an-ultra-combo-with-groundbreaking-visuals-and-gameplay?lang=en-US) | A equipe relata **direção manual de cor/sombreamento**, animação limitada intencional e cooperação entre efeitos, animação, programação e cenários |

@@ -4,7 +4,7 @@
 
 Our first milestone is repeatable VFX authoring and game-ready exports: **EffectCraft project → RGBA PNG frames → transparent spritesheet + timing JSON**.
 
-> **Current status:** initial toolchain and tests are committed. EffectCraft is pinned but **not included or compiled** in this repository. The install helper clones the upstream project to a Git-ignored local directory.
+> **Current status (2026-11-15):** the pinned upstream EffectCraft CLI has been compiled successfully in GitHub Actions, and a separate official v0.24.1 binary completed the MCP + transparent VFX render/export smoke test. These checks prove the headless pipeline, **not** professional artistic quality or the desktop UI. The EffectCraft source/binaries are not vendored in this repo.
 
 ## Requirements
 
@@ -25,6 +25,22 @@ python tools/effectcraft.py mcp        # start headless MCP server with autosave
 ```
 
 The source will live in `vendor/effectcraft/` (excluded from our Git repository). Source revision and version are declared in [effectcraft.lock.json](effectcraft.lock.json). The upstream project is large; release builds may take a long time.
+
+## Mandatory VFX craft workflow (After Effects research)
+
+**Before every new VFX**, agents and collaborators must read:
+
+1. [AGENTS.md](AGENTS.md) — mandatory production rules.
+2. [docs/VFX_MASTER_GUIDE.md](docs/VFX_MASTER_GUIDE.md) — researched After Effects techniques adapted to EffectCraft.
+3. [docs/VFX_LEARNING_LOG.md](docs/VFX_LEARNING_LOG.md) — living record of failures, corrections and approved patterns.
+4. [docs/VFX_SOURCES.md](docs/VFX_SOURCES.md) — primary references and provenance.
+5. [docs/VFX_BRIEF_TEMPLATE.md](docs/VFX_BRIEF_TEMPLATE.md) — storyboard/acceptance template.
+
+The exporter runs an **automatic knowledge preflight** and records SHA-256 digests of these documents in its `knowledge.json` output for traceability. It cannot replace a human/agent actually reading the docs or visually reviewing the result.
+
+```bash
+python tools/vfx_preflight.py --effect hit-light
+```
 
 ## Export a game spritesheet
 
@@ -48,7 +64,7 @@ Requirements: identical canvas dimensions for every frame and a real alpha chann
 python -m unittest discover -s tests -v
 ```
 
-GitHub Actions runs offline Python validation on every push and pull request. Full EffectCraft compilation and rendered VFX presets are **future milestones**, not claimed as completed here.
+GitHub Actions runs offline Python tests on each push/PR. A separate integration workflow compiles the pinned EffectCraft CLI; the official release smoke workflow has already verified MCP and real PNG alpha / spritesheet export. The current hit-light recipe is a **technical fixture**, not production-approved art.
 
 ## Files
 

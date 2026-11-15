@@ -36,12 +36,23 @@ def main() -> int:
     if any(not isinstance(x, dict) or not isinstance(x.get("command"), str)
            or not isinstance(x.get("params"), dict) for x in recipe):
         p.error("each command needs a string 'command' and object 'params'")
+    # Every render requires the versioned production playbook and learning log.
+    # Save the exact knowledge-base fingerprints with this render for traceability.
+    preflight = subprocess.run(
+        [sys.executable, str(ROOT / "tools" / "vfx_preflight.py"),
+         "--effect", args.recipe.stem, "--json"],
+        check=True, text=True, capture_output=True,
+    )
+    knowledge = json.loads(preflight.stdout)
+    print("VFX knowledge preflight OK: master guide + lessons + sources checked.", flush=True)
     cli = str(args.cli.resolve())
     destination = args.out.resolve()
     destination.mkdir(parents=True, exist_ok=True)
     project = destination / "effect.ecproj"
-    if project.exists():
-        p.error(f"refusing to overwrite an existing project: {project}")
+    knowledge_path = destination / "knowledge.json"
+    if project.exists() or knowledge_path.exists():
+        p.error("refusing to overwrite existing project or knowledge record")
+    knowledge_path.write_text(json.dumps(knowledge, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     frame_dir = destination / "frames"
     frame_dir.mkdir(parents=True, exist_ok=True)
     if list(frame_dir.glob("*.png")):

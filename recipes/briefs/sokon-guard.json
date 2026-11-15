@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "id": "sokon-guard",
+  "status": "wip",
+  "gameplay": {
+    "event": "guard",
+    "strength": "medium",
+    "collision_frame": 0,
+    "hitbox_reference": "SOKON contact event; engine binding pending",
+    "hitbox_verification": "pending",
+    "hitstop_policy": "pause_vfx_with_game",
+    "direction": "outward_from_guard",
+    "occlusion_review": "pending",
+    "layer_strategy": "single_flattened"
+  },
+  "camera": {
+    "projection": "three_quarter",
+    "orientation": "right",
+    "locked": true
+  },
+  "render": {
+    "width": 384,
+    "height": 384,
+    "fps": 24,
+    "frames": 10,
+    "pivot": [
+      170,
+      192
+    ],
+    "alpha": "required"
+  },
+  "timing": {
+    "contact": 0,
+    "peak": 2,
+    "breakup": 3,
+    "settle": 6,
+    "clear": 9
+  },
+  "art": {
+    "silhouette_goal": "Compressed crescent opens outward in 3/4 with separated air spray and open center.",
+    "direction_goal": "outward_from_guard",
+    "palette": [
+      "#80BFDF",
+      "#E8FAFF",
+      "#D8F5FF"
+    ],
+    "layers": [
+      {
+        "name": "Pressure-edge",
+        "role": "pressure",
+        "plane": "character_plane"
+      },
+      {
+        "name": "Pressure-hot",
+        "role": "highlight",
+        "plane": "character_plane"
+      },
+      {
+        "name": "Air-spray-0",
+        "role": "spray",
+        "plane": "character_plane"
+      },
+      {
+        "name": "Air-spray-1",
+        "role": "spray",
+        "plane": "character_plane"
+      },
+      {
+        "name": "Air-spray-2",
+        "role": "spray",
+        "plane": "character_plane"
+      },
+      {
+        "name": "Air-spray-3",
+        "role": "spray",
+        "plane": "character_plane"
+      },
+      {
+        "name": "Air-spray-4",
+        "role": "spray",
+        "plane": "character_plane"
+      }
+    ],
+    "references": [
+      {
+        "title": "Arc System Works Academy — fighting game effects",
+        "url": "https://www.arcsystemworks.jp/academy/",
+        "usage": "Gameplay/visibility direction reference; this fixture does not copy ASW art"
+      }
+    ]
+  },
+  "verification": {
+    "review_status": "wip",
+    "gameplay_preview": "pending",
+    "evidence": [],
+    "known_limitations": [
+      "Gameplay placement, hit-stop and occlusion pending.",
+      "Flattened atlas per effect."
+    ]
+  }
+}

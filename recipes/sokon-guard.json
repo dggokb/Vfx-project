@@ -1,0 +1,1237 @@
+[
+  {
+    "command": "comp.new",
+    "params": {
+      "name": "guard",
+      "width": 384,
+      "height": 384,
+      "frameRate": 24,
+      "duration": 0.4166666666666667
+    }
+  },
+  {
+    "command": "layer.newShape",
+    "params": {
+      "kind": "none",
+      "name": "Pressure-edge",
+      "position": [
+        170,
+        192
+      ]
+    }
+  },
+  {
+    "command": "shape.newPath",
+    "params": {
+      "layer": "Pressure-edge",
+      "vertices": [
+        [
+          -8,
+          -58
+        ],
+        [
+          18,
+          -53
+        ],
+        [
+          43,
+          -33
+        ],
+        [
+          52,
+          -7
+        ],
+        [
+          48,
+          20
+        ],
+        [
+          29,
+          48
+        ],
+        [
+          8,
+          61
+        ],
+        [
+          22,
+          39
+        ],
+        [
+          31,
+          12
+        ],
+        [
+          28,
+          -14
+        ],
+        [
+          15,
+          -34
+        ],
+        [
+          -8,
+          -45
+        ]
+      ],
+      "closed": true,
+      "space": "layer",
+      "fill": "#80bfdf",
+      "stroke": false
+    }
+  },
+  {
+    "command": "layer.newShape",
+    "params": {
+      "kind": "none",
+      "name": "Pressure-hot",
+      "position": [
+        170,
+        192
+      ]
+    }
+  },
+  {
+    "command": "shape.newPath",
+    "params": {
+      "layer": "Pressure-hot",
+      "vertices": [
+        [
+          -6.56,
+          -49.3
+        ],
+        [
+          14.76,
+          -45.05
+        ],
+        [
+          35.26,
+          -28.05
+        ],
+        [
+          42.64,
+          -5.95
+        ],
+        [
+          39.36,
+          17.0
+        ],
+        [
+          23.779999999999998,
+          40.8
+        ],
+        [
+          6.56,
+          51.85
+        ],
+        [
+          18.04,
+          33.15
+        ],
+        [
+          25.419999999999998,
+          10.2
+        ],
+        [
+          22.959999999999997,
+          -11.9
+        ],
+        [
+          12.299999999999999,
+          -28.9
+        ],
+        [
+          -6.56,
+          -38.25
+        ]
+      ],
+      "closed": true,
+      "space": "layer",
+      "fill": "#e8faff",
+      "stroke": false
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-edge",
+      "path": "transform/scale",
+      "time": 0.0,
+      "value": [
+        18,
+        55
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-edge",
+      "path": "transform/scale",
+      "time": 0.041666666666666664,
+      "value": [
+        65,
+        87
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-edge",
+      "path": "transform/scale",
+      "time": 0.08333333333333333,
+      "value": [
+        100,
+        100
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-edge",
+      "path": "transform/scale",
+      "time": 0.20833333333333334,
+      "value": [
+        123,
+        90
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-edge",
+      "path": "transform/scale",
+      "time": 0.3333333333333333,
+      "value": [
+        140,
+        60
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-edge",
+      "path": "transform/scale",
+      "time": 0.375,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-edge",
+      "path": "transform/position",
+      "time": 0.0,
+      "value": [
+        170,
+        192
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-edge",
+      "path": "transform/position",
+      "time": 0.125,
+      "value": [
+        183,
+        192
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-edge",
+      "path": "transform/position",
+      "time": 0.3333333333333333,
+      "value": [
+        207,
+        192
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-edge",
+      "path": "transform/opacity",
+      "time": 0.0,
+      "value": 95
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-edge",
+      "path": "transform/opacity",
+      "time": 0.125,
+      "value": 100
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-edge",
+      "path": "transform/opacity",
+      "time": 0.2916666666666667,
+      "value": 40
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-edge",
+      "path": "transform/opacity",
+      "time": 0.375,
+      "value": 0
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-hot",
+      "path": "transform/scale",
+      "time": 0.0,
+      "value": [
+        18,
+        55
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-hot",
+      "path": "transform/scale",
+      "time": 0.041666666666666664,
+      "value": [
+        65,
+        87
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-hot",
+      "path": "transform/scale",
+      "time": 0.08333333333333333,
+      "value": [
+        100,
+        100
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-hot",
+      "path": "transform/scale",
+      "time": 0.20833333333333334,
+      "value": [
+        123,
+        90
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-hot",
+      "path": "transform/scale",
+      "time": 0.3333333333333333,
+      "value": [
+        140,
+        60
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-hot",
+      "path": "transform/scale",
+      "time": 0.375,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-hot",
+      "path": "transform/position",
+      "time": 0.0,
+      "value": [
+        170,
+        192
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-hot",
+      "path": "transform/position",
+      "time": 0.125,
+      "value": [
+        183,
+        192
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-hot",
+      "path": "transform/position",
+      "time": 0.3333333333333333,
+      "value": [
+        207,
+        192
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-hot",
+      "path": "transform/opacity",
+      "time": 0.0,
+      "value": 95
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-hot",
+      "path": "transform/opacity",
+      "time": 0.125,
+      "value": 100
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-hot",
+      "path": "transform/opacity",
+      "time": 0.2916666666666667,
+      "value": 40
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Pressure-hot",
+      "path": "transform/opacity",
+      "time": 0.375,
+      "value": 0
+    }
+  },
+  {
+    "command": "layer.newShape",
+    "params": {
+      "kind": "none",
+      "name": "Air-spray-0",
+      "position": [
+        170,
+        192
+      ]
+    }
+  },
+  {
+    "command": "shape.newPath",
+    "params": {
+      "layer": "Air-spray-0",
+      "vertices": [
+        [
+          -9,
+          1
+        ],
+        [
+          5,
+          -2
+        ],
+        [
+          11,
+          0
+        ],
+        [
+          -4,
+          3
+        ]
+      ],
+      "closed": true,
+      "space": "layer",
+      "fill": "#d8f5ff",
+      "stroke": false
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-0",
+      "path": "transform/position",
+      "time": 0.0,
+      "value": [
+        170,
+        192
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-0",
+      "path": "transform/position",
+      "time": 0.125,
+      "value": [
+        205,
+        122
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-0",
+      "path": "transform/position",
+      "time": 0.3333333333333333,
+      "value": [
+        222.5,
+        111.5
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-0",
+      "path": "transform/scale",
+      "time": 0.0,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-0",
+      "path": "transform/scale",
+      "time": 0.08333333333333333,
+      "value": [
+        95,
+        85
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-0",
+      "path": "transform/scale",
+      "time": 0.2916666666666667,
+      "value": [
+        45,
+        30
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-0",
+      "path": "transform/scale",
+      "time": 0.375,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-0",
+      "path": "transform/opacity",
+      "time": 0.0,
+      "value": 0
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-0",
+      "path": "transform/opacity",
+      "time": 0.08333333333333333,
+      "value": 90
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-0",
+      "path": "transform/opacity",
+      "time": 0.20833333333333334,
+      "value": 75
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-0",
+      "path": "transform/opacity",
+      "time": 0.375,
+      "value": 0
+    }
+  },
+  {
+    "command": "layer.newShape",
+    "params": {
+      "kind": "none",
+      "name": "Air-spray-1",
+      "position": [
+        170,
+        192
+      ]
+    }
+  },
+  {
+    "command": "shape.newPath",
+    "params": {
+      "layer": "Air-spray-1",
+      "vertices": [
+        [
+          -9,
+          1
+        ],
+        [
+          5,
+          -2
+        ],
+        [
+          11,
+          0
+        ],
+        [
+          -4,
+          3
+        ]
+      ],
+      "closed": true,
+      "space": "layer",
+      "fill": "#d8f5ff",
+      "stroke": false
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-1",
+      "path": "transform/position",
+      "time": 0.0,
+      "value": [
+        170,
+        192
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-1",
+      "path": "transform/position",
+      "time": 0.125,
+      "value": [
+        228,
+        148
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-1",
+      "path": "transform/position",
+      "time": 0.3333333333333333,
+      "value": [
+        257.0,
+        141.4
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-1",
+      "path": "transform/scale",
+      "time": 0.0,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-1",
+      "path": "transform/scale",
+      "time": 0.08333333333333333,
+      "value": [
+        95,
+        85
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-1",
+      "path": "transform/scale",
+      "time": 0.2916666666666667,
+      "value": [
+        45,
+        30
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-1",
+      "path": "transform/scale",
+      "time": 0.375,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-1",
+      "path": "transform/opacity",
+      "time": 0.0,
+      "value": 0
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-1",
+      "path": "transform/opacity",
+      "time": 0.08333333333333333,
+      "value": 90
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-1",
+      "path": "transform/opacity",
+      "time": 0.20833333333333334,
+      "value": 75
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-1",
+      "path": "transform/opacity",
+      "time": 0.375,
+      "value": 0
+    }
+  },
+  {
+    "command": "layer.newShape",
+    "params": {
+      "kind": "none",
+      "name": "Air-spray-2",
+      "position": [
+        170,
+        192
+      ]
+    }
+  },
+  {
+    "command": "shape.newPath",
+    "params": {
+      "layer": "Air-spray-2",
+      "vertices": [
+        [
+          -9,
+          1
+        ],
+        [
+          5,
+          -2
+        ],
+        [
+          11,
+          0
+        ],
+        [
+          -4,
+          3
+        ]
+      ],
+      "closed": true,
+      "space": "layer",
+      "fill": "#d8f5ff",
+      "stroke": false
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-2",
+      "path": "transform/position",
+      "time": 0.0,
+      "value": [
+        170,
+        192
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-2",
+      "path": "transform/position",
+      "time": 0.125,
+      "value": [
+        238,
+        184
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-2",
+      "path": "transform/position",
+      "time": 0.3333333333333333,
+      "value": [
+        272.0,
+        182.8
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-2",
+      "path": "transform/scale",
+      "time": 0.0,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-2",
+      "path": "transform/scale",
+      "time": 0.08333333333333333,
+      "value": [
+        95,
+        85
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-2",
+      "path": "transform/scale",
+      "time": 0.2916666666666667,
+      "value": [
+        45,
+        30
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-2",
+      "path": "transform/scale",
+      "time": 0.375,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-2",
+      "path": "transform/opacity",
+      "time": 0.0,
+      "value": 0
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-2",
+      "path": "transform/opacity",
+      "time": 0.08333333333333333,
+      "value": 90
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-2",
+      "path": "transform/opacity",
+      "time": 0.20833333333333334,
+      "value": 75
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-2",
+      "path": "transform/opacity",
+      "time": 0.375,
+      "value": 0
+    }
+  },
+  {
+    "command": "layer.newShape",
+    "params": {
+      "kind": "none",
+      "name": "Air-spray-3",
+      "position": [
+        170,
+        192
+      ]
+    }
+  },
+  {
+    "command": "shape.newPath",
+    "params": {
+      "layer": "Air-spray-3",
+      "vertices": [
+        [
+          -9,
+          1
+        ],
+        [
+          5,
+          -2
+        ],
+        [
+          11,
+          0
+        ],
+        [
+          -4,
+          3
+        ]
+      ],
+      "closed": true,
+      "space": "layer",
+      "fill": "#d8f5ff",
+      "stroke": false
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-3",
+      "path": "transform/position",
+      "time": 0.0,
+      "value": [
+        170,
+        192
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-3",
+      "path": "transform/position",
+      "time": 0.125,
+      "value": [
+        231,
+        235
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-3",
+      "path": "transform/position",
+      "time": 0.3333333333333333,
+      "value": [
+        261.5,
+        241.45
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-3",
+      "path": "transform/scale",
+      "time": 0.0,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-3",
+      "path": "transform/scale",
+      "time": 0.08333333333333333,
+      "value": [
+        95,
+        85
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-3",
+      "path": "transform/scale",
+      "time": 0.2916666666666667,
+      "value": [
+        45,
+        30
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-3",
+      "path": "transform/scale",
+      "time": 0.375,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-3",
+      "path": "transform/opacity",
+      "time": 0.0,
+      "value": 0
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-3",
+      "path": "transform/opacity",
+      "time": 0.08333333333333333,
+      "value": 90
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-3",
+      "path": "transform/opacity",
+      "time": 0.20833333333333334,
+      "value": 75
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-3",
+      "path": "transform/opacity",
+      "time": 0.375,
+      "value": 0
+    }
+  },
+  {
+    "command": "layer.newShape",
+    "params": {
+      "kind": "none",
+      "name": "Air-spray-4",
+      "position": [
+        170,
+        192
+      ]
+    }
+  },
+  {
+    "command": "shape.newPath",
+    "params": {
+      "layer": "Air-spray-4",
+      "vertices": [
+        [
+          -9,
+          1
+        ],
+        [
+          5,
+          -2
+        ],
+        [
+          11,
+          0
+        ],
+        [
+          -4,
+          3
+        ]
+      ],
+      "closed": true,
+      "space": "layer",
+      "fill": "#d8f5ff",
+      "stroke": false
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-4",
+      "path": "transform/position",
+      "time": 0.0,
+      "value": [
+        170,
+        192
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-4",
+      "path": "transform/position",
+      "time": 0.125,
+      "value": [
+        200,
+        264
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-4",
+      "path": "transform/position",
+      "time": 0.3333333333333333,
+      "value": [
+        215.0,
+        274.8
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-4",
+      "path": "transform/scale",
+      "time": 0.0,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-4",
+      "path": "transform/scale",
+      "time": 0.08333333333333333,
+      "value": [
+        95,
+        85
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-4",
+      "path": "transform/scale",
+      "time": 0.2916666666666667,
+      "value": [
+        45,
+        30
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-4",
+      "path": "transform/scale",
+      "time": 0.375,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-4",
+      "path": "transform/opacity",
+      "time": 0.0,
+      "value": 0
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-4",
+      "path": "transform/opacity",
+      "time": 0.08333333333333333,
+      "value": 90
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-4",
+      "path": "transform/opacity",
+      "time": 0.20833333333333334,
+      "value": 75
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Air-spray-4",
+      "path": "transform/opacity",
+      "time": 0.375,
+      "value": 0
+    }
+  }
+]

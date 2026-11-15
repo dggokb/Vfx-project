@@ -1,0 +1,2646 @@
+[
+  {
+    "command": "comp.new",
+    "params": {
+      "name": "hit-heavy",
+      "width": 384,
+      "height": 384,
+      "frameRate": 24,
+      "duration": 0.5
+    }
+  },
+  {
+    "command": "layer.newShape",
+    "params": {
+      "kind": "none",
+      "name": "Body",
+      "position": [
+        192,
+        192
+      ]
+    }
+  },
+  {
+    "command": "shape.newPath",
+    "params": {
+      "layer": "Body",
+      "vertices": [
+        [
+          -97.52000000000001,
+          26
+        ],
+        [
+          -48,
+          -3
+        ],
+        [
+          -66,
+          -31
+        ],
+        [
+          -20.240000000000002,
+          -22
+        ],
+        [
+          -33,
+          -82
+        ],
+        [
+          -5,
+          -44
+        ],
+        [
+          10.120000000000001,
+          -108
+        ],
+        [
+          21,
+          -49
+        ],
+        [
+          56,
+          -78
+        ],
+        [
+          33.120000000000005,
+          -25
+        ],
+        [
+          101,
+          -42
+        ],
+        [
+          64,
+          -7
+        ],
+        [
+          109.48,
+          7
+        ],
+        [
+          61,
+          20
+        ],
+        [
+          82,
+          61
+        ],
+        [
+          25.76,
+          39
+        ],
+        [
+          26,
+          93
+        ],
+        [
+          0,
+          51
+        ],
+        [
+          -32.2,
+          83
+        ],
+        [
+          -27,
+          36
+        ],
+        [
+          -77,
+          54
+        ],
+        [
+          -39.56,
+          22
+        ]
+      ],
+      "closed": true,
+      "space": "layer",
+      "fill": "#ff7518",
+      "stroke": false
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Body",
+      "path": "transform/scale",
+      "time": 0.0,
+      "value": [
+        27,
+        32
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Body",
+      "path": "transform/scale",
+      "time": 0.041666666666666664,
+      "value": [
+        100,
+        100
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Body",
+      "path": "transform/scale",
+      "time": 0.08333333333333333,
+      "value": [
+        106,
+        94
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Body",
+      "path": "transform/scale",
+      "time": 0.16666666666666666,
+      "value": [
+        55,
+        48
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Body",
+      "path": "transform/scale",
+      "time": 0.375,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Body",
+      "path": "transform/opacity",
+      "time": 0.0,
+      "value": 100
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Body",
+      "path": "transform/opacity",
+      "time": 0.125,
+      "value": 100
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Body",
+      "path": "transform/opacity",
+      "time": 0.375,
+      "value": 0
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Body",
+      "path": "transform/opacity",
+      "time": 0.4583333333333333,
+      "value": 0
+    }
+  },
+  {
+    "command": "layer.newShape",
+    "params": {
+      "kind": "none",
+      "name": "Heat",
+      "position": [
+        192,
+        192
+      ]
+    }
+  },
+  {
+    "command": "shape.newPath",
+    "params": {
+      "layer": "Heat",
+      "vertices": [
+        [
+          -67.28880000000001,
+          17.939999999999998
+        ],
+        [
+          -33.12,
+          -2.07
+        ],
+        [
+          -45.54,
+          -21.389999999999997
+        ],
+        [
+          -13.9656,
+          -15.18
+        ],
+        [
+          -22.77,
+          -56.58
+        ],
+        [
+          -3.4499999999999997,
+          -30.36
+        ],
+        [
+          6.9828,
+          -74.52
+        ],
+        [
+          14.489999999999998,
+          -33.809999999999995
+        ],
+        [
+          38.64,
+          -53.81999999999999
+        ],
+        [
+          22.8528,
+          -17.25
+        ],
+        [
+          69.69,
+          -28.979999999999997
+        ],
+        [
+          44.16,
+          -4.83
+        ],
+        [
+          75.5412,
+          4.83
+        ],
+        [
+          42.089999999999996,
+          13.799999999999999
+        ],
+        [
+          56.58,
+          42.089999999999996
+        ],
+        [
+          17.7744,
+          26.909999999999997
+        ],
+        [
+          17.939999999999998,
+          64.17
+        ],
+        [
+          0.0,
+          35.19
+        ],
+        [
+          -22.218,
+          57.269999999999996
+        ],
+        [
+          -18.63,
+          24.839999999999996
+        ],
+        [
+          -53.129999999999995,
+          37.26
+        ],
+        [
+          -27.2964,
+          15.18
+        ]
+      ],
+      "closed": true,
+      "space": "layer",
+      "fill": "#ffc72e",
+      "stroke": false
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Heat",
+      "path": "transform/scale",
+      "time": 0.0,
+      "value": [
+        27,
+        32
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Heat",
+      "path": "transform/scale",
+      "time": 0.041666666666666664,
+      "value": [
+        100,
+        100
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Heat",
+      "path": "transform/scale",
+      "time": 0.08333333333333333,
+      "value": [
+        106,
+        94
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Heat",
+      "path": "transform/scale",
+      "time": 0.16666666666666666,
+      "value": [
+        55,
+        48
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Heat",
+      "path": "transform/scale",
+      "time": 0.375,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Heat",
+      "path": "transform/opacity",
+      "time": 0.0,
+      "value": 100
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Heat",
+      "path": "transform/opacity",
+      "time": 0.125,
+      "value": 100
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Heat",
+      "path": "transform/opacity",
+      "time": 0.375,
+      "value": 0
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Heat",
+      "path": "transform/opacity",
+      "time": 0.4583333333333333,
+      "value": 0
+    }
+  },
+  {
+    "command": "layer.newShape",
+    "params": {
+      "kind": "none",
+      "name": "Core",
+      "position": [
+        192,
+        192
+      ]
+    }
+  },
+  {
+    "command": "shape.newPath",
+    "params": {
+      "layer": "Core",
+      "vertices": [
+        [
+          -39.00800000000001,
+          10.4
+        ],
+        [
+          -19.200000000000003,
+          -1.2000000000000002
+        ],
+        [
+          -26.400000000000002,
+          -12.4
+        ],
+        [
+          -8.096000000000002,
+          -8.8
+        ],
+        [
+          -13.200000000000001,
+          -32.800000000000004
+        ],
+        [
+          -2.0,
+          -17.6
+        ],
+        [
+          4.048000000000001,
+          -43.2
+        ],
+        [
+          8.4,
+          -19.6
+        ],
+        [
+          22.400000000000002,
+          -31.200000000000003
+        ],
+        [
+          13.248000000000001,
+          -10.0
+        ],
+        [
+          40.400000000000006,
+          -16.8
+        ],
+        [
+          25.6,
+          -2.8000000000000003
+        ],
+        [
+          43.792,
+          2.8000000000000003
+        ],
+        [
+          24.400000000000002,
+          8.0
+        ],
+        [
+          32.800000000000004,
+          24.400000000000002
+        ],
+        [
+          10.304000000000002,
+          15.600000000000001
+        ],
+        [
+          10.4,
+          37.2
+        ],
+        [
+          0.0,
+          20.400000000000002
+        ],
+        [
+          -12.88,
+          33.2
+        ],
+        [
+          -10.8,
+          14.4
+        ],
+        [
+          -30.8,
+          21.6
+        ],
+        [
+          -15.824,
+          8.8
+        ]
+      ],
+      "closed": true,
+      "space": "layer",
+      "fill": "#fffef5",
+      "stroke": false
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Core",
+      "path": "transform/scale",
+      "time": 0.0,
+      "value": [
+        27,
+        32
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Core",
+      "path": "transform/scale",
+      "time": 0.041666666666666664,
+      "value": [
+        100,
+        100
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Core",
+      "path": "transform/scale",
+      "time": 0.08333333333333333,
+      "value": [
+        106,
+        94
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Core",
+      "path": "transform/scale",
+      "time": 0.16666666666666666,
+      "value": [
+        55,
+        48
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Core",
+      "path": "transform/scale",
+      "time": 0.375,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Core",
+      "path": "transform/opacity",
+      "time": 0.0,
+      "value": 100
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Core",
+      "path": "transform/opacity",
+      "time": 0.125,
+      "value": 100
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Core",
+      "path": "transform/opacity",
+      "time": 0.375,
+      "value": 0
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Core",
+      "path": "transform/opacity",
+      "time": 0.4583333333333333,
+      "value": 0
+    }
+  },
+  {
+    "command": "layer.newShape",
+    "params": {
+      "kind": "none",
+      "name": "Shard-00",
+      "position": [
+        192,
+        192
+      ]
+    }
+  },
+  {
+    "command": "shape.newPath",
+    "params": {
+      "layer": "Shard-00",
+      "vertices": [
+        [
+          -8.994,
+          -1.05
+        ],
+        [
+          5.322,
+          -0.824
+        ],
+        [
+          5.487,
+          0.24
+        ],
+        [
+          -0.675,
+          2.923
+        ]
+      ],
+      "closed": true,
+      "space": "layer",
+      "fill": "#ffe05a",
+      "stroke": false
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-00",
+      "path": "transform/position",
+      "time": 0.0,
+      "value": [
+        201.744,
+        194.25
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-00",
+      "path": "transform/position",
+      "time": 0.08333333333333333,
+      "value": [
+        268.634,
+        209.692
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-00",
+      "path": "transform/position",
+      "time": 0.16666666666666666,
+      "value": [
+        311.828,
+        219.664
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-00",
+      "path": "transform/position",
+      "time": 0.4166666666666667,
+      "value": [
+        331.33500000000004,
+        224.168
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-00",
+      "path": "transform/scale",
+      "time": 0.0,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-00",
+      "path": "transform/scale",
+      "time": 0.041666666666666664,
+      "value": [
+        75,
+        70
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-00",
+      "path": "transform/scale",
+      "time": 0.125,
+      "value": [
+        100,
+        100
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-00",
+      "path": "transform/scale",
+      "time": 0.375,
+      "value": [
+        42,
+        45
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-00",
+      "path": "transform/scale",
+      "time": 0.4583333333333333,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-00",
+      "path": "transform/opacity",
+      "time": 0.0,
+      "value": 0
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-00",
+      "path": "transform/opacity",
+      "time": 0.041666666666666664,
+      "value": 100
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-00",
+      "path": "transform/opacity",
+      "time": 0.3333333333333333,
+      "value": 95
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-00",
+      "path": "transform/opacity",
+      "time": 0.4583333333333333,
+      "value": 0
+    }
+  },
+  {
+    "command": "layer.newShape",
+    "params": {
+      "kind": "none",
+      "name": "Shard-01",
+      "position": [
+        192,
+        192
+      ]
+    }
+  },
+  {
+    "command": "shape.newPath",
+    "params": {
+      "layer": "Shard-01",
+      "vertices": [
+        [
+          -7.746,
+          -9.219
+        ],
+        [
+          4.52,
+          2.927
+        ],
+        [
+          4.974,
+          5.301
+        ],
+        [
+          -2.449,
+          1.732
+        ]
+      ],
+      "closed": true,
+      "space": "layer",
+      "fill": "#ffe05a",
+      "stroke": false
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-01",
+      "path": "transform/position",
+      "time": 0.0,
+      "value": [
+        197.775,
+        200.164
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-01",
+      "path": "transform/position",
+      "time": 0.08333333333333333,
+      "value": [
+        237.418,
+        256.211
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-01",
+      "path": "transform/position",
+      "time": 0.16666666666666666,
+      "value": [
+        263.017,
+        292.402
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-01",
+      "path": "transform/position",
+      "time": 0.4166666666666667,
+      "value": [
+        274.578,
+        308.747
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-01",
+      "path": "transform/scale",
+      "time": 0.0,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-01",
+      "path": "transform/scale",
+      "time": 0.041666666666666664,
+      "value": [
+        75,
+        70
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-01",
+      "path": "transform/scale",
+      "time": 0.125,
+      "value": [
+        100,
+        100
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-01",
+      "path": "transform/scale",
+      "time": 0.375,
+      "value": [
+        42,
+        45
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-01",
+      "path": "transform/scale",
+      "time": 0.4583333333333333,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-01",
+      "path": "transform/opacity",
+      "time": 0.0,
+      "value": 0
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-01",
+      "path": "transform/opacity",
+      "time": 0.041666666666666664,
+      "value": 100
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-01",
+      "path": "transform/opacity",
+      "time": 0.3333333333333333,
+      "value": 95
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-01",
+      "path": "transform/opacity",
+      "time": 0.4583333333333333,
+      "value": 0
+    }
+  },
+  {
+    "command": "layer.newShape",
+    "params": {
+      "kind": "none",
+      "name": "Shard-02",
+      "position": [
+        192,
+        192
+      ]
+    }
+  },
+  {
+    "command": "shape.newPath",
+    "params": {
+      "layer": "Shard-02",
+      "vertices": [
+        [
+          0.693,
+          -15.017
+        ],
+        [
+          1.425,
+          5.193
+        ],
+        [
+          -0.018,
+          9.055
+        ],
+        [
+          -2.981,
+          -0.337
+        ]
+      ],
+      "closed": true,
+      "space": "layer",
+      "fill": "#ffe05a",
+      "stroke": false
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-02",
+      "path": "transform/position",
+      "time": 0.0,
+      "value": [
+        190.876,
+        201.937
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-02",
+      "path": "transform/position",
+      "time": 0.08333333333333333,
+      "value": [
+        183.159,
+        270.151
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-02",
+      "path": "transform/position",
+      "time": 0.16666666666666666,
+      "value": [
+        178.175,
+        314.2
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-02",
+      "path": "transform/position",
+      "time": 0.4166666666666667,
+      "value": [
+        175.925,
+        334.094
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-02",
+      "path": "transform/scale",
+      "time": 0.0,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-02",
+      "path": "transform/scale",
+      "time": 0.041666666666666664,
+      "value": [
+        75,
+        70
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-02",
+      "path": "transform/scale",
+      "time": 0.125,
+      "value": [
+        100,
+        100
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-02",
+      "path": "transform/scale",
+      "time": 0.375,
+      "value": [
+        42,
+        45
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-02",
+      "path": "transform/scale",
+      "time": 0.4583333333333333,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-02",
+      "path": "transform/opacity",
+      "time": 0.0,
+      "value": 0
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-02",
+      "path": "transform/opacity",
+      "time": 0.041666666666666664,
+      "value": 100
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-02",
+      "path": "transform/opacity",
+      "time": 0.3333333333333333,
+      "value": 95
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-02",
+      "path": "transform/opacity",
+      "time": 0.4583333333333333,
+      "value": 0
+    }
+  },
+  {
+    "command": "layer.newShape",
+    "params": {
+      "kind": "none",
+      "name": "Shard-03",
+      "position": [
+        192,
+        192
+      ]
+    }
+  },
+  {
+    "command": "shape.newPath",
+    "params": {
+      "layer": "Shard-03",
+      "vertices": [
+        [
+          5.571,
+          -17.145
+        ],
+        [
+          0.058,
+          5.385
+        ],
+        [
+          -2.97,
+          10.432
+        ],
+        [
+          -2.797,
+          -1.084
+        ]
+      ],
+      "closed": true,
+      "space": "layer",
+      "fill": "#ffe05a",
+      "stroke": false
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-03",
+      "path": "transform/position",
+      "time": 0.0,
+      "value": [
+        188.387,
+        201.324
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-03",
+      "path": "transform/position",
+      "time": 0.08333333333333333,
+      "value": [
+        163.581,
+        265.336
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-03",
+      "path": "transform/position",
+      "time": 0.16666666666666666,
+      "value": [
+        147.564,
+        306.671
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-03",
+      "path": "transform/position",
+      "time": 0.4166666666666667,
+      "value": [
+        140.32999999999998,
+        325.339
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-03",
+      "path": "transform/scale",
+      "time": 0.0,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-03",
+      "path": "transform/scale",
+      "time": 0.041666666666666664,
+      "value": [
+        75,
+        70
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-03",
+      "path": "transform/scale",
+      "time": 0.125,
+      "value": [
+        100,
+        100
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-03",
+      "path": "transform/scale",
+      "time": 0.375,
+      "value": [
+        42,
+        45
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-03",
+      "path": "transform/scale",
+      "time": 0.4583333333333333,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-03",
+      "path": "transform/opacity",
+      "time": 0.0,
+      "value": 0
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-03",
+      "path": "transform/opacity",
+      "time": 0.041666666666666664,
+      "value": 100
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-03",
+      "path": "transform/opacity",
+      "time": 0.3333333333333333,
+      "value": 95
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-03",
+      "path": "transform/opacity",
+      "time": 0.4583333333333333,
+      "value": 0
+    }
+  },
+  {
+    "command": "layer.newShape",
+    "params": {
+      "kind": "none",
+      "name": "Shard-04",
+      "position": [
+        192,
+        192
+      ]
+    }
+  },
+  {
+    "command": "shape.newPath",
+    "params": {
+      "layer": "Shard-04",
+      "vertices": [
+        [
+          7.557,
+          -4.989
+        ],
+        [
+          -3.541,
+          4.058
+        ],
+        [
+          -4.352,
+          3.349
+        ],
+        [
+          -1.366,
+          -2.671
+        ]
+      ],
+      "closed": true,
+      "space": "layer",
+      "fill": "#ffe05a",
+      "stroke": false
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-04",
+      "path": "transform/position",
+      "time": 0.0,
+      "value": [
+        183.097,
+        196.554
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-04",
+      "path": "transform/position",
+      "time": 0.08333333333333333,
+      "value": [
+        121.979,
+        227.817
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-04",
+      "path": "transform/position",
+      "time": 0.16666666666666666,
+      "value": [
+        82.513,
+        248.006
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-04",
+      "path": "transform/position",
+      "time": 0.4166666666666667,
+      "value": [
+        64.689,
+        257.123
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-04",
+      "path": "transform/scale",
+      "time": 0.0,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-04",
+      "path": "transform/scale",
+      "time": 0.041666666666666664,
+      "value": [
+        75,
+        70
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-04",
+      "path": "transform/scale",
+      "time": 0.125,
+      "value": [
+        100,
+        100
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-04",
+      "path": "transform/scale",
+      "time": 0.375,
+      "value": [
+        42,
+        45
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-04",
+      "path": "transform/scale",
+      "time": 0.4583333333333333,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-04",
+      "path": "transform/opacity",
+      "time": 0.0,
+      "value": 0
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-04",
+      "path": "transform/opacity",
+      "time": 0.041666666666666664,
+      "value": 100
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-04",
+      "path": "transform/opacity",
+      "time": 0.3333333333333333,
+      "value": 95
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-04",
+      "path": "transform/opacity",
+      "time": 0.4583333333333333,
+      "value": 0
+    }
+  },
+  {
+    "command": "layer.newShape",
+    "params": {
+      "kind": "none",
+      "name": "Shard-05",
+      "position": [
+        192,
+        192
+      ]
+    }
+  },
+  {
+    "command": "shape.newPath",
+    "params": {
+      "layer": "Shard-05",
+      "vertices": [
+        [
+          11.863,
+          2.065
+        ],
+        [
+          -5.343,
+          0.672
+        ],
+        [
+          -7.219,
+          -0.852
+        ],
+        [
+          0.758,
+          -2.903
+        ]
+      ],
+      "closed": true,
+      "space": "layer",
+      "fill": "#ffe05a",
+      "stroke": false
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-05",
+      "path": "transform/position",
+      "time": 0.0,
+      "value": [
+        182.325,
+        189.473
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-05",
+      "path": "transform/position",
+      "time": 0.08333333333333333,
+      "value": [
+        115.902,
+        172.126
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-05",
+      "path": "transform/position",
+      "time": 0.16666666666666666,
+      "value": [
+        73.011,
+        160.925
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-05",
+      "path": "transform/position",
+      "time": 0.4166666666666667,
+      "value": [
+        53.639999999999986,
+        155.86599999999999
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-05",
+      "path": "transform/scale",
+      "time": 0.0,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-05",
+      "path": "transform/scale",
+      "time": 0.041666666666666664,
+      "value": [
+        75,
+        70
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-05",
+      "path": "transform/scale",
+      "time": 0.125,
+      "value": [
+        100,
+        100
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-05",
+      "path": "transform/scale",
+      "time": 0.375,
+      "value": [
+        42,
+        45
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-05",
+      "path": "transform/scale",
+      "time": 0.4583333333333333,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-05",
+      "path": "transform/opacity",
+      "time": 0.0,
+      "value": 0
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-05",
+      "path": "transform/opacity",
+      "time": 0.041666666666666664,
+      "value": 100
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-05",
+      "path": "transform/opacity",
+      "time": 0.3333333333333333,
+      "value": 95
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-05",
+      "path": "transform/opacity",
+      "time": 0.4583333333333333,
+      "value": 0
+    }
+  },
+  {
+    "command": "layer.newShape",
+    "params": {
+      "kind": "none",
+      "name": "Shard-06",
+      "position": [
+        192,
+        192
+      ]
+    }
+  },
+  {
+    "command": "shape.newPath",
+    "params": {
+      "layer": "Shard-06",
+      "vertices": [
+        [
+          13.563,
+          6.484
+        ],
+        [
+          -5.338,
+          -0.709
+        ],
+        [
+          -8.334,
+          -3.542
+        ],
+        [
+          1.471,
+          -2.615
+        ]
+      ],
+      "closed": true,
+      "space": "layer",
+      "fill": "#ffe05a",
+      "stroke": false
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-06",
+      "path": "transform/position",
+      "time": 0.0,
+      "value": [
+        183.285,
+        187.096
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-06",
+      "path": "transform/position",
+      "time": 0.08333333333333333,
+      "value": [
+        123.455,
+        153.434
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-06",
+      "path": "transform/position",
+      "time": 0.16666666666666666,
+      "value": [
+        84.82,
+        131.697
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-06",
+      "path": "transform/position",
+      "time": 0.4166666666666667,
+      "value": [
+        67.372,
+        121.88
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-06",
+      "path": "transform/scale",
+      "time": 0.0,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-06",
+      "path": "transform/scale",
+      "time": 0.041666666666666664,
+      "value": [
+        75,
+        70
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-06",
+      "path": "transform/scale",
+      "time": 0.125,
+      "value": [
+        100,
+        100
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-06",
+      "path": "transform/scale",
+      "time": 0.375,
+      "value": [
+        42,
+        45
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-06",
+      "path": "transform/scale",
+      "time": 0.4583333333333333,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-06",
+      "path": "transform/opacity",
+      "time": 0.0,
+      "value": 0
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-06",
+      "path": "transform/opacity",
+      "time": 0.041666666666666664,
+      "value": 100
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-06",
+      "path": "transform/opacity",
+      "time": 0.3333333333333333,
+      "value": 95
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-06",
+      "path": "transform/opacity",
+      "time": 0.4583333333333333,
+      "value": 0
+    }
+  },
+  {
+    "command": "layer.newShape",
+    "params": {
+      "kind": "none",
+      "name": "Shard-07",
+      "position": [
+        192,
+        192
+      ]
+    }
+  },
+  {
+    "command": "shape.newPath",
+    "params": {
+      "layer": "Shard-07",
+      "vertices": [
+        [
+          6.779,
+          16.705
+        ],
+        [
+          -3.512,
+          -4.082
+        ],
+        [
+          -4.446,
+          -9.893
+        ],
+        [
+          2.838,
+          -0.972
+        ]
+      ],
+      "closed": true,
+      "space": "layer",
+      "fill": "#ffe05a",
+      "stroke": false
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-07",
+      "path": "transform/position",
+      "time": 0.0,
+      "value": [
+        188.759,
+        182.54
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-07",
+      "path": "transform/position",
+      "time": 0.08333333333333333,
+      "value": [
+        166.512,
+        117.594
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-07",
+      "path": "transform/position",
+      "time": 0.16666666666666666,
+      "value": [
+        152.14600000000002,
+        75.657
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-07",
+      "path": "transform/position",
+      "time": 0.4166666666666667,
+      "value": [
+        145.65800000000002,
+        56.71700000000001
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-07",
+      "path": "transform/scale",
+      "time": 0.0,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-07",
+      "path": "transform/scale",
+      "time": 0.041666666666666664,
+      "value": [
+        75,
+        70
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-07",
+      "path": "transform/scale",
+      "time": 0.125,
+      "value": [
+        100,
+        100
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-07",
+      "path": "transform/scale",
+      "time": 0.375,
+      "value": [
+        42,
+        45
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-07",
+      "path": "transform/scale",
+      "time": 0.4583333333333333,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-07",
+      "path": "transform/opacity",
+      "time": 0.0,
+      "value": 0
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-07",
+      "path": "transform/opacity",
+      "time": 0.041666666666666664,
+      "value": 100
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-07",
+      "path": "transform/opacity",
+      "time": 0.3333333333333333,
+      "value": 95
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-07",
+      "path": "transform/opacity",
+      "time": 0.4583333333333333,
+      "value": 0
+    }
+  },
+  {
+    "command": "layer.newShape",
+    "params": {
+      "kind": "none",
+      "name": "Shard-08",
+      "position": [
+        192,
+        192
+      ]
+    }
+  },
+  {
+    "command": "shape.newPath",
+    "params": {
+      "layer": "Shard-08",
+      "vertices": [
+        [
+          -2.569,
+          8.683
+        ],
+        [
+          0.096,
+          -5.384
+        ],
+        [
+          1.172,
+          -5.365
+        ],
+        [
+          2.765,
+          1.163
+        ]
+      ],
+      "closed": true,
+      "space": "layer",
+      "fill": "#ffe05a",
+      "stroke": false
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-08",
+      "path": "transform/position",
+      "time": 0.0,
+      "value": [
+        195.878,
+        182.783
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-08",
+      "path": "transform/position",
+      "time": 0.08333333333333333,
+      "value": [
+        222.501,
+        119.505
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-08",
+      "path": "transform/position",
+      "time": 0.16666666666666666,
+      "value": [
+        239.69299999999998,
+        78.644
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-08",
+      "path": "transform/position",
+      "time": 0.4166666666666667,
+      "value": [
+        247.457,
+        60.191
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-08",
+      "path": "transform/scale",
+      "time": 0.0,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-08",
+      "path": "transform/scale",
+      "time": 0.041666666666666664,
+      "value": [
+        75,
+        70
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-08",
+      "path": "transform/scale",
+      "time": 0.125,
+      "value": [
+        100,
+        100
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-08",
+      "path": "transform/scale",
+      "time": 0.375,
+      "value": [
+        42,
+        45
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-08",
+      "path": "transform/scale",
+      "time": 0.4583333333333333,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-08",
+      "path": "transform/opacity",
+      "time": 0.0,
+      "value": 0
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-08",
+      "path": "transform/opacity",
+      "time": 0.041666666666666664,
+      "value": 100
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-08",
+      "path": "transform/opacity",
+      "time": 0.3333333333333333,
+      "value": 95
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-08",
+      "path": "transform/opacity",
+      "time": 0.4583333333333333,
+      "value": 0
+    }
+  },
+  {
+    "command": "layer.newShape",
+    "params": {
+      "kind": "none",
+      "name": "Shard-09",
+      "position": [
+        192,
+        192
+      ]
+    }
+  },
+  {
+    "command": "shape.newPath",
+    "params": {
+      "layer": "Shard-09",
+      "vertices": [
+        [
+          -6.52,
+          10.124
+        ],
+        [
+          1.461,
+          -5.183
+        ],
+        [
+          3.595,
+          -6.318
+        ],
+        [
+          2.379,
+          1.828
+        ]
+      ],
+      "closed": true,
+      "space": "layer",
+      "fill": "#ffe05a",
+      "stroke": false
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-09",
+      "path": "transform/position",
+      "time": 0.0,
+      "value": [
+        198.094,
+        184.071
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-09",
+      "path": "transform/position",
+      "time": 0.08333333333333333,
+      "value": [
+        239.929,
+        129.641
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-09",
+      "path": "transform/position",
+      "time": 0.16666666666666666,
+      "value": [
+        266.943,
+        94.493
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-09",
+      "path": "transform/position",
+      "time": 0.4166666666666667,
+      "value": [
+        279.14300000000003,
+        78.62
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-09",
+      "path": "transform/scale",
+      "time": 0.0,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-09",
+      "path": "transform/scale",
+      "time": 0.041666666666666664,
+      "value": [
+        75,
+        70
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-09",
+      "path": "transform/scale",
+      "time": 0.125,
+      "value": [
+        100,
+        100
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-09",
+      "path": "transform/scale",
+      "time": 0.375,
+      "value": [
+        42,
+        45
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-09",
+      "path": "transform/scale",
+      "time": 0.4583333333333333,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-09",
+      "path": "transform/opacity",
+      "time": 0.0,
+      "value": 0
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-09",
+      "path": "transform/opacity",
+      "time": 0.041666666666666664,
+      "value": 100
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-09",
+      "path": "transform/opacity",
+      "time": 0.3333333333333333,
+      "value": 95
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-09",
+      "path": "transform/opacity",
+      "time": 0.4583333333333333,
+      "value": 0
+    }
+  },
+  {
+    "command": "layer.newShape",
+    "params": {
+      "kind": "none",
+      "name": "Shard-10",
+      "position": [
+        192,
+        192
+      ]
+    }
+  },
+  {
+    "command": "shape.newPath",
+    "params": {
+      "layer": "Shard-10",
+      "vertices": [
+        [
+          -14.552,
+          3.775
+        ],
+        [
+          4.54,
+          -2.896
+        ],
+        [
+          8.657,
+          -2.658
+        ],
+        [
+          0.558,
+          2.948
+        ]
+      ],
+      "closed": true,
+      "space": "layer",
+      "fill": "#ffe05a",
+      "stroke": false
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-10",
+      "path": "transform/position",
+      "time": 0.0,
+      "value": [
+        201.825,
+        190.139
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-10",
+      "path": "transform/position",
+      "time": 0.08333333333333333,
+      "value": [
+        269.276,
+        177.361
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-10",
+      "path": "transform/position",
+      "time": 0.16666666666666666,
+      "value": [
+        312.831,
+        169.109
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-10",
+      "path": "transform/position",
+      "time": 0.4166666666666667,
+      "value": [
+        332.501,
+        165.383
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-10",
+      "path": "transform/scale",
+      "time": 0.0,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-10",
+      "path": "transform/scale",
+      "time": 0.041666666666666664,
+      "value": [
+        75,
+        70
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-10",
+      "path": "transform/scale",
+      "time": 0.125,
+      "value": [
+        100,
+        100
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-10",
+      "path": "transform/scale",
+      "time": 0.375,
+      "value": [
+        42,
+        45
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-10",
+      "path": "transform/scale",
+      "time": 0.4583333333333333,
+      "value": [
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-10",
+      "path": "transform/opacity",
+      "time": 0.0,
+      "value": 0
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-10",
+      "path": "transform/opacity",
+      "time": 0.041666666666666664,
+      "value": 100
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-10",
+      "path": "transform/opacity",
+      "time": 0.3333333333333333,
+      "value": 95
+    }
+  },
+  {
+    "command": "prop.addKey",
+    "params": {
+      "layer": "Shard-10",
+      "path": "transform/opacity",
+      "time": 0.4583333333333333,
+      "value": 0
+    }
+  }
+]

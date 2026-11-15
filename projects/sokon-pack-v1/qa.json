@@ -1,0 +1,57 @@
+[
+  {
+    "effect": "hit-light",
+    "frames": 8,
+    "unique_frames": 8,
+    "minimum_margin_px": 109,
+    "final_empty": true,
+    "atlas_pixel_equal": true,
+    "render_engine": "EffectCraft official 0.24.1",
+    "status": "wip",
+    "gameplay_review": "pending"
+  },
+  {
+    "effect": "hit-medium",
+    "frames": 10,
+    "unique_frames": 10,
+    "minimum_margin_px": 80,
+    "final_empty": true,
+    "atlas_pixel_equal": true,
+    "render_engine": "EffectCraft official 0.24.1",
+    "status": "wip",
+    "gameplay_review": "pending"
+  },
+  {
+    "effect": "hit-heavy",
+    "frames": 12,
+    "unique_frames": 12,
+    "minimum_margin_px": 48,
+    "final_empty": true,
+    "atlas_pixel_equal": true,
+    "render_engine": "EffectCraft official 0.24.1",
+    "status": "wip",
+    "gameplay_review": "pending"
+  },
+  {
+    "effect": "guard",
+    "frames": 10,
+    "unique_frames": 10,
+    "minimum_margin_px": 103,
+    "final_empty": true,
+    "atlas_pixel_equal": true,
+    "render_engine": "EffectCraft official 0.24.1",
+    "status": "wip",
+    "gameplay_review": "pending"
+  },
+  {
+    "effect": "landing",
+    "frames": 14,
+    "unique_frames": 14,
+    "minimum_margin_px": 39,
+    "final_empty": true,
+    "atlas_pixel_equal": true,
+    "render_engine": "EffectCraft official 0.24.1",
+    "status": "wip",
+    "gameplay_review": "pending"
+  }
+]

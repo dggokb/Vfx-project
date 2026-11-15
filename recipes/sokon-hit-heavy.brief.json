@@ -1,0 +1,13 @@
+{
+  "lesson": "Para o próximo impacto, compare no jogo uma cauda mais curta antes de adicionar glow.",
+  "principle": "Primeiro, a forma e o ritmo",
+  "decision": "White contact core, orange irregular mass, yellow directional fragments; distinct silhouette and debris count. Short tail, separate animated shapes and explicit clear frame.",
+  "required_commands": [
+    "shape.newPath",
+    "prop.addKey"
+  ],
+  "margin": 18,
+  "allowed_empty": [
+    11
+  ]
+}

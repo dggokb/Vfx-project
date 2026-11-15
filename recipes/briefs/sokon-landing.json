@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "id": "sokon-landing",
+  "status": "wip",
+  "gameplay": {
+    "event": "landing",
+    "strength": "medium",
+    "collision_frame": 0,
+    "hitbox_reference": "SOKON contact event; engine binding pending",
+    "hitbox_verification": "pending",
+    "hitstop_policy": "pause_vfx_with_game",
+    "direction": "along_ground",
+    "occlusion_review": "pending",
+    "layer_strategy": "single_flattened"
+  },
+  "camera": {
+    "projection": "side",
+    "orientation": "right",
+    "locked": true
+  },
+  "render": {
+    "width": 384,
+    "height": 384,
+    "fps": 24,
+    "frames": 14,
+    "pivot": [
+      192,
+      304
+    ],
+    "alpha": "required"
+  },
+  "timing": {
+    "contact": 0,
+    "peak": 2,
+    "breakup": 3,
+    "settle": 10,
+    "clear": 13
+  },
+  "art": {
+    "silhouette_goal": "Paired irregular curved dust puffs roll apart above ground, rise gently and dissolve.",
+    "direction_goal": "along_ground",
+    "palette": [
+      "#8C929F",
+      "#D1D3D8"
+    ],
+    "layers": [
+      {
+        "name": "Shadow-0",
+        "role": "smoke",
+        "plane": "ground"
+      },
+      {
+        "name": "Light-0",
+        "role": "smoke",
+        "plane": "ground"
+      },
+      {
+        "name": "Shadow-1",
+        "role": "smoke",
+        "plane": "ground"
+      },
+      {
+        "name": "Light-1",
+        "role": "smoke",
+        "plane": "ground"
+      },
+      {
+        "name": "Shadow-2",
+        "role": "smoke",
+        "plane": "ground"
+      },
+      {
+        "name": "Light-2",
+        "role": "smoke",
+        "plane": "ground"
+      },
+      {
+        "name": "Shadow-3",
+        "role": "smoke",
+        "plane": "ground"
+      },
+      {
+        "name": "Light-3",
+        "role": "smoke",
+        "plane": "ground"
+      },
+      {
+        "name": "Shadow-4",
+        "role": "smoke",
+        "plane": "ground"
+      },
+      {
+        "name": "Light-4",
+        "role": "smoke",
+        "plane": "ground"
+      },
+      {
+        "name": "Shadow-5",
+        "role": "smoke",
+        "plane": "ground"
+      },
+      {
+        "name": "Light-5",
+        "role": "smoke",
+        "plane": "ground"
+      }
+    ],
+    "references": [
+      {
+        "title": "Arc System Works Academy — fighting game effects",
+        "url": "https://www.arcsystemworks.jp/academy/",
+        "usage": "Gameplay/visibility direction reference; this fixture does not copy ASW art"
+      }
+    ]
+  },
+  "verification": {
+    "review_status": "wip",
+    "gameplay_preview": "pending",
+    "evidence": [],
+    "known_limitations": [
+      "Gameplay placement, hit-stop and occlusion pending.",
+      "Flattened atlas per effect."
+    ]
+  }
+}

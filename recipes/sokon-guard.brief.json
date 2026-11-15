@@ -1,0 +1,13 @@
+{
+  "lesson": "Para o próximo impacto, compare no jogo uma cauda mais curta antes de adicionar glow.",
+  "principle": "Primeiro, a forma e o ritmo",
+  "decision": "Compressed crescent opens outward in 3/4 with separated air spray and open center. Short tail, separate animated shapes and explicit clear frame.",
+  "required_commands": [
+    "shape.newPath",
+    "prop.addKey"
+  ],
+  "margin": 18,
+  "allowed_empty": [
+    9
+  ]
+}

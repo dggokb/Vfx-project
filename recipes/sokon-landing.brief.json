@@ -1,0 +1,13 @@
+{
+  "lesson": "Para o próximo impacto, compare no jogo uma cauda mais curta antes de adicionar glow.",
+  "principle": "Primeiro, a forma e o ritmo",
+  "decision": "Paired irregular curved dust puffs roll apart above ground, rise gently and dissolve. Short tail, separate animated shapes and explicit clear frame.",
+  "required_commands": [
+    "shape.newPath",
+    "prop.addKey"
+  ],
+  "margin": 18,
+  "allowed_empty": [
+    13
+  ]
+}

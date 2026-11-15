@@ -43,3 +43,7 @@ O núcleo atinge o máximo no quadro 2. As onze lascas mantêm movimento depois 
 ### 2026-11-15 — Integração dos gates ArcSys
 
 O contrato de gameplay agora é validado junto com decisões citadas e margens observadas. Camadas omitidas no brief e segunda composição são rejeitadas. Light e heavy passaram novamente no EffectCraft real. Fases temporais declaradas ainda precisam de inspeção visual e confirmação no jogo.
+
+### 2026-11-15 — SŌKON Pack v1
+
+Criados cinco efeitos no EffectCraft 0.24.1, com 54 PNGs e projetos nativos. A cauda do impacto forte foi reduzida de 16 para 12 frames conforme a lição da auditoria. Leve/médio/forte usam silhuetas e quantidades de lascas diferentes (4/7/11). Defesa usa crescente aberta e spray, pouso usa paths Bezier acima do solo. A inspeção dos quadros mostra geometrias ainda marcadas na defesa e lobos repetidos na poeira. Recomenda-se ruptura de silhueta adicional na próxima revisão. O teste de atlas recuperou os pixels de todos os frames. Margem mínima de 39 px. Evidência e critérios em projects/sokon-pack-v1/README.md e no ZIP packs/sokon-vfx-pack-v1.zip. Status WIP com gameplay pendente.

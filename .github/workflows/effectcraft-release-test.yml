@@ -1,0 +1,74 @@
+name: EffectCraft official binary - VFX render test
+
+on:
+  push:
+    paths:
+      - '.github/workflows/effectcraft-release-test.yml'
+      - 'tools/effectcraft_mcp_smoke.py'
+      - 'tools/vfx_pipeline.py'
+      - 'tools/pack_spritesheet.py'
+      - 'recipes/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  real-vfx-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Python dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Required Linux runtime libraries
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libxkbcommon0 libwayland-client0 libx11-6 libxcb1 libxcursor1 libxrandr2 libxi6 libfontconfig1 libfreetype6 libasound2 libgl1 libvulkan1
+      - name: Fetch EffectCraft 0.24.1 official Linux binaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p vendor/release
+          curl --fail --location --retry 3 --silent --show-error \
+            https://github.com/storytold/effectcraft/releases/download/v0.24.1/effectcraft-0.24.1-linux-x86_64.tar.gz \
+            -o /tmp/effectcraft-release.tar.gz
+          tar -xzf /tmp/effectcraft-release.tar.gz -C vendor/release
+          cli="$(find "$PWD/vendor/release" -type f -name 'effectcraft-cli' -print -quit)"
+          if [[ -z "$cli" ]]; then
+            echo 'Could not find effectcraft-cli in official archive'
+            find vendor/release -maxdepth 4 -type f | head -60
+            exit 1
+          fi
+          chmod +x "$cli"
+          echo "EFFECTCRAFT_CLI=$cli" >> "$GITHUB_ENV"
+          echo "Official CLI: $cli"
+      - name: Smoke-test real EffectCraft MCP transparent output
+        run: python tools/effectcraft_mcp_smoke.py --cli "$EFFECTCRAFT_CLI" --out dist/mcp-alpha.png
+      - name: Render impact from real EffectCraft engine to transparent spritesheet
+        run: python tools/vfx_pipeline.py --cli "$EFFECTCRAFT_CLI" --recipe recipes/hit-light.json --out dist/hit-light --frames 10 --fps 24 --columns 4
+      - name: Validate VFX alpha and frame count
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          base = Path("dist/hit-light")
+          data = json.loads((base / "atlas.json").read_text())
+          assert data["frame_count"] == 10, data
+          with Image.open(base / "atlas.png") as img:
+              assert "A" in img.getbands(), img.mode
+              assert img.getpixel((0, 0))[3] == 0, "Expected transparent background"
+              assert img.getbbox(), "Atlas is entirely transparent"
+              print(f"PASS: {data['frame_count']} real EffectCraft frames; atlas size={img.size} mode={img.mode}")
+          PY
+      - name: Upload editable EffectCraft project, frames and atlas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: effectcraft-real-impact
+          path: dist/
+          if-no-files-found: ignore

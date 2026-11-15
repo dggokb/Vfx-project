@@ -1,6 +1,6 @@
 # Brief + QA por efeito — copiar e preencher
 
-> Ao iniciar um VFX novo, reler [VFX_MASTER_GUIDE.md](VFX_MASTER_GUIDE.md) e [VFX_LEARNING_LOG.md](VFX_LEARNING_LOG.md).
+> Ao iniciar um VFX novo, reler [ARCSYS_FIGHTING_VFX.md](ARCSYS_FIGHTING_VFX.md), [VFX_MASTER_GUIDE.md](VFX_MASTER_GUIDE.md) e [VFX_LEARNING_LOG.md](VFX_LEARNING_LOG.md). Para fighting games, criar o sidecar JSON `recipes/briefs/<nome>.json` conforme [hit-light.json](../recipes/briefs/hit-light.json) e validar via `tools/validate_fighting_recipe.py` antes do render.
 
 ## Brief
 - **Nome / ID da receita:**

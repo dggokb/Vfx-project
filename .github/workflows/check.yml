@@ -13,4 +13,5 @@ jobs:
       - run: python -m pip install -r requirements.txt
       - run: python -m compileall -q tools tests
       - run: python -m unittest discover -s tests -v
+      - run: python tools/validate_fighting_recipe.py --recipe recipes/hit-light.json --brief recipes/briefs/hit-light.json --frames 10 --fps 24
       - run: python tools/effectcraft.py status

@@ -41,6 +41,7 @@ Every fighting-game recipe now needs a `recipes/briefs/<name>.json` with gamepla
 
 ```bash
 python tools/vfx_preflight.py --effect hit-light
+python tools/validate_fighting_recipe.py --recipe recipes/hit-light.json --brief recipes/briefs/hit-light.json --frames 10 --fps 24
 ```
 
 ## Export a game spritesheet

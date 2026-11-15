@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "id": "hit-heavy",
+  "status": "wip",
+  "gameplay": {
+    "event": "hit",
+    "strength": "heavy",
+    "collision_frame": 0,
+    "hitbox_reference": "unlinked-fixture",
+    "hitbox_verification": "pending",
+    "hitstop_policy": "engine_defined",
+    "direction": "outward_from_contact",
+    "occlusion_review": "pending",
+    "layer_strategy": "single_flattened"
+  },
+  "camera": {
+    "projection": "side",
+    "orientation": "right",
+    "locked": true
+  },
+  "render": {
+    "width": 320,
+    "height": 320,
+    "fps": 24,
+    "frames": 16,
+    "pivot": [
+      160,
+      160
+    ],
+    "alpha": "required"
+  },
+  "timing": {
+    "contact": 0,
+    "peak": 2,
+    "breakup": 4,
+    "settle": 9,
+    "clear": 15
+  },
+  "art": {
+    "silhouette_goal": "Irregular orange impact with white core and independent yellow shards",
+    "direction_goal": "Radial around hit origin for integration smoke only",
+    "palette": [
+      "#FFFFFF",
+      "#FF8A00"
+    ],
+    "layers": [
+      {
+        "name": "Ember",
+        "role": "body",
+        "plane": "character_plane"
+      },
+      {
+        "name": "Body",
+        "role": "body",
+        "plane": "character_plane"
+      },
+      {
+        "name": "Heat",
+        "role": "contact_core",
+        "plane": "character_plane"
+      },
+      {
+        "name": "Core",
+        "role": "contact_core",
+        "plane": "character_plane"
+      },
+      {
+        "name": "Shard-01",
+        "role": "debris",
+        "plane": "character_plane"
+      },
+      {
+        "name": "Shard-02",
+        "role": "debris",
+        "plane": "character_plane"
+      },
+      {
+        "name": "Shard-03",
+        "role": "debris",
+        "plane": "character_plane"
+      },
+      {
+        "name": "Shard-04",
+        "role": "debris",
+        "plane": "character_plane"
+      },
+      {
+        "name": "Shard-05",
+        "role": "debris",
+        "plane": "character_plane"
+      },
+      {
+        "name": "Shard-06",
+        "role": "debris",
+        "plane": "character_plane"
+      },
+      {
+        "name": "Shard-07",
+        "role": "debris",
+        "plane": "character_plane"
+      },
+      {
+        "name": "Shard-08",
+        "role": "debris",
+        "plane": "character_plane"
+      },
+      {
+        "name": "Shard-09",
+        "role": "debris",
+        "plane": "character_plane"
+      },
+      {
+        "name": "Shard-10",
+        "role": "debris",
+        "plane": "character_plane"
+      },
+      {
+        "name": "Shard-11",
+        "role": "debris",
+        "plane": "character_plane"
+      }
+    ],
+    "references": [
+      {
+        "title": "Arc System Works Academy \u2014 fighting game effects",
+        "url": "https://www.arcsystemworks.jp/academy/",
+        "usage": "Gameplay/visibility direction reference; this fixture does not copy ASW art"
+      }
+    ]
+  },
+  "verification": {
+    "review_status": "wip",
+    "gameplay_preview": "pending",
+    "evidence": [],
+    "known_limitations": [
+      "Only technical pipeline verification; circles are not professional animation",
+      "Does not verify real game hitbox, hit-stop, or visual occlusion",
+      "A single flattened atlas cannot independently place back/front layers"
+    ]
+  }
+}

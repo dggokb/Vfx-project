@@ -4,11 +4,18 @@ Estas regras valem **em toda tarefa de criação, revisão, exportação ou auto
 
 ## Leitura obrigatória ANTES de gerar um novo efeito
 
-1. Leia [docs/VFX_MASTER_GUIDE.md](docs/VFX_MASTER_GUIDE.md) — princípios de Adobe After Effects adaptados a VFX 2D de jogos.
-2. Leia [docs/VFX_LEARNING_LOG.md](docs/VFX_LEARNING_LOG.md) — correções e descobertas reais; a lição mais recente pode prevalecer sobre uma heurística inicial.
-3. Leia [docs/VFX_SOURCES.md](docs/VFX_SOURCES.md) e [docs/EFFECTCRAFT_INTEGRATION.md](docs/EFFECTCRAFT_INTEGRATION.md).
-4. Consulte [docs/VFX_BRIEF_TEMPLATE.md](docs/VFX_BRIEF_TEMPLATE.md) e anote intenção, tamanho, pivô, FPS, ritmo, direção e critérios objetivos antes de produzir.
-5. Execute `python tools/vfx_preflight.py --effect NOME_DO_EFEITO` (o pipeline executa esta checagem automaticamente).
+1. Leia [docs/ARCSYS_FIGHTING_VFX.md](docs/ARCSYS_FIGHTING_VFX.md) — **principal referência de efeitos de jogos de luta (Arc System Works)**: hitbox, visibilidade, timing, planos, hit-stop e aprovação em gameplay.
+2. Leia [docs/VFX_MASTER_GUIDE.md](docs/VFX_MASTER_GUIDE.md) — princípios de Adobe After Effects adaptados a VFX 2D de jogos.
+3. Leia [docs/VFX_LEARNING_LOG.md](docs/VFX_LEARNING_LOG.md) — correções e descobertas reais; a lição mais recente pode prevalecer sobre uma heurística inicial.
+4. Leia [docs/VFX_SOURCES.md](docs/VFX_SOURCES.md) e [docs/EFFECTCRAFT_INTEGRATION.md](docs/EFFECTCRAFT_INTEGRATION.md).
+5. Consulte [docs/VFX_BRIEF_TEMPLATE.md](docs/VFX_BRIEF_TEMPLATE.md) e anote intenção, tamanho, pivô, FPS, ritmo, direção e critérios objetivos antes de produzir.
+6. Execute `python tools/vfx_preflight.py --effect NOME_DO_EFEITO` (o pipeline executa esta checagem automaticamente).
+
+## Receita obrigatória para fighting games
+
+- Toda receita `recipes/NOME.json` deve possuir `recipes/briefs/NOME.json` com evento de jogo, hitbox de referência, frame de colisão, hitstop, planos de desenho, câmera/perspectiva, pivô, poses e evidência.
+- Execute `python tools/validate_fighting_recipe.py --recipe recipes/NOME.json --brief recipes/briefs/NOME.json` antes de renderizar. O script verifica a estrutura; **não avalia a qualidade visual**.
+- Efeitos com massa atrás e detalhes à frente exigem export em passes separados para composição correta no jogo; o atlas achatado atual não garante oclusão.
 
 ## Procedimento de produção não negociável
 

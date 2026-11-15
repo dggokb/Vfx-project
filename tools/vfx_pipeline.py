@@ -26,6 +26,7 @@ def main() -> int:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--cli", type=Path, required=True, help="Path to built effectcraft-cli executable")
     p.add_argument("--recipe", type=Path, required=True)
+    p.add_argument("--brief", type=Path, help="Gameplay/animation contract JSON. Default: recipes/briefs/NAME.json")
     p.add_argument("--out", type=Path, required=True, help="Output directory")
     p.add_argument("--frames", type=int, default=12)
     p.add_argument("--fps", type=float, default=24.0)
@@ -39,6 +40,19 @@ def main() -> int:
     if any(not isinstance(x, dict) or not isinstance(x.get("command"), str)
            or not isinstance(x.get("params"), dict) for x in recipe):
         p.error("each command needs a string 'command' and object 'params'")
+    # Check the fighting-game contract before any export. This is a static gate,
+    # not a claim of visual/gameplay approval.
+    brief_path = args.brief if args.brief is not None else (
+        args.recipe.parent / "briefs" / (args.recipe.stem + ".json")
+    )
+    verification = subprocess.run(
+        [sys.executable, str(ROOT / "tools" / "validate_fighting_recipe.py"),
+         "--recipe", str(args.recipe), "--brief", str(brief_path),
+         "--frames", str(args.frames), "--fps", str(args.fps), "--json"],
+        check=True, text=True, capture_output=True,
+    )
+    fighting_recipe_validation = json.loads(verification.stdout)
+    print("Fighting VFX recipe validated structurally; gameplay/art QA remains pending.", flush=True)
     # Every render requires the versioned production playbook and learning log.
     # Save the exact knowledge-base fingerprints with this render for traceability.
     preflight = subprocess.run(
@@ -47,6 +61,8 @@ def main() -> int:
         check=True, text=True, capture_output=True,
     )
     knowledge = json.loads(preflight.stdout)
+    knowledge["fighting_recipe_validation"] = fighting_recipe_validation
+    knowledge["fighting_brief_sha256"] = __import__("hashlib").sha256(brief_path.read_bytes()).hexdigest()
     print("VFX knowledge preflight OK: master guide + lessons + sources checked.", flush=True)
     decision = read_decision(args.recipe, recipe, ROOT)
     knowledge["decision"] = decision

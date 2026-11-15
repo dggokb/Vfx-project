@@ -5,6 +5,10 @@
 
 > Este é um **guia de direção, composição e animação**, não uma afirmação de equivalência completa entre Adobe After Effects e EffectCraft. O After Effects é a referência conceitual; executamos nossas animações com a versão fixada de **EffectCraft**. Toda possibilidade específica do EffectCraft precisa ser confirmada na CLI/MCP dessa versão. Referências externas e limites estão em [VFX_SOURCES.md](VFX_SOURCES.md). Evoluções práticas ficam em [VFX_LEARNING_LOG.md](VFX_LEARNING_LOG.md).
 
+## Especialização para jogos de luta — PRIORIDADE MÁXIMA
+
+Antes de qualquer impacto, defesa, slash, dash, trail ou projétil, ler [ARCSYS_FIGHTING_VFX.md](ARCSYS_FIGHTING_VFX.md), com fontes diretas da Arc System Works Academy e as restrições de oclusão/hitbox/hit-stop. Este manual cobre a **técnica de animação e composição**; o documento ArcSys cobre o **contrato de gameplay e direção de luta**. Os dois são necessários.
+
 ## 0. A regra que vem antes dos efeitos
 
 **Um VFX profissional comunica um evento do jogo antes de impressionar visualmente.** Primeiro, a forma e o ritmo; depois, detalhes. Em jogos, o impacto deve dizer *onde*, *quando*, *qual direção* e *quanta força*; deve também desaparecer sem confundir a próxima ação. Artistas da GDC priorizam jogabilidade, forma/área, contraste/foco, identidade de cor e timing; estudos sobre VFX estilizados também apontam a importância de ritmo, saturação e clareza do contorno. [S09, S10, S11]

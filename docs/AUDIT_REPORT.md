@@ -95,3 +95,7 @@ A silhueta é legível, embora as quatro massas compartilhem o mesmo desenho-bas
 2. Importar atlas no jogo, posicionar no ponto de contato e revisar em velocidade real sobre lutadores e cenários claros/escuros. Confirmar alpha e filtragem na GPU do celular.
 3. Publicar outputs de forma atômica e validar dimensões, limites e tempo máximo antes do render. Adicionar testes de concorrência e retry.
 4. Tornar a promoção ao catálogo dependente de QA independente, revisão humana e teste no consumidor. Acrescentar fixtures de matte, blur, precomp, expressões e operadores de path antes de prometer equivalência por recurso.
+
+## Integração do estudo ArcSys da main d4e27fd
+
+A branch incorpora ARCSYS_FIGHTING_VFX.md, o contrato de gameplay e o validador obrigatório. As duas verificações reproduzidas na revisão foram corrigidas: camadas criadas devem coincidir com as declaradas, e a receita deve conter exatamente uma comp.new. Há testes de regressão para ambos os casos. O impacto forte recebeu o brief de gameplay como WIP, com hitbox e oclusão pendentes. As citações e decisões da auditoria continuam obrigatórias junto com o brief novo. Passaram 17 testes unitários. As receitas light (10 frames) e heavy (16 frames) foram novamente renderizadas pelo binário real, passando os dois validadores e a inspeção automática de margens, quadros vazios e variação. Logs em evidence/integrated-light.txt e evidence/integrated-heavy.txt. A associação entre nomes de fases e ápice percebido continua dependente de inspeção visual, com teste no jogo pendente.

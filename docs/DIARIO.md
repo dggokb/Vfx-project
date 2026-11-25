@@ -240,7 +240,7 @@ embaixo.
 - **Brilhos e flashes:** estrelinhas de 4 pontas com riscos em X que piscam espalhadas, ou o clarão
   (disco branco de borda pontuda por 2 quadros que vira anel e se parte).
 - **Energia espiritual:** chamas-gota claras com cauda que sobem em volta, em laço.
-- **Conferido:** 217 casos na trava (os 200 de antes sem mudança); `geradores.test.cjs` com os 22
+- **Conferido:** 232 casos na trava (os 200 de antes sem mudança); `geradores.test.cjs` com os 22
   geradores novos (painel, volta do antigo, export, nada na beira em todas as variações).
 - **Fica para o motor do jogo** (não é folha de sprites): afterimages, deformações, distorções,
   HUD, cinematics e transições. **Fica para depois no editor:** keyframes, curvas, nós, caminhos,

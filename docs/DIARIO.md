@@ -342,3 +342,19 @@ embaixo.
   peças (núcleo na frente no golpe, somando; poeira atrás no chão, do quadro 2 = 83 ms), `pixelScale`
   3 em 2x, poeira assentada no chão, tela e composição de volta depois.
 - **Falta:** o jogo ler o `kit.json` e tocar as peças (hoje toca um efeito por acerto).
+
+## 25/11 — O kit do concept tocando no motor do jogo (PC, sem enviar ao jogo)
+
+- **Feito no jogo (só na cópia de trabalho, não enviado):** `EfeitosVideo` lê `kit.json`
+  (`sokonfx-kit-v1`) das pastas de `assets/efeitos` e toca as peças juntas (`tocarKit`): as do golpe
+  na ponta do golpe, esticadas como a faísca; as do chão em `defender.x, defender.y` (os pés de quem
+  apanha), no tempo delas; cada uma espera o atraso sem desenhar (idade negativa) e vai atrás dos
+  lutadores se a camada pede. O `GameView.efeitoDeGolpe` procura `kit_fraco`, `kit_medio`,
+  `kit_forte`, `kit_super` antes da faísca de sempre; sem kit, nada muda.
+- **Teste:** o kit do concept (anel, estilhaços, núcleo elétrico, fagulhas no golpe; rachadura,
+  poeira e pedras no chão; 2x, tamanho 1,2x) instalado como `kit_forte` e gravado no PC
+  (`gradle :pc:gravarLuta -Proteiro="segura:D espera:3.2 solta:D grava:60:g tecla:L fim"`, Ryūga
+  chuta o Kōga). As peças tocaram nos lugares certos; o log ficou em 52–59 fps no PC. A rachadura
+  quase não aparece no chão escuro do cenário. Celular não visto (7 folhas em 2x de uma vez: medir lá).
+- **Falta:** o dono julgar no vídeo e autorizar mandar o código (e o kit, se quiser) para a
+  `game-luta-sprite-fable`.

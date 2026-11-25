@@ -1,5 +1,5 @@
 const presetKey='sokonfx.presets.v1';
-const smokeDefaults={jumpRoll:"85",offsetTopoX:"0",offsetTopoY:"0",offsetDobraX:"0",offsetDobraY:"0",offsetBaseX:"0",offsetBaseY:"0",moreDissolve:"[]",dissolveX:"-1",dissolveY:"-1",jumpDirection:"out",jumpOpen:"8",jumpCurl:"100",jumpVolume:"100",airCopies:'10',airEdge:"round",airInterval:"auto",airParticleGap:"100",airRingGap:"100",airFlow:"out",airWidth:"8",airWaves:"3",smokeForm:"linear",ringRadius:"70",beams:'6',beamWidth:'16',focusX:'256',focusY:'256',tipGap:'48',joinAt:'100',windForce:'0',windWidth:'85',windAngle:'0',windX:'256',windY:'240',plumes:'2',gap:'48',rise:'100',fall:'0',smokeMirror:'off'};
+const smokeDefaults={shadeLight:'0',curl:'0',jumpRoll:"85",offsetTopoX:"0",offsetTopoY:"0",offsetDobraX:"0",offsetDobraY:"0",offsetBaseX:"0",offsetBaseY:"0",moreDissolve:"[]",dissolveX:"-1",dissolveY:"-1",jumpDirection:"out",jumpOpen:"8",jumpCurl:"100",jumpVolume:"100",airCopies:'10',airEdge:"round",airInterval:"auto",airParticleGap:"100",airRingGap:"100",airFlow:"out",airWidth:"8",airWaves:"3",smokeForm:"linear",ringRadius:"70",beams:'6',beamWidth:'16',focusX:'256',focusY:'256',tipGap:'48',joinAt:'100',windForce:'0',windWidth:'85',windAngle:'0',windX:'256',windY:'240',plumes:'2',gap:'48',rise:'100',fall:'0',smokeMirror:'off'};
 function refreshSmoke(){
  const smoke=el('kind').value==='Fumaça';
  const grouped=smoke && el('smokeForm').value!=='ring' && Number(el('plumes').value)>1;
@@ -7,7 +7,7 @@ function refreshSmoke(){
  for(const label of document.querySelectorAll(".jump-setting"))label.hidden=el("kind").value!=="Fumaça"||el("smokeForm").value!=="jump";
  el('airCopiesControl').hidden=el('kind').value!=='Pressão de ar'||el('airEdge').value!=='spiked';
  el("ringControl").hidden=el("kind").value!=="Fumaça" || el("smokeForm").value!=="ring";
- for(const [id,unit] of Object.entries({jumpRoll:'%',jumpVolume:"%",jumpCurl:"%",jumpOpen:"",airCopies:'',airParticleGap:'%',airRingGap:'%',airWaves:'',airWidth:' px',ringRadius:' px',tipGap:' px',joinAt:'%',windForce:'%',windAngle:'°',windWidth:' px',plumes:'',gap:' px',rise:'%',fall:'%'}))el(id+'Value').value=el(id).value+unit;
+ for(const [id,unit] of Object.entries({shadeLight:'%',curl:'%',jumpRoll:'%',jumpVolume:"%",jumpCurl:"%",jumpOpen:"",airCopies:'',airParticleGap:'%',airRingGap:'%',airWaves:'',airWidth:' px',ringRadius:' px',tipGap:' px',joinAt:'%',windForce:'%',windAngle:'°',windWidth:' px',plumes:'',gap:' px',rise:'%',fall:'%'}))el(id+'Value').value=el(id).value+unit;
 }
 for(const id of Object.keys(smokeDefaults))el(id).oninput=()=>{refreshSmoke();preview()};
 const savedFields=[...Object.keys(smokeDefaults),'kind','artStyle','material','drawing','styleMix','tint','power','particles','light','motion','openingFrame','pieces','openingShape','rimWidth','coreWidth','diameter','focus','riskWidth','outerWidth','particleTint','particleWidth','shapes','angle','fps'];

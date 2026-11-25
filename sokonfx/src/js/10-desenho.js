@@ -42,7 +42,9 @@ function drawBase(ctx,index,local=false){
   ctx.restore();
  }
  const jump=el('kind').value==='Fumaça' && el('smokeForm').value==='jump';
- const fade=jump?1:Math.min(1,(1-t)*2.4);ctx.globalAlpha=fade;
+ // A fumaça que se desfaz em curvas some pelo corte, não pela transparência geral do fim.
+ const curlFade=el('kind').value==='Fumaça'?+el('curl').value/100:0;
+ const fade=jump?1:Math.min(1,(1-t)*2.4)*(1-curlFade)+curlFade;ctx.globalAlpha=fade;
  const kind=el('kind').value,profile=profiles[kind];
  if(kind==='Pressão de ar'){drawAir(ctx,t,color,profile,strength);ctx.restore();return}
  if(kind==='Ponto de luz'){drawFocus(ctx,t,color,profile,strength);ctx.restore();return}

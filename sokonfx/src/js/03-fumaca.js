@@ -232,7 +232,9 @@ function drawSmoke(ctx,t,profile,color,strength,plumeSeed=seed,tipOffset=0){
  const random=generator(plumeSeed^0xab529d);
  const channels=color.slice(1).match(/../g).map(v=>parseInt(v,16));
  const tint=(gain,white)=>'rgb('+channels.map(v=>Math.round(v*gain+white)).join(',')+')';
- const shade=tint(.65,0),light=tint(.78,48);
+ // Claridade da sombra: 0 é a sombra de antes (65% da cor); 100 quase a própria cor.
+ const sl=+el('shadeLight').value/100,curl=+el('curl').value/100;
+ const shade=tint(.65+.3*sl,0),light=tint(.78,48);
  const dense=6+strength, height=128+strength*2;
  function spreadAt(y){
   const z=Math.max(0,Math.min(1,-y/(height*el('joinAt').value/100)));
@@ -241,20 +243,34 @@ function drawSmoke(ctx,t,profile,color,strength,plumeSeed=seed,tipOffset=0){
  ctx.save();ctx.translate(0,64);
  for(let i=0;i<dense;i++){
   const delay=i/dense*.42,age=(t-delay)/(1-delay);
-  const side=random()*2-1, curl=random()*6.28, swell=random();
+  const side=random()*2-1, swirl=random()*6.28, swell=random();
   if(age<=0||age>=1)continue;
-  const y=-age*height+10*Math.sin(curl+age*4);
-  const x=side*(5+age*42)+Math.sin(curl+age*5)*age*23+spreadAt(y);
+  const y=-age*height+10*Math.sin(swirl+age*4);
+  const x=side*(5+age*42)+Math.sin(swirl+age*5)*age*23+spreadAt(y);
   const radius=(9+age*(30+swell*19))*Math.min(1,age*9);
   ctx.save();bendSmoke(ctx,x,y,t);ctx.translate(x,y);ctx.scale(profile.rimWidth/100,1);
-  ctx.globalAlpha*=Math.min(1,age*10)*(1-age**2)*.86;
+  // Dissipar em curvas: a transparência some menos e, da metade da vida em diante, cada bola é
+  // comida por dentro por outra que cresce deslocada; sobram meias-luas que se afinam até sumir.
+  const fadeAlpha=(1-age**2)*.86,keep=Math.max(0,1-Math.max(0,age-.82)/.18)*.95;
+  ctx.globalAlpha*=Math.min(1,age*10)*(fadeAlpha+(keep-fadeAlpha)*curl);
+  const bite=curl>0?Math.max(0,Math.min(1,(age-.3)/.62))*curl:0;
+  if(bite>0){
+   // Um corte por tufo, vindo de um lado (o giro do tufo) e crescendo: o tufo inteiro vira uma
+   // meia-lua virada para o outro lado, que afina até sumir.
+   const cut=radius*(.35+1.0*bite),off=radius*(.75-.2*bite);
+   ctx.save();ctx.beginPath();ctx.rect(-4*radius,-4*radius,8*radius,8*radius);
+   ctx.ellipse(-Math.cos(swirl)*off,-Math.abs(Math.sin(swirl))*off*.6,cut,cut*.85,0,0,Math.PI*2);
+   ctx.clip('evenodd');
+  }
   // Overlapping scallops drift together as one billow.
   for(let l=0;l<5;l++){
-   const angle=curl+l*Math.PI*2/5+age*.6;
+   const angle=swirl+l*Math.PI*2/5+age*.6;
    const dx=Math.cos(angle)*radius*.44,dy=Math.sin(angle)*radius*.34;
    ctx.beginPath();ctx.ellipse(dx,dy,radius*.78,radius*.67,angle*.12,0,Math.PI*2);
    ctx.fillStyle=l<2?shade:color;ctx.fill();
   }
+  if(bite>0)ctx.restore();
+  if(bite>.2){ctx.restore();continue;}
   ctx.globalAlpha*=.25+.56*profile.styleMix/100;
   ctx.beginPath();ctx.ellipse(-radius*.18,-radius*.38,radius*.47*profile.coreWidth/100,radius*.22,-.25,0,Math.PI*2);
   ctx.fillStyle=light;ctx.fill();ctx.restore();

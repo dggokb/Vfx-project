@@ -3,7 +3,7 @@
 //   node sokonfx/testes/pixels.test.cjs
 // Mudou um gerador de propósito e o dono aprovou? Copie o dist novo para a referência e anote.
 // As fumaças que estão no jogo (tipos/jogo_fumacas_s4.json, feitas no SokonFX_4 do jogo) entram
-// pelo caminho do gerar.js do jogo.
+// como tipo salvo: sem "smokeForm" (o controle é mais novo que elas) caem no Linear, como foram feitas.
 const {chromium}=require('playwright');
 const fs=require('fs'),path=require('path'),os=require('os');
 const {renderizar,diferenca}=require('./render.cjs');
@@ -12,7 +12,7 @@ const casos=require('./casos.cjs');
 const raiz=path.join(__dirname,'..');
 const referencia=path.join(__dirname,'referencia','SokonFX.html');
 const s4=JSON.parse(fs.readFileSync(path.join(raiz,'tipos','jogo_fumacas_s4.json'),'utf8'))
- .map(t=>({nome:'jogo '+t.nome,modo:'gerar',valores:t.valores,seed:t.seed}));
+ .map(t=>({nome:'jogo '+t.nome,modo:'tipo',valores:t.valores,seed:t.seed}));
 
 (async()=>{
  const {montar}=await import(path.join(raiz,'build.mjs'));

@@ -1,4 +1,4 @@
-<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sōkon FX</title>
+<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sōkon FX</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#12131a">
 <style>
 *{box-sizing:border-box}body{margin:0;background:#12131a;color:#edece9;font:16px "DM Sans",system-ui,sans-serif}main{max-width:970px;margin:auto;padding:28px}h1{letter-spacing:-.07em;font-size:42px;margin:0 0 22px}h1 i{color:#ffac48}section{display:grid;grid-template-columns:1fr 240px;gap:22px}canvas{width:100%;aspect-ratio:1;display:block;border-radius:12px;background:radial-gradient(ellipse,#30303d,#191921 70%)}aside{display:flex;flex-direction:column;gap:16px}label{display:grid;gap:6px;color:#c4c0c8;font-size:14px}select,input,button{font:inherit;max-width:100%;accent-color:#ffac48}select,button{padding:12px;border:1px solid #46444c;border-radius:7px;background:#25252d;color:inherit}button{cursor:pointer}button.primary{background:#ffac48;color:#251904;font-weight:700}input[type=color]{width:100%;height:35px}footer{display:flex;align-items:center;gap:12px;margin-top:10px}footer input{min-width:0;flex:1}output{font-variant-numeric:tabular-nums}@media(max-width:650px){main{padding:16px}section{grid-template-columns:1fr}aside{display:grid;grid-template-columns:1fr 1fr}}
 .opening-setting[hidden],.impact-setting[hidden]{display:none}.impact-setting{grid-template-columns:1fr auto}.impact-setting input{grid-column:1/-1;width:100%}
@@ -942,7 +942,7 @@ function desenharGerador(ctx,index){
  p.cor=el('tint').value;p.forca=+el('power').value;p.particulas=+el('particles').value;p.paleta=corPaleta(p.cor);
  if(!geradorTela){geradorTela=document.createElement('canvas');geradorTela.width=geradorTela.height=512}
  const x=geradorTela.getContext('2d');x.clearRect(0,0,512,512);x.save();
- x.translate(256,g.origem?.y??256);if(!g.semGiro)x.rotate(+el('angle').value*Math.PI/180);
+ x.translate(g.origem?.x??256,g.origem?.y??256);if(!g.semGiro)x.rotate(+el('angle').value*Math.PI/180);
  g.desenhar(x,{i:index,t:index/(frames-1),n:frames,p,semente:seed,aleatorio:s=>generator((seed^s)>>>0)});
  x.restore();x.save();x.globalCompositeOperation='destination-in';x.drawImage(geradorBeira(),0,0);x.restore();
  ctx.drawImage(geradorTela,0,0);
@@ -1367,6 +1367,290 @@ registrarGerador({
    const ss=s*perto(x,y,s);if(y>chao||ss<.6)continue;
    ctx.fillStyle=pr2()<.5?aceso:sombra;ctx.beginPath();ctx.arc(x,y,ss,0,Math.PI*2);ctx.fill();
   }
+ }
+});
+// Explosão: clarão branco no contato, bola de fogo feita de bolas chapadas que crescem juntas
+// (uma silhueta só, faixa por faixa), esfria do branco ao laranja e à fumaça, e no fim se parte em
+// bolas soltas que sobem e encolhem (emissão → expansão → deformação → fragmentação → dispersão,
+// o diagrama da bíblia). Anel de choque e estilhaços opcionais.
+registrarGerador({
+ nome:'Explosão',
+ perfil:{tint:'#ff7a1a',particles:14},
+ semGiro:true,origem:{y:320},
+ params:[
+  {id:'expTamanho',rotulo:'Tamanho',tipo:'range',min:40,max:200,padrao:100,unidade:'%'},
+  {id:'expBolas',rotulo:'Bolas de fogo',tipo:'range',min:5,max:40,padrao:18},
+  {id:'expSobe',rotulo:'Subida',tipo:'range',min:0,max:200,padrao:100,unidade:'%'},
+  {id:'expFumaca',rotulo:'Vira fumaça',tipo:'range',min:0,max:100,padrao:70,unidade:'%'},
+  {id:'expAnel',rotulo:'Anel de choque',tipo:'checkbox',padrao:true},
+  {id:'expQuebra',rotulo:'Quebra no quadro',tipo:'range',min:3,max:14,padrao:8},
+  {id:'expDois',rotulo:'Animar de dois em dois',tipo:'checkbox',padrao:true},
+ ],
+ desenhar(ctx,{i,n,p,aleatorio}){
+  const q=doisEmDois(i,p.expDois),t=q/(n-1),forca=.75+p.forca/28,R=105*p.expTamanho/100*forca;
+  const u=q<p.expQuebra?0:(q-p.expQuebra+1)/(n-p.expQuebra);
+  // Esfriar: do fogo (cor) à fumaça cinza, mais forte com "Vira fumaça".
+  const frio=Math.min(1,t*1.25)*p.expFumaca/100,fumo='#6a6470';
+  const borda=corMistura(corMistura(p.cor,'#5a1408',.45),fumo,frio),cor=corMistura(p.cor,'#8a8290',frio),
+   meio=corMistura(corMistura(p.cor,'#ffe9a0',.6),'#b6aebb',frio),miolo=corMistura('#ffffff','#d8d2dc',frio);
+  // Anel de choque: fino, rápido, se parte.
+  if(p.expAnel&&q>=1&&q<n*.6){
+   const v=(q-1)/(n*.6-1),r=R*(.7+1.3*Math.sqrt(v)),w=R*.12*(1-v)**1.3;
+   if(w>.6)for(let j=0;j<8;j++){const a0=j/8*Math.PI*2,a1=a0+Math.PI*2/8*(1-v*.55);
+    faixas(ctx,k=>{const m=8,pts=[],ls=[];for(let s=0;s<=m;s++){const a=a0+(a1-a0)*s/m;pts.push([Math.cos(a)*r,Math.sin(a)*r*.45+R*.3]);ls.push(w*Math.pow(Math.min(s,m-s)/(m/2),.6))}caminhoFita(ctx,pts,ls,k)},[p.paleta.meio,p.paleta.miolo],[1,.45])}
+  }
+  // As bolas: posição dentro de uma esfera achatada embaixo, raio cresce rápido e depois encolhe.
+  const rnd=aleatorio(0xe4b),cresce=suave(Math.min(1,(q+1)/4));
+  const bolas=[];
+  for(let j=0;j<p.expBolas;j++){
+   const a=rnd()*Math.PI*2,d=Math.sqrt(rnd()),r0=(.3+.45*rnd())*R,altura=rnd();
+   const espalha=1+u*(1.2+rnd()),sobe=(t*R*.5+u*R*.45*(.5+rnd()))*p.expSobe/100;
+   const x=Math.cos(a)*d*R*.75*cresce*espalha,y=Math.sin(a)*d*R*.6*cresce*espalha-altura*R*.35*cresce-sobe;
+   const r=r0*cresce*(1-u*(.55+.4*rnd()));
+   if(r>1)bolas.push([x,y,r]);
+  }
+  // Clarão do contato: só o branco nos 2 primeiros desenhos, maior que a bola.
+  if(q<2){const est=aleatorio(0xf1a),raios=[];for(let j=0;j<24;j++)raios.push([(j%2?.55:1)*R*(1.1+.5*est())*(q?.9:1.15),j*Math.PI/12+est()*.2]);
+   faixas(ctx,k=>caminhoEstrela(ctx,raios,k),[p.paleta.meio,'#ffffff'],[1,.7]);}
+  // Faixa por faixa em todas as bolas: uma silhueta só, o miolo encolhe enquanto esfria.
+  const calor=Math.max(0,1-t*1.6);
+  [[borda,1],[cor,.84],[meio,.64],[miolo,.18+.32*calor]].forEach(([c,k],m)=>{
+   if(m===3&&calor<=0&&frio>.5)return;
+   ctx.beginPath();for(const [x,y,r] of bolas){ctx.moveTo(x+r*k,y-r*(1-k)*.3);ctx.arc(x,y-r*(1-k)*.3,r*k,0,Math.PI*2)}ctx.fillStyle=c;ctx.fill();
+  });
+  // Estilhaços: riscos que voam para fora e encurtam.
+  const fr=aleatorio(0x5717);
+  for(let j=0;j<p.particulas;j++){
+   const a=-Math.PI/2+(fr()-.5)*Math.PI*1.7,vel=.6+fr(),comp=14+fr()*26,vida=Math.min(1,t/(.45+fr()*.4));
+   if(vida>=1)continue;
+   const d=R*(.3+1.6*vel*Math.sqrt(vida)),k=1-vida;
+   ctx.save();ctx.translate(Math.cos(a)*d,Math.sin(a)*d+R*.6*vida*vida);ctx.rotate(a);
+   faixas(ctx,kk=>caminhoLasca(ctx,comp*(.4+.6*k),(3+fr()*3)*k,kk),[p.paleta.cor,p.paleta.miolo],[1,.45]);ctx.restore();
+  }
+ }
+});
+// Onda de choque: anel que abre rápido do ponto do golpe, em faixas (frente clara, rastro na cor),
+// afinando enquanto abre; vários anéis em sequência; no fim se parte em arcos. A perspectiva achata
+// o anel até deitar no chão.
+registrarGerador({
+ nome:'Onda de choque',
+ perfil:{tint:'#9fdcff',particles:0},
+ params:[
+  {id:'ondTamanho',rotulo:'Tamanho final',tipo:'range',min:40,max:240,padrao:200,unidade:' px'},
+  {id:'ondPerspectiva',rotulo:'Deitado no chão',tipo:'range',min:0,max:90,padrao:0,unidade:'%'},
+  {id:'ondEspessura',rotulo:'Espessura',tipo:'range',min:4,max:60,padrao:26,unidade:' px'},
+  {id:'ondAneis',rotulo:'Anéis',tipo:'range',min:1,max:4,padrao:2},
+  {id:'ondAtraso',rotulo:'Atraso entre anéis (quadros)',tipo:'range',min:1,max:6,padrao:2},
+  {id:'ondQuebra',rotulo:'Quebra (fração da vida)',tipo:'range',min:30,max:95,padrao:60,unidade:'%'},
+  {id:'ondDois',rotulo:'Animar de dois em dois',tipo:'checkbox',padrao:false},
+ ],
+ desenhar(ctx,{i,n,p,aleatorio}){
+  const q=doisEmDois(i,p.ondDois),pal=p.paleta,forca=.75+p.forca/28,achata=1-p.ondPerspectiva/100*.85;
+  const R=Math.min(232,p.ondTamanho*forca),W=p.ondEspessura*forca;
+  for(let a=0;a<p.ondAneis;a++){
+   const ini=a*p.ondAtraso,dur=n-1-ini-a;if(q<ini||dur<=0)continue;
+   const v=(q-ini)/dur;if(v>1)continue;
+   const r=R*(1-a*.18)*(1-(1-v)**2.4),w=W*(1-a*.25)*(1-v)**1.1;
+   if(w<.6||r<2)continue;
+   const quebra=p.ondQuebra/100,u=v<quebra?0:(v-quebra)/(1-quebra);
+   const rnd=aleatorio(0x0da+a*97),partes=u>0?9:1,f1=rnd()*6.28,f2=rnd()*6.28;
+   // Traço de mão: o raio ondula um pouco em volta (não é um círculo de compasso).
+   const torto=ang=>1+.016*Math.sin(3*ang+f1)+.008*Math.sin(5*ang+f2);
+   for(let j=0;j<partes;j++){
+    const a0=u>0?j/partes*Math.PI*2+rnd()*.25:0,tam=u>0?Math.PI*2/partes*(1-u*.7)*(.6+.4*rnd()):Math.PI*2;
+    const m=u>0?12:96,pts=[],ls=[];
+    for(let s=0;s<=m;s++){const ang=a0+tam*s/m;pts.push([Math.cos(ang)*r*torto(ang),Math.sin(ang)*r*achata*torto(ang)]);
+     // A espessura é maior na frente (embaixo, perto de quem vê) quando deitado.
+     const frente=1+(1-achata)*.6*Math.sin(ang);ls.push(w*frente*(u>0?Math.pow(Math.min(s,m-s)/(m/2),.6):1))}
+    // A frente (lado de fora) clara; o rastro (dentro) na cor: duas fitas, a clara por cima, deslocada.
+    faixas(ctx,k=>caminhoFita(ctx,pts,ls,k),[pal.borda,pal.cor,pal.meio],[1,.72,.42]);
+    const fora=pts.map(([x,y])=>{const d=Math.hypot(x,y/achata)||1;return [x*(1+w*.22/d),y*(1+w*.22/d)]});
+    faixas(ctx,k=>caminhoFita(ctx,fora,ls.map(l=>l*.38),k),[pal.miolo],[1]);
+   }
+  }
+ }
+});
+// Faíscas: um leque de riscos de luz que saem rápido do ponto, esticados pela velocidade, caem com
+// gravidade, encurtam e se apagam afinando. Brilho curto no ponto, no começo.
+registrarGerador({
+ nome:'Faíscas',
+ perfil:{tint:'#ffb431',particles:40},
+ params:[
+  {id:'faiCone',rotulo:'Abertura do leque',tipo:'range',min:10,max:360,padrao:110,unidade:'°'},
+  {id:'faiVelocidade',rotulo:'Velocidade',tipo:'range',min:20,max:200,padrao:100,unidade:'%'},
+  {id:'faiGravidade',rotulo:'Gravidade',tipo:'range',min:0,max:200,padrao:80,unidade:'%'},
+  {id:'faiRastro',rotulo:'Rastro',tipo:'range',min:0,max:200,padrao:100,unidade:'%'},
+  {id:'faiTamanho',rotulo:'Grossura',tipo:'range',min:30,max:250,padrao:100,unidade:'%'},
+  {id:'faiDois',rotulo:'Animar de dois em dois',tipo:'checkbox',padrao:false},
+ ],
+ desenhar(ctx,{i,n,p,aleatorio}){
+  const q=doisEmDois(i,p.faiDois),t=q/(n-1),pal=p.paleta,forca=.75+p.forca/28;
+  const rnd=aleatorio(0xfa15),cone=p.faiCone*Math.PI/180,g=420*p.faiGravidade/100;
+  if(q<3){const r=26*forca*[1.3,1,.5][q];brilhoFundo(ctx,r*2.4,p.cor,.8);
+   faixas(ctx,k=>caminhoEstrela(ctx,[[r,0],[r*.2,Math.PI/4],[r*.7,Math.PI/2],[r*.2,3*Math.PI/4],[r*.9,Math.PI],[r*.2,5*Math.PI/4],[r*.7,3*Math.PI/2],[r*.2,7*Math.PI/4]],k),[pal.meio,pal.miolo],[1,.55]);}
+  for(let j=0;j<p.particulas;j++){
+   const a=(rnd()-.5)*cone,v=(260+340*rnd())*p.faiVelocidade/100*forca,vida=.45+.55*rnd(),larg=(3.6+4*rnd())*p.faiTamanho/100*forca;
+   const tt=t*.6/vida;if(tt>=.6)continue;
+   const T=tt,k=1-T/.6;
+   const x=Math.cos(a)*v*T,y=Math.sin(a)*v*T+g*T*T/2,vx=Math.cos(a)*v,vy=Math.sin(a)*v+g*T;
+   const vel=Math.hypot(vx,vy),comp=Math.max(larg*2,(14+vel*.09)*p.faiRastro/100*(.4+.6*k));
+   const lw=larg*(.35+.65*k);if(lw<.5)continue;
+   ctx.save();ctx.translate(x,y);ctx.rotate(Math.atan2(vy,vx));
+   faixas(ctx,kk=>caminhoLasca(ctx,comp,lw,kk),[pal.borda,pal.cor,pal.miolo],[1,.75,.42]);ctx.restore();
+  }
+ }
+});
+// Gelo: pontas de cristal que brotam do ponto em leque, crescem inteiras em 2 desenhos, ficam, e
+// se estilhaçam em lascas que caem. Cada ponta tem duas faces (uma acesa, outra de sombra) e o fio
+// branco na aresta, como cristal de anime; geada (losangos pequenos) em volta.
+registrarGerador({
+ nome:'Gelo',
+ perfil:{tint:'#7fd8ff',particles:18},
+ params:[
+  {id:'gelPontas',rotulo:'Pontas',tipo:'range',min:3,max:24,padrao:9},
+  {id:'gelTamanho',rotulo:'Tamanho',tipo:'range',min:30,max:200,padrao:100,unidade:'%'},
+  {id:'gelLeque',rotulo:'Abertura do leque',tipo:'range',min:20,max:360,padrao:140,unidade:'°'},
+  {id:'gelGrossura',rotulo:'Grossura das pontas',tipo:'range',min:30,max:250,padrao:100,unidade:'%'},
+  {id:'gelQuebra',rotulo:'Quebra no quadro',tipo:'range',min:3,max:15,padrao:9},
+  {id:'gelDois',rotulo:'Animar de dois em dois',tipo:'checkbox',padrao:true},
+ ],
+ desenhar(ctx,{i,n,p,aleatorio}){
+  const q=doisEmDois(i,p.gelDois),pal=p.paleta,forca=.75+p.forca/28,L=Math.min(225,190*p.gelTamanho/100*forca);
+  const cresce=[.55,.85,1,1][q]??1,u=q<p.gelQuebra?0:(q-p.gelQuebra+1)/(n-p.gelQuebra);
+  const luz=corMistura(p.cor,'#ffffff',.62),sombra=corMistura(p.cor,'#20365a',.35),aresta='#ffffff';
+  const rnd=aleatorio(0x6e10),leque=p.gelLeque*Math.PI/180;
+  // Uma ponta: losango comprido (base larga, ponta fina), duas faces e a aresta do meio.
+  const ponta=(c,w,cor1,cor2)=>{
+   ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(c*.18,-w/2);ctx.lineTo(c,0);ctx.closePath();ctx.fillStyle=cor1;ctx.fill();
+   ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(c*.18,w/2);ctx.lineTo(c,0);ctx.closePath();ctx.fillStyle=cor2;ctx.fill();
+   ctx.beginPath();ctx.moveTo(c*.08,-w*.06);ctx.lineTo(c*.98,0);ctx.lineTo(c*.08,w*.06);ctx.closePath();ctx.fillStyle=aresta;ctx.fill();
+  };
+  const pontas=[...Array(p.gelPontas)].map((_,j)=>({a:(p.gelPontas===1?0:(j/(p.gelPontas-1)-.5))*leque+(rnd()-.5)*.25,
+   c:L*(.45+.55*rnd()),w:(16+16*rnd())*p.gelGrossura/100*forca,quebra:[.3+.2*rnd(),.62+.15*rnd()]}));
+  // As maiores atrás.
+  pontas.sort((a,b)=>b.c-a.c);
+  for(const pt of pontas){
+   ctx.save();ctx.rotate(pt.a);
+   if(u===0){ponta(pt.c*cresce,pt.w*(.6+.4*cresce),luz,sombra);ctx.restore();continue}
+   // Estilhaça: a ponta vira três pedaços que se afastam pelo eixo, caem e encolhem.
+   const cortes=[0,...pt.quebra,1];
+   for(let s=0;s<3;s++){
+    const a0=cortes[s]*pt.c,a1=cortes[s+1]*pt.c,k=1-u*.85,meio=(a0+a1)/2;
+    ctx.save();ctx.translate(meio+u*pt.c*.35*(s+.5),u*u*90*(s+1)*.6);ctx.rotate(u*(s-1)*.8);ctx.scale(k,k);
+    ctx.translate(-(a1-a0)/2,0);
+    const w=pt.w*(1-cortes[s])*(.9);ponta(a1-a0,w,luz,sombra);ctx.restore();
+   }
+   ctx.restore();
+  }
+  // Geada: losangos pequenos que saem e somem encolhendo.
+  const fr=aleatorio(0x9ead);
+  for(let j=0;j<p.particulas;j++){
+   const a=(fr()-.5)*leque*1.3,d=L*(.2+.9*fr())*Math.min(1,(q+1)/3),s=(3+fr()*5)*forca*(1-q/(n-1));
+   if(s<.6)continue;
+   ctx.save();ctx.rotate(a);ctx.translate(d,(fr()-.5)*20);ctx.rotate(fr()*3);
+   ctx.beginPath();ctx.moveTo(-s,0);ctx.lineTo(0,-s*.6);ctx.lineTo(s,0);ctx.lineTo(0,s*.6);ctx.closePath();ctx.fillStyle=fr()<.5?aresta:luz;ctx.fill();ctx.restore();
+  }
+ }
+});
+// Vento e vórtices: traços de ar em fita pontuda. Rajada: arcos que correm para a frente e se
+// comem pelo rabo (nascem na frente, somem por trás). Vórtice: traços em espiral girando em volta
+// de um eixo de pé, mais largo em cima (o redemoinho, o tornado).
+registrarGerador({
+ nome:'Vento e vórtices',
+ perfil:{tint:'#cfeeff',particles:10},
+ params:[
+  {id:'venTipo',rotulo:'Tipo',tipo:'select',padrao:'rajada',opcoes:[['rajada','Rajada'],['vortice','Vórtice (redemoinho)']]},
+  {id:'venTracos',rotulo:'Traços',tipo:'range',min:2,max:24,padrao:8},
+  {id:'venTamanho',rotulo:'Tamanho',tipo:'range',min:30,max:200,padrao:100,unidade:'%'},
+  {id:'venEspessura',rotulo:'Espessura',tipo:'range',min:2,max:40,padrao:18,unidade:' px'},
+  {id:'venGiro',rotulo:'Velocidade',tipo:'range',min:20,max:300,padrao:100,unidade:'%'},
+  {id:'venDois',rotulo:'Animar de dois em dois',tipo:'checkbox',padrao:true},
+ ],
+ desenhar(ctx,{i,n,p,aleatorio}){
+  const q=doisEmDois(i,p.venDois),t=q/(n-1),pal=p.paleta,forca=.75+p.forca/28,S=p.venTamanho/100*forca,W=p.venEspessura*forca;
+  const rnd=aleatorio(0x7e47),cores=[pal.cor,pal.meio,pal.miolo],tam=[1,.62,.3];
+  // Uma fita ao longo de f(s), s de a até b (0 a 1), pontuda nas duas pontas.
+  const fita=(f,a,b,w)=>{if(b-a<.02||w<.6)return;const m=18,pts=[],ls=[];
+   for(let j=0;j<=m;j++){const s=a+(b-a)*j/m;pts.push(f(s));const e=Math.min(j,m-j)/(m/2);ls.push(w*Math.pow(e,.7)*(.4+.6*(j/m)))}
+   faixas(ctx,k=>caminhoFita(ctx,pts,ls,k),cores,tam)};
+  if(p.venTipo==='vortice'){
+   ctx.rotate(-+el('angle').value*Math.PI/180);
+   const H=300*S,base=H*.45;
+   for(let j=0;j<p.venTracos;j++){
+    const y0=(j+.5)/p.venTracos,fase=rnd()*Math.PI*2,giro=(1+rnd())*p.venGiro/100;
+    const raio=y=>14*S+(1-y)*90*S;           // mais largo em cima
+    const f=s=>{const y=y0-.1+.2*s,a=fase+s*2.4+t*giro*Math.PI*2;return [Math.cos(a)*raio(y),base-y*H+Math.sin(a)*raio(y)*.25]};
+    const vida=Math.min(1,t*1.4+rnd()*.2),a=Math.max(0,vida*1.2-.45),b=Math.min(1,vida*1.6);
+    fita(f,a,b,W*(1-t*.4));
+   }
+  }else{
+   for(let j=0;j<p.venTracos;j++){
+    const y=(rnd()-.5)*220*S,curva=(rnd()-.5)*.9,comp=(140+120*rnd())*S,atraso=rnd()*.35,vel=p.venGiro/100;
+    const vida=(t-atraso)/(.65*(1/vel)+.15);if(vida<=0||vida>=1)continue;
+    const x0=-150*S+vida*90*S*vel;
+    const f=s=>{const x=x0+s*comp;return [x,y+Math.sin(s*Math.PI)*curva*60*S-curva*s*30*S]};
+    // Nasce pela frente e some por trás (o rabo come a fita).
+    fita(f,Math.max(0,vida*1.3-.35),Math.min(1,vida*2.2),W*(.6+.5*rnd()));
+   }
+  }
+  // Partículas de poeira/folha levadas pelo ar.
+  const fr=aleatorio(0xa1e);
+  for(let j=0;j<p.particulas;j++){
+   const x=-180*S+((fr()+t*p.venGiro/100*1.3)%1)*360*S,y=(fr()-.5)*240*S,s=(2+fr()*3)*forca*Math.sin(Math.PI*Math.min(1,t*1.2));
+   if(s<.6)continue;
+   ctx.save();ctx.translate(x,y);faixas(ctx,k=>caminhoLasca(ctx,s*4,s,k),[pal.cor,pal.miolo],[1,.5]);ctx.restore();
+  }
+ }
+});
+// Feixe de energia: dispara fino da origem para a frente, abre na largura toda, pulsa com a borda
+// tremida (desenho novo a cada par de quadros), afina até virar um fio e se parte. Clarão na boca
+// do disparo; espiral opcional em volta.
+registrarGerador({
+ nome:'Feixe de energia',
+ perfil:{tint:'#6fe7ff',particles:12},
+ origem:{x:52,y:256},
+ params:[
+  {id:'fexComprimento',rotulo:'Comprimento',tipo:'range',min:60,max:420,padrao:380,unidade:' px'},
+  {id:'fexLargura',rotulo:'Largura',tipo:'range',min:8,max:140,padrao:56,unidade:' px'},
+  {id:'fexTremido',rotulo:'Borda tremida',tipo:'range',min:0,max:100,padrao:45,unidade:'%'},
+  {id:'fexCheio',rotulo:'Quadros cheio',tipo:'range',min:2,max:12,padrao:8},
+  {id:'fexEspiral',rotulo:'Espiral em volta',tipo:'checkbox',padrao:true},
+  {id:'fexDois',rotulo:'Animar de dois em dois',tipo:'checkbox',padrao:true},
+ ],
+ desenhar(ctx,{i,n,p,aleatorio}){
+  const q=doisEmDois(i,p.fexDois),pal=p.paleta,forca=.75+p.forca/28;
+  const L=p.fexComprimento,Wmax=p.fexLargura*forca;
+  // Tempo: dispara (0-1), cheio (até 2 + cheio), afina até o fio e se parte no fim.
+  const cheioAte=Math.min(n-3,2+p.fexCheio);
+  const alcance=q===0?.55:1,larg=q<2?[.25,.7][q]:q<=cheioAte?1:Math.max(0,1-(q-cheioAte)/(n-1-cheioAte))**1.5;
+  const partido=q>cheioAte+1;
+  const rnd=aleatorio(0xbea+q*7919);
+  const W=Wmax*larg;
+  // Corpo: fita reta com a borda tremida, ponta arredondada-pontuda na frente.
+  const m=24,pts=[],ls=[];
+  for(let j=0;j<=m;j++){const s=j/m;pts.push([s*L*alcance,0]);
+   const boca=Math.min(1,s*8),fim=s>.9?(1-s)/.1:1,treme=1+(rnd()-.5)*p.fexTremido/100*.5;
+   ls.push(Math.max(0,W*boca*(.35+.65*fim)*treme))}
+  if(!partido){
+   faixas(ctx,k=>caminhoFita(ctx,pts,ls,k),[pal.borda,pal.cor,pal.meio,pal.miolo],[1,.8,.56,.28]);
+  }else if(W>.6){
+   // Partido: pedaços do fio que afinam.
+   for(let j=0;j<m;j+=3){if(rnd()<.35)continue;const a=pts[j],b=pts[Math.min(m,j+2)];
+    faixas(ctx,k=>caminhoFita(ctx,[a,[(a[0]+b[0])/2,0],b],[ls[j]*.2,ls[j],ls[j]*.2],k),[pal.cor,pal.miolo],[1,.4])}
+  }
+  // Espiral: duas fitas finas enroladas no feixe.
+  if(p.fexEspiral&&!partido&&W>4){
+   for(const fase of [0,Math.PI]){const sp=[],sl=[];
+    for(let j=0;j<=40;j++){const s=j/40,a=s*14+fase+q*.9;sp.push([s*L*alcance,Math.sin(a)*W*.75]);sl.push(Math.max(.5,W*.12*(Math.cos(a)>0?1:.5)))}
+    faixas(ctx,k=>caminhoFita(ctx,sp,sl,k),[pal.meio,pal.miolo],[1,.5]);}
+  }
+  // Clarão na boca: raios desiguais, maior no disparo.
+  if(q<=cheioAte){const r=Wmax*(q<2?1.6:1.05)*(.85+.3*rnd()),raios=[];for(let j=0;j<16;j++)raios.push([(j%2?.3:1)*r*(.7+.5*rnd()),j*Math.PI/8]);
+   faixas(ctx,k=>caminhoEstrela(ctx,raios,k),[pal.cor,pal.meio,pal.miolo],[1,.66,.34])}
+  // Partículas soltas correndo junto.
+  const fr=aleatorio(0xbee+q);
+  for(let j=0;j<p.particulas;j++){const x=fr()*L*alcance,y=(fr()-.5)*Wmax*1.8,s=(2+fr()*3)*forca*larg;if(s<.6)continue;
+   ctx.save();ctx.translate(x,y);faixas(ctx,k=>caminhoLasca(ctx,s*5,s,k),[pal.cor,pal.miolo],[1,.5]);ctx.restore()}
  }
 });
 function draw(ctx,index,local=false){
@@ -2518,6 +2802,9 @@ for(const tipo of ['input','change','click'])el('ajustes').addEventListener(tipo
 })();
 // Sem print, as silhuetas trocam de lado com quem bate: o ponto do golpe vai junto.
 el('previaEsquerda').addEventListener('input',()=>{if(!previa.cena){el('previaX').value=960-+el('previaX').value;previaAtualizar()}});
+// Instalado pelo GitHub Pages, o Sōkon FX funciona sem internet (site/sw.js). Aberto como arquivo
+// (file://), não há o que registrar.
+if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))navigator.serviceWorker.register('sw.js').catch(()=>{});
 el('smokeForm').value='jump';
 el('plumes').value='1';
 el('kind').value='Fumaça';

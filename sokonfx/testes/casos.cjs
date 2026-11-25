@@ -25,13 +25,19 @@ for(const airFlow of ['out','in','pulse'])for(const airEdge of ['round','spiked'
  casos.push(c(`Ar ${airFlow} ${airEdge}`,{kind:'Pressão de ar',airFlow,airEdge,airCopies:'14',airWaves:'4',airInterval:'1',airRingGap:'200',airParticleGap:'50',airWidth:'14'}));
 casos.push(c('Ponto de luz feixes',{kind:'Ponto de luz',beams:'12',beamWidth:'30',focusX:'200',focusY:'300'}));
 // Os geradores novos (registro em 09a-geradores.js): o padrão e as variações dos controles.
-for(const kind of ['Defesa','Choque','Raio','Linhas de mangá','Aura','Detritos'])for(const power of ['3','9','14'])
+for(const kind of ['Defesa','Choque','Raio','Linhas de mangá','Aura','Detritos','Explosão','Onda de choque','Faíscas','Gelo','Vento e vórtices','Feixe de energia'])for(const power of ['3','9','14'])
  casos.push(c(`${kind} força ${power}`,{kind,power}));
 for(const defForma of ['arco','duplo','anel'])casos.push(c(`Defesa ${defForma}`,{kind:'Defesa',defForma,defTamanho:'160',defAbertura:'150',defEspessura:'40',defQuebra:'4',defPedacos:'11',defBrilho:'0',defDois:''}));
 casos.push(c('Choque variado',{kind:'Choque',chqAbertura:'110',chqComprimento:'200',chqEspessura:'40',chqAnel:'',chqLinhas:'40',chqQuebra:'9',chqBrilho:'100',chqDois:''}));
 casos.push(c('Raio variado',{kind:'Raio',raiQtd:'8',raiComprimento:'240',raiEspalha:'360',raiZigue:'100',raiRamos:'6',raiEspessura:'25',raiQuebra:'3',raiDois:''}));
 for(const auForma of ['corpo','chao','bola'])casos.push(c(`Aura ${auForma}`,{kind:'Aura',auForma,auAltura:'380',auLargura:'200',auQtd:'50',auChama:'150',auBalanco:'100',auCiclos:'3',auBrilho:'0',auDois:''}));
 casos.push(c('Detritos variado',{kind:'Detritos',detQtd:'35',detTamanho:'220',detForcaPulo:'200',detEspalha:'40',detDirecao:'-60',detGravidade:'40',detPoeira:'',detCorPoeira:'0'}));
+casos.push(c('Explosão variada',{kind:'Explosão',expTamanho:'190',expBolas:'40',expSobe:'200',expFumaca:'0',expAnel:'',expQuebra:'4',expDois:''}));
+casos.push(c('Onda variada',{kind:'Onda de choque',ondTamanho:'240',ondPerspectiva:'90',ondEspessura:'60',ondAneis:'4',ondAtraso:'1',ondQuebra:'30',ondDois:'1'}));
+casos.push(c('Faíscas variadas',{kind:'Faíscas',faiCone:'360',faiVelocidade:'200',faiGravidade:'0',faiRastro:'200',faiTamanho:'250',faiDois:'1',particles:'60'}));
+casos.push(c('Gelo variado',{kind:'Gelo',gelPontas:'24',gelTamanho:'200',gelLeque:'360',gelGrossura:'250',gelQuebra:'4',gelDois:''}));
+for(const venTipo of ['rajada','vortice'])casos.push(c(`Vento ${venTipo}`,{kind:'Vento e vórtices',venTipo,venTracos:'24',venTamanho:'200',venEspessura:'40',venGiro:'300',venDois:''}));
+casos.push(c('Feixe variado',{kind:'Feixe de energia',fexComprimento:'420',fexLargura:'140',fexTremido:'100',fexCheio:'2',fexEspiral:'',fexDois:''}));
 for(const linTipo of ['concentracao','velocidade'])
  casos.push(c(`Linhas ${linTipo}`,{kind:'Linhas de mangá',linTipo,linQtd:'120',linMeio:'40',linComprimento:'220',linGrossura:'14',linBranco:'20',linSome:'3',linDois:''}));
 // Os tipos salvos do dono (sokonfx-types-v1).

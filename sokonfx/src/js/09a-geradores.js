@@ -93,7 +93,7 @@ function desenharGerador(ctx,index){
  p.cor=el('tint').value;p.forca=+el('power').value;p.particulas=+el('particles').value;p.paleta=corPaleta(p.cor);
  if(!geradorTela){geradorTela=document.createElement('canvas');geradorTela.width=geradorTela.height=512}
  const x=geradorTela.getContext('2d');x.clearRect(0,0,512,512);x.save();
- x.translate(256,g.origem?.y??256);if(!g.semGiro)x.rotate(+el('angle').value*Math.PI/180);
+ x.translate(g.origem?.x??256,g.origem?.y??256);if(!g.semGiro)x.rotate(+el('angle').value*Math.PI/180);
  g.desenhar(x,{i:index,t:index/(frames-1),n:frames,p,semente:seed,aleatorio:s=>generator((seed^s)>>>0)});
  x.restore();x.save();x.globalCompositeOperation='destination-in';x.drawImage(geradorBeira(),0,0);x.restore();
  ctx.drawImage(geradorTela,0,0);

@@ -166,3 +166,27 @@ embaixo.
 - **Conferido:** num servidor local, o service worker assume a página; com a rede desligada, a
   página recarrega inteira (15 efeitos) e o manifesto responde.
 - **Falta (do dono):** juntar a branch na `main` e ligar Settings → Pages → Source: GitHub Actions.
+
+## 25/11 — Explosão, Onda de choque, Faíscas, Gelo, Vento e vórtices, Feixe de energia
+
+- **Pedido:** seguir a lista do que falta da bíblia, nesta ordem: combate (Explosão, Ondas de
+  choque, Faíscas), poderes (Gelo, Vento, Feixes), depois o editor.
+- **Explosão:** clarão branco de raios desiguais no contato; bola de fogo de bolas chapadas
+  desenhadas faixa por faixa (uma silhueta só); esfria do branco ao laranja e à fumaça ("Vira
+  fumaça"); se parte em bolas que sobem e encolhem, como o diagrama de dissipação da bíblia; anel e
+  estilhaços. Primeira versão subia até bater no topo; origem mais baixa e subida menor.
+- **Onda de choque:** anéis em sequência que abrem do ponto, frente clara e rastro na cor, afinam e
+  se partem em arcos; "deitado no chão" achata e engrossa a frente. O círculo perfeito parecia de
+  compasso; ganhou uma ondulação leve de traço de mão (a primeira dose foi demais e virou polígono).
+- **Faíscas:** leque de riscos esticados pela velocidade, com gravidade, encurtando e afinando.
+- **Gelo:** pontas de cristal com face acesa, face de sombra e fio branco na aresta; crescem em 2
+  desenhos e se estilhaçam em 3 pedaços cada, com geada em volta.
+- **Vento e vórtices:** rajada (arcos que nascem pela frente e somem pelo rabo) ou vórtice (traços
+  em espiral em volta de um eixo de pé, mais largo em cima), com poeira levada pelo ar.
+- **Feixe de energia:** sai da esquerda do quadro (origem em x 52, até 420 px), dispara fino, abre,
+  pulsa com a borda tremida e espiral, afina até o fio e se parte; clarão na boca. Os geradores
+  agora podem escolher a origem em x e y.
+- **Conferido:** 183 casos na trava (os antigos e os 6 geradores de antes sem mudança, conferidos
+  com `CASOS=` antes de trocar a referência); `geradores.test.cjs` com os 12 geradores (painel,
+  volta do painel antigo, export, nada na beira em todas as variações).
+- **Falta:** o dono julgar; o vórtice ainda está ralo no padrão.

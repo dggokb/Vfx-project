@@ -9,6 +9,7 @@ registrarGerador({
  nome:'Hit (à mão)',
  perfil:{tint:'#ff8a1e',particles:14},
  params:[
+  {id:'hitEstilo',rotulo:'Estilo',tipo:'select',padrao:'eletrico',opcoes:[['eletrico','Elétrico em camadas (concept)'],['pincel','Pincel']]},
   {id:'hitTamanho',rotulo:'Tamanho',tipo:'range',min:40,max:200,padrao:100,unidade:'%'},
   {id:'hitPontas',rotulo:'Pontas grandes',tipo:'range',min:4,max:18,padrao:11},
   {id:'hitDirecional',rotulo:'Puxa para a direção do golpe',tipo:'range',min:0,max:100,padrao:70,unidade:'%'},
@@ -59,7 +60,29 @@ registrarGerador({
    for(let j=0;j<qtd;j++){const a=r()*Math.PI*2,ra=r0+(r1-r0)*r(),c=(r1-r0)*(.25+.6*r()),g=1.6+r()*3.6;
     ctx.save();ctx.rotate(a);ctx.translate(ra+c/2,0);ctx.beginPath();caminhoLasca(ctx,c,g);ctx.fill();ctx.restore()}
    ctx.restore()};
-  if(etapa<=2){
+  if(p.hitEstilo==='eletrico'&&etapa<=1){
+   const r1=aleatorio(0x1e1+par),vermelho=corMistura(p.cor,'#d81a08',.7),fio=corMistura(p.cor,'#5a0600',.85),amarelo=corMistura(p.cor,'#fff04a',.7);
+   // Pontas de uma camada: ângulos próprios (desencontrados das outras), comprimentos desiguais,
+   // puxadas para a direção do golpe.
+   const camada=(qtd,esc,sem)=>{const r=aleatorio(sem),ps=[];for(let j=0;j<qtd;j++){const a=j/qtd*Math.PI*2+(r()-.5)*.6,dir=Math.cos(a)*p.hitDirecional/100*.45;
+    ps.push({a,c:R*tam*esc*(.45+.75*r()**1.3)*(1+.6*dir),l:R*(.14+.1*r())*esc})}return ps.sort((x,y)=>x.a-y.a)};
+   // Contorno serrilhado: cada lado da ponta em zigue-zague (dentes desiguais), como raio.
+   const contorno=(ps,vale,sem)=>{const r=aleatorio(sem),out=[];
+    ps.forEach((pt,j)=>{const nx=ps[(j+1)%ps.length],meio=(pt.a+(nx.a<pt.a?nx.a+Math.PI*2:nx.a))/2;
+     const lado=(a0,a1,r0,r1)=>{const m=4+Math.floor(r()*3);for(let s=0;s<=m;s++){const t=s/m,a=a0+(a1-a0)*t,rr=r0+(r1-r0)*t,dente=(s%2?1:-1)*(.02+.035*r())*torto*rr*.5;out.push([Math.cos(a+dente/Math.max(rr,1)*3)*rr,Math.sin(a+dente/Math.max(rr,1)*3)*rr])}};
+     const base=pt.c*.22,ab=pt.l/Math.max(pt.c,1)*1.9;
+     lado(pt.a-ab,pt.a,base,pt.c);lado(pt.a,pt.a+ab,pt.c,base);out.push([Math.cos(meio)*R*vale,Math.sin(meio)*R*vale]);});
+    return out};
+   const camadas=[[camada(N+3,1.12,0x101+par),vermelho,.36],[camada(N+1,.92,0x202+par),p.cor,.34],[camada(N,.7,0x303+par),amarelo,.32],[camada(N-2,.46,0x404+par),pal.miolo,.3]];
+   camadas.forEach(([ps,cor,vale],k)=>{const pts=contorno(ps,vale*(1+.3*k),0x50+k+par);
+    if(k===0){ctx.beginPath();pts.forEach(([x,y],j)=>j?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();ctx.lineWidth=Math.max(1.5,R*.018);ctx.strokeStyle=fio;ctx.lineJoin='miter';ctx.stroke()}
+    encher(pts,cor);if(k<2)seco(Math.round((k?40:80)*p.hitPincel/100),R*.3,R*1.35,0x5c+k+par);
+   });
+   // A luz em volta vai por trás de tudo (depois do pincel seco, que não pode cortá-la).
+   ctx.save();ctx.globalCompositeOperation='destination-over';brilhoFundo(ctx,R*1.5*tam,corMistura(p.cor,'#ff5a10',.4),etapa?.55:.8);ctx.restore();
+   // O estouro branco do contato.
+   const rr=R*(etapa?.24:.34),bl=[];for(let j=0;j<16;j++)bl.push([rr*(j%2?.5:1)*(.75+.5*r1()),j/16*Math.PI*2]);ctx.beginPath();caminhoEstrela(ctx,bl);ctx.fillStyle=pal.miolo;ctx.fill();
+  }else if(etapa<=2){
    const parte=etapa===2;
    // Faixa de fora, com pincel seco; meio; miolo (outro desenho, deslocado).
    const fora=pincel(caminho(1,.2,false),R*.06,0x11+par);

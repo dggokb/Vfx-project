@@ -304,3 +304,24 @@ embaixo.
   de pixels e no teste dos geradores.
 - **Falta:** o dono dizer se é esse o caminho; se for, levar borda de pincel, faixas desencontradas,
   pincel seco e desenho por par de quadros para os outros geradores.
+
+## 25/11 — O hit do concept do dono: núcleo elétrico em camadas e estilhaços
+
+- **Pedido:** o dono mandou um concept de tela de luta e pediu o hit dele ("o que precisaríamos mudar
+  hoje para conseguir um hit como esse").
+- **Leitura do concept:** são umas sete peças: núcleo branco-amarelo-laranja-vermelho com pontas
+  serrilhadas em camadas e fio vermelho-escuro; estilhaços longos (lâminas brancas curvas e raios
+  amarelos) na linha do golpe, para os dois lados, indo a meia tela; anel fino dourado; luz laranja;
+  fagulhas; e, no chão sob quem apanha, poeira em volutas, rachadura e pedras; ar nas costas de quem
+  bate.
+- **Feito:** o Hit (à mão) ganhou o estilo **Elétrico em camadas** (padrão): quatro camadas de pontas
+  próprias, desencontradas (vermelho, a cor, amarelo, branco), borda serrilhada, fio vermelho-escuro,
+  pincel seco, luz por trás. Gerador novo **Estilhaços**: lâminas brancas com sombra cinza e raios em
+  zigue-zague, na linha do golpe e para trás. Composição de teste: anel + estilhaços + núcleo +
+  fagulhas.
+- **Conferido:** lado a lado com o recorte do concept. Primeiras versões: pontas finas e puxadas para um
+  lado (parecia um feixe de raios, não um estouro); estilhaços pequenos; o pincel seco cortava a luz de
+  fundo (agora a luz vai por trás no fim).
+- **Falta para chegar ao concept:** estilhaços três vezes mais longos que o núcleo (o quadro de 512 não
+  cabe: quadro em alta e peças separadas), as peças do chão presas no chão (o jogo precisa tocar um
+  kit), e a luz nos lutadores.

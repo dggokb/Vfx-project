@@ -2214,6 +2214,7 @@ registrarGerador({
  nome:'Hit (à mão)',
  perfil:{tint:'#ff8a1e',particles:14},
  params:[
+  {id:'hitEstilo',rotulo:'Estilo',tipo:'select',padrao:'eletrico',opcoes:[['eletrico','Elétrico em camadas (concept)'],['pincel','Pincel']]},
   {id:'hitTamanho',rotulo:'Tamanho',tipo:'range',min:40,max:200,padrao:100,unidade:'%'},
   {id:'hitPontas',rotulo:'Pontas grandes',tipo:'range',min:4,max:18,padrao:11},
   {id:'hitDirecional',rotulo:'Puxa para a direção do golpe',tipo:'range',min:0,max:100,padrao:70,unidade:'%'},
@@ -2264,7 +2265,29 @@ registrarGerador({
    for(let j=0;j<qtd;j++){const a=r()*Math.PI*2,ra=r0+(r1-r0)*r(),c=(r1-r0)*(.25+.6*r()),g=1.6+r()*3.6;
     ctx.save();ctx.rotate(a);ctx.translate(ra+c/2,0);ctx.beginPath();caminhoLasca(ctx,c,g);ctx.fill();ctx.restore()}
    ctx.restore()};
-  if(etapa<=2){
+  if(p.hitEstilo==='eletrico'&&etapa<=1){
+   const r1=aleatorio(0x1e1+par),vermelho=corMistura(p.cor,'#d81a08',.7),fio=corMistura(p.cor,'#5a0600',.85),amarelo=corMistura(p.cor,'#fff04a',.7);
+   // Pontas de uma camada: ângulos próprios (desencontrados das outras), comprimentos desiguais,
+   // puxadas para a direção do golpe.
+   const camada=(qtd,esc,sem)=>{const r=aleatorio(sem),ps=[];for(let j=0;j<qtd;j++){const a=j/qtd*Math.PI*2+(r()-.5)*.6,dir=Math.cos(a)*p.hitDirecional/100*.45;
+    ps.push({a,c:R*tam*esc*(.45+.75*r()**1.3)*(1+.6*dir),l:R*(.14+.1*r())*esc})}return ps.sort((x,y)=>x.a-y.a)};
+   // Contorno serrilhado: cada lado da ponta em zigue-zague (dentes desiguais), como raio.
+   const contorno=(ps,vale,sem)=>{const r=aleatorio(sem),out=[];
+    ps.forEach((pt,j)=>{const nx=ps[(j+1)%ps.length],meio=(pt.a+(nx.a<pt.a?nx.a+Math.PI*2:nx.a))/2;
+     const lado=(a0,a1,r0,r1)=>{const m=4+Math.floor(r()*3);for(let s=0;s<=m;s++){const t=s/m,a=a0+(a1-a0)*t,rr=r0+(r1-r0)*t,dente=(s%2?1:-1)*(.02+.035*r())*torto*rr*.5;out.push([Math.cos(a+dente/Math.max(rr,1)*3)*rr,Math.sin(a+dente/Math.max(rr,1)*3)*rr])}};
+     const base=pt.c*.22,ab=pt.l/Math.max(pt.c,1)*1.9;
+     lado(pt.a-ab,pt.a,base,pt.c);lado(pt.a,pt.a+ab,pt.c,base);out.push([Math.cos(meio)*R*vale,Math.sin(meio)*R*vale]);});
+    return out};
+   const camadas=[[camada(N+3,1.12,0x101+par),vermelho,.36],[camada(N+1,.92,0x202+par),p.cor,.34],[camada(N,.7,0x303+par),amarelo,.32],[camada(N-2,.46,0x404+par),pal.miolo,.3]];
+   camadas.forEach(([ps,cor,vale],k)=>{const pts=contorno(ps,vale*(1+.3*k),0x50+k+par);
+    if(k===0){ctx.beginPath();pts.forEach(([x,y],j)=>j?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();ctx.lineWidth=Math.max(1.5,R*.018);ctx.strokeStyle=fio;ctx.lineJoin='miter';ctx.stroke()}
+    encher(pts,cor);if(k<2)seco(Math.round((k?40:80)*p.hitPincel/100),R*.3,R*1.35,0x5c+k+par);
+   });
+   // A luz em volta vai por trás de tudo (depois do pincel seco, que não pode cortá-la).
+   ctx.save();ctx.globalCompositeOperation='destination-over';brilhoFundo(ctx,R*1.5*tam,corMistura(p.cor,'#ff5a10',.4),etapa?.55:.8);ctx.restore();
+   // O estouro branco do contato.
+   const rr=R*(etapa?.24:.34),bl=[];for(let j=0;j<16;j++)bl.push([rr*(j%2?.5:1)*(.75+.5*r1()),j/16*Math.PI*2]);ctx.beginPath();caminhoEstrela(ctx,bl);ctx.fillStyle=pal.miolo;ctx.fill();
+  }else if(etapa<=2){
    const parte=etapa===2;
    // Faixa de fora, com pincel seco; meio; miolo (outro desenho, deslocado).
    const fora=pincel(caminho(1,.2,false),R*.06,0x11+par);
@@ -2299,6 +2322,52 @@ registrarGerador({
   for(let j=0;j<p.particulas;j++){const a=fr()*Math.PI*2+Math.cos(fr()*6)*.2,vel=.6+fr()*.8,vida=i/(n-1)/(.55+fr()*.4);if(vida<=.05||vida>=1)continue;
    const d=R*(.4+1.5*vel*Math.sqrt(vida)),s=(2+fr()*3.5)*forca*(1-vida);if(s<.6)continue;
    ctx.save();ctx.rotate(a);ctx.translate(d,0);ctx.beginPath();caminhoLasca(ctx,s*4.5,s);ctx.fillStyle=fr()<.5?pal.miolo:p.cor;ctx.fill();ctx.restore()}
+ }
+});
+// Estilhaços: o que o golpe joga longe na linha dele, para os dois lados (o concept do dono):
+// lâminas brancas curvas (como talhos de faca, com a sombra cinza-clara num lado) e raios amarelos em
+// zigue-zague grosso; saem já longos no contato, correm para fora, afinam e somem; fagulhas junto.
+registrarGerador({
+ nome:'Estilhaços',
+ perfil:{tint:'#ffc21e',particles:16},
+ params:[
+  {id:'estLaminas',rotulo:'Lâminas brancas',tipo:'range',min:0,max:20,padrao:7},
+  {id:'estRaios',rotulo:'Raios',tipo:'range',min:0,max:16,padrao:5},
+  {id:'estComprimento',rotulo:'Comprimento',tipo:'range',min:30,max:200,padrao:100,unidade:'%'},
+  {id:'estAbertura',rotulo:'Abertura em volta da linha',tipo:'range',min:5,max:180,padrao:55,unidade:'°'},
+  {id:'estTras',rotulo:'Para trás também',tipo:'range',min:0,max:100,padrao:55,unidade:'%'},
+  {id:'estDois',rotulo:'Animar de dois em dois',tipo:'checkbox',padrao:true},
+ ],
+ desenhar(ctx,{i,n,p,aleatorio}){
+  const q=doisEmDois(i,p.estDois),t=q/(n-1),pal=p.paleta,forca=.75+p.forca/28,L=165*p.estComprimento/100*forca,ab=p.estAbertura*Math.PI/180;
+  const rnd=aleatorio(0xe57),cinza='#c9ccd6',laranja=corMistura(p.cor,'#d0300a',.55);
+  const direcao=()=>{const tras=rnd()*100<p.estTras;return (tras?Math.PI:0)+(rnd()-.5)*ab};
+  const vida=(atraso,dur)=>Math.max(0,Math.min(1,(t-atraso)/dur));
+  // Lâmina: um lado reto, o outro em arco, ponta fina; a sombra cinza no lado de baixo.
+  for(let j=0;j<p.estLaminas;j++){
+   const a=direcao(),c=L*(.5+.6*rnd()),g=c*(.16+.08*rnd()),r0=L*(.22+.25*rnd()),atraso=rnd()*.08,v=vida(atraso,.55+.2*rnd()),cur=(rnd()<.5?-1:1);
+   if(v>=1)continue;
+   const d=Math.min(236-c*(1-v*.5),r0+L*1.3*v),k=1-v,cc=c*(1-v*.5),gg=g*k;if(gg<.7)continue;
+   ctx.save();ctx.rotate(a);ctx.translate(d,0);ctx.scale(1,cur);
+   ctx.beginPath();ctx.moveTo(-cc*.5,0);ctx.quadraticCurveTo(0,-gg*1.6,cc*.5,-gg*.2);ctx.lineTo(cc*.5,0);ctx.quadraticCurveTo(0,gg*.4,-cc*.5,0);ctx.closePath();ctx.fillStyle=cinza;ctx.fill();
+   ctx.beginPath();ctx.moveTo(-cc*.48,-gg*.05);ctx.quadraticCurveTo(0,-gg*1.5,cc*.5,-gg*.2);ctx.quadraticCurveTo(0,-gg*.3,-cc*.48,-gg*.05);ctx.closePath();ctx.fillStyle='#ffffff';ctx.fill();
+   ctx.restore();
+  }
+  // Raios: zigue-zague grosso de 3 dentes, amarelo com borda laranja e miolo claro.
+  for(let j=0;j<p.estRaios;j++){
+   const a=direcao(),c=L*(.45+.5*rnd()),g=c*(.14+.06*rnd()),r0=L*(.2+.3*rnd()),v=vida(rnd()*.06,.45+.2*rnd());
+   if(v>=1)continue;
+   const d=Math.min(236-c,r0+L*1.1*v),cc=c*(1-v*.4),gg=g*(1-v);if(gg<.7)continue;
+   ctx.save();ctx.rotate(a);ctx.translate(d,0);
+   const z=[[-cc*.5,0],[-cc*.15,-gg*1.2],[-cc*.05,gg*.2],[cc*.2,-gg*.9],[cc*.25,gg*.3],[cc*.5,0]];
+   const forma=k=>{ctx.beginPath();z.forEach(([x,y],m)=>{const yy=y*k;m?ctx.lineTo(x*(.6+.4*k),yy-gg*.5*k):ctx.moveTo(x*(.6+.4*k),yy-gg*.5*k)});for(let m=z.length-1;m>=0;m--){const [x,y]=z[m];ctx.lineTo(x*(.6+.4*k)-gg*.3*k,y*k+gg*.5*k)}ctx.closePath()};
+   for(const [cor,k] of [[laranja,1],[p.cor,.7],[pal.miolo,.3]]){forma(k);ctx.fillStyle=cor;ctx.fill()}
+   ctx.restore();
+  }
+  // Fagulhas.
+  const fr=aleatorio(0xfa1);
+  for(let j=0;j<p.particulas;j++){const a=(fr()<p.estTras/100?Math.PI:0)+(fr()-.5)*ab*1.6,v=vida(0,.5+.4*fr()),d=Math.min(236,L*(.3+1.6*v)*(.6+.6*fr())),s=(2+fr()*3)*forca*(1-v);
+   if(v>=1||s<.6)continue;ctx.save();ctx.rotate(a);ctx.translate(d,0);faixas(ctx,k=>caminhoLasca(ctx,s*4,s,k),[p.cor,pal.miolo],[1,.45]);ctx.restore()}
  }
 });
 function draw(ctx,index,local=false){

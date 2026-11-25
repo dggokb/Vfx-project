@@ -2,7 +2,7 @@
 
 Gerador de efeitos visuais 2D do **SŌKON: BLOODLINES**. Os efeitos saem de geradores com
 parâmetros e semente (impacto, corte, projétil, fogo, água, gosma, fumaça, ponto de luz, pressão
-de ar, defesa, choque, raio, linhas de mangá), não de desenho quadro a quadro. É um **HTML único que funciona offline**, no PC e no
+de ar, defesa, choque, raio, linhas de mangá, aura, detritos), não de desenho quadro a quadro. É um **HTML único que funciona offline**, no PC e no
 celular.
 
 - **Usar:** abra [`sokonfx/dist/SokonFX.html`](sokonfx/dist/SokonFX.html) no navegador (ou o link do

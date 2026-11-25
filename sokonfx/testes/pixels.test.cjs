@@ -19,7 +19,9 @@ const s4=JSON.parse(fs.readFileSync(path.join(raiz,'tipos','jogo_fumacas_s4.json
  const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'sokonfx-'));
  const atual=path.join(tmp,'SokonFX.html');fs.writeFileSync(atual,montar());
  const b=await chromium.launch();
- const todos=[...casos,...s4];
+ // CASOS=regex filtra pelo nome (ex.: só os antigos, ao trocar a referência por causa de um gerador novo).
+ const filtro=process.env.CASOS?new RegExp(process.env.CASOS):null;
+ const todos=[...casos,...s4].filter(c=>!filtro||filtro.test(c.nome));
  let falhas=0,feitos=0;
  const fila=[...todos];
  async function trabalhador(){

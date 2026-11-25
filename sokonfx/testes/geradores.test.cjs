@@ -16,7 +16,7 @@ const ok=(cond,msg)=>{if(!cond){falhas++;console.log('FALHOU',msg)}};
  const visiveis=()=>p.evaluate(()=>[...el('ajustes').querySelectorAll('label,button,details,.gerador-params')].filter(e=>e.offsetParent!==null).map(e=>e.id||e.textContent.trim().slice(0,30)).join('|'));
  const troca=k=>p.evaluate(k=>{el('kind').value=k;el('kind').oninput({})},k);
  const novos=await p.evaluate(()=>Object.keys(geradores));
- ok(JSON.stringify(novos)==='["Defesa","Choque","Raio","Linhas de mangá"]','geradores registrados '+novos);
+ ok(JSON.stringify(novos)==='["Defesa","Choque","Raio","Linhas de mangá","Aura","Detritos"]','geradores registrados '+novos);
  for(const antigo of ['Impacto','Fumaça','Pressão de ar','Ponto de luz']){
   await troca(antigo);const antes=await visiveis();
   for(const novo of novos){
@@ -38,6 +38,20 @@ const ok=(cond,msg)=>{if(!cond){falhas++;console.log('FALHOU',msg)}};
   const borda=await p.evaluate(()=>{let pior=0;for(let i=0;i<16;i++){const c=document.createElement('canvas');c.width=c.height=512;const x=c.getContext('2d');draw(x,i);
    const d=x.getImageData(0,0,512,512).data;for(let k=0;k<512;k++)for(const [px,py] of [[k,0],[k,511],[0,k],[511,k]])pior=Math.max(pior,d[(py*512+px)*4+3])}return pior});
   ok(borda<=10,`${novo}: nada na borda do quadro (alfa ${borda})`);
+ }
+ // Nada na borda em nenhuma variação dos geradores novos (os casos da trava de pixels).
+ const casos=require('./casos.cjs').filter(c=>novos.includes(c.valores.kind));
+ for(const caso of casos){
+  const borda=await p.evaluate(async c=>{await aplicarTipo({name:c.nome,values:c.valores,seed:c.seed,haloEnabled:true,customParticleTint:'#ff781a',linked:true});let pior=0;
+   for(let i=0;i<16;i++){const k=document.createElement('canvas');k.width=k.height=512;const x=k.getContext('2d');draw(x,i);
+    const d=x.getImageData(0,0,512,512).data;for(let j=0;j<512;j++)for(const [px,py] of [[j,0],[j,511],[0,j],[511,j]])pior=Math.max(pior,d[(py*512+px)*4+3])}return pior},caso);
+  ok(borda<=10,`${caso.nome}: nada na borda (alfa ${borda})`);
+ }
+ // A aura é um laço: o quadro depois do último (16) é igual ao primeiro, com e sem dois em dois.
+ await troca('Aura');
+ for(const dois of ['1','']){
+  const igual=await p.evaluate(d=>{el('auDois').value=d;const h=i=>{const c=document.createElement('canvas');c.width=c.height=512;const x=c.getContext('2d');draw(x,i);return c.toDataURL()};return h(0)===h(16)},dois);
+  ok(igual,'aura fecha o laço (dois em dois: '+(dois?'sim':'não')+')');
  }
  ok(erros.length===0,'erros '+erros);
  await b.close();fs.rmSync(tmp,{recursive:true});

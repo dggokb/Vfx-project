@@ -138,3 +138,20 @@ embaixo.
   export, nada na borda; o Choque passava da borda e foi corrigido). Vistos quadro a quadro em fundo
   escuro e claro.
 - **Falta:** o dono julgar; nenhum deles foi para o jogo ainda.
+
+## 25/11 — Aura, Detritos e a beira do quadro
+
+- **Aura** (energia, Tōkon, SHINKAI): labaredas em volta do corpo, só no chão ou em bola (mão,
+  carga), com fagulhas subindo; é um **laço** (o quadro depois do último é igual ao primeiro,
+  conferido no teste). Origem nos pés, não gira com a Direção. Primeiras versões: velas soltas,
+  depois cada língua contornada; ficou desenhando faixa por faixa em todas as línguas juntas (todas
+  as bordas, depois a cor, o meio e o miolo), e a aura vira uma silhueta só com o claro por dentro.
+- **Detritos** (terra, pedra): pedaços irregulares com lado aceso e lado de sombra (não é luz, então
+  não fica branco), gravidade e quique no chão, pedrinhas e poeira chapada que abre e se parte.
+- **Beira do quadro:** com os controles no máximo, vários geradores passavam do quadro de 512 (a
+  folha cortaria reto no jogo). Os geradores novos agora se apagam nos últimos 28 px, como o
+  `--borda` do conversor do jogo; o teste confere a beira em todas as variações da trava.
+- **Conferido:** 158 casos na trava (os 129 antigos sem mudança, conferidos antes de trocar a
+  referência com `CASOS=` no teste de pixels); `geradores.test.cjs` com os 6 geradores.
+- **Falta:** o dono julgar os 6 na prévia no jogo; a aura dos lutadores no jogo hoje é desenhada pelo
+  código do jogo (`GameView`), então usar esta precisa de decisão dele.

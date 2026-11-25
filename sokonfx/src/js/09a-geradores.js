@@ -73,15 +73,30 @@ function geradorValor(p){
  return p.tipo==='select'?e.value:+e.value;
 }
 
-// Desenha o quadro de um gerador: origem no meio (ou no foco), girado pela Direção.
+// A beira do quadro: o desenho se apaga nos últimos 28 px (como o --borda do conversor do jogo),
+// para nunca sair cortado reto na folha, com qualquer ajuste.
+const GERADOR_BEIRA=28;
+let geradorMascara=null,geradorTela=null;
+function geradorBeira(){
+ if(geradorMascara)return geradorMascara;
+ const m=document.createElement('canvas');m.width=m.height=512;const x=m.getContext('2d');
+ x.fillStyle='#fff';x.fillRect(0,0,512,512);x.globalCompositeOperation='destination-out';
+ for(const [x0,y0,x1,y1] of [[0,0,GERADOR_BEIRA,0],[512,0,512-GERADOR_BEIRA,0],[0,0,0,GERADOR_BEIRA],[0,512,0,512-GERADOR_BEIRA]]){
+  const g=x.createLinearGradient(x0,y0,x1,y1);g.addColorStop(0,'#000');g.addColorStop(1,'#0000');x.fillStyle=g;x.fillRect(0,0,512,512);
+ }
+ return geradorMascara=m;
+}
+// Desenha o quadro de um gerador: origem no meio (ou onde ele pedir), girado pela Direção.
 function desenharGerador(ctx,index){
  const g=geradores[el('kind').value];
  const p=Object.fromEntries(g.params.map(q=>[q.id,geradorValor(q)]));
  p.cor=el('tint').value;p.forca=+el('power').value;p.particulas=+el('particles').value;p.paleta=corPaleta(p.cor);
- ctx.save();ctx.beginPath();ctx.rect(0,0,512,512);ctx.clip();
- ctx.translate(256,256);ctx.rotate(+el('angle').value*Math.PI/180);
- g.desenhar(ctx,{i:index,t:index/(frames-1),n:frames,p,semente:seed,aleatorio:s=>generator((seed^s)>>>0)});
- ctx.restore();
+ if(!geradorTela){geradorTela=document.createElement('canvas');geradorTela.width=geradorTela.height=512}
+ const x=geradorTela.getContext('2d');x.clearRect(0,0,512,512);x.save();
+ x.translate(256,g.origem?.y??256);if(!g.semGiro)x.rotate(+el('angle').value*Math.PI/180);
+ g.desenhar(x,{i:index,t:index/(frames-1),n:frames,p,semente:seed,aleatorio:s=>generator((seed^s)>>>0)});
+ x.restore();x.save();x.globalCompositeOperation='destination-in';x.drawImage(geradorBeira(),0,0);x.restore();
+ ctx.drawImage(geradorTela,0,0);
 }
 
 // Quais controles comuns cada gerador usa (o resto do painel antigo some enquanto ele está escolhido).

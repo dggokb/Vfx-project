@@ -922,15 +922,30 @@ function geradorValor(p){
  return p.tipo==='select'?e.value:+e.value;
 }
 
-// Desenha o quadro de um gerador: origem no meio (ou no foco), girado pela Direção.
+// A beira do quadro: o desenho se apaga nos últimos 28 px (como o --borda do conversor do jogo),
+// para nunca sair cortado reto na folha, com qualquer ajuste.
+const GERADOR_BEIRA=28;
+let geradorMascara=null,geradorTela=null;
+function geradorBeira(){
+ if(geradorMascara)return geradorMascara;
+ const m=document.createElement('canvas');m.width=m.height=512;const x=m.getContext('2d');
+ x.fillStyle='#fff';x.fillRect(0,0,512,512);x.globalCompositeOperation='destination-out';
+ for(const [x0,y0,x1,y1] of [[0,0,GERADOR_BEIRA,0],[512,0,512-GERADOR_BEIRA,0],[0,0,0,GERADOR_BEIRA],[0,512,0,512-GERADOR_BEIRA]]){
+  const g=x.createLinearGradient(x0,y0,x1,y1);g.addColorStop(0,'#000');g.addColorStop(1,'#0000');x.fillStyle=g;x.fillRect(0,0,512,512);
+ }
+ return geradorMascara=m;
+}
+// Desenha o quadro de um gerador: origem no meio (ou onde ele pedir), girado pela Direção.
 function desenharGerador(ctx,index){
  const g=geradores[el('kind').value];
  const p=Object.fromEntries(g.params.map(q=>[q.id,geradorValor(q)]));
  p.cor=el('tint').value;p.forca=+el('power').value;p.particulas=+el('particles').value;p.paleta=corPaleta(p.cor);
- ctx.save();ctx.beginPath();ctx.rect(0,0,512,512);ctx.clip();
- ctx.translate(256,256);ctx.rotate(+el('angle').value*Math.PI/180);
- g.desenhar(ctx,{i:index,t:index/(frames-1),n:frames,p,semente:seed,aleatorio:s=>generator((seed^s)>>>0)});
- ctx.restore();
+ if(!geradorTela){geradorTela=document.createElement('canvas');geradorTela.width=geradorTela.height=512}
+ const x=geradorTela.getContext('2d');x.clearRect(0,0,512,512);x.save();
+ x.translate(256,g.origem?.y??256);if(!g.semGiro)x.rotate(+el('angle').value*Math.PI/180);
+ g.desenhar(x,{i:index,t:index/(frames-1),n:frames,p,semente:seed,aleatorio:s=>generator((seed^s)>>>0)});
+ x.restore();x.save();x.globalCompositeOperation='destination-in';x.drawImage(geradorBeira(),0,0);x.restore();
+ ctx.drawImage(geradorTela,0,0);
 }
 
 // Quais controles comuns cada gerador usa (o resto do painel antigo some enquanto ele está escolhido).
@@ -1230,6 +1245,127 @@ registrarGerador({
    const cor=corDe();
    faixas(ctx,k=>{const x0=meio+c*(1-k)*.3;ctx.moveTo(x0,0);ctx.lineTo(meio+c,-g*k/2);ctx.lineTo(meio+c+g*1.5,0);ctx.lineTo(meio+c,g*k/2);ctx.closePath()},cor,[1,.45]);
    ctx.restore();
+  }
+ }
+});
+// Aura (energia, Tōkon, SHINKAI): labaredas de luz em volta do corpo, subindo e balançando, com
+// fagulhas que sobem. É um laço: o quadro 16 emenda no 0 (tudo anda em ciclos inteiros). A
+// origem fica embaixo (os pés), o meio fica vazio para o lutador. Não gira com a Direção.
+registrarGerador({
+ nome:'Aura',
+ perfil:{tint:'#ff7a2a',particles:14},
+ semGiro:true,origem:{y:440},
+ params:[
+  {id:'auForma',rotulo:'Forma',tipo:'select',padrao:'corpo',opcoes:[['corpo','Corpo inteiro'],['chao','Só no chão'],['bola','Bola (mão, carga)']]},
+  {id:'auAltura',rotulo:'Altura',tipo:'range',min:80,max:400,padrao:300,unidade:' px'},
+  {id:'auLargura',rotulo:'Largura',tipo:'range',min:40,max:260,padrao:120,unidade:' px'},
+  {id:'auQtd',rotulo:'Labaredas',tipo:'range',min:5,max:60,padrao:34},
+  {id:'auChama',rotulo:'Tamanho das labaredas',tipo:'range',min:20,max:200,padrao:90,unidade:'%'},
+  {id:'auBalanco',rotulo:'Balanço',tipo:'range',min:0,max:100,padrao:45,unidade:'%'},
+  {id:'auCiclos',rotulo:'Ciclos no laço',tipo:'range',min:1,max:3,padrao:2},
+  {id:'auBrilho',rotulo:'Brilho de fundo',tipo:'range',min:0,max:100,padrao:30,unidade:'%'},
+  {id:'auDois',rotulo:'Animar de dois em dois',tipo:'checkbox',padrao:true},
+ ],
+ desenhar(ctx,{i,n,p,aleatorio}){
+  const q=doisEmDois(i,p.auDois),fase=q/n*Math.PI*2,pal=p.paleta,forca=.75+p.forca/28;
+  // Cabe no quadro de 512 com a origem nos pés (y 440): nada passa do topo nem dos lados.
+  const H=Math.min(p.auAltura*forca,300),Wd=Math.min(p.auLargura*forca,250),ciclos=p.auCiclos;
+  const bola=p.auForma==='bola',chao=p.auForma==='chao';
+  // Centro da forma: o meio do corpo, o chão ou a bola na altura da mão.
+  const cy=bola?-H*.45:chao?0:-H*.45,rx=bola?Wd*.45:Wd*.55,ry=bola?Wd*.45:chao?Wd*.18:H*.5;
+  ctx.save();ctx.translate(0,cy);brilhoFundo(ctx,Math.max(rx,ry)*1.25,p.cor,p.auBrilho/100);ctx.restore();
+  const rnd=aleatorio(0xa0a);
+  const chamas=[];
+  for(let j=0;j<p.auQtd;j++){
+   const a=(j+rnd()*.7)/p.auQtd*Math.PI*2,k=1+Math.floor(rnd()*ciclos),off=rnd()*Math.PI*2;
+   const cima=(1-Math.sin(a))/2;
+   chamas.push({x:Math.cos(a)*rx,y:cy+Math.sin(a)*ry,fundo:Math.sin(a)<0,tam:(.45+.35*rnd())*(.6+.9*cima),k,off,larg:.8+.5*rnd()});
+  }
+  // As de trás primeiro, mais fundas; as da frente por cima.
+  chamas.sort((a,b)=>a.y-b.y);
+  const base=(bola?Wd*.35:Wd*.42)*p.auChama/100;
+  // Faixa por faixa em todas as línguas (todas as bordas, depois a cor, o meio e o miolo): a aura
+  // vira uma silhueta só, com o claro por dentro, em vez de várias chamas contornadas.
+  const formas=chamas.map(c=>{
+   const pulso=.62+.38*Math.sin(fase*c.k+c.off);
+   const h=base*1.9*c.tam*pulso,w=base*1.05*c.larg,s=Math.sin(fase*c.k+c.off*1.7)*h*.35*p.auBalanco/100;
+   return k=>{const ww=w*k,hh=h*(.3+.7*k);
+    ctx.moveTo(c.x-ww/2,c.y);ctx.quadraticCurveTo(c.x-ww*.55,c.y-hh*.55,c.x+s*k,c.y-hh);ctx.quadraticCurveTo(c.x+ww*.55,c.y-hh*.5,c.x+ww/2,c.y);
+    ctx.quadraticCurveTo(c.x,c.y+ww*.35,c.x-ww/2,c.y);ctx.closePath()};
+  });
+  [[pal.borda,1],[pal.cor,.86],[pal.meio,.6],[pal.miolo,.3]].forEach(([cor,k],n)=>{
+   ctx.beginPath();chamas.forEach((c,j)=>{if(n===3&&c.fundo)return;formas[j](k)});ctx.fillStyle=cor;ctx.fill('nonzero');
+  });
+  // Fagulhas que sobem em laço: cada uma sobe um número inteiro de alturas por ciclo.
+  const fr=aleatorio(0xe11);
+  for(let j=0;j<p.particulas;j++){
+   const x0=(fr()-.5)*rx*2.2,y0=fr(),vel=1+Math.floor(fr()*2),tam=3+fr()*5,alto=(bola?ry*3:H*1.15);
+   const v=(y0+vel*q/n)%1,y=(bola?cy+ry:0)-v*alto,k=Math.sin(v*Math.PI);
+   if(k<.08)continue;
+   ctx.save();ctx.translate(x0+Math.sin(fase*vel+j)*8,y);ctx.rotate(-Math.PI/2);
+   faixas(ctx,kk=>caminhoLasca(ctx,tam*2.4*k,tam*k,kk),[pal.cor,pal.miolo],[1,.5]);ctx.restore();
+  }
+ }
+});
+// Detritos (terra, pedra, estilhaços): pedaços irregulares sobem do contato, giram, caem com
+// gravidade e quicam no chão; poeira chapada abre no chão e se parte em bolas que somem. Não é
+// luz: pedra tem lado aceso e lado de sombra (duas cores chapadas), sem contorno preto.
+registrarGerador({
+ nome:'Detritos',
+ perfil:{tint:'#a68a6a',particles:16},
+ semGiro:true,origem:{y:400},
+ params:[
+  {id:'detQtd',rotulo:'Pedaços',tipo:'range',min:3,max:40,padrao:14},
+  {id:'detTamanho',rotulo:'Tamanho dos pedaços',tipo:'range',min:20,max:250,padrao:100,unidade:'%'},
+  {id:'detForcaPulo',rotulo:'Força do estouro',tipo:'range',min:20,max:220,padrao:145,unidade:'%'},
+  {id:'detEspalha',rotulo:'Espalhamento',tipo:'range',min:10,max:180,padrao:120,unidade:'°'},
+  {id:'detDirecao',rotulo:'Para onde vão',tipo:'range',min:-90,max:90,padrao:0,unidade:'°'},
+  {id:'detGravidade',rotulo:'Gravidade',tipo:'range',min:0,max:200,padrao:100,unidade:'%'},
+  {id:'detPoeira',rotulo:'Poeira no chão',tipo:'checkbox',padrao:true},
+  {id:'detCorPoeira',rotulo:'Clareza da poeira',tipo:'range',min:0,max:100,padrao:60,unidade:'%'},
+ ],
+ desenhar(ctx,{i,n,p,aleatorio}){
+  const t=i/(n-1),forca=.75+p.forca/28,pal=p.paleta;
+  const aceso=corMistura(p.cor,'#ffffff',.35),sombra=corMistura(p.cor,'#1a1420',.42),risco=corMistura(p.cor,'#ffffff',.7);
+  const chao=0,g=900*p.detGravidade/100,v0=520*p.detForcaPulo/100*forca;
+  const perto=(x,y,r)=>Math.max(0,Math.min(1,(240-Math.abs(x)-r)/40,(y+392-r)/40));
+  // Poeira: bolas chapadas que abrem no chão (emissão, expansão) e se partem e somem (dispersão).
+  if(p.detPoeira){
+   const pr=aleatorio(0xd057),cor=corMistura(p.cor,'#e8e2da',p.detCorPoeira/100),somb=corMistura(cor,'#3a3340',.25);
+   for(let j=0;j<9;j++){
+    const lado=(j/8-.5)*2,abre=suave(Math.min(1,t*2.6)),r=(16+pr()*22)*forca*(1-Math.max(0,t-.45)/.55*.9);
+    const x=lado*150*forca*abre*(.6+.4*pr()),y=chao-r*.55-pr()*10*abre;
+    if(r<2||t>.97)continue;
+    ctx.fillStyle=somb;ctx.beginPath();ctx.ellipse(x,y,r*1.15,r*.85,0,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle=cor;ctx.beginPath();ctx.ellipse(x-r*.12,y-r*.14,r*.95,r*.66,0,0,Math.PI*2);ctx.fill();
+   }
+  }
+  // Pedaços: polígonos irregulares; física simples com quique (perde 45% da velocidade).
+  const rnd=aleatorio(0x5a3);
+  const dir=-Math.PI/2+p.detDirecao*Math.PI/180,esp=p.detEspalha*Math.PI/180;
+  for(let j=0;j<p.detQtd;j++){
+   const a=dir+(rnd()-.5)*esp,v=v0*(.45+.65*rnd()),tam=(7+rnd()*16)*p.detTamanho/100*forca,lados=5+Math.floor(rnd()*3);
+   const forma=[...Array(lados)].map((_,k)=>[(.65+.45*rnd())*tam,k/lados*Math.PI*2+rnd()*.5]);
+   const giro=(rnd()-.5)*14,atraso=rnd()*.08,T=Math.max(0,t-atraso)*0.75;
+   let vx=Math.cos(a)*v,vy=Math.sin(a)*v,x=0,y=-4,tt=T;
+   // Integra em pedaços de tempo até T, com quique no chão.
+   for(let s=0;s<60&&tt>0;s++){const dt=Math.min(tt,.0125);x+=vx*dt;y+=vy*dt;vy+=g*dt;if(y>chao-tam*.5&&vy>0){y=chao-tam*.5;vy*=-.45;vx*=.7}tt-=dt}
+   // No fim encolhem e se partem (somem quebrando).
+   const fim=Math.max(0,(t-.7)/.3),k=(1-fim)*perto(x,y,tam*1.2);
+   if(k<=.05)continue;
+   ctx.save();ctx.translate(x,y);ctx.rotate(giro*T);ctx.scale(k,k);
+   ctx.beginPath();caminhoEstrela(ctx,forma);ctx.fillStyle=sombra;ctx.fill();
+   ctx.beginPath();caminhoEstrela(ctx,forma.map(([r,an])=>[r*.78,an]),1);ctx.save();ctx.clip();
+   ctx.fillStyle=aceso;ctx.beginPath();ctx.ellipse(-tam*.25,-tam*.3,tam*.85,tam*.65,0,0,Math.PI*2);ctx.fill();ctx.restore();
+   ctx.fillStyle=risco;ctx.beginPath();caminhoLasca(ctx,tam*.7,tam*.16);ctx.save();ctx.translate(0,0);ctx.restore();
+   ctx.restore();
+  }
+  // Pedrinhas: pontos que sobem mais alto e caem rápido.
+  const pr2=aleatorio(0x9e1);
+  for(let j=0;j<p.particulas;j++){
+   const a=dir+(pr2()-.5)*esp*1.2,v=v0*(.7+.6*pr2()),T=t*.75,x=Math.cos(a)*v*T,y=Math.sin(a)*v*T+g*T*T/2,s=(2+pr2()*3)*forca*(1-Math.max(0,t-.6)/.4);
+   const ss=s*perto(x,y,s);if(y>chao||ss<.6)continue;
+   ctx.fillStyle=pr2()<.5?aceso:sombra;ctx.beginPath();ctx.arc(x,y,ss,0,Math.PI*2);ctx.fill();
   }
  }
 });

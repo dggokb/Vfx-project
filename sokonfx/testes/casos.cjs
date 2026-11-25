@@ -25,7 +25,7 @@ for(const airFlow of ['out','in','pulse'])for(const airEdge of ['round','spiked'
  casos.push(c(`Ar ${airFlow} ${airEdge}`,{kind:'Pressão de ar',airFlow,airEdge,airCopies:'14',airWaves:'4',airInterval:'1',airRingGap:'200',airParticleGap:'50',airWidth:'14'}));
 casos.push(c('Ponto de luz feixes',{kind:'Ponto de luz',beams:'12',beamWidth:'30',focusX:'200',focusY:'300'}));
 // Os geradores novos (registro em 09a-geradores.js): o padrão e as variações dos controles.
-for(const kind of ['Defesa','Choque','Raio','Linhas de mangá','Aura','Detritos','Explosão','Onda de choque','Faíscas','Gelo','Vento e vórtices','Feixe de energia','Teletransporte','Portal','Gases e vapores','Energia sombria','Decal (marca no chão)','Rastro do golpe','Poeira','Partículas','Brilhos e flashes','Energia espiritual','Afterimage'])for(const power of ['3','9','14'])
+for(const kind of ['Defesa','Choque','Raio','Linhas de mangá','Aura','Detritos','Explosão','Onda de choque','Faíscas','Gelo','Vento e vórtices','Feixe de energia','Teletransporte','Portal','Gases e vapores','Energia sombria','Decal (marca no chão)','Rastro do golpe','Poeira','Partículas','Brilhos e flashes','Energia espiritual','Afterimage','Hit (à mão)'])for(const power of ['3','9','14'])
  casos.push(c(`${kind} força ${power}`,{kind,power}));
 for(const defForma of ['arco','duplo','anel'])casos.push(c(`Defesa ${defForma}`,{kind:'Defesa',defForma,defTamanho:'160',defAbertura:'150',defEspessura:'40',defQuebra:'4',defPedacos:'11',defBrilho:'0',defDois:''}));
 casos.push(c('Choque variado',{kind:'Choque',chqAbertura:'110',chqComprimento:'200',chqEspessura:'40',chqAnel:'',chqLinhas:'40',chqQuebra:'9',chqBrilho:'100',chqDois:''}));

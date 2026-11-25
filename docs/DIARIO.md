@@ -282,3 +282,25 @@ embaixo.
   abertura e cinematics para depois de fechar a jogabilidade. O editor de nós e o vínculo com parte
   do personagem também são do motor (a origem do export já é o ponto que o jogo prende na ponta do
   golpe).
+
+## 25/11 — Desvetorizar: primeiro teste num hit normal
+
+- **Pedido:** "agora precisamos começar a deixar mais profissional; como podemos desvetorizar?".
+- **Primeira tentativa (descartada):** filtros por cima de efeitos prontos (tinta que espalha,
+  contorno tremido, pincel seco, brilho em duas cores, granulação). O dono: "não entendi o que esse à
+  mão faz de diferença além de deixar borrado". Tinha razão: o que se via era o desfoque do brilho, e a
+  tinta comia os riscos finos do H. Lição: **filtro por cima não desvetoriza; a forma é que precisa
+  ser desenhada diferente.**
+- **Feito:** gerador **Hit (à mão)** (`09y-gerador-hit.js`), "faz um hit normal":
+  - borda de pincel: cada lado das pontas ondula e engrossa (subdividido e empurrado por ruído);
+  - as faixas não são cópias da mesma forma: o miolo é outro desenho, deslocado e mais torto;
+  - pincel seco: riscos radiais finos comem a faixa de fora;
+  - desenho novo a cada par de quadros (as pontas mudam de lugar e de tamanho);
+  - estouro branco irregular no contato; depois a forma se parte em lascas que voam e afinam.
+  - A primeira versão tinha pontas largas e onduladas (cara de folha) e miolo pequeno; afinadas,
+    desiguais e com o estouro branco maior.
+- **Conferido:** vídeo na prévia no jogo, lado a lado com o H do dono, no tempo do motor (pausa 16,
+  280 ms) e a ¼; 1x lê bem mais forte que o H (talvez grande: o controle Tamanho ajusta). Na trava
+  de pixels e no teste dos geradores.
+- **Falta:** o dono dizer se é esse o caminho; se for, levar borda de pincel, faixas desencontradas,
+  pincel seco e desenho por par de quadros para os outros geradores.

@@ -25,7 +25,7 @@ for(const airFlow of ['out','in','pulse'])for(const airEdge of ['round','spiked'
  casos.push(c(`Ar ${airFlow} ${airEdge}`,{kind:'Pressão de ar',airFlow,airEdge,airCopies:'14',airWaves:'4',airInterval:'1',airRingGap:'200',airParticleGap:'50',airWidth:'14'}));
 casos.push(c('Ponto de luz feixes',{kind:'Ponto de luz',beams:'12',beamWidth:'30',focusX:'200',focusY:'300'}));
 // Os geradores novos (registro em 09a-geradores.js): o padrão e as variações dos controles.
-for(const kind of ['Defesa','Choque','Raio','Linhas de mangá','Aura','Detritos','Explosão','Onda de choque','Faíscas','Gelo','Vento e vórtices','Feixe de energia'])for(const power of ['3','9','14'])
+for(const kind of ['Defesa','Choque','Raio','Linhas de mangá','Aura','Detritos','Explosão','Onda de choque','Faíscas','Gelo','Vento e vórtices','Feixe de energia','Teletransporte','Portal','Gases e vapores','Energia sombria'])for(const power of ['3','9','14'])
  casos.push(c(`${kind} força ${power}`,{kind,power}));
 for(const defForma of ['arco','duplo','anel'])casos.push(c(`Defesa ${defForma}`,{kind:'Defesa',defForma,defTamanho:'160',defAbertura:'150',defEspessura:'40',defQuebra:'4',defPedacos:'11',defBrilho:'0',defDois:''}));
 casos.push(c('Choque variado',{kind:'Choque',chqAbertura:'110',chqComprimento:'200',chqEspessura:'40',chqAnel:'',chqLinhas:'40',chqQuebra:'9',chqBrilho:'100',chqDois:''}));
@@ -38,6 +38,11 @@ casos.push(c('Faíscas variadas',{kind:'Faíscas',faiCone:'360',faiVelocidade:'2
 casos.push(c('Gelo variado',{kind:'Gelo',gelPontas:'24',gelTamanho:'200',gelLeque:'360',gelGrossura:'250',gelQuebra:'4',gelDois:''}));
 for(const venTipo of ['rajada','vortice'])casos.push(c(`Vento ${venTipo}`,{kind:'Vento e vórtices',venTipo,venTracos:'24',venTamanho:'200',venEspessura:'40',venGiro:'300',venDois:''}));
 casos.push(c('Feixe variado',{kind:'Feixe de energia',fexComprimento:'420',fexLargura:'140',fexTremido:'100',fexCheio:'2',fexEspiral:'',fexDois:''}));
+casos.push(c('Teletransporte aparece',{kind:'Teletransporte',telModo:'aparece',telAltura:'420',telLargura:'220',telRiscos:'40',telDois:''}));
+casos.push(c('Portal variado',{kind:'Portal',porRaio:'220',porBracos:'10',porRachas:'14',porAberto:'2',porAchata:'80',porDois:''}));
+casos.push(c('Gás variado',{kind:'Gases e vapores',gasTamanho:'200',gasBolas:'30',gasDeriva:'-100',gasSobe:'200',gasDesfaz:'3',gasDois:'',particles:'40'}));
+casos.push(c('Sombria variada',{kind:'Energia sombria',somTentaculos:'16',somAltura:'400',somLargura:'240',somEnrola:'100',somEscuro:'100',somQuebra:'3',somDois:''}));
+casos.push(c('Choque com rampa',{kind:'Choque',rampaLiga:'1',rampaCor:'#3050ff',rampaInicio:'0'}));
 for(const linTipo of ['concentracao','velocidade'])
  casos.push(c(`Linhas ${linTipo}`,{kind:'Linhas de mangá',linTipo,linQtd:'120',linMeio:'40',linComprimento:'220',linGrossura:'14',linBranco:'20',linSome:'3',linDois:''}));
 // Os tipos salvos do dono (sokonfx-types-v1).

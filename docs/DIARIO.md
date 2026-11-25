@@ -203,3 +203,18 @@ embaixo.
   um `sokonfx_lote.zip` com uma pasta por tipo, cada uma com as opções de export que o tipo guardou
   (e a composição, se tiver). A tela volta ao que era (tipo, export e composição).
 - **Conferido:** `testes/editor.test.cjs`; a bateria inteira passa (183 casos sem diferença).
+
+## 25/11 — Teletransporte, Portal, Gases e vapores, Energia sombria
+
+- **Pedido:** "faz tudo": o que ainda cabia no Sōkon FX da lista da bíblia.
+- **Teletransporte:** o sumiço do anime: coluna de riscos verticais da altura do lutador que treme
+  de dois em dois e fecha para o meio e para cima até um fio; "Aparecer" toca ao contrário.
+- **Portal:** disco que abre girando em espiral de faixas, aro pontudo claro, rachaduras de luz
+  saindo da borda; fecha para o meio com um estalo. "De lado" achata.
+- **Gases e vapores:** nuvem de bolas chapadas na cor (sombra, cor e luz deslocadas, volume sem
+  contorno), que incha, deriva com o vento, sobe e se desfaz em bolas soltas; bolhas.
+- **Energia sombria:** tentáculos de tinta escura com o fio de luz da cor por dentro (o escuro tem o
+  miolo aceso, porque efeito é luz), enrolando e subindo; no fim se partem em gotas. Mudando a cor,
+  serve de energia espiritual. Primeira versão saiu fina e o corpo escuro sumia no fundo.
+- **Conferido:** 189 casos na trava (183 de antes sem mudança; um caso novo da rampa de cor no
+  Choque); `geradores.test.cjs` com os 16 geradores.

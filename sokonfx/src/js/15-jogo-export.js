@@ -101,7 +101,7 @@ function jogoOpcoes(){
  const n=id=>+el(id).value;
  const nome=el('jogoNome').value.trim()||el('jogoNome').placeholder;
  return {nome,origemX:n('jogoOrigemX'),origemY:n('jogoOrigemY'),tamanho:n('jogoTamanho')/100,resolucao:n('jogoResolucao')/100,
-  inicio:Math.min(n('jogoInicio'),n('jogoFim'))-1,fim:Math.max(n('jogoInicio'),n('jogoFim'))-1,fps:n('fps'),
+  inicio:Math.max(1,Math.min(n('jogoInicio'),n('jogoFim'),quadrosTotais()))-1,fim:Math.min(quadrosTotais(),Math.max(n('jogoInicio'),n('jogoFim')))-1,fps:n('fps'),
   segurar:n('jogoSegurar')-1,segurarMs:n('jogoSegurarMs'),reforco:n('jogoBrilho')/100,soma:n('jogoSoma')/100,
   luz:el('jogoLuz').checked?{cor:el('jogoLuzCor').value,alcance:n('jogoLuzAlcance')/100,forca:n('jogoLuzForca')/100}:null};
 }
@@ -112,7 +112,7 @@ function jogoMontar(op){
  const ctx=tela.getContext('2d',{willReadFrequently:true});
  const recortes=[],caixas=[];
  for(let i=op.inicio;i<=op.fim;i++){
-  ctx.clearRect(0,0,512,512);ctx.save();draw(ctx,i);ctx.restore();
+  ctx.clearRect(0,0,512,512);ctx.save();desenharQuadro(ctx,i);ctx.restore();
   const img=ctx.getImageData(0,0,512,512);
   jogoCurvaAlfa(img.data,op.reforco);
   const caixa=jogoCaixa(img.data,512,512);
@@ -132,8 +132,8 @@ function jogoMontar(op){
  const folha=document.createElement('canvas');folha.width=largura;folha.height=altura;
  const f=folha.getContext('2d');
  recortes.forEach((r,i)=>{if(r)f.drawImage(r,lugares[i][0],lugares[i][1])});
- const dados=jogoDados(caixas,lugares,tamanhos,{...op,descricao:`Sōkon FX: ${el('kind').value}, semente ${seed}`,
-  sokonfx:{tipo:jogoTipoAtual(),exportar:jogoLer()}});
+ const dados=jogoDados(caixas,lugares,tamanhos,{...op,descricao:composicao.ativa&&composicao.camadas.length?`Sōkon FX: composição de ${composicao.camadas.length} camadas`:`Sōkon FX: ${el('kind').value}, semente ${seed}`,
+  sokonfx:{tipo:jogoTipoAtual(),exportar:jogoLer(),...(composicao.ativa&&composicao.camadas.length?{composicao:composicaoLer()}:{})}});
  return {folha,dados};
 }
 

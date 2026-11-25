@@ -17,6 +17,9 @@ celular.
   cabeça e nos pés) e marque o ponto do golpe. O efeito toca no tempo e no tamanho do motor do
   jogo, com a pausa de cada força, e dá para comparar lado a lado com um efeito que já está no
   jogo (o `.zip` ou a folha + `efeito.json`).
+- **Vários efeitos num só:** em **Composição de camadas**, adicione o efeito da tela (ou um tipo
+  salvo) como camada, mude a tela, adicione outra. Cada camada tem início, posição, tamanho, giro,
+  opacidade e soma como luz; a prévia, a prévia no jogo e o export passam a usar a composição.
 - **Para onde vai a ferramenta:** a [bíblia de VFX](docs/biblia/BIBLIA_DE_VFX.md) — 40 famílias de
   geradores, compositor de camadas e preview de gameplay.
 
@@ -44,7 +47,8 @@ npm test                    # dist em dia + trava de pixels
 
 `npm test` confere que o `dist` está em dia, roda a trava de pixels, o teste do export (baixa o
 `.zip` pela página, confere zip, `efeito.json` do jeito que o jogo lê e cada quadro da folha) e o
-da prévia no jogo (tempo do motor, zips, toques, lado a lado).
+da prévia no jogo (tempo do motor, zips, toques, lado a lado) e o da composição (camadas iguais
+ao tipo numa página limpa, a tela volta ao que era, salvar e abrir).
 
 A trava desenha 129 casos (cada efeito, as variações dos controles, os tipos do dono e as
 fumaças que estão no jogo), 16 quadros cada, e compara pixel a pixel com a referência aprovada

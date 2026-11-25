@@ -1,7 +1,7 @@
-function preview(){const ctx=stage.getContext('2d');ctx.clearRect(0,0,512,512);smokeHandles=[];collectHandles=smokeEditorActive();draw(ctx,+el('frame').value);collectHandles=false;windGuide(ctx);jogoGuia(ctx);if(!playing && el('kind').value==='Fumaça' && el('smokeForm').value==='jump' && +el('dissolveX').value>=0){
+function preview(){if(compondo)return;const ctx=stage.getContext('2d');ctx.clearRect(0,0,512,512);smokeHandles=[];collectHandles=smokeEditorActive();desenharQuadro(ctx,+el('frame').value);collectHandles=false;windGuide(ctx);jogoGuia(ctx);if(!playing && el('kind').value==='Fumaça' && el('smokeForm').value==='jump' && +el('dissolveX').value>=0){
  ctx.save();ctx.beginPath();for(const p of smokeOrigins()){ctx.moveTo(p.x+6,p.y);ctx.arc(p.x,p.y,6,0,2*Math.PI)}ctx.strokeStyle='#17161c';ctx.lineWidth=4;ctx.stroke();ctx.strokeStyle='#ffb14b';ctx.lineWidth=2;ctx.stroke();ctx.restore();
- }if(smokeEditorActive())paintSmokeHandles(ctx);el('counter').value=(+el('frame').value+1)+'/16'}
-function tick(now){if(playing){el('frame').value=Math.min(15,Math.floor((now-start)*+el('fps').value/1000)%(frames+3));preview()}requestAnimationFrame(tick)}
+ }if(smokeEditorActive())paintSmokeHandles(ctx);el('counter').value=(+el('frame').value+1)+'/'+quadrosTotais()}
+function tick(now){if(playing&&!compondo){const n=quadrosTotais();el('frame').value=Math.min(n-1,Math.floor((now-start)*+el('fps').value/1000)%(n+3));preview()}requestAnimationFrame(tick)}
 el('generate').onclick=()=>{seed=crypto.getRandomValues(new Uint32Array(1))[0];el('frame').value=0;start=performance.now();preview()};
 el('play').onclick=()=>{playing=!playing;el('play').textContent=playing?'Pausar':'Reproduzir';start=performance.now()-el('frame').value*1000/el('fps').value};
 let customParticleTint=el('particleTint').value;

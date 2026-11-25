@@ -69,7 +69,7 @@ el('keep').onclick=()=>{
   if(index>=0 && !confirm('Substituir o tipo “'+name+'”?'))return;
   const values=Object.fromEntries(savedFields.map(id=>[id,el(id).value]));
   const ref=userRefs.get(values.kind);
-  const preset={name,values,reference:ref?{name:ref.name,data:ref.data}:null,seed,haloEnabled,customParticleTint,linked:el('linkTint').checked,jogo:jogoLer()};
+  const preset={name,values,reference:ref?{name:ref.name,data:ref.data}:null,seed,haloEnabled,customParticleTint,linked:el('linkTint').checked,jogo:jogoLer(),...(composicaoLer()?{composicao:composicaoLer()}:{})};
   if(index>=0)types[index]=preset;else types.push(preset);
   persistTypes(types);downloadTypes(types);
   showTypes(types);
@@ -77,10 +77,9 @@ el('keep').onclick=()=>{
   el('presetStatus').textContent='Tipo salvo. Guarde o JSON para importar na próxima versão.';
  }catch{el('presetStatus').textContent='Falha ao salvar. Verifique o armazenamento do navegador.'}
 };
-el('savedTypes').onchange=()=>{
- try{
-  const preset=storedTypes().find(type=>type.name===el('savedTypes').value);
-  if(!preset)return;
+// Põe um tipo salvo na tela. Devolve a promessa da imagem de referência dele (se tiver).
+// O compositor usa com {jogo:false}: as opções de export da tela não mudam ao desenhar uma camada.
+function aplicarTipo(preset,{jogo=true}={}){
   for(const id of savedFields)el(id).value=preset.values[id]??(id==='airCopies'&&preset.values.drawing==='saw'?'4':undefined)??(id==='tipGap'?preset.values.gap:undefined)??smokeDefaults[id]??(['rimWidth','coreWidth','diameter'].includes(id)?100:id==='focus'?0:id==='drawing'?'star':id==='artStyle'?'original':id==='material'?'Energia':el(id).value);
   if(preset.values.kind==='Fumaça' && preset.values.plumes===undefined){
    const wasDouble=preset.values.drawing==='twin';
@@ -101,8 +100,16 @@ el('savedTypes').onchange=()=>{
   el('presetName').value=preset.name;
   el('frame').value=0;start=performance.now();
   el('kind').oninput();
-  loadRef(preset.values.kind,preset.reference?.data,preset.reference?.name);
-  if(preset.jogo)jogoAplicar(preset.jogo);
+  const ref=loadRef(preset.values.kind,preset.reference?.data,preset.reference?.name);
+  if(jogo&&preset.jogo)jogoAplicar(preset.jogo);
+  return ref;
+}
+el('savedTypes').onchange=()=>{
+ try{
+  const preset=storedTypes().find(type=>type.name===el('savedTypes').value);
+  if(!preset)return;
+  aplicarTipo(preset);
+  if(preset.composicao)composicaoAplicar(preset.composicao);
   el('presetStatus').textContent='Tipo carregado: '+preset.name;
   el('savedTypes').value='';
  }catch{el('presetStatus').textContent='Não foi possível carregar este tipo.'}

@@ -85,3 +85,27 @@ embaixo.
   Tela de celular (Pixel 7, emulada): palco e painel cabem.
 - **Falta:** o dono usar no celular com um print de verdade e dizer se o tamanho e o tempo batem
   com o que ele vê no jogo.
+
+## 25/11 — Composição de camadas
+
+- **Pedido:** o passo seguinte do plano: um efeito feito de vários, como o soco pesado do Kōga na
+  bíblia (estrela, onda de choque, faíscas, poeira, detritos).
+- **Feito:** painel **Composição de camadas** (`14-composicao.js`). Faz-se um efeito na tela e
+  **Adicionar o efeito da tela**, ou adiciona-se um tipo salvo. Cada camada tem: começa no quadro,
+  mover para o lado e para cima/baixo, tamanho, giro, opacidade, soma como luz, espelhar, esconder,
+  subir/descer, **Levar para a tela** (para ajustar) e **Trocar pela tela** (para gravar o ajuste).
+  A primeira camada fica embaixo. Com a composição ligada, a prévia quadrada, a **Prévia no jogo** e
+  o **Exportar para o jogo** usam a composição; o número de quadros acompanha (uma camada que começa
+  no quadro 4 leva a 20). O "Salvar tipo" guarda a composição (com o tipo inteiro de cada camada),
+  e o `efeito.json` também.
+- **Como desenha:** cada camada põe o tipo dela na tela, desenha os 16 quadros, guarda e devolve a
+  tela ao que era (tipo, quadro, nome). Tipo antigo com campo faltando pega o valor da tela nessa
+  hora (é assim desde a ferramenta original ao abrir um tipo); a camada passa a guardar o tipo
+  completo, para sair sempre igual depois.
+- **Conferido:** `testes/composicao.test.cjs`: camada desenhada numa página que já abriu outros
+  tipos sai pixel a pixel igual ao tipo numa página limpa; a tela volta ao mesmo tipo e desenho;
+  uma camada sem mudanças = o próprio efeito; início atrasado estica a composição; mover, girar e
+  esconder; export com 20 quadros e a composição no `efeito.json`; tipo salvo com composição volta
+  igual numa página nova. Exemplo visto: o H do dono + um anel de pressão de ar somando, do
+  quadro 2.
+- **Falta:** o dono montar uma composição de verdade e julgar na prévia no jogo e no jogo.

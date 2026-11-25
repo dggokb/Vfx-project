@@ -103,7 +103,8 @@ function aplicarTipo(preset,{jogo=true}={}){
   const ref=loadRef(preset.values.kind,preset.reference?.data,preset.reference?.name);
   if(jogo&&preset.jogo)jogoAplicar(preset.jogo);
   try{acabamentosAtualizar()}catch{}
-  return ref;
+  // Os desenhos do Fazedor vêm como PNG: quem monta camadas ou exporta espera eles carregarem.
+  return Promise.all([ref,typeof fazedorEsperar==='function'?fazedorEsperar():null]);
 }
 el('savedTypes').onchange=()=>{
  try{

@@ -386,3 +386,11 @@ embaixo.
   desenhos: o do começo e, se quiser, o do fim (o efeito se transforma de um no outro ao longo dos
   quadros). "Para onde a matéria corre" (sobe, para trás, para a frente, desce, ferve no lugar); as
   brasas nascem nos pontos fortes do desenho. Os desenhos ficam no tipo salvo (PNG em fzDesenhoA/B).
+- **Hit do concept no Fazedor (25/11):** pincel com "Afinar até a ponta" (o traço sai grosso de onde
+  começa e afina até a ponta; caneta com pressão afina e engrossa) e traço com perfil de cone (as manchas
+  se juntam pelo maior valor, sem encher), "O desenho no tempo" (ferve, estoura e se quebra, do começo
+  ao fim) e a matéria correndo "para fora" do centro do desenho. A coroa do concept foi pintada com o
+  mouse (miolo, 13 pontas grandes, 11 pequenas, 7 riscos longos) e montada em kit com o anel, as faíscas
+  e o chão do kit anterior (`sokonfx/tipos/fazedor_hit_concept.json` tem o tipo com o desenho). Gravado
+  no PC no `kit_forte` (só na cópia de trabalho do jogo). Os desenhos agora ficam guardados por PNG e
+  `aplicarTipo` espera eles carregarem (antes a composição montava a camada vazia).

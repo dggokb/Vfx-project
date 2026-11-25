@@ -216,5 +216,5 @@ embaixo.
 - **Energia sombria:** tentáculos de tinta escura com o fio de luz da cor por dentro (o escuro tem o
   miolo aceso, porque efeito é luz), enrolando e subindo; no fim se partem em gotas. Mudando a cor,
   serve de energia espiritual. Primeira versão saiu fina e o corpo escuro sumia no fundo.
-- **Conferido:** 189 casos na trava (183 de antes sem mudança; um caso novo da rampa de cor no
+- **Conferido:** 200 casos na trava (os 183 de antes sem mudança; um caso novo da rampa de cor no
   Choque); `geradores.test.cjs` com os 16 geradores.

@@ -86,6 +86,27 @@ function lerZip(buf){const a={};let p=0;while(buf.readUInt32LE(p)===0x04034b50){
   const soma=()=>{previaDesenhar(450);const d=palco.getContext('2d').getImageData(0,0,palco.width,palco.height).data;let s=0;for(let i=0;i<d.length;i+=16)s+=d[i]+d[i+1]+d[i+2];return s};
   el('previaLuz').checked=false;const sem=soma();el('previaLuz').checked=true;const com=soma();el('gamePreview').open=false;return {sem,com}});
  ok(luz.com>luz.sem*1.02,'luz do efeito clareia a cena '+JSON.stringify(luz));
+ // Alta (2x): a folha sai com o dobro de pixels e o mesmo tamanho no jogo.
+ const alta=await p.evaluate(()=>{el('kind').value='Hit (à mão)';el('kind').oninput({});const r={};
+  for(const k of ['1','2']){el('jogoAlta').value=k;const {folha,dados}=jogoMontar(jogoOpcoes());r[k]={w:folha.width,ps:dados.pixelScale,alt:dados.altura}}
+  el('jogoAlta').value='1';return r});
+ ok(alta['2'].w>alta['1'].w*1.8&&Math.abs(alta['2'].ps-alta['1'].ps*2)<1e-6&&Math.abs(alta['2'].alt-alta['1'].alt)<2,'alta 2x: dobro de pixels, mesmo tamanho no jogo '+JSON.stringify(alta));
+ // Kit: duas peças (núcleo na frente no golpe; poeira atrás no chão, do quadro 2), em 2x.
+ await p.evaluate(async()=>{composicao.camadas=[];composicao.cache.clear();
+  el('kind').value='Hit (à mão)';el('kind').oninput({});el('presetName').value='nucleo';composicaoAdicionar(tipoDaTela());await composicaoFila;
+  el('kind').value='Poeira';el('kind').oninput({});el('presetName').value='poeira';composicaoAdicionar(tipoDaTela());await composicaoFila;
+  Object.assign(composicao.camadas[1],{inicio:2,camada:'atras',ancora:'chao',soma:false});composicao.camadas[0].soma=true;
+  el('jogoNome').value='hit_concept';el('jogoAlta').value='2';el('fps').value='24';jogoAtualizar()});
+ const antesKit=await p.evaluate(()=>JSON.stringify([tipoDaTela(),composicaoLer().camadas.length]));
+ const [dk]=await Promise.all([p.waitForEvent('download'),p.click('#jogoKit')]);
+ const zk=lerZip(fs.readFileSync(await dk.path()));
+ const kit=JSON.parse(zk['hit_concept/kit.json'].toString());
+ ok(kit.formato==='sokonfx-kit-v1'&&kit.pecas.length===2,'kit.json com 2 peças');
+ ok(JSON.stringify(kit.pecas[1])===JSON.stringify({efeito:'hit_concept_2',atrasoMs:83,camada:'atras',ancora:'chao'}),'peça do chão '+JSON.stringify(kit.pecas[1]));
+ const p1=JSON.parse(zk['hit_concept_1/efeito.json'].toString()),p2=JSON.parse(zk['hit_concept_2/efeito.json'].toString());
+ ok(p1.soma===1&&p1.pixelScale===3&&p1.quadros.length===16&&!p2.soma,'peças com soma e alta '+JSON.stringify([p1.soma,p1.pixelScale,p2.soma]));
+ ok(p2.quadros.every(q=>q[5]+q[3]<=24),'a poeira fica no chão (até 8 px do mundo abaixo dele) '+JSON.stringify(p2.quadros.map(q=>q[5]+q[3])));
+ ok(await p.evaluate(()=>JSON.stringify([tipoDaTela(),composicaoLer().camadas.length]))===antesKit,'a tela e a composição voltam depois do kit');
  ok(erros.length===0,'erros '+erros);
  await b.close();fs.rmSync(tmp,{recursive:true});
  console.log(falhas?`${falhas} falhas`:'editor: tudo certo');process.exit(falhas?1:0);

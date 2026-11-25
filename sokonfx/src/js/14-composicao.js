@@ -18,7 +18,7 @@ function tipoDaTela(){
 const composicaoChave=tipo=>JSON.stringify([tipo.values,tipo.seed,tipo.haloEnabled,tipo.customParticleTint,tipo.linked,tipo.reference?.data||null]);
 
 function composicaoCamada(tipo){
- return {tipo,nome:tipo.name||tipo.values.kind,inicio:0,dx:0,dy:0,escala:100,angulo:0,opacidade:100,soma:false,espelhar:false,oculta:false};
+ return {tipo,nome:tipo.name||tipo.values.kind,inicio:0,dx:0,dy:0,escala:100,angulo:0,opacidade:100,soma:false,espelhar:false,oculta:false,camada:'frente',ancora:'golpe'};
 }
 
 // ---- Partes puras ----
@@ -116,6 +116,11 @@ function composicaoListar(){
    Object.assign(e,{type:tipo,min,max,step:passo,value:c[campo]});e.dataset.campo=campo;saida.value=c[campo];
    e.addEventListener('input',()=>{c[campo]=+e.value;saida.value=e.value;composicaoMudou()});
    if(tipo==='range')l.append(rotulo+' ',saida,e);else l.append(rotulo,e);caixa.append(l);
+  }
+  // No jogo: na frente ou atrás dos lutadores; nasce na ponta do golpe ou no chão sob quem apanha.
+  for(const [campo,rotulo,ops] of [['camada','No jogo',[['frente','Na frente dos lutadores'],['atras','Atrás dos lutadores']]],['ancora','Nasce',[['golpe','Na ponta do golpe'],['chao','No chão, sob quem apanha']]]]){
+   const l=document.createElement('label'),e=document.createElement('select');for(const [v,t] of ops)e.add(new Option(t,v));
+   e.value=c[campo]||ops[0][0];e.dataset.campo=campo;e.addEventListener('input',()=>{c[campo]=e.value});l.append(rotulo,e);caixa.append(l);
   }
   for(const [campo,rotulo] of compMarcas){
    const l=document.createElement('label'),e=document.createElement('input');l.className='jogo-check';

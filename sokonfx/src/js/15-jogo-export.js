@@ -6,7 +6,7 @@
 const JOGO_LARGURA_FOLHA=2048,JOGO_LADO_MAX=4096,JOGO_LIMIAR_ALFA=10;
 // 1x no jogo = o tamanho dos impactos v09 (o canvas de 512 com pixelScale 1,5).
 const JOGO_PIXEL_SCALE_1X=1.5;
-const jogoCampos=['jogoNome','jogoOrigemX','jogoOrigemY','jogoTamanho','jogoResolucao','jogoInicio','jogoFim',
+const jogoCampos=['jogoNome','jogoOrigemX','jogoOrigemY','jogoTamanho','jogoResolucao','jogoAlta','jogoInicio','jogoFim',
  'jogoSegurar','jogoSegurarMs','jogoBrilho','jogoSoma','jogoLuz','jogoLuzCor','jogoLuzAlcance','jogoLuzForca'];
 
 // ---- Partes puras (sem página): testadas em testes/export.test.cjs ----
@@ -53,10 +53,10 @@ function jogoDados(caixas,lugares,tamanhos,op){
  const uniao=validas.length?[Math.min(...validas.map(c=>c[0])),Math.min(...validas.map(c=>c[1])),
   Math.max(...validas.map(c=>c[2])),Math.max(...validas.map(c=>c[3]))]:[op.origemX,op.origemY,op.origemX+1,op.origemY+1];
  const res=op.resolucao;
- const pixelScale=Math.round(JOGO_PIXEL_SCALE_1X*res/op.tamanho*10000)/10000;
+ const pixelScale=Math.round(JOGO_PIXEL_SCALE_1X*res*(op.alta||1)/op.tamanho*10000)/10000;
  const quadros=caixas.map((c,i)=>{
   const [x0,y0]=c||uniao;
-  return [lugares[i][0],lugares[i][1],tamanhos[i][0],tamanhos[i][1],jogoUm((x0-op.origemX)*res),jogoUm((y0-op.origemY)*res)];
+  return [lugares[i][0],lugares[i][1],tamanhos[i][0],tamanhos[i][1],jogoUm((x0-op.origemX*(op.alta||1))*res),jogoUm((y0-op.origemY*(op.alta||1))*res)];
  });
  const ms=Math.round(1000/op.fps);
  const duracoesMs=caixas.map(()=>ms);
@@ -103,19 +103,21 @@ function jogoOpcoes(){
  return {nome,origemX:n('jogoOrigemX'),origemY:n('jogoOrigemY'),tamanho:n('jogoTamanho')/100,resolucao:n('jogoResolucao')/100,
   inicio:Math.max(1,Math.min(n('jogoInicio'),n('jogoFim'),quadrosTotais()))-1,fim:Math.min(quadrosTotais(),Math.max(n('jogoInicio'),n('jogoFim')))-1,fps:n('fps'),
   segurar:n('jogoSegurar')-1,segurarMs:n('jogoSegurarMs'),reforco:n('jogoBrilho')/100,soma:n('jogoSoma')/100,
-  luz:el('jogoLuz').checked?{cor:el('jogoLuzCor').value,alcance:n('jogoLuzAlcance')/100,forca:n('jogoLuzForca')/100}:null};
+  luz:el('jogoLuz').checked?{cor:el('jogoLuzCor').value,alcance:n('jogoLuzAlcance')/100,forca:n('jogoLuzForca')/100}:null,alta:n('jogoAlta')||1};
 }
 
 // Desenha os quadros pedidos, recorta e monta a folha. Devolve a folha (canvas) e o efeito.json.
 function jogoMontar(op){
- const tela=document.createElement('canvas');tela.width=tela.height=512;
+ // Alta: desenha com o dobro de pixels (os geradores novos ficam nítidos; o tamanho no jogo é o mesmo).
+ const alta=op.alta||1,L=512*alta,desenha=op.desenhar||desenharQuadro;
+ const tela=document.createElement('canvas');tela.width=tela.height=L;
  const ctx=tela.getContext('2d',{willReadFrequently:true});
  const recortes=[],caixas=[];
  for(let i=op.inicio;i<=op.fim;i++){
-  ctx.clearRect(0,0,512,512);ctx.save();desenharQuadro(ctx,i);ctx.restore();
-  const img=ctx.getImageData(0,0,512,512);
+  ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,L,L);ctx.save();ctx.scale(alta,alta);desenha(ctx,i);ctx.restore();
+  const img=ctx.getImageData(0,0,L,L);
   jogoCurvaAlfa(img.data,op.reforco);
-  const caixa=jogoCaixa(img.data,512,512);
+  const caixa=jogoCaixa(img.data,L,L);
   caixas.push(caixa);
   if(!caixa){recortes.push(null);continue}
   const [x0,y0,x1,y1]=caixa,peca=document.createElement('canvas');
@@ -127,13 +129,16 @@ function jogoMontar(op){
   recortes.push(menor);
  }
  const tamanhos=recortes.map(r=>r?[r.width,r.height]:[1,1]);
- const {lugares,largura,altura}=jogoEmpacotar(tamanhos);
+ const {lugares,largura,altura}=jogoEmpacotar(tamanhos,Math.min(JOGO_LADO_MAX,JOGO_LARGURA_FOLHA*alta));
+ // Não coube: tenta de novo com 20% menos resolução (até 30%), e o status avisa quanto ficou.
+ if((largura>JOGO_LADO_MAX||altura>JOGO_LADO_MAX)&&op.resolucao>.35)return jogoMontar({...op,resolucao:Math.round(op.resolucao*80)/100,reduzida:true});
  if(largura>JOGO_LADO_MAX||altura>JOGO_LADO_MAX)throw Error(`a folha daria ${largura}×${altura} px (o jogo aceita até ${JOGO_LADO_MAX}): diminua a resolução ou os quadros`);
  const folha=document.createElement('canvas');folha.width=largura;folha.height=altura;
  const f=folha.getContext('2d');
  recortes.forEach((r,i)=>{if(r)f.drawImage(r,lugares[i][0],lugares[i][1])});
- const dados=jogoDados(caixas,lugares,tamanhos,{...op,descricao:composicao.ativa&&composicao.camadas.length?`Sōkon FX: composição de ${composicao.camadas.length} camadas`:`Sōkon FX: ${el('kind').value}, semente ${seed}`,
+ const dados=jogoDados(caixas,lugares,tamanhos,{...op,descricao:op.descricao||(composicao.ativa&&composicao.camadas.length?`Sōkon FX: composição de ${composicao.camadas.length} camadas`:`Sōkon FX: ${el('kind').value}, semente ${seed}`),
   sokonfx:{tipo:jogoTipoAtual(),exportar:jogoLer(),...(composicao.ativa&&composicao.camadas.length?{composicao:composicaoLer()}:{})}});
+ if(op.reduzida)dados.resolucaoReduzida=op.resolucao;
  return {folha,dados};
 }
 
@@ -163,7 +168,7 @@ async function jogoExportar(){
   const zip=jogoZip([{nome:op.nome+'/folha.webp',dados:new Uint8Array(await webp.arrayBuffer())},{nome:op.nome+'/efeito.json',dados:json}]);
   const url=URL.createObjectURL(zip),a=document.createElement('a');
   a.href=url;a.download=op.nome+'.zip';a.click();setTimeout(()=>URL.revokeObjectURL(url),30000);
-  el('jogoStatus').value=`${op.nome}.zip: ${dados.quadros.length} quadros, folha ${folha.width}×${folha.height}, ${dados.altura} px de altura no jogo. Solte a pasta em assets/efeitos/.`;
+  el('jogoStatus').value=`${op.nome}.zip: ${dados.quadros.length} quadros, folha ${folha.width}×${folha.height}, ${dados.altura} px de altura no jogo.${dados.resolucaoReduzida?` A folha não cabia em 4096 px: resolução reduzida para ${Math.round(dados.resolucaoReduzida*100)}%.`:''} Solte a pasta em assets/efeitos/.`;
  }catch(e){el('jogoStatus').value='Não exportou: '+e.message}
 }
 

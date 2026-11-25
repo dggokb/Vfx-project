@@ -105,3 +105,50 @@ function acabamentosAtualizar(){
  for(const [id,un] of [['rampaInicio','%'],['dissInicio','%'],['sombraY',''],['sombraForca','%']])el(id+'Valor').value=el(id).value+un;
  tempoDesenharGrafico();
 }
+
+// ---- Export em peças (kit) ----
+// Cada camada visível da composição vira uma pasta (o desenho dela com posição, tamanho, giro,
+// espelho e opacidade já aplicados, no tamanho e na resolução do export), e o kit.json diz ao jogo
+// como tocar: quando cada peça entra (atrasoMs), se vai na frente ou atrás dos lutadores e se nasce
+// na ponta do golpe ou no chão sob quem apanha. Peça que soma vai com "soma": 1.
+function kitPecaDesenho(c){
+ return (ctx,i)=>{
+  const k=ctx.getTransform().a,L=Math.round(512*k),t=document.createElement('canvas');t.width=t.height=L;const x=t.getContext('2d');x.scale(k,k);draw(x,i);
+  ctx.save();ctx.globalAlpha=Math.max(0,Math.min(1,c.opacidade/100));ctx.translate(256+c.dx,256+c.dy);ctx.rotate(c.angulo*Math.PI/180);
+  const e=c.escala/100;ctx.scale(c.espelhar?-e:e,e);ctx.translate(-256,-256);ctx.drawImage(t,0,0,512,512);ctx.restore();
+ };
+}
+async function kitExportar(){
+ const camadas=composicao.camadas.filter(c=>!c.oculta);
+ if(!camadas.length){el('jogoStatus').value='Monte uma composição primeiro (Composição de camadas).';return}
+ const op=jogoOpcoes();
+ if(!jogoNomeValido(op.nome)){el('jogoStatus').value='Nome só com letras minúsculas, números e _ (é o nome do kit no jogo).';return}
+ const tela=tipoDaTela(),exportar=jogoLer(),ativa=composicao.ativa,nomeTela=el('presetName').value,status=el('presetStatus').textContent;
+ const arquivos=[],pecas=[];
+ el('jogoStatus').value=`Montando ${camadas.length} peças…`;
+ try{
+  composicao.ativa=false;
+  for(const [n,c] of camadas.entries()){
+   await aplicarTipo(c.tipo,{jogo:false});
+   const g=geradores[c.tipo.values.kind],nome=`${op.nome}_${n+1}`;
+   // No chão: a origem da peça é o chão do desenho dela (a origem do gerador), não o ponto do golpe.
+   const origem=c.ancora==='chao'?{origemX:256+c.dx,origemY:(g?.origem?.y??256)+c.dy}:{};
+   const {folha,dados}=jogoMontar({...op,...origem,nome,inicio:0,fim:frames-1,segurar:-1,soma:c.soma?1:op.soma,luz:n===0?op.luz:null,
+    desenhar:kitPecaDesenho(c),descricao:`Sōkon FX: peça ${n+1} do kit ${op.nome} (${c.nome})`});
+   const webp=await new Promise(r=>folha.toBlob(r,'image/webp',1));
+   if(!webp||webp.type!=='image/webp')throw Error('este navegador não grava WebP (use o Chrome)');
+   arquivos.push({nome:nome+'/folha.webp',dados:new Uint8Array(await webp.arrayBuffer())},{nome:nome+'/efeito.json',dados:new TextEncoder().encode(JSON.stringify(dados,null,1)+'\n')});
+   pecas.push({efeito:nome,atrasoMs:Math.round(c.inicio*1000/op.fps),camada:c.camada||'frente',ancora:c.ancora||'golpe'});
+  }
+  const kit={formato:'sokonfx-kit-v1',nome:op.nome,pecas,fonte:'Sōkon FX'};
+  arquivos.push({nome:op.nome+'/kit.json',dados:new TextEncoder().encode(JSON.stringify(kit,null,1)+'\n')});
+  const zip=jogoZip(arquivos),url=URL.createObjectURL(zip),a=document.createElement('a');
+  a.href=url;a.download=op.nome+'_kit.zip';a.click();setTimeout(()=>URL.revokeObjectURL(url),30000);
+  el('jogoStatus').value=`${op.nome}_kit.zip: ${pecas.length} peças e o kit.json. Solte todas as pastas em assets/efeitos/.`;
+ }catch(e){el('jogoStatus').value='Não exportou o kit: '+e.message}
+ finally{
+  await aplicarTipo(tela,{jogo:false});jogoAplicar(exportar);composicao.ativa=ativa;el('compAtiva').checked=ativa;
+  el('presetName').value=nomeTela;el('presetStatus').textContent=status;composicaoMudou();
+ }
+}
+el('jogoKit').onclick=kitExportar;

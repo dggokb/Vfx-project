@@ -107,16 +107,17 @@ function desenharGerador(ctx,index){
  const rampa=el('rampaLiga');rampa.checked=rampa.value==='1'||rampa.value==='true';
  if(rampa.checked){const ini=+el('rampaInicio').value/100,t=index/(frames-1);p.cor=corMistura(p.cor,el('rampaCor').value,suave(Math.max(0,(t-ini)/(1-ini||1))))}
  p.paleta=corPaleta(p.cor);
- if(!geradorTela){geradorTela=document.createElement('canvas');geradorTela.width=geradorTela.height=512}
- const x=geradorTela.getContext('2d');x.clearRect(0,0,512,512);x.save();
+ const k=Math.max(1,Math.round(ctx.getTransform().a*100)/100),lado=Math.round(512*k);
+ if(!geradorTela||geradorTela.width!==lado){geradorTela=document.createElement('canvas');geradorTela.width=geradorTela.height=lado}
+ const x=geradorTela.getContext('2d');x.setTransform(1,0,0,1,0,0);x.clearRect(0,0,lado,lado);x.save();x.scale(k,k);
  x.translate(g.origem?.x??256,g.origem?.y??256);if(!g.semGiro)x.rotate(+el('angle').value*Math.PI/180);
  g.desenhar(x,{i:index,t:index/(frames-1),n:frames,p,semente:seed,aleatorio:s=>generator((seed^s)>>>0)});
  x.restore();
  const liga=id=>{const e=el(id);e.checked=e.value==='1'||e.value==='true';return e.checked};
  if(liga('dissLiga'))geradorDissolver(x,index,+el('dissInicio').value/100,liga('dissBorda')?p.paleta.miolo:null,el('dissModo').value);
- x.save();x.globalCompositeOperation='destination-in';x.drawImage(geradorBeira(),0,0);x.restore();
+ x.save();x.globalCompositeOperation='destination-in';x.drawImage(geradorBeira(),0,0,lado,lado);x.restore();
  if(liga('sombraLiga'))geradorSombra(ctx,+el('sombraY').value,+el('sombraForca').value/100);
- ctx.drawImage(geradorTela,0,0);
+ ctx.drawImage(geradorTela,0,0,512,512);
 }
 
 // Quais controles comuns cada gerador usa (o resto do painel antigo some enquanto ele está escolhido).
@@ -182,14 +183,15 @@ function geradorDissolver(x,index,inicio,borda,modo='ruido'){
   geradorRuido=new Float32Array(512*512);
   for(let y=0;y<512;y++)for(let xx=0;xx<512;xx++)geradorRuido[y*512+xx]=.86*amostra(g1,32,xx/512,y/512)+.14*amostra(g2,128,xx/512,y/512);
  }
- const img=x.getImageData(0,0,512,512),d=img.data,faixa=.05;
+ const L=x.canvas.width,esc=L/512,img=x.getImageData(0,0,L,L),d=img.data,faixa=.05;
  const rgb=borda?[1,3,5].map(i=>parseInt(borda.slice(i,i+2),16)):null;
  // Com direção: o ruído só quebra a borda de uma frente que anda (de fora, de dentro, de baixo, de cima).
  const frente=modo==='fora'?(xx,yy)=>1-Math.min(1,Math.hypot(xx-256,yy-256)/300):modo==='dentro'?(xx,yy)=>Math.min(1,Math.hypot(xx-256,yy-256)/300)
   :modo==='baixo'?(xx,yy)=>yy/512:modo==='cima'?(xx,yy)=>1-yy/512:null;
- for(let k=0;k<geradorRuido.length;k++){
+ for(let k=0;k<L*L;k++){
   if(!d[k*4+3])continue;
-  const nv=frente?.35*geradorRuido[k]+.65*frente(k%512,(k/512)|0):geradorRuido[k];
+  const px=Math.min(511,((k%L)/esc)|0),py=Math.min(511,((k/L|0)/esc)|0),r=py*512+px;
+  const nv=frente?.35*geradorRuido[r]+.65*frente(px,py):geradorRuido[r];
   if(nv<lim)d[k*4+3]=0;
   else if(rgb&&nv<lim+faixa){d[k*4]=rgb[0];d[k*4+1]=rgb[1];d[k*4+2]=rgb[2]}
  }
@@ -198,10 +200,10 @@ function geradorDissolver(x,index,inicio,borda,modo='ruido'){
 // Sombra no chão: a silhueta do quadro, escura, deitada embaixo da linha do chão (achatada).
 let geradorSombraTela=null;
 function geradorSombra(ctx,chao,forca){
- if(!geradorSombraTela){geradorSombraTela=document.createElement('canvas');geradorSombraTela.width=geradorSombraTela.height=512}
- const s=geradorSombraTela.getContext('2d');s.clearRect(0,0,512,512);s.drawImage(geradorTela,0,0);
- s.save();s.globalCompositeOperation='source-in';s.fillStyle='#000';s.fillRect(0,0,512,512);s.restore();
- ctx.save();ctx.globalAlpha=forca;ctx.translate(0,chao);ctx.scale(1,-.16);ctx.translate(0,-chao);ctx.drawImage(geradorSombraTela,0,0);ctx.restore();
+ const L=geradorTela.width;if(!geradorSombraTela||geradorSombraTela.width!==L){geradorSombraTela=document.createElement('canvas');geradorSombraTela.width=geradorSombraTela.height=L}
+ const s=geradorSombraTela.getContext('2d');s.clearRect(0,0,L,L);s.drawImage(geradorTela,0,0);
+ s.save();s.globalCompositeOperation='source-in';s.fillStyle='#000';s.fillRect(0,0,L,L);s.restore();
+ ctx.save();ctx.globalAlpha=forca;ctx.translate(0,chao);ctx.scale(1,-.16);ctx.translate(0,-chao);ctx.drawImage(geradorSombraTela,0,0,512,512);ctx.restore();
 }
 
 // Imagens dos geradores (data URL → imagem pronta). Enquanto carrega, devolve null e redesenha

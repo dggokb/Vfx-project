@@ -325,3 +325,20 @@ embaixo.
 - **Falta para chegar ao concept:** estilhaços três vezes mais longos que o núcleo (o quadro de 512 não
   cabe: quadro em alta e peças separadas), as peças do chão presas no chão (o jogo precisa tocar um
   kit), e a luz nos lutadores.
+
+## 25/11 — Desenho em alta (2x) e export em peças (kit)
+
+- **Desenho em alta:** em Exportar para o jogo, "Desenho: Em alta (2x)". Os geradores novos desenham
+  com o dobro de pixels (a tela deles acompanha a escala de quem desenha) e o `pixelScale` dobra:
+  mesmo tamanho no jogo, folha mais nítida. Os efeitos antigos usam uma tela interna de 512 e saem
+  esticados em 2x (sem ganho). A folha em 2x pode ter até 4096 px de largura; se ainda não couber, o
+  export reduz a resolução em passos de 20% e avisa (o hit elétrico em 2x dava 2042×5561).
+- **Export em peças (kit):** cada camada da composição ganhou "No jogo: na frente / atrás" e "Nasce:
+  na ponta do golpe / no chão, sob quem apanha". O botão "Baixar a composição em peças (kit)" gera
+  uma pasta por camada (com posição, tamanho, giro, espelho e opacidade da camada já desenhados; peça
+  que soma vai com `"soma": 1`; a luz vai na primeira) e `<nome>/kit.json` (`sokonfx-kit-v1`: cada
+  peça com `efeito`, `atrasoMs`, `camada`, `ancora`). Peça no chão tem a origem no chão do desenho dela.
+- **Conferido:** `editor.test.cjs`: alta com o dobro de pixels e a mesma altura no jogo; kit com 2
+  peças (núcleo na frente no golpe, somando; poeira atrás no chão, do quadro 2 = 83 ms), `pixelScale`
+  3 em 2x, poeira assentada no chão, tela e composição de volta depois.
+- **Falta:** o jogo ler o `kit.json` e tocar as peças (hoje toca um efeito por acerto).

@@ -23,6 +23,9 @@ el('onion').onclick=()=>{const liga=el('onion').getAttribute('aria-pressed')!=='
 el('rampaLiga').addEventListener('input',()=>{el('rampaLiga').value=el('rampaLiga').checked?'1':'';preview()});
 el('rampaCor').addEventListener('input',preview);
 el('rampaInicio').addEventListener('input',()=>{el('rampaInicioValor').value=el('rampaInicio').value+'%';preview()});
+// Dissolução e sombra no chão (acabamentos dos geradores novos; o desenho está em 09a-geradores.js).
+for(const id of ['dissLiga','dissBorda','sombraLiga'])el(id).addEventListener('input',()=>{el(id).value=el(id).checked?'1':'';preview()});
+for(const [id,un] of [['dissInicio','%'],['sombraY',''],['sombraForca','%']])el(id).addEventListener('input',()=>{el(id+'Valor').value=el(id).value+un;preview()});
 
 // ---- Export em lote ----
 

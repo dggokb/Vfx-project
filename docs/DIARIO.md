@@ -218,3 +218,31 @@ embaixo.
   serve de energia espiritual. Primeira versão saiu fina e o corpo escuro sumia no fundo.
 - **Conferido:** 200 casos na trava (os 183 de antes sem mudança; um caso novo da rampa de cor no
   Choque); `geradores.test.cjs` com os 16 geradores.
+
+## 25/11 — O resto do que cabe no Sōkon FX: decal, rastro, dissolução, sombra e os que estavam pela metade
+
+- **Pedido:** seguir com os 4 que ainda cabiam (Decals, Motion Trails, Máscaras e dissolução,
+  Sombras de efeitos) e dar gerador próprio ao que estava pela metade.
+- **Acabamentos para todos os geradores novos** (no bloco da rampa de cor, salvos no tipo):
+  **Dissolver no fim** (some por buracos de um ruído fixo, com a beira acesa na cor; o primeiro ruído
+  era fino e parecia granulado) e **Sombra no chão** (a silhueta escura, achatada embaixo da linha do
+  chão).
+- **Decal (marca no chão):** rachadura, queimado ou cratera no plano do chão; brasa nas rachaduras
+  que esfria; fecha das pontas para o meio. A primeira versão era fina demais para ler.
+- **Rastro do golpe:** véu claro meio transparente com riscos finos dentro (a última referência do
+  dono para o rastro), num arco; nasce no começo, cresce até o fim do golpe e se apaga pelo rabo
+  (regras 5 a 8 da skill `vfx-luta`). O jogo hoje desenha o rastro pelo caminho detectado do membro;
+  este serve para golpes sem caminho ou para testar o desenho.
+- **Poeira** (e terra/areia pela cor): bolas chapadas rente ao chão, para os dois lados, para a
+  frente ou para trás; cada uma vira duas menores ao desfazer; grãos que pulam.
+- **Partículas:** emissor genérico (losango, bola, estrela, lasca, pena, quadrado; leque,
+  velocidade, gravidade inclusive negativa, giro, vida).
+- **Brilhos e flashes:** estrelinhas de 4 pontas com riscos em X que piscam espalhadas, ou o clarão
+  (disco branco de borda pontuda por 2 quadros que vira anel e se parte).
+- **Energia espiritual:** chamas-gota claras com cauda que sobem em volta, em laço.
+- **Conferido:** 217 casos na trava (os 200 de antes sem mudança); `geradores.test.cjs` com os 22
+  geradores novos (painel, volta do antigo, export, nada na beira em todas as variações).
+- **Fica para o motor do jogo** (não é folha de sprites): afterimages, deformações, distorções,
+  HUD, cinematics e transições. **Fica para depois no editor:** keyframes, curvas, nós, caminhos,
+  emissor visual e vínculo com parte do personagem. **Não começado:** o VFX próprio de cada
+  personagem (precisa do dono).

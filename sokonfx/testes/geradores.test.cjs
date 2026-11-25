@@ -16,7 +16,7 @@ const ok=(cond,msg)=>{if(!cond){falhas++;console.log('FALHOU',msg)}};
  const visiveis=()=>p.evaluate(()=>[...el('ajustes').querySelectorAll('label,button,details,.gerador-params')].filter(e=>e.offsetParent!==null).map(e=>e.id||e.textContent.trim().slice(0,30)).join('|'));
  const troca=k=>p.evaluate(k=>{el('kind').value=k;el('kind').oninput({})},k);
  const novos=await p.evaluate(()=>Object.keys(geradores));
- ok(JSON.stringify(novos)==='["Defesa","Choque","Raio","Linhas de mangá","Aura","Detritos","Explosão","Onda de choque","Faíscas","Gelo","Vento e vórtices","Feixe de energia","Teletransporte","Portal","Gases e vapores","Energia sombria"]','geradores registrados '+novos);
+ ok(JSON.stringify(novos)==='["Defesa","Choque","Raio","Linhas de mangá","Aura","Detritos","Explosão","Onda de choque","Faíscas","Gelo","Vento e vórtices","Feixe de energia","Teletransporte","Portal","Gases e vapores","Energia sombria","Decal (marca no chão)","Rastro do golpe","Poeira","Partículas","Brilhos e flashes","Energia espiritual"]','geradores registrados '+novos);
  for(const antigo of ['Impacto','Fumaça','Pressão de ar','Ponto de luz']){
   await troca(antigo);const antes=await visiveis();
   for(const novo of novos){

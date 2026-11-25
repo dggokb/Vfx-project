@@ -11,7 +11,8 @@
 //  - aponta para a direita (o jogo espelha).
 
 const geradores={};
-const geradorCampos=['rampaLiga','rampaCor','rampaInicio'],geradorPadroes={rampaLiga:'',rampaCor:'#ffffff',rampaInicio:'40'};
+const geradorCampos=['rampaLiga','rampaCor','rampaInicio','dissLiga','dissInicio','dissBorda','sombraLiga','sombraY','sombraForca'],
+ geradorPadroes={rampaLiga:'',rampaCor:'#ffffff',rampaInicio:'40',dissLiga:'',dissInicio:'55',dissBorda:'1',sombraLiga:'',sombraY:'470',sombraForca:'35'};
 
 // Cores: mistura de duas cores #rrggbb (a de 0 a 1) e a paleta de faixas de uma cor.
 function corMistura(a,b,k){
@@ -99,7 +100,11 @@ function desenharGerador(ctx,index){
  const x=geradorTela.getContext('2d');x.clearRect(0,0,512,512);x.save();
  x.translate(g.origem?.x??256,g.origem?.y??256);if(!g.semGiro)x.rotate(+el('angle').value*Math.PI/180);
  g.desenhar(x,{i:index,t:index/(frames-1),n:frames,p,semente:seed,aleatorio:s=>generator((seed^s)>>>0)});
- x.restore();x.save();x.globalCompositeOperation='destination-in';x.drawImage(geradorBeira(),0,0);x.restore();
+ x.restore();
+ const liga=id=>{const e=el(id);e.checked=e.value==='1'||e.value==='true';return e.checked};
+ if(liga('dissLiga'))geradorDissolver(x,index,+el('dissInicio').value/100,liga('dissBorda')?p.paleta.miolo:null);
+ x.save();x.globalCompositeOperation='destination-in';x.drawImage(geradorBeira(),0,0);x.restore();
+ if(liga('sombraLiga'))geradorSombra(ctx,+el('sombraY').value,+el('sombraForca').value/100);
  ctx.drawImage(geradorTela,0,0);
 }
 
@@ -151,3 +156,36 @@ function brilhoFundo(ctx,raio,cor,forca){
  ctx.fillStyle=g;ctx.beginPath();ctx.arc(0,0,raio,0,Math.PI*2);ctx.fill();
 }
 const suave=u=>u<=0?0:u>=1?1:u*u*(3-2*u);
+
+// Dissolução: o efeito é comido por um ruído fixo a partir de "Começa em" (some por buracos que
+// crescem, não por transparência); a beira dos buracos pode ficar acesa (o miolo da cor).
+let geradorRuido=null;
+function geradorDissolver(x,index,inicio,borda){
+ const t=index/(frames-1),lim=Math.max(0,(t-inicio)/(1-inicio||1));
+ if(lim<=0)return;
+ if(!geradorRuido){
+  // Ruído de valor em duas escalas, com semente fixa (o mesmo desenho sempre).
+  const r=generator(0x5eed1),g1=[...Array(33*33)].map(r),g2=[...Array(129*129)].map(r);
+  const amostra=(g,n,x,y)=>{const fx=x*n,fy=y*n,i=Math.floor(fx),j=Math.floor(fy),u=fx-i,v=fy-j,a=g[j*(n+1)+i],b=g[j*(n+1)+i+1],c=g[(j+1)*(n+1)+i],d=g[(j+1)*(n+1)+i+1];
+   const s=w=>w*w*(3-2*w);return a+(b-a)*s(u)+(c-a)*s(v)+(a-b-c+d)*s(u)*s(v)};
+  geradorRuido=new Float32Array(512*512);
+  for(let y=0;y<512;y++)for(let xx=0;xx<512;xx++)geradorRuido[y*512+xx]=.86*amostra(g1,32,xx/512,y/512)+.14*amostra(g2,128,xx/512,y/512);
+ }
+ const img=x.getImageData(0,0,512,512),d=img.data,faixa=.05;
+ const rgb=borda?[1,3,5].map(i=>parseInt(borda.slice(i,i+2),16)):null;
+ for(let k=0;k<geradorRuido.length;k++){
+  if(!d[k*4+3])continue;
+  const nv=geradorRuido[k];
+  if(nv<lim)d[k*4+3]=0;
+  else if(rgb&&nv<lim+faixa){d[k*4]=rgb[0];d[k*4+1]=rgb[1];d[k*4+2]=rgb[2]}
+ }
+ x.putImageData(img,0,0);
+}
+// Sombra no chão: a silhueta do quadro, escura, deitada embaixo da linha do chão (achatada).
+let geradorSombraTela=null;
+function geradorSombra(ctx,chao,forca){
+ if(!geradorSombraTela){geradorSombraTela=document.createElement('canvas');geradorSombraTela.width=geradorSombraTela.height=512}
+ const s=geradorSombraTela.getContext('2d');s.clearRect(0,0,512,512);s.drawImage(geradorTela,0,0);
+ s.save();s.globalCompositeOperation='source-in';s.fillStyle='#000';s.fillRect(0,0,512,512);s.restore();
+ ctx.save();ctx.globalAlpha=forca;ctx.translate(0,chao);ctx.scale(1,-.16);ctx.translate(0,-chao);ctx.drawImage(geradorSombraTela,0,0);ctx.restore();
+}

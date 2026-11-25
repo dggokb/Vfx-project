@@ -109,3 +109,32 @@ embaixo.
   igual numa página nova. Exemplo visto: o H do dono + um anel de pressão de ar somando, do
   quadro 2.
 - **Falta:** o dono montar uma composição de verdade e julgar na prévia no jogo e no jogo.
+
+## 25/11 — Geradores novos: Defesa, Choque, Raio e Linhas de mangá
+
+- **Pedido:** "vai fazendo tudo"; o dono autorizou fazer aqui também o que era de Fable. Passo 5
+  do plano: geradores que o jogo ainda não tem.
+- **Como entram:** um registro (`09a-geradores.js`): cada gerador declara os controles e a função
+  que desenha; o painel se monta sozinho, os controles do efeito antigo somem enquanto ele está
+  escolhido e voltam iguais ao trocar de volta. Os campos entram no "Salvar tipo". Os efeitos
+  antigos não mudaram (os 129 casos de antes continuam pixel a pixel).
+- **Regras de arte que todos seguem** (skill `vfx-luta` do jogo, bíblia e as referências do dono):
+  faixas chapadas da borda funda (não preta) ao miolo branco; estoura inteiro no contato; some
+  quebrando a forma (pedaços que afinam), não por transparência; dois em dois; aponta para a
+  direita; brilho de fundo pouco e opcional; nada encosta na borda do quadro de 512.
+- **Defesa:** arco de luz com a barriga no ponto do contato (onde o jogo põe a defesa), estalo de
+  raios desiguais, lascas para trás e para os lados, e o arco se parte em pedaços desiguais.
+  Formas: arco, arco duplo, anel. A primeira versão tinha uma estrela de 5 pontas regular (cara de
+  clip-art, o "amador" que o dono já reprovou) e o brilho no lugar errado; refeita.
+- **Choque (clash):** duas lanças em X com clarão de 4 pontas desigual, anel fino que se parte,
+  linhas finas em volta e faíscas; as lanças estilhaçam pelo próprio eixo.
+- **Raio:** zigue-zague com poucos trechos e ângulos duros (a primeira versão parecia galho),
+  ramificações, raio novo a cada par de quadros, partido em traços no fim.
+- **Linhas de mangá:** concentração (cunhas para o meio, meio limpo que cresce) ou velocidade
+  (riscos paralelos), trocando a cada par de quadros. Branco puro some em fundo claro; o padrão é
+  70% branco e o resto na cor.
+- **Conferido:** 19 casos novos na trava (todos diferentes entre si; com dois em dois, 8 desenhos
+  em 16 quadros); `testes/geradores.test.cjs` (painel de cada um, volta do painel antigo igual,
+  export, nada na borda; o Choque passava da borda e foi corrigido). Vistos quadro a quadro em fundo
+  escuro e claro.
+- **Falta:** o dono julgar; nenhum deles foi para o jogo ainda.

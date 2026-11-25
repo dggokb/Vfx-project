@@ -1,4 +1,5 @@
 function draw(ctx,index,local=false){
+ if(geradores[el('kind').value]){desenharGerador(ctx,index);return}
  drawBase(ctx,index,local);
  const kind=el('kind').value;
  if(local||!userRefs.has(kind)||kind==='Pressão de ar')return;

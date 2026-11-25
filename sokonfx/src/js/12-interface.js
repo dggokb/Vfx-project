@@ -56,6 +56,7 @@ const defaultAppearance=recordAppearance();
 let activeKind=el('kind').value;
 el('kind').oninput=(event)=>{
  const next=el('kind').value;
+ geradoresAntes();
  if(event && activeKind!==next){
   appearances[activeKind]=recordAppearance();
   const settings=appearances[next]||defaultAppearance;
@@ -84,6 +85,7 @@ el('kind').oninput=(event)=>{
  for(const key of widths){el(key).value=profiles[next][key];el(key+'Value').value=profiles[next][key]+(key==='shapes'?'':'%')}
  const profile=profiles[el('kind').value];
  for(const id of ['particles','light','styleMix'])el(id).value=profile[id];
+ geradoresMostrar(next);
  preview();
 };
 for(const id of ['particles','light','styleMix'])el(id).oninput=()=>{

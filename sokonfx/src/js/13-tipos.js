@@ -10,7 +10,7 @@ function refreshSmoke(){
  for(const [id,unit] of Object.entries({shadeLight:'%',curl:'%',jumpRoll:'%',jumpVolume:"%",jumpCurl:"%",jumpOpen:"",airCopies:'',airParticleGap:'%',airRingGap:'%',airWaves:'',airWidth:' px',ringRadius:' px',tipGap:' px',joinAt:'%',windForce:'%',windAngle:'°',windWidth:' px',plumes:'',gap:' px',rise:'%',fall:'%'}))el(id+'Value').value=el(id).value+unit;
 }
 for(const id of Object.keys(smokeDefaults))el(id).oninput=()=>{refreshSmoke();preview()};
-const savedFields=[...Object.keys(smokeDefaults),'kind','artStyle','material','drawing','styleMix','tint','power','particles','light','motion','openingFrame','pieces','openingShape','rimWidth','coreWidth','diameter','focus','riskWidth','outerWidth','particleTint','particleWidth','shapes','angle','fps'];
+const savedFields=[...Object.keys(smokeDefaults),'kind','artStyle','material','drawing','styleMix','tint','power','particles','light','motion','openingFrame','pieces','openingShape','rimWidth','coreWidth','diameter','focus','riskWidth','outerWidth','particleTint','particleWidth','shapes','angle','fps',...geradorCampos];
 let sessionTypes=[],sessionOnly=false;
 function storedTypes(){
  if(sessionOnly)return sessionTypes;
@@ -80,7 +80,7 @@ el('keep').onclick=()=>{
 // Põe um tipo salvo na tela. Devolve a promessa da imagem de referência dele (se tiver).
 // O compositor usa com {jogo:false}: as opções de export da tela não mudam ao desenhar uma camada.
 function aplicarTipo(preset,{jogo=true}={}){
-  for(const id of savedFields)el(id).value=preset.values[id]??(id==='airCopies'&&preset.values.drawing==='saw'?'4':undefined)??(id==='tipGap'?preset.values.gap:undefined)??smokeDefaults[id]??(['rimWidth','coreWidth','diameter'].includes(id)?100:id==='focus'?0:id==='drawing'?'star':id==='artStyle'?'original':id==='material'?'Energia':el(id).value);
+  for(const id of savedFields)el(id).value=preset.values[id]??(id==='airCopies'&&preset.values.drawing==='saw'?'4':undefined)??(id==='tipGap'?preset.values.gap:undefined)??smokeDefaults[id]??geradorPadroes[id]??(['rimWidth','coreWidth','diameter'].includes(id)?100:id==='focus'?0:id==='drawing'?'star':id==='artStyle'?'original':id==='material'?'Energia':el(id).value);
   if(preset.values.kind==='Fumaça' && preset.values.plumes===undefined){
    const wasDouble=preset.values.drawing==='twin';
    el('plumes').value=wasDouble?2:1;

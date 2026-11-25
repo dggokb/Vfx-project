@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node sokonfx/build.mjs",
     "conferir": "node sokonfx/build.mjs --conferir",
-    "test": "node sokonfx/build.mjs --conferir && node sokonfx/testes/pixels.test.cjs && node sokonfx/testes/export.test.cjs && node sokonfx/testes/previa.test.cjs && node sokonfx/testes/composicao.test.cjs"
+    "test": "node sokonfx/build.mjs --conferir && node sokonfx/testes/pixels.test.cjs && node sokonfx/testes/export.test.cjs && node sokonfx/testes/previa.test.cjs && node sokonfx/testes/composicao.test.cjs && node sokonfx/testes/geradores.test.cjs"
   },
   "devDependencies": {
     "playwright": "1.63.0"

@@ -402,3 +402,18 @@ embaixo.
   de luz retos com uma ou duas dobras na frente. Controles: pontas, comprimento, curva, para onde abre,
   abertura, raios, contorno por dentro, camadas. Cada "Gerar variação" dá outro hit (semente);
   o resultado fica guardado. O brilho vai só na camada da frente (as de trás somavam uma mancha).
+
+## 25/11 — Pesquisa de design de efeitos e a forma "Imagem"
+
+- **Pesquisa (o dono: "manda uns agentes pesquisar e faz vc se tornar um especialista"):** quatro
+  relatórios em `docs/pesquisa/efeitos/` (técnicas de efeito estilizado e o que deixa uma ferramenta
+  de efeitos profissional já estão; forma no anime e hits de jogos de luta chegando). O ponto comum:
+  a silhueta vem de forma desenhada (à mão ou gerada como imagem), o ruído só come a borda.
+- **Codex:** instalado e logado com a conta do dono (login por código); gera imagem daqui
+  (`codex exec`, recurso image_generation). A primeira forma de hit gerada já respeita grande, médio,
+  pequeno e a direção do golpe.
+- **Forma "Imagem (forma pronta)" no Fazedor:** a imagem (fundo preto vira transparente; a âncora é o
+  meio da parte mais clara) abre do contato em N quadros, segura com tremido de desenho à mão e se
+  desfaz em pedaços usando a própria claridade como mapa de erosão (contorno primeiro, miolo por
+  último), com borda escura nos pedaços; cores da imagem ou os degraus da cor da energia; brasas dos
+  pontos fortes. Imagem até 1024 px (o campo de imagem aceita `lado`).

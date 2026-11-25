@@ -59,7 +59,7 @@ function registrarGerador(g){
    const guarda=document.createElement('input');guarda.type='hidden';guarda.id=p.id;guarda.value='';caixa.append(guarda);
    const arq=document.createElement('input');arq.type='file';arq.accept='image/png,image/webp,image/jpeg';
    arq.onchange=async()=>{const f=arq.files[0];if(!f)return;const img=new Image();img.src=URL.createObjectURL(f);await img.decode();
-    const k=Math.min(1,512/Math.max(img.width,img.height)),c=document.createElement('canvas');c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);
+    const k=Math.min(1,(p.lado||512)/Math.max(img.width,img.height)),c=document.createElement('canvas');c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);
     c.getContext('2d').drawImage(img,0,0,c.width,c.height);guarda.value=c.toDataURL('image/png');arq.value='';preview()};
    l.append(p.rotulo,arq);caixa.append(l);continue;
   }

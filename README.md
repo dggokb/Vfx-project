@@ -13,6 +13,10 @@ celular.
   a pasta `<nome>/` com `folha.webp` e `efeito.json` no formato que o jogo lê
   (`assets/efeitos/<nome>/`, o `EfeitosVideo`), sem conversão. O `efeito.json` guarda também o tipo
   e as opções usadas (`sokonfx`), para refazer o efeito depois.
+- **Ver na luta:** abra **Prévia no jogo**, carregue um print da luta, meça o lutador (toque na
+  cabeça e nos pés) e marque o ponto do golpe. O efeito toca no tempo e no tamanho do motor do
+  jogo, com a pausa de cada força, e dá para comparar lado a lado com um efeito que já está no
+  jogo (o `.zip` ou a folha + `efeito.json`).
 - **Para onde vai a ferramenta:** a [bíblia de VFX](docs/biblia/BIBLIA_DE_VFX.md) — 40 famílias de
   geradores, compositor de camadas e preview de gameplay.
 
@@ -38,8 +42,9 @@ npm test                    # dist em dia + trava de pixels
 
 ## Trava de pixels
 
-`npm test` confere que o `dist` está em dia, roda a trava de pixels e o teste do export (baixa
-o `.zip` pela página, confere zip, `efeito.json` do jeito que o jogo lê e cada quadro da folha).
+`npm test` confere que o `dist` está em dia, roda a trava de pixels, o teste do export (baixa o
+`.zip` pela página, confere zip, `efeito.json` do jeito que o jogo lê e cada quadro da folha) e o
+da prévia no jogo (tempo do motor, zips, toques, lado a lado).
 
 A trava desenha 129 casos (cada efeito, as variações dos controles, os tipos do dono e as
 fumaças que estão no jogo), 16 quadros cada, e compara pixel a pixel com a referência aprovada

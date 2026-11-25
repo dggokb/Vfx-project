@@ -58,3 +58,30 @@ embaixo.
   chuta o Kōga). O `EfeitosVideo` leu a pasta sem erro, a faísca nasceu na ponta do pé e a luz
   apareceu no chão. Depois o jogo voltou ao que era (nada foi commitado lá).
 - **Falta:** ver no celular e o dono julgar o painel e o efeito no vídeo.
+
+## 25/11 — Prévia no jogo
+
+- **Pedido:** seguir o plano: o preview de gameplay, para julgar o efeito no tamanho e no tempo da
+  luta, no PC e no celular, sem precisar gravar vídeo no jogo.
+- **Feito:** painel **Prévia no jogo** (`16-previa-jogo.js`). Com ele aberto, a prévia quadrada dá
+  lugar a um palco 16:9:
+  - fundo: um **print da luta** do aparelho (fica guardado no navegador), escuro, claro, ou duas
+    silhuetas na escala de um lutador quando não há print;
+  - calibragem: altura do lutador no jogo (px do mundo) e a altura dele no print, medida tocando na
+    cabeça e nos pés; o ponto do golpe marcado com um toque;
+  - o efeito tocado é o mesmo que o export gera, como o motor toca a faísca: 60 Hz, duração de
+    `(max(6, pausa) + 8)` quadros (×0,7 nos `impacto_v0*`), folha esticada para caber,
+    `FAISCA_ESCALA` (1; 1,15 no especial; 1,25 no Super), ângulo, espelho e soma em duas passadas,
+    lidos de `GameView` e `EfeitosVideo` do jogo;
+  - força L/M/H/especial/Super com a pausa (8, 11, 16), contador da pausa, câmera lenta (¼);
+  - **comparar** com um efeito do jogo: o `.zip` (do Sōkon FX ou do celular, com deflate) ou a
+    folha + `efeito.json` soltos, lado a lado, as duas janelas centradas no golpe.
+  - A luz que o efeito joga nos lutadores **não** é simulada (o aviso está no painel).
+- **Conferido:** `testes/previa.test.cjs` (tempos L/M/H 187/222/280 ms, quadro por idade, zips
+  dos dois tipos, efeito só depois do golpe e sumido no fim, toque para golpe e altura, lado a lado,
+  fechar). No PC, com um quadro da gravação do jogo como print (só no rascunho; não entra aqui),
+  o H do dono lado a lado com o `impacto_v09_forte` do jogo. Na gravação do motor de 25/11, a
+  faísca ficou na tela do quadro 11 ao 28 (cerca de 17 a 60 Hz, ~283 ms); o preview calcula 280 ms.
+  Tela de celular (Pixel 7, emulada): palco e painel cabem.
+- **Falta:** o dono usar no celular com um print de verdade e dizer se o tamanho e o tempo batem
+  com o que ele vê no jogo.

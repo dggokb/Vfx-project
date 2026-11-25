@@ -17,8 +17,9 @@ aside>*{flex-shrink:0;min-width:0}
  aside{grid-template-columns:repeat(2,minmax(0,1fr));align-content:start}
 }
 .smoke-setting[hidden]{display:none}[hidden]{display:none!important}
-details{grid-column:1/-1;min-width:0;border:1px solid #46444c;border-radius:7px;padding:10px 12px}details input:not([type=checkbox]),details select,details button{width:100%;min-width:0}details[open]{padding-bottom:14px}summary{cursor:pointer;font-weight:700;color:#ffac48}details>*+*{margin-top:14px}details label,details .jogo-origem{display:grid;gap:6px;color:#c4c0c8;font-size:14px}.jogo-origem button{margin-top:4px}details input[type=number],details input:not([type]){padding:10px;border:1px solid #46444c;border-radius:7px;background:#25252d;color:inherit;font:inherit}.jogo-check{grid-template-columns:1fr auto;align-items:center}#jogoStatus{display:block;color:#c4c0c8;font-size:14px;overflow-wrap:anywhere}</style><main><h1>SŌKON <i>FX</i></h1><section><div class="preview"><canvas id="stage" width="512" height="512"></canvas><footer><button id="play">Pausar</button><input aria-label="Quadro" id="frame" type="range" min="0" max="15" value="0"><output id="counter"></output></footer></div><aside tabindex="0" aria-label="Ajustes do efeito">
-<label>Efeito<select id="kind"><option>Impacto</option><option>Corte</option><option>Projétil</option><option>Fogo</option><option>Água</option><option>Gosma</option><option>Fumaça</option><option>Ponto de luz</option><option>Pressão de ar</option></select></label><label>Imagem de referência<input type="file" id="refUpload" accept="image/png,image/jpeg,image/webp"></label><span id="refStatus" role="status"></span><button id="refClear" hidden>Remover referência</button><label class="air-setting" hidden>Movimento do ar<select id="airFlow"><option value="out">Do meio para fora</option><option value="in">De fora para o meio</option><option value="pulse">Expande e recolhe</option></select></label><label id="airCopiesControl" hidden>Rajadas por onda <output id="airCopiesValue">10</output><input id="airCopies" type="range" min="1" max="32" value="10"></label><label class="air-setting" hidden>Quantidade de ondas <output id="airWavesValue">3</output><input id="airWaves" type="range" min="1" max="6" value="3"></label><label class="air-setting" hidden>Contorno dos anéis<select id="airEdge"><option value="round">Circular</option><option value="spiked">Pontiagudo · Referência</option></select></label><label class="air-setting" hidden>Intervalo entre anéis<select id="airInterval"><option value="auto">Automático (original)</option><option value="0">Simultâneos</option><option value="1">1 quadro</option><option value="2">2 quadros</option></select></label><label class="air-setting" hidden>Espaçamento dos anéis <output id="airRingGapValue">100%</output><input id="airRingGap" type="range" min="0" max="300" value="100"></label><label class="air-setting" hidden>Espaçamento das partículas <output id="airParticleGapValue">100%</output><input id="airParticleGap" type="range" min="0" max="300" value="100"></label><label class="air-setting" hidden>Espessura da onda <output id="airWidthValue">8 px</output><input id="airWidth" type="range" min="1" max="28" value="8"></label><label class="impact-setting">Material do impacto<select id="material"><option>Energia</option><option>Fogo</option><option>Água</option><option>Gosma</option><option>Raio</option><option>Gelo</option><option>Vento</option><option>Pedra</option><option>Nanquim</option></select></label><label class="impact-setting">Estilo do impacto<select id="artStyle"><option value="original">Original</option><option value="anime">Anime anos 90</option><option value="manga">Mangá de alto contraste</option><option value="brush">Pincel seco</option></select></label><label class="light-setting" hidden>Quantidade de feixes<input id="beams" type="range" min="1" max="18" value="6"></label><label class="light-setting" hidden>Largura dos feixes<input id="beamWidth" type="range" min="2" max="48" value="16"></label><p class="light-setting" hidden>Toque na prévia para posicionar o foco.</p><input type="hidden" id="focusX" value="256"><input type="hidden" id="focusY" value="256"><label class="smoke-setting" hidden>Força do vento <output id="windForceValue">0%</output><input type="range" id="windForce" min="0" max="100" value="0"></label><label class="smoke-setting" hidden>Direção do vento <output id="windAngleValue">0°</output><input type="range" id="windAngle" min="-180" max="180" value="0"></label><label class="smoke-setting" hidden>Largura da rajada <output id="windWidthValue">85 px</output><input type="range" id="windWidth" min="12" max="240" value="85"></label><button class="smoke-setting" hidden id="windPick">Posicionar vento na prévia</button><input type="hidden" id="windX" value="256"><input type="hidden" id="windY" value="240"><label class="smoke-setting" hidden>Formação da fumaça<select id="smokeForm"><option value="linear">Linear</option><option value="ring">Circular</option><option value="jump">Super pulo</option></select></label><label class="jump-setting" hidden>Turbulência da fumaça <output id="jumpRollValue"></output><input type="range" id="jumpRoll" min="0" max="150" value="85"></label><button class="jump-setting" hidden id="editSmoke">Editar silhueta na prévia</button><button class="jump-setting" hidden id="resetSmoke">Restaurar silhueta</button><input type="hidden" id="offsetTopoX" value="0"><input type="hidden" id="offsetTopoY" value="0"><input type="hidden" id="offsetDobraX" value="0"><input type="hidden" id="offsetDobraY" value="0"><input type="hidden" id="offsetBaseX" value="0"><input type="hidden" id="offsetBaseY" value="0"><button class="jump-setting" hidden id="pickDissolve">Marcar pontos de dissipação</button><button class="jump-setting" hidden id="autoDissolve">Dissipação automática</button><input type="hidden" id="moreDissolve" value="[]"><input type="hidden" id="dissolveX" value="-1"><input type="hidden" id="dissolveY" value="-1"><label class="jump-setting" hidden>Direção da dissipação<select id="jumpDirection"><option value="out">Para os lados</option><option value="up">Para cima</option><option value="left">Para a esquerda</option><option value="right">Para a direita</option></select></label><label class="jump-setting" hidden>Início da dissipação <output id="jumpOpenValue"></output><input id="jumpOpen" type="range" min="3" max="13" value="8"></label><label class="jump-setting" hidden>Curvatura da dissipação <output id="jumpCurlValue"></output><input id="jumpCurl" type="range" min="0" max="200" value="100"></label><label class="jump-setting" hidden>Volume da nuvem <output id="jumpVolumeValue"></output><input id="jumpVolume" type="range" min="30" max="180" value="100"></label><label id="ringControl" hidden>Abertura do anel <output id="ringRadiusValue">70 px</output><input id="ringRadius" type="range" min="10" max="130" value="70"></label><label class="smoke-setting" hidden>Quantidade de plumas <output id="plumesValue">2</output><input id="plumes" type="range" min="1" max="8" value="2"></label><label class="smoke-setting" hidden>Separação nas bases <output id="gapValue">48 px</output><input id="gap" type="range" min="0" max="120" value="48"></label><label class="smoke-setting" hidden>Separação nas pontas <output id="tipGapValue">48 px</output><input id="tipGap" type="range" min="0" max="120" value="48"></label><label class="smoke-setting" hidden>Altura da junção <output id="joinAtValue">100%</output><input id="joinAt" type="range" min="10" max="100" value="100"></label><label class="smoke-setting" hidden>Expansão para cima <output id="riseValue">100%</output><input id="rise" type="range" min="0" max="200" value="100"></label><label class="smoke-setting" hidden>Expansão para baixo <output id="fallValue">0%</output><input id="fall" type="range" min="0" max="200" value="0"></label><label class="smoke-setting" hidden>Espelhamento horizontal<select id="smokeMirror"><option value="off">Desligado</option><option value="flip">Inverter conjunto</option><option value="pairs">Espelhar em pares</option></select></label><label class="smoke-setting" hidden>Claridade da sombra <output id="shadeLightValue">0%</output><input id="shadeLight" type="range" min="0" max="100" value="0"></label><label class="smoke-setting" hidden>Dissipar em curvas <output id="curlValue">0%</output><input id="curl" type="range" min="0" max="100" value="0"></label><label>Estilo · Vetor → Cel shading<input id="styleMix" type="range" min="0" max="100" value="0"></label><label>Cor da energia<input id="tint" type="color" value="#ff781a"></label><label>Intensidade<input id="power" type="range" min="3" max="14" value="9"></label><label>Partículas<input id="particles" type="range" min="0" max="60" value="32"></label><label>Luminosidade<input id="light" type="range" min="0" max="100" value="75"></label><label class="impact-setting">Desenho do efeito<select id="drawing" style="grid-column:1/-1"><option value="star">Estrela clássica</option><option value="cross">Clarão em cruz</option><option value="saw">Serra giratória</option><option value="twin">Pontas duplas</option></select></label><label class="impact-setting">Movimento do efeito<select id="motion" style="grid-column:1/-1"><option value="pulse">Abre e fecha</option><option value="out">Abre para fora</option><option value="in">De fora para dentro</option></select></label><label class="opening-setting" hidden>Início da abertura · quadro <output id="openingValue">7</output><input id="openingFrame" type="range" min="1" max="14" value="7"></label><label class="opening-setting" hidden>Fragmentos do miolo <output id="pieceValue">52</output><input id="pieces" type="range" min="0" max="120" value="52"></label><label class="opening-setting" hidden>Forma da abertura<select id="openingShape"><option value="radial">Radial</option><option value="cross">Em cruz</option><option value="fan">Em leque</option><option value="spiral">Em espiral</option><option value="random">Aleatório</option></select></label><label class="impact-setting">Miolo · largura da camada externa<output id="rimWidthValue">100%</output><input id="rimWidth" type="range" min="10" max="250" value="100"></label><label class="impact-setting">Miolo · largura da camada clara<output id="coreWidthValue">100%</output><input id="coreWidth" type="range" min="10" max="250" value="100"></label><label class="impact-setting">Grossura dos riscos internos<output id="riskWidthValue">100%</output><input id="riskWidth" type="range" min="5" max="1000" value="100"></label><label class="impact-setting">Grossura dos riscos externos<output id="outerWidthValue">100%</output><input id="outerWidth" type="range" min="25" max="250" value="100"></label><label class="impact-setting">Cor das partículas<input id="particleTint" type="color" value="#ff781a"></label><label class="impact-setting">Usar cor da energia<input id="linkTint" type="checkbox" checked style="grid-column:2;width:auto"></label><label class="impact-setting">Grossura das partículas<output id="particleWidthValue">100%</output><input id="particleWidth" type="range" min="25" max="300" value="100"></label><label class="impact-setting">Tipos de partículas<output id="shapesValue">1</output><input id="shapes" type="range" min="1" max="4" value="1"></label><button type="button" class="impact-setting" id="halo" aria-pressed="true">Halo de fundo · ligado</button><label class="impact-setting">Diâmetro da expansão <output id="diameterValue">100%</output><input id="diameter" type="range" min="10" max="200" value="100"></label><label class="impact-setting">Direcional <output id="focusValue">0%</output><input id="focus" type="range" min="0" max="100" value="0"></label><label>Direção<input id="angle" type="range" min="-180" max="180" value="-15"></label><label>Velocidade<select id="fps"><option>12</option><option selected>24</option><option>30</option><option>60</option></select></label><button class="primary" id="generate">Gerar variação</button><label>Nome do tipo<input id="presetName" maxlength="60" placeholder="Ex.: Impacto pesado"></label><button id="keep">Salvar tipo</button><button id="backup">Baixar todos os tipos</button><label>Importar tipos (.json)<input id="restore" type="file" accept=".json,application/json"></label><label>Tipos salvos<select id="savedTypes"><option value="">Escolher tipo</option></select></label><output id="presetStatus" role="status"></output><details id="gameExport"><summary>Exportar para o jogo</summary><label>Nome da pasta no jogo<input id="jogoNome" maxlength="60" autocapitalize="off" autocomplete="off" spellcheck="false"></label><div class="jogo-origem">Origem <output id="jogoOrigemValor"></output><input type="hidden" id="jogoOrigemX" value="256"><input type="hidden" id="jogoOrigemY" value="256"><button type="button" id="jogoOrigemMarcar">Marcar origem na prévia</button><button type="button" id="jogoOrigemCentro">Origem no centro</button></div><label>Tamanho no jogo <output id="jogoTamanhoValor"></output><input id="jogoTamanho" type="range" min="25" max="300" step="5" value="100"></label><label>Resolução da folha<select id="jogoResolucao"><option value="100">100%</option><option value="75">75%</option><option value="50">50%</option></select></label><label>Primeiro quadro<input id="jogoInicio" type="number" min="1" max="16" value="1"></label><label>Último quadro<input id="jogoFim" type="number" min="1" max="16" value="16"></label><label>Segurar o quadro (0: nenhum)<input id="jogoSegurar" type="number" min="0" max="16" value="0"></label><label>Tempo a mais nele <output id="jogoSegurarMsValor"></output><input id="jogoSegurarMs" type="range" min="0" max="1000" step="10" value="0"></label><label>Reforçar brilho <output id="jogoBrilhoValor"></output><input id="jogoBrilho" type="range" min="0" max="100" value="0"></label><label>Somar como luz <output id="jogoSomaValor"></output><input id="jogoSoma" type="range" min="0" max="100" value="0"></label><label class="jogo-check">Ilumina os lutadores<input id="jogoLuz" type="checkbox"></label><label class="jogo-luz" hidden>Cor da luz<input id="jogoLuzCor" type="color" value="#f5c83e"></label><label class="jogo-luz" hidden>Alcance da luz <output id="jogoLuzAlcanceValor"></output><input id="jogoLuzAlcance" type="range" min="10" max="200" value="90"></label><label class="jogo-luz" hidden>Força da luz <output id="jogoLuzForcaValor"></output><input id="jogoLuzForca" type="range" min="0" max="100" value="75"></label><button type="button" class="primary" id="jogoExportar">Baixar para o jogo (.zip)</button><output id="jogoStatus" role="status"></output></details><button id="save">Exportar spritesheet PNG</button></aside></section></main>
+details{grid-column:1/-1;min-width:0;border:1px solid #46444c;border-radius:7px;padding:10px 12px}details input:not([type=checkbox]),details select,details button{width:100%;min-width:0}details[open]{padding-bottom:14px}summary{cursor:pointer;font-weight:700;color:#ffac48}details>*+*{margin-top:14px}details label,details .jogo-origem{display:grid;gap:6px;color:#c4c0c8;font-size:14px}.jogo-origem button{margin-top:4px}details input[type=number],details input:not([type]){padding:10px;border:1px solid #46444c;border-radius:7px;background:#25252d;color:inherit;font:inherit}.jogo-check{grid-template-columns:1fr auto;align-items:center}#jogoStatus{display:block;color:#c4c0c8;font-size:14px;overflow-wrap:anywhere}
+.preview #palco{aspect-ratio:auto;height:auto;max-height:100%;width:100%;touch-action:manipulation}#previaStatus{display:block;color:#c4c0c8;font-size:14px;overflow-wrap:anywhere}.nota{color:#8f8b93;font-size:13px;margin:0}</style><main><h1>SŌKON <i>FX</i></h1><section><div class="preview"><canvas id="stage" width="512" height="512"></canvas><canvas id="palco" width="960" height="540" hidden></canvas><footer><button id="play">Pausar</button><input aria-label="Quadro" id="frame" type="range" min="0" max="15" value="0"><output id="counter"></output></footer></div><aside id="ajustes" tabindex="0" aria-label="Ajustes do efeito">
+<label>Efeito<select id="kind"><option>Impacto</option><option>Corte</option><option>Projétil</option><option>Fogo</option><option>Água</option><option>Gosma</option><option>Fumaça</option><option>Ponto de luz</option><option>Pressão de ar</option></select></label><label>Imagem de referência<input type="file" id="refUpload" accept="image/png,image/jpeg,image/webp"></label><span id="refStatus" role="status"></span><button id="refClear" hidden>Remover referência</button><label class="air-setting" hidden>Movimento do ar<select id="airFlow"><option value="out">Do meio para fora</option><option value="in">De fora para o meio</option><option value="pulse">Expande e recolhe</option></select></label><label id="airCopiesControl" hidden>Rajadas por onda <output id="airCopiesValue">10</output><input id="airCopies" type="range" min="1" max="32" value="10"></label><label class="air-setting" hidden>Quantidade de ondas <output id="airWavesValue">3</output><input id="airWaves" type="range" min="1" max="6" value="3"></label><label class="air-setting" hidden>Contorno dos anéis<select id="airEdge"><option value="round">Circular</option><option value="spiked">Pontiagudo · Referência</option></select></label><label class="air-setting" hidden>Intervalo entre anéis<select id="airInterval"><option value="auto">Automático (original)</option><option value="0">Simultâneos</option><option value="1">1 quadro</option><option value="2">2 quadros</option></select></label><label class="air-setting" hidden>Espaçamento dos anéis <output id="airRingGapValue">100%</output><input id="airRingGap" type="range" min="0" max="300" value="100"></label><label class="air-setting" hidden>Espaçamento das partículas <output id="airParticleGapValue">100%</output><input id="airParticleGap" type="range" min="0" max="300" value="100"></label><label class="air-setting" hidden>Espessura da onda <output id="airWidthValue">8 px</output><input id="airWidth" type="range" min="1" max="28" value="8"></label><label class="impact-setting">Material do impacto<select id="material"><option>Energia</option><option>Fogo</option><option>Água</option><option>Gosma</option><option>Raio</option><option>Gelo</option><option>Vento</option><option>Pedra</option><option>Nanquim</option></select></label><label class="impact-setting">Estilo do impacto<select id="artStyle"><option value="original">Original</option><option value="anime">Anime anos 90</option><option value="manga">Mangá de alto contraste</option><option value="brush">Pincel seco</option></select></label><label class="light-setting" hidden>Quantidade de feixes<input id="beams" type="range" min="1" max="18" value="6"></label><label class="light-setting" hidden>Largura dos feixes<input id="beamWidth" type="range" min="2" max="48" value="16"></label><p class="light-setting" hidden>Toque na prévia para posicionar o foco.</p><input type="hidden" id="focusX" value="256"><input type="hidden" id="focusY" value="256"><label class="smoke-setting" hidden>Força do vento <output id="windForceValue">0%</output><input type="range" id="windForce" min="0" max="100" value="0"></label><label class="smoke-setting" hidden>Direção do vento <output id="windAngleValue">0°</output><input type="range" id="windAngle" min="-180" max="180" value="0"></label><label class="smoke-setting" hidden>Largura da rajada <output id="windWidthValue">85 px</output><input type="range" id="windWidth" min="12" max="240" value="85"></label><button class="smoke-setting" hidden id="windPick">Posicionar vento na prévia</button><input type="hidden" id="windX" value="256"><input type="hidden" id="windY" value="240"><label class="smoke-setting" hidden>Formação da fumaça<select id="smokeForm"><option value="linear">Linear</option><option value="ring">Circular</option><option value="jump">Super pulo</option></select></label><label class="jump-setting" hidden>Turbulência da fumaça <output id="jumpRollValue"></output><input type="range" id="jumpRoll" min="0" max="150" value="85"></label><button class="jump-setting" hidden id="editSmoke">Editar silhueta na prévia</button><button class="jump-setting" hidden id="resetSmoke">Restaurar silhueta</button><input type="hidden" id="offsetTopoX" value="0"><input type="hidden" id="offsetTopoY" value="0"><input type="hidden" id="offsetDobraX" value="0"><input type="hidden" id="offsetDobraY" value="0"><input type="hidden" id="offsetBaseX" value="0"><input type="hidden" id="offsetBaseY" value="0"><button class="jump-setting" hidden id="pickDissolve">Marcar pontos de dissipação</button><button class="jump-setting" hidden id="autoDissolve">Dissipação automática</button><input type="hidden" id="moreDissolve" value="[]"><input type="hidden" id="dissolveX" value="-1"><input type="hidden" id="dissolveY" value="-1"><label class="jump-setting" hidden>Direção da dissipação<select id="jumpDirection"><option value="out">Para os lados</option><option value="up">Para cima</option><option value="left">Para a esquerda</option><option value="right">Para a direita</option></select></label><label class="jump-setting" hidden>Início da dissipação <output id="jumpOpenValue"></output><input id="jumpOpen" type="range" min="3" max="13" value="8"></label><label class="jump-setting" hidden>Curvatura da dissipação <output id="jumpCurlValue"></output><input id="jumpCurl" type="range" min="0" max="200" value="100"></label><label class="jump-setting" hidden>Volume da nuvem <output id="jumpVolumeValue"></output><input id="jumpVolume" type="range" min="30" max="180" value="100"></label><label id="ringControl" hidden>Abertura do anel <output id="ringRadiusValue">70 px</output><input id="ringRadius" type="range" min="10" max="130" value="70"></label><label class="smoke-setting" hidden>Quantidade de plumas <output id="plumesValue">2</output><input id="plumes" type="range" min="1" max="8" value="2"></label><label class="smoke-setting" hidden>Separação nas bases <output id="gapValue">48 px</output><input id="gap" type="range" min="0" max="120" value="48"></label><label class="smoke-setting" hidden>Separação nas pontas <output id="tipGapValue">48 px</output><input id="tipGap" type="range" min="0" max="120" value="48"></label><label class="smoke-setting" hidden>Altura da junção <output id="joinAtValue">100%</output><input id="joinAt" type="range" min="10" max="100" value="100"></label><label class="smoke-setting" hidden>Expansão para cima <output id="riseValue">100%</output><input id="rise" type="range" min="0" max="200" value="100"></label><label class="smoke-setting" hidden>Expansão para baixo <output id="fallValue">0%</output><input id="fall" type="range" min="0" max="200" value="0"></label><label class="smoke-setting" hidden>Espelhamento horizontal<select id="smokeMirror"><option value="off">Desligado</option><option value="flip">Inverter conjunto</option><option value="pairs">Espelhar em pares</option></select></label><label class="smoke-setting" hidden>Claridade da sombra <output id="shadeLightValue">0%</output><input id="shadeLight" type="range" min="0" max="100" value="0"></label><label class="smoke-setting" hidden>Dissipar em curvas <output id="curlValue">0%</output><input id="curl" type="range" min="0" max="100" value="0"></label><label>Estilo · Vetor → Cel shading<input id="styleMix" type="range" min="0" max="100" value="0"></label><label>Cor da energia<input id="tint" type="color" value="#ff781a"></label><label>Intensidade<input id="power" type="range" min="3" max="14" value="9"></label><label>Partículas<input id="particles" type="range" min="0" max="60" value="32"></label><label>Luminosidade<input id="light" type="range" min="0" max="100" value="75"></label><label class="impact-setting">Desenho do efeito<select id="drawing" style="grid-column:1/-1"><option value="star">Estrela clássica</option><option value="cross">Clarão em cruz</option><option value="saw">Serra giratória</option><option value="twin">Pontas duplas</option></select></label><label class="impact-setting">Movimento do efeito<select id="motion" style="grid-column:1/-1"><option value="pulse">Abre e fecha</option><option value="out">Abre para fora</option><option value="in">De fora para dentro</option></select></label><label class="opening-setting" hidden>Início da abertura · quadro <output id="openingValue">7</output><input id="openingFrame" type="range" min="1" max="14" value="7"></label><label class="opening-setting" hidden>Fragmentos do miolo <output id="pieceValue">52</output><input id="pieces" type="range" min="0" max="120" value="52"></label><label class="opening-setting" hidden>Forma da abertura<select id="openingShape"><option value="radial">Radial</option><option value="cross">Em cruz</option><option value="fan">Em leque</option><option value="spiral">Em espiral</option><option value="random">Aleatório</option></select></label><label class="impact-setting">Miolo · largura da camada externa<output id="rimWidthValue">100%</output><input id="rimWidth" type="range" min="10" max="250" value="100"></label><label class="impact-setting">Miolo · largura da camada clara<output id="coreWidthValue">100%</output><input id="coreWidth" type="range" min="10" max="250" value="100"></label><label class="impact-setting">Grossura dos riscos internos<output id="riskWidthValue">100%</output><input id="riskWidth" type="range" min="5" max="1000" value="100"></label><label class="impact-setting">Grossura dos riscos externos<output id="outerWidthValue">100%</output><input id="outerWidth" type="range" min="25" max="250" value="100"></label><label class="impact-setting">Cor das partículas<input id="particleTint" type="color" value="#ff781a"></label><label class="impact-setting">Usar cor da energia<input id="linkTint" type="checkbox" checked style="grid-column:2;width:auto"></label><label class="impact-setting">Grossura das partículas<output id="particleWidthValue">100%</output><input id="particleWidth" type="range" min="25" max="300" value="100"></label><label class="impact-setting">Tipos de partículas<output id="shapesValue">1</output><input id="shapes" type="range" min="1" max="4" value="1"></label><button type="button" class="impact-setting" id="halo" aria-pressed="true">Halo de fundo · ligado</button><label class="impact-setting">Diâmetro da expansão <output id="diameterValue">100%</output><input id="diameter" type="range" min="10" max="200" value="100"></label><label class="impact-setting">Direcional <output id="focusValue">0%</output><input id="focus" type="range" min="0" max="100" value="0"></label><label>Direção<input id="angle" type="range" min="-180" max="180" value="-15"></label><label>Velocidade<select id="fps"><option>12</option><option selected>24</option><option>30</option><option>60</option></select></label><button class="primary" id="generate">Gerar variação</button><label>Nome do tipo<input id="presetName" maxlength="60" placeholder="Ex.: Impacto pesado"></label><button id="keep">Salvar tipo</button><button id="backup">Baixar todos os tipos</button><label>Importar tipos (.json)<input id="restore" type="file" accept=".json,application/json"></label><label>Tipos salvos<select id="savedTypes"><option value="">Escolher tipo</option></select></label><output id="presetStatus" role="status"></output><details id="gamePreview"><summary>Prévia no jogo</summary><label>Fundo<select id="previaFundo"><option value="cena">Print da luta</option><option value="escuro" selected>Escuro</option><option value="claro">Claro</option></select></label><label>Print da luta (do aparelho)<input type="file" id="previaCena" accept="image/png,image/jpeg,image/webp"></label><button type="button" id="previaCenaTirar" hidden>Tirar o print</button><label>Altura do lutador no jogo (px do mundo)<input id="previaAltura" type="number" min="50" max="1000" value="250"></label><div id="previaMedidaLinha" class="jogo-origem" hidden><label>Altura dele no print (px)<input id="previaMedida" type="number" min="10" max="4000" value="300"></label><button type="button" id="previaMarcarAltura">Medir no print (cabeça e pés)</button></div><div class="jogo-origem">Ponto do golpe<input type="hidden" id="previaX" value="500"><input type="hidden" id="previaY" value="290"><button type="button" id="previaMarcarGolpe">Marcar ponto do golpe</button></div><label>Força<select id="previaForca"><option value="L">Fraco (L)</option><option value="M">Médio (M)</option><option value="H" selected>Forte (H)</option><option value="especial">Especial</option><option value="Super">Super</option></select></label><label>Pausa do acerto <output id="previaPausaValor"></output><input id="previaPausa" type="range" min="0" max="30" value="16"></label><label class="jogo-check">Ritmo dos impactos (70%)<input id="previaRitmo" type="checkbox" checked></label><label class="jogo-check">Quem bate olha para a esquerda<input id="previaEsquerda" type="checkbox"></label><label>Ângulo do golpe <output id="previaAnguloValor"></output><input id="previaAngulo" type="range" min="-60" max="60" value="0"></label><label class="jogo-check">Câmera lenta (¼)<input id="previaLenta" type="checkbox"></label><label>Comparar com um efeito do jogo (.zip, ou folha + efeito.json)<input type="file" id="previaComparar" multiple accept=".zip,.json,.webp,.png,application/zip,application/json,image/webp,image/png"></label><button type="button" id="previaCompararTirar" hidden>Parar de comparar</button><output id="previaStatus" role="status"></output><p class="nota">Toca como o motor: 60 quadros por segundo, a faísca dura a pausa + 8 quadros e o efeito é esticado para caber. A luz nos lutadores não é simulada.</p></details><details id="gameExport"><summary>Exportar para o jogo</summary><label>Nome da pasta no jogo<input id="jogoNome" maxlength="60" autocapitalize="off" autocomplete="off" spellcheck="false"></label><div class="jogo-origem">Origem <output id="jogoOrigemValor"></output><input type="hidden" id="jogoOrigemX" value="256"><input type="hidden" id="jogoOrigemY" value="256"><button type="button" id="jogoOrigemMarcar">Marcar origem na prévia</button><button type="button" id="jogoOrigemCentro">Origem no centro</button></div><label>Tamanho no jogo <output id="jogoTamanhoValor"></output><input id="jogoTamanho" type="range" min="25" max="300" step="5" value="100"></label><label>Resolução da folha<select id="jogoResolucao"><option value="100">100%</option><option value="75">75%</option><option value="50">50%</option></select></label><label>Primeiro quadro<input id="jogoInicio" type="number" min="1" max="16" value="1"></label><label>Último quadro<input id="jogoFim" type="number" min="1" max="16" value="16"></label><label>Segurar o quadro (0: nenhum)<input id="jogoSegurar" type="number" min="0" max="16" value="0"></label><label>Tempo a mais nele <output id="jogoSegurarMsValor"></output><input id="jogoSegurarMs" type="range" min="0" max="1000" step="10" value="0"></label><label>Reforçar brilho <output id="jogoBrilhoValor"></output><input id="jogoBrilho" type="range" min="0" max="100" value="0"></label><label>Somar como luz <output id="jogoSomaValor"></output><input id="jogoSoma" type="range" min="0" max="100" value="0"></label><label class="jogo-check">Ilumina os lutadores<input id="jogoLuz" type="checkbox"></label><label class="jogo-luz" hidden>Cor da luz<input id="jogoLuzCor" type="color" value="#f5c83e"></label><label class="jogo-luz" hidden>Alcance da luz <output id="jogoLuzAlcanceValor"></output><input id="jogoLuzAlcance" type="range" min="10" max="200" value="90"></label><label class="jogo-luz" hidden>Força da luz <output id="jogoLuzForcaValor"></output><input id="jogoLuzForca" type="range" min="0" max="100" value="75"></label><button type="button" class="primary" id="jogoExportar">Baixar para o jogo (.zip)</button><output id="jogoStatus" role="status"></output></details><button id="save">Exportar spritesheet PNG</button></aside></section></main>
 <script>
 const el=id=>document.getElementById(id);
 const stage=el('stage'), frames=16;
@@ -1533,6 +1534,301 @@ function jogoGuia(ctx){
  ctx.restore();
 }
 jogoAtualizar();
+// Prévia no jogo: o efeito tocado como o motor do jogo toca a faísca do golpe (GameView e
+// EfeitosVideo), em cima de um print da luta (ou de silhuetas), na escala dos lutadores.
+//  - O efeito é o mesmo que o "Exportar para o jogo" gera (jogoMontar): o que se vê é o que vai.
+//  - Tempo: o motor anda a 60 Hz; a faísca dura (max(6, pausa) + 8) quadros, vezes 0,7 nos
+//    impacto_v0* (RITMO_IMPACTO_V06), e o efeito inteiro é esticado para caber nesse tempo
+//    (tocarDurando: ritmo = duração natural / duração pedida).
+//  - Tamanho: FAISCA_ESCALA (1 no L, M e H; 1,15 no especial) e 1,25 no Super; px do mundo =
+//    px da folha × tamanho / pixelScale.
+//  - Ângulo para cima gira ao contrário do relógio; espelhado gira ao contrário; soma em duas
+//    passadas (cobre com 1 − soma, soma com soma), como o EfeitosVideo.pintar.
+//  - A luz que o efeito joga nos lutadores (o "luz" do efeito.json) não é simulada aqui.
+
+const PREVIA_PASSO_MS=1000/60;
+const PREVIA_FORCAS={L:{pausa:8,escala:1},M:{pausa:11,escala:1},H:{pausa:16,escala:1},
+ especial:{pausa:16,escala:1.15},Super:{pausa:16,escala:1.25}};
+const PREVIA_ANTES_MS=350,PREVIA_DEPOIS_MS=450;
+
+// ---- Partes puras ----
+
+// Quanto tempo a faísca fica na tela (ms) e o ritmo em que a folha anda.
+function previaTempo(pausa,ritmoImpacto,naturalMs){
+ const alvo=(Math.max(6,pausa)+8)*PREVIA_PASSO_MS*(ritmoImpacto?0.7:1);
+ return {alvoMs:alvo,ritmo:naturalMs>0&&alvo>0?naturalMs/alvo:1};
+}
+// O quadro da folha numa idade (ms do efeito), ou -1 depois do fim (EfeitosVideo.Folha.quadroEm).
+function previaQuadroEm(duracoesMs,idade){
+ let fim=0;for(let i=0;i<duracoesMs.length;i++){fim+=duracoesMs[i];if(idade<fim)return i}
+ return -1;
+}
+// Idade do efeito no passo n de 60 Hz, tendo nascido no passo n0.
+function previaIdade(n,n0,ritmo){return n<n0?-1:(n-n0)*PREVIA_PASSO_MS*ritmo}
+
+// Desenha um quadro da folha com a origem em (x, y) da tela, como o EfeitosVideo.desenhar.
+function previaDesenharFolha(ctx,folha,dados,q,x,y,k,espelhado,graus){
+ const [fx,fy,w,h,dx,dy]=dados.quadros[q];
+ ctx.save();
+ if(graus)ctx.translate(x,y),ctx.rotate((espelhado?graus:-graus)*Math.PI/180),ctx.translate(-x,-y);
+ if(espelhado)ctx.translate(x,0),ctx.scale(-1,1),ctx.translate(-x,0);
+ const soma=Math.max(0,Math.min(1,dados.soma||0));
+ const pintar=()=>ctx.drawImage(folha,fx,fy,w,h,x+dx*k,y+dy*k,w*k,h*k);
+ if(soma<1){ctx.globalAlpha=1-soma;pintar()}
+ if(soma>0){ctx.globalAlpha=soma;ctx.globalCompositeOperation='lighter';pintar()}
+ ctx.restore();
+}
+
+// ---- Arquivos do aparelho: a cena (IndexedDB, para não perder ao fechar) e o efeito comparado ----
+
+function previaBanco(){
+ return new Promise((ok,erro)=>{const r=indexedDB.open('sokonfx',1);
+  r.onupgradeneeded=()=>r.result.createObjectStore('arquivos');r.onsuccess=()=>ok(r.result);r.onerror=()=>erro(r.error)});
+}
+async function previaGuardar(chave,valor){
+ try{const db=await previaBanco();await new Promise((ok,erro)=>{const t=db.transaction('arquivos','readwrite');
+  valor===null?t.objectStore('arquivos').delete(chave):t.objectStore('arquivos').put(valor,chave);t.oncomplete=ok;t.onerror=()=>erro(t.error)})}catch{}
+}
+async function previaLer(chave){
+ try{const db=await previaBanco();return await new Promise(ok=>{const r=db.transaction('arquivos').objectStore('arquivos').get(chave);
+  r.onsuccess=()=>ok(r.result);r.onerror=()=>ok(undefined)})}catch{return undefined}
+}
+
+// Lê um .zip (guardado ou deflate, como os do celular e os do Sōkon FX): {caminho: Uint8Array}.
+async function previaLerZip(buf){
+ const v=new DataView(buf),bytes=new Uint8Array(buf),dec=new TextDecoder();
+ let fimCentral=-1;
+ for(let i=bytes.length-22;i>=Math.max(0,bytes.length-65557);i--)if(v.getUint32(i,true)===0x06054b50){fimCentral=i;break}
+ if(fimCentral<0)throw Error('não é um .zip');
+ const n=v.getUint16(fimCentral+10,true);let p=v.getUint32(fimCentral+16,true);
+ const arquivos={};
+ for(let i=0;i<n;i++){
+  if(v.getUint32(p,true)!==0x02014b50)throw Error('zip estragado');
+  const metodo=v.getUint16(p+10,true),tam=v.getUint32(p+20,true),nl=v.getUint16(p+28,true),el=v.getUint16(p+30,true),cl=v.getUint16(p+32,true),local=v.getUint32(p+42,true);
+  const nome=dec.decode(bytes.subarray(p+46,p+46+nl));
+  const inicio=local+30+v.getUint16(local+26,true)+v.getUint16(local+28,true),dados=bytes.subarray(inicio,inicio+tam);
+  if(metodo===0)arquivos[nome]=dados.slice();
+  else if(metodo===8)arquivos[nome]=new Uint8Array(await new Response(new Blob([dados]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer());
+  p+=46+nl+el+cl;
+ }
+ return arquivos;
+}
+
+// Um efeito do jogo a partir dos arquivos escolhidos: um .zip, ou a folha.webp + o efeito.json.
+async function previaCarregarEfeito(arquivos){
+ let json=null,imagem=null,nome='';
+ for(const f of arquivos){
+  if(/\.zip$/i.test(f.name)){
+   const z=await previaLerZip(await f.arrayBuffer());
+   const caminhoJson=Object.keys(z).find(k=>/(^|\/)efeito\.json$/.test(k));
+   if(!caminhoJson)throw Error('o zip não tem efeito.json');
+   const pasta=caminhoJson.replace(/efeito\.json$/,'');
+   const caminhoFolha=Object.keys(z).find(k=>k.startsWith(pasta)&&/folha\.(webp|png)$/i.test(k));
+   if(!caminhoFolha)throw Error('o zip não tem a folha');
+   json=new TextDecoder().decode(z[caminhoJson]);imagem=new Blob([z[caminhoFolha]],{type:'image/webp'});
+   nome=pasta.replace(/\/$/,'').split('/').pop()||f.name.replace(/\.zip$/i,'');
+  }else if(/\.json$/i.test(f.name))json=await f.text();
+  else imagem=f;
+ }
+ if(!json||!imagem)throw Error('escolha o .zip, ou a folha e o efeito.json juntos');
+ const dados=JSON.parse(json);
+ if(!Array.isArray(dados.quadros)||!Array.isArray(dados.duracoesMs))throw Error('efeito.json sem quadros ou duracoesMs');
+ const folha=await createImageBitmap(imagem,{premultiplyAlpha:'none'});
+ return {folha,dados,nome:nome||dados.nome||'comparado'};
+}
+
+// ---- Na página ----
+
+const palco=el('palco');
+const previa={atual:null,sujo:true,cena:null,comparado:null,inicio:performance.now(),marcando:null,medida:[]};
+const previaCampos=['previaFundo','previaAltura','previaMedida','previaX','previaY','previaForca','previaPausa','previaRitmo','previaEsquerda','previaAngulo','previaLenta'];
+
+function previaAberta(){return el('gamePreview').open}
+
+// O efeito atual, refeito quando algo mudou (o mesmo do export).
+function previaEfeitoAtual(){
+ if(!previa.sujo&&previa.atual)return previa.atual;
+ previa.sujo=false;
+ try{const {folha,dados}=jogoMontar(jogoOpcoes());previa.atual={folha,dados,nome:'Sōkon FX'};el('previaStatus').value=''}
+ catch(e){previa.atual=null;el('previaStatus').value='Não montou: '+e.message}
+ return previa.atual;
+}
+
+// Escala (px da tela por px do mundo) e o ponto do golpe.
+function previaCalibragem(){
+ const altura=+el('previaAltura').value||250;
+ if(previa.cena)return {px:(+el('previaMedida').value||altura)/altura,largura:previa.cena.width,alturaTela:previa.cena.height};
+ return {px:1.2,largura:960,alturaTela:540};
+}
+
+function previaDesenharFundo(ctx,c){
+ const fundo=el('previaFundo').value;
+ if(previa.cena&&fundo==='cena'){ctx.drawImage(previa.cena,0,0);return}
+ ctx.fillStyle=fundo==='claro'?'#e9e6df':'#1b1c24';ctx.fillRect(0,0,c.largura,c.alturaTela);
+ if(previa.cena)return;
+ // Sem print: duas silhuetas do tamanho de um lutador (só para a escala; não é arte do jogo).
+ const chao=470,h=(+el('previaAltura').value||250)*c.px,esq=el('previaEsquerda').checked;
+ ctx.fillStyle=fundo==='claro'?'#b9b5ad':'#3a3b47';ctx.fillRect(0,chao,c.largura,c.alturaTela-chao);
+ for(const [x,rival] of [[esq?580:380,false],[esq?380:580,true]]){
+  ctx.save();ctx.translate(x,chao);ctx.fillStyle=fundo==='claro'?(rival?'#8d8a84':'#6f6c67'):(rival?'#5d5f6e':'#4a4c59');
+  const s=h/250;ctx.scale(esq?-s:s,s);
+  ctx.beginPath();ctx.ellipse(0,-225,20,25,0,0,7);ctx.fill();
+  ctx.beginPath();ctx.moveTo(-34,-195);ctx.lineTo(34,-195);ctx.lineTo(28,-100);ctx.lineTo(42,0);ctx.lineTo(14,0);ctx.lineTo(0,-80);ctx.lineTo(-14,0);ctx.lineTo(-42,0);ctx.lineTo(-28,-100);ctx.closePath();ctx.fill();
+  if(!rival){ctx.beginPath();ctx.moveTo(20,-185);ctx.lineTo(100,-160);ctx.lineTo(100,-145);ctx.lineTo(18,-160);ctx.fill()}
+  else{ctx.beginPath();ctx.moveTo(-20,-185);ctx.lineTo(-40,-130);ctx.lineTo(-28,-125);ctx.lineTo(-10,-170);ctx.fill()}
+  ctx.restore();
+ }
+}
+
+// Um painel: fundo, efeito no passo n e o texto. Devolve se o efeito ainda estava na tela.
+function previaPainel(ctx,c,efeito,n,n0,x0,larguraJanela,rotulo){
+ const forca=PREVIA_FORCAS[el('previaForca').value]||PREVIA_FORCAS.H;
+ const pausa=+el('previaPausa').value;
+ ctx.save();ctx.beginPath();ctx.rect(0,0,larguraJanela,c.alturaTela);ctx.clip();ctx.translate(-x0,0);
+ previaDesenharFundo(ctx,c);
+ let visivel=false,tempo=null;
+ if(efeito){
+  const natural=efeito.dados.duracoesMs.reduce((a,b)=>a+b,0);
+  tempo=previaTempo(pausa,el('previaRitmo').checked,natural);
+  const q=previaQuadroEm(efeito.dados.duracoesMs,previaIdade(n,n0,tempo.ritmo));
+  if(q>=0&&n>=n0){
+   visivel=true;
+   const k=forca.escala*c.px/efeito.dados.pixelScale;
+   previaDesenharFolha(ctx,efeito.folha,efeito.dados,q,+el('previaX').value,+el('previaY').value,k,el('previaEsquerda').checked,+el('previaAngulo').value);
+  }
+ }
+ ctx.restore();
+ // Texto por cima: o nome e o tempo, e a pausa enquanto os lutadores estão parados.
+ const congelado=n>=n0&&n<n0+pausa;
+ ctx.save();ctx.font='bold 22px system-ui,sans-serif';ctx.lineWidth=5;ctx.strokeStyle='#0008';ctx.fillStyle='#fff';
+ const linha1=rotulo+(tempo?` · ${Math.round(tempo.alvoMs)} ms`:'');
+ ctx.strokeText(linha1,14,32);ctx.fillText(linha1,14,32);
+ if(congelado){const t=`pausa ${n-n0+1}/${pausa}`;ctx.fillStyle='#ffd36b';ctx.strokeText(t,14,62);ctx.fillText(t,14,62)}
+ ctx.restore();
+ return visivel;
+}
+
+function previaQuadro(agora){
+ if(!previaAberta()||previa.parado)return;
+ requestAnimationFrame(previaQuadro);
+ previaDesenhar(agora-previa.inicio);
+}
+// Desenha o palco em `decorrido` ms do relógio da prévia (também usado pelo teste).
+function previaDesenhar(decorrido){
+ const c=previaCalibragem(),efeito=previaEfeitoAtual(),comp=previa.comparado;
+ const lado=!!comp,janela=lado?Math.min(c.largura,Math.round(c.alturaTela*0.9)):c.largura;
+ const W=lado?janela*2+8:c.largura;
+ if(palco.width!==W||palco.height!==c.alturaTela){palco.width=W;palco.height=c.alturaTela}
+ const lenta=el('previaLenta').checked?4:1;
+ const duracoes=[efeito,comp].filter(Boolean).map(e=>{const nat=e.dados.duracoesMs.reduce((a,b)=>a+b,0);return previaTempo(+el('previaPausa').value,el('previaRitmo').checked,nat).alvoMs});
+ const ciclo=PREVIA_ANTES_MS+Math.max(+el('previaPausa').value*PREVIA_PASSO_MS,...duracoes,0)+PREVIA_DEPOIS_MS;
+ const t=(decorrido/lenta)%ciclo;
+ const n=Math.floor(t/PREVIA_PASSO_MS),n0=Math.round(PREVIA_ANTES_MS/PREVIA_PASSO_MS);
+ const ctx=palco.getContext('2d');ctx.clearRect(0,0,palco.width,palco.height);
+ const x0=lado?Math.max(0,Math.min(c.largura-janela,+el('previaX').value-janela/2)):0;
+ previaPainel(ctx,c,efeito,n,n0,x0,janela,'Sōkon FX');
+ if(lado){ctx.save();ctx.translate(janela+8,0);previaPainel(ctx,c,comp.folha?comp:null,n,n0,x0,janela,comp.nome);ctx.restore()}
+ previaMarcas(ctx,c,x0,lado,janela);
+}
+
+// As marcas enquanto se calibra: o ponto do golpe e a medida do lutador.
+function previaMarcas(ctx,c,x0,lado,janela){
+ if(!previa.marcando)return;
+ const cruz=(x,y,cor)=>{for(const [w,k] of [[5,'#16161c'],[2,cor]]){ctx.lineWidth=w;ctx.strokeStyle=k;ctx.beginPath();ctx.moveTo(x-14,y);ctx.lineTo(x+14,y);ctx.moveTo(x,y-14);ctx.lineTo(x,y+14);ctx.stroke()}};
+ ctx.save();ctx.translate(-x0,0);
+ if(previa.marcando==='golpe')cruz(+el('previaX').value,+el('previaY').value,'#ffad40');
+ for(const p of previa.medida)cruz(p.x,p.y,'#7fe0ff');
+ ctx.restore();
+ ctx.save();ctx.font='bold 22px system-ui,sans-serif';ctx.lineWidth=5;ctx.strokeStyle='#000a';ctx.fillStyle='#7fe0ff';
+ const t=previa.marcando==='golpe'?'Toque onde o golpe acerta':previa.medida.length?'Agora toque nos pés':'Toque no alto da cabeça do lutador';
+ ctx.strokeText(t,14,c.alturaTela-18);ctx.fillText(t,14,c.alturaTela-18);ctx.restore();
+}
+
+function previaPonto(e){
+ const box=palco.getBoundingClientRect(),c=previaCalibragem();
+ const lado=!!previa.comparado,janela=lado?Math.min(c.largura,Math.round(c.alturaTela*0.9)):c.largura;
+ const x0=lado?Math.max(0,Math.min(c.largura-janela,+el('previaX').value-janela/2)):0;
+ let x=(e.clientX-box.left)*palco.width/box.width,y=(e.clientY-box.top)*palco.height/box.height;
+ if(lado&&x>janela)x-=janela+8;
+ return {x:Math.round(x+x0),y:Math.round(y)};
+}
+palco.addEventListener('pointerdown',e=>{
+ if(!previa.marcando)return;
+ e.preventDefault();
+ const p=previaPonto(e);
+ if(previa.marcando==='golpe'){el('previaX').value=p.x;el('previaY').value=p.y;previaFimMarca();return}
+ previa.medida.push(p);
+ if(previa.medida.length===2){
+  el('previaMedida').value=Math.max(10,Math.round(Math.abs(previa.medida[1].y-previa.medida[0].y)));
+  previaFimMarca();
+ }
+});
+function previaFimMarca(){previa.marcando=null;previa.medida=[];previaAtualizar()}
+el('previaMarcarGolpe').onclick=()=>{previa.marcando=previa.marcando==='golpe'?null:'golpe';previa.medida=[]};
+el('previaMarcarAltura').onclick=()=>{previa.marcando=previa.marcando==='altura'?null:'altura';previa.medida=[]};
+
+async function previaUsarCena(blob){
+ if(!blob){previa.cena=null;return}
+ try{previa.cena=await createImageBitmap(blob)}catch{previa.cena=null;el('previaStatus').value='Não abriu a imagem da cena.'}
+}
+el('previaCena').onchange=async()=>{
+ const f=el('previaCena').files[0];if(!f)return;
+ await previaUsarCena(f);await previaGuardar('cena',f);
+ if(previa.cena){
+  el('previaFundo').value='cena';
+  // Sem medida ainda: chuta o lutador com 55% da altura do print e o golpe no meio.
+  el('previaMedida').value=Math.round(previa.cena.height*0.55);
+  el('previaX').value=Math.round(previa.cena.width/2);el('previaY').value=Math.round(previa.cena.height*0.5);
+  el('previaStatus').value='Cena carregada. Marque a altura do lutador e o ponto do golpe.';
+ }
+ el('previaCena').value='';previaAtualizar();
+};
+el('previaCenaTirar').onclick=async()=>{
+ await previaUsarCena(null);await previaGuardar('cena',null);
+ el('previaFundo').value='escuro';el('previaX').value=518;el('previaY').value=290;el('previaMedida').value=300;previaAtualizar();
+};
+el('previaComparar').onchange=async()=>{
+ const arquivos=[...el('previaComparar').files];if(!arquivos.length)return;
+ try{previa.comparado=await previaCarregarEfeito(arquivos);el('previaStatus').value='Comparando com '+previa.comparado.nome+'.'}
+ catch(e){el('previaStatus').value='Não abriu para comparar: '+e.message}
+ el('previaComparar').value='';previaAtualizar();
+};
+el('previaCompararTirar').onclick=()=>{previa.comparado=null;previaAtualizar()};
+el('previaForca').addEventListener('input',()=>{el('previaPausa').value=(PREVIA_FORCAS[el('previaForca').value]||PREVIA_FORCAS.H).pausa;previaAtualizar()});
+
+function previaAtualizar(){
+ el('previaPausaValor').value=el('previaPausa').value+' quadros';
+ el('previaAnguloValor').value=el('previaAngulo').value+'°';
+ el('previaCompararTirar').hidden=!previa.comparado;
+ el('previaCenaTirar').hidden=!previa.cena;
+ el('previaMedidaLinha').hidden=!previa.cena;
+ localStorage.setItem('sokonfx.previa.v1',JSON.stringify(Object.fromEntries(previaCampos.map(id=>[id,el(id).type==='checkbox'?el(id).checked:el(id).value]))));
+}
+for(const id of previaCampos)el(id).addEventListener('input',previaAtualizar);
+
+// Mostrar o palco no lugar da prévia quadrada enquanto o painel está aberto.
+el('gamePreview').addEventListener('toggle',()=>{
+ const aberto=previaAberta();
+ palco.hidden=!aberto;stage.hidden=aberto;
+ stage.parentElement.querySelector('footer').hidden=aberto;
+ if(aberto){
+  if(el('gameExport').open&&jogoMarcandoOrigem)el('jogoOrigemMarcar').onclick();
+  previa.sujo=true;previa.inicio=performance.now();requestAnimationFrame(previaQuadro);
+ }else previa.marcando=null;
+});
+// Marcar a origem do export pede a prévia quadrada.
+el('jogoOrigemMarcar').addEventListener('click',()=>{if(previaAberta())el('gamePreview').open=false},true);
+// Qualquer ajuste do efeito (fora do painel da prévia) refaz o efeito tocado.
+for(const tipo of ['input','change','click'])el('ajustes').addEventListener(tipo,e=>{if(!e.target.closest('#gamePreview'))previa.sujo=true});
+
+(()=>{
+ try{const salvo=JSON.parse(localStorage.getItem('sokonfx.previa.v1')||'null');
+  if(salvo)for(const id of previaCampos)if(salvo[id]!==undefined){if(el(id).type==='checkbox')el(id).checked=salvo[id];else el(id).value=salvo[id]}}catch{}
+ previaAtualizar();
+ previaLer('cena').then(async blob=>{if(blob){await previaUsarCena(blob);previaAtualizar()}});
+})();
+// Sem print, as silhuetas trocam de lado com quem bate: o ponto do golpe vai junto.
+el('previaEsquerda').addEventListener('input',()=>{if(!previa.cena){el('previaX').value=960-+el('previaX').value;previaAtualizar()}});
 el('smokeForm').value='jump';
 el('plumes').value='1';
 el('kind').value='Fumaça';

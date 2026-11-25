@@ -8,7 +8,7 @@ embaixo.
 - **Pedido:** rever o projeto com uma direção melhor. O dono já tinha o Sōkon FX (HTML com canvas)
   e os hits do jogo já saem dele; a ideia é transformá-lo na ferramenta da
   [bíblia](biblia/BIBLIA_DE_VFX.md), sem refazer o que existe.
-- **Feito:** o pipeline EffectCraft saiu da branch (guardado na tag `arquivo-effectcraft`); a
+- **Feito:** o pipeline EffectCraft saiu da branch (guardado no histórico, commit `d9d100f`); a
   pesquisa de técnica ficou em `docs/pesquisa/`. O HTML do dono foi separado em `sokonfx/src/`
   (estilo, marcação, 15 arquivos de código, a imagem da pressão de ar à parte) e o
   `build.mjs` monta de volta um HTML único.

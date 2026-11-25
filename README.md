@@ -48,8 +48,8 @@ propósito** e o dono aprova, a referência é trocada pelo dist novo, com a raz
 
 ## Histórico
 
-Até 25/11/2026 este repositório era um pipeline em volta do EffectCraft. Ele está guardado na tag
-`arquivo-effectcraft`.
+Até 25/11/2026 este repositório era um pipeline em volta do EffectCraft. Ele está guardado no histórico, no
+commit `d9d100f` (`git checkout d9d100f`).
 
 ## Licença
 

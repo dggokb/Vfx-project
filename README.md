@@ -1,89 +1,51 @@
-# VFX Studio
+# Sōkon FX
 
-**Professional 2D game visual effects production pipeline** built around the open-source [EffectCraft](https://github.com/storytold/effectcraft).
+Gerador de efeitos visuais 2D do **SŌKON: BLOODLINES**. Os efeitos saem de geradores com
+parâmetros e semente (impacto, corte, projétil, fogo, água, gosma, fumaça, ponto de luz, pressão
+de ar), não de desenho quadro a quadro. É um **HTML único que funciona offline**, no PC e no
+celular.
 
-Our first milestone is repeatable VFX authoring and game-ready exports: **EffectCraft project → RGBA PNG frames → transparent spritesheet + timing JSON**.
+- **Usar:** abra [`sokonfx/dist/SokonFX.html`](sokonfx/dist/SokonFX.html) no navegador (ou o link do
+  GitHub Pages, quando estiver ligado). Os tipos salvos ficam no navegador; use **Baixar todos os
+  tipos** para guardar o JSON e importar em outro aparelho.
+- **Para onde vai:** o jogo lê cada efeito de `assets/efeitos/<nome>/` (`folha.webp` +
+  `efeito.json`), no repositório do jogo.
+- **Para onde vai a ferramenta:** a [bíblia de VFX](docs/biblia/BIBLIA_DE_VFX.md) — 40 famílias de
+  geradores, compositor de camadas e preview de gameplay.
 
-> **Current status (2026-11-15):** the pinned upstream EffectCraft CLI has been compiled successfully in GitHub Actions, and a separate official v0.24.1 binary completed the MCP + transparent VFX render/export smoke test. These checks prove the headless pipeline, **not** professional artistic quality or the desktop UI. The EffectCraft source/binaries are not vendored in this repo.
-
-## Requirements
-
-- Python **3.10+**, [Pillow](requirements.txt)
-- Git and internet access to retrieve EffectCraft
-- Rust/Cargo **1.95+** and platform-native build dependencies to compile the editor
-
-## Install and launch EffectCraft
-
-```bash
-python -m pip install -r requirements.txt
-python tools/effectcraft.py status
-python tools/effectcraft.py install    # clone and pin the upstream revision
-python tools/effectcraft.py build      # release-build the desktop app + CLI
-python tools/effectcraft.py editor     # launch the editor
-python tools/effectcraft.py demo       # launch with its built-in demo
-python tools/effectcraft.py mcp        # start headless MCP server with autosave
-```
-
-The source will live in `vendor/effectcraft/` (excluded from our Git repository). Source revision and version are declared in [effectcraft.lock.json](effectcraft.lock.json). The upstream project is large; release builds may take a long time.
-
-## Mandatory VFX craft workflow (After Effects research)
-
-**Before every new VFX**, agents and collaborators must read:
-
-1. [AGENTS.md](AGENTS.md) — mandatory production rules.
-2. [docs/ARCSYS_FIGHTING_VFX.md](docs/ARCSYS_FIGHTING_VFX.md) — **fighting game VFX craft based on Arc System Works sources**.
-3. [docs/VFX_MASTER_GUIDE.md](docs/VFX_MASTER_GUIDE.md) — researched After Effects techniques adapted to EffectCraft.
-4. [docs/VFX_LEARNING_LOG.md](docs/VFX_LEARNING_LOG.md) — living record of failures, corrections and approved patterns.
-5. [docs/VFX_SOURCES.md](docs/VFX_SOURCES.md) — primary references and provenance.
-6. [docs/VFX_BRIEF_TEMPLATE.md](docs/VFX_BRIEF_TEMPLATE.md) — storyboard/acceptance template.
-
-Every fighting-game recipe now needs a `recipes/briefs/<name>.json` with gameplay/timing/draw-order metadata validated by `tools/validate_fighting_recipe.py`. The exporter runs an **automatic knowledge preflight** and records SHA-256 digests of these documents in its `knowledge.json` output for traceability. It cannot replace a human/agent actually reading the docs or visually reviewing the result.
+## Mexer no código
 
 ```bash
-python tools/vfx_preflight.py --effect hit-light
-python tools/validate_fighting_recipe.py --recipe recipes/hit-light.json --brief recipes/briefs/hit-light.json --frames 10 --fps 24
+npm install                 # só o Playwright, para os testes
+npm run build               # src/ -> sokonfx/dist/SokonFX.html
+npm test                    # dist em dia + trava de pixels
 ```
 
-## Export a game spritesheet
+| Caminho | O que é |
+|---|---|
+| `sokonfx/src/pagina.html`, `estilo.css` | marcação e estilo |
+| `sokonfx/src/js/*.js` | o código, juntado em ordem de nome num `<script>` só |
+| `sokonfx/src/assets/` | imagens embutidas no HTML (`ASSET("nome")` no código) |
+| `sokonfx/dist/SokonFX.html` | o que se abre; gerado, nunca editado à mão |
+| `sokonfx/tipos/` | tipos salvos do dono e os que estão no jogo |
+| `sokonfx/testes/` | trava de pixels contra `testes/referencia/` |
+| `docs/biblia/` | a bíblia de VFX (o roteiro da ferramenta) |
+| `docs/pesquisa/` | pesquisa de técnica (Arc System Works, After Effects) |
+| `docs/DIARIO.md` | o que foi feito e decidido, rodada a rodada |
 
-Create an animation in EffectCraft and export a **numbered transparent PNG sequence** through the render queue. Then:
+## Trava de pixels
 
-```bash
-python tools/pack_spritesheet.py \
-  --input exports/impact \
-  --output dist/impact.png \
-  --columns 4 \
-  --fps 24
-```
+`npm test` desenha 129 casos (cada efeito, as variações dos controles, os tipos do dono e as
+fumaças que estão no jogo), 16 quadros cada, e compara pixel a pixel com a referência aprovada
+no mesmo navegador. Reorganizar código não pode mudar nenhum pixel. Quando um gerador muda **de
+propósito** e o dono aprova, a referência é trocada pelo dist novo, com a razão no diário.
 
-Produces **dist/impact.png** (unmodified RGBA pixels on a transparent atlas) and **dist/impact.json** (frame order, coordinates, dimensions and duration). Frames are sorted naturally, such that `frame_2.png` precedes `frame_10.png`.
+## Histórico
 
-Requirements: identical canvas dimensions for every frame and a real alpha channel. The exporter deliberately **does not** trim, mirror, resize, recolor or regenerate art.
+Até 25/11/2026 este repositório era um pipeline em volta do EffectCraft. Ele está guardado na tag
+`arquivo-effectcraft`.
 
-## Quality and validation
+## Licença
 
-```bash
-python -m unittest discover -s tests -v
-```
-
-GitHub Actions runs offline Python tests on each push/PR. A separate integration workflow compiles the pinned EffectCraft CLI; the official release smoke workflow has already verified MCP and real PNG alpha / spritesheet export. The current hit-light recipe is a **technical fixture**, not production-approved art.
-
-## Files
-
-```text
-.github/workflows/check.yml   Python validation
-docs/ARCHITECTURE.md          boundaries, quality rules and roadmap
-effectcraft.lock.json         upstream commit pin
-presets/catalog.json          VFX families (planned)
-projects/README.md            where to keep EffectCraft .ecproj projects
-tools/effectcraft.py          upstream installer/launcher
-tools/pack_spritesheet.py     PNG atlas + JSON exporter
-tests/                        offline exporter tests
-vendor/                       ignored EffectCraft checkout
-```
-
-## Licensing and attribution
-
-VFX Studio's own bootstrap code is MIT-licensed (see [LICENSE](LICENSE)). EffectCraft is a **separate upstream project** under **MIT OR Apache-2.0**. Any distribution containing its code or binaries must follow the relevant licenses, NOTICE and third-party attribution requirements. Upstream: [EffectCraft](https://github.com/storytold/effectcraft).
-
-VFX Studio is independent of any particular game; the SŌKON fighting game can be one of its test consumers.
+Código MIT ([LICENSE](LICENSE)). As referências visuais de terceiros usadas para estudo **não** ficam
+neste repositório (ele é público).

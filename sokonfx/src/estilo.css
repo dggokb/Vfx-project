@@ -1,0 +1,17 @@
+*{box-sizing:border-box}body{margin:0;background:#12131a;color:#edece9;font:16px "DM Sans",system-ui,sans-serif}main{max-width:970px;margin:auto;padding:28px}h1{letter-spacing:-.07em;font-size:42px;margin:0 0 22px}h1 i{color:#ffac48}section{display:grid;grid-template-columns:1fr 240px;gap:22px}canvas{width:100%;aspect-ratio:1;display:block;border-radius:12px;background:radial-gradient(ellipse,#30303d,#191921 70%)}aside{display:flex;flex-direction:column;gap:16px}label{display:grid;gap:6px;color:#c4c0c8;font-size:14px}select,input,button{font:inherit;max-width:100%;accent-color:#ffac48}select,button{padding:12px;border:1px solid #46444c;border-radius:7px;background:#25252d;color:inherit}button{cursor:pointer}button.primary{background:#ffac48;color:#251904;font-weight:700}input[type=color]{width:100%;height:35px}footer{display:flex;align-items:center;gap:12px;margin-top:10px}footer input{min-width:0;flex:1}output{font-variant-numeric:tabular-nums}@media(max-width:650px){main{padding:16px}section{grid-template-columns:1fr}aside{display:grid;grid-template-columns:1fr 1fr}}
+.opening-setting[hidden],.impact-setting[hidden]{display:none}.impact-setting{grid-template-columns:1fr auto}.impact-setting input{grid-column:1/-1;width:100%}
+main{height:100vh;height:100dvh;display:flex;flex-direction:column}
+h1{flex:none}
+section{flex:1;min-height:0;grid-template-rows:minmax(0,1fr)}
+.preview{min-width:0;min-height:0;display:grid;grid-template-rows:minmax(0,1fr) auto;align-self:stretch}
+.preview canvas{max-height:100%;width:100%;height:auto;max-width:100%;aspect-ratio:1;align-self:start;justify-self:center;object-fit:contain}
+aside{min-width:0;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:0 6px 16px 0;scrollbar-gutter:stable}
+aside>*{flex-shrink:0;min-width:0}
+@media(min-width:651px){.preview canvas{width:min(100%,calc(100dvh - 196px))}}
+@media(max-width:650px){
+ h1{font-size:28px;margin-bottom:8px}
+ section{grid-template-rows:auto minmax(0,1fr);gap:12px}
+ .preview canvas{width:min(100%,34vh);width:min(100%,34dvh)}
+ aside{grid-template-columns:repeat(2,minmax(0,1fr));align-content:start}
+}
+.smoke-setting[hidden]{display:none}[hidden]{display:none!important}

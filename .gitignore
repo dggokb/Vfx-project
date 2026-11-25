@@ -1,9 +1,5 @@
+node_modules/
 __pycache__/
-*.py[cod]
-.venv/
-.pytest_cache/
-vendor/
-dist/
-exports/
-*.log
 .DS_Store
+*.log
+/sokonfx/testes/saida/

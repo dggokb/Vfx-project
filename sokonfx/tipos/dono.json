@@ -1,0 +1,32 @@
+{
+  "format": "sokonfx-types-v1",
+  "types": [
+    {
+      "name": "H",
+      "values": {
+        "kind": "Impacto",
+        "styleMix": "33",
+        "tint": "#ff781a",
+        "power": "9",
+        "particles": "32",
+        "light": "75",
+        "motion": "out",
+        "openingFrame": "8",
+        "pieces": "33",
+        "openingShape": "random",
+        "focus": "49",
+        "riskWidth": "240",
+        "outerWidth": "25",
+        "particleTint": "#ff781a",
+        "particleWidth": "25",
+        "shapes": "1",
+        "angle": "-57",
+        "fps": "24"
+      },
+      "seed": 75823,
+      "haloEnabled": false,
+      "customParticleTint": "#ff781a",
+      "linked": true
+    }
+  ]
+}

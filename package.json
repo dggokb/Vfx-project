@@ -1,0 +1,13 @@
+{
+  "name": "sokonfx",
+  "private": true,
+  "description": "Sōkon FX: gerador de efeitos 2D do SŌKON: BLOODLINES",
+  "scripts": {
+    "build": "node sokonfx/build.mjs",
+    "conferir": "node sokonfx/build.mjs --conferir",
+    "test": "node sokonfx/build.mjs --conferir && node sokonfx/testes/pixels.test.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.63.0"
+  }
+}

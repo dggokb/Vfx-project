@@ -1,7 +1,0 @@
-{
-  "schema_version": 1,
-  "upstream": "https://github.com/storytold/effectcraft.git",
-  "revision": "dc2380b070fab3d80a16d00d0ea2f19e6cafa876",
-  "observed_version": "0.24.1",
-  "rust_minimum": "1.95"
-}

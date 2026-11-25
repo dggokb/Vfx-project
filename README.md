@@ -8,8 +8,11 @@ celular.
 - **Usar:** abra [`sokonfx/dist/SokonFX.html`](sokonfx/dist/SokonFX.html) no navegador (ou o link do
   GitHub Pages, quando estiver ligado). Os tipos salvos ficam no navegador; use **Baixar todos os
   tipos** para guardar o JSON e importar em outro aparelho.
-- **Para onde vai:** o jogo lê cada efeito de `assets/efeitos/<nome>/` (`folha.webp` +
-  `efeito.json`), no repositório do jogo.
+- **Para o jogo:** abra **Exportar para o jogo**, dê o nome da pasta, marque a origem tocando na
+  prévia, escolha tamanho, quadros, tempo, reforço de brilho, soma e luz, e baixe o `.zip`. Ele traz
+  a pasta `<nome>/` com `folha.webp` e `efeito.json` no formato que o jogo lê
+  (`assets/efeitos/<nome>/`, o `EfeitosVideo`), sem conversão. O `efeito.json` guarda também o tipo
+  e as opções usadas (`sokonfx`), para refazer o efeito depois.
 - **Para onde vai a ferramenta:** a [bíblia de VFX](docs/biblia/BIBLIA_DE_VFX.md) — 40 famílias de
   geradores, compositor de camadas e preview de gameplay.
 
@@ -35,7 +38,10 @@ npm test                    # dist em dia + trava de pixels
 
 ## Trava de pixels
 
-`npm test` desenha 129 casos (cada efeito, as variações dos controles, os tipos do dono e as
+`npm test` confere que o `dist` está em dia, roda a trava de pixels e o teste do export (baixa
+o `.zip` pela página, confere zip, `efeito.json` do jeito que o jogo lê e cada quadro da folha).
+
+A trava desenha 129 casos (cada efeito, as variações dos controles, os tipos do dono e as
 fumaças que estão no jogo), 16 quadros cada, e compara pixel a pixel com a referência aprovada
 no mesmo navegador. Reorganizar código não pode mudar nenhum pixel. Quando um gerador muda **de
 propósito** e o dono aprova, a referência é trocada pelo dist novo, com a razão no diário.

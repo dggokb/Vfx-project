@@ -1,0 +1,43 @@
+name: Sōkon FX
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  testes:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - name: dist em dia, trava de pixels e export para o jogo
+        run: npm test
+
+  # Publica o HTML no GitHub Pages (link para abrir no celular). Só na main, e só depois de
+  # Settings → Pages → Source: GitHub Actions estar ligado no repositório.
+  pages:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: testes
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: mkdir -p site && cp sokonfx/dist/SokonFX.html site/index.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v4

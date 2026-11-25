@@ -69,7 +69,7 @@ el('keep').onclick=()=>{
   if(index>=0 && !confirm('Substituir o tipo “'+name+'”?'))return;
   const values=Object.fromEntries(savedFields.map(id=>[id,el(id).value]));
   const ref=userRefs.get(values.kind);
-  const preset={name,values,reference:ref?{name:ref.name,data:ref.data}:null,seed,haloEnabled,customParticleTint,linked:el('linkTint').checked};
+  const preset={name,values,reference:ref?{name:ref.name,data:ref.data}:null,seed,haloEnabled,customParticleTint,linked:el('linkTint').checked,jogo:jogoLer()};
   if(index>=0)types[index]=preset;else types.push(preset);
   persistTypes(types);downloadTypes(types);
   showTypes(types);
@@ -102,6 +102,7 @@ el('savedTypes').onchange=()=>{
   el('frame').value=0;start=performance.now();
   el('kind').oninput();
   loadRef(preset.values.kind,preset.reference?.data,preset.reference?.name);
+  if(preset.jogo)jogoAplicar(preset.jogo);
   el('presetStatus').textContent='Tipo carregado: '+preset.name;
   el('savedTypes').value='';
  }catch{el('presetStatus').textContent='Não foi possível carregar este tipo.'}

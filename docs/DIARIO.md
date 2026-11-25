@@ -33,3 +33,24 @@ embaixo.
 - **Atenção para tipos antigos:** sem o campo `smokeForm` (mais novo que eles), um tipo de fumaça
   cai no **Linear** ao carregar por "Tipos salvos", que é como foi feito. O `gerar.js` do jogo não
   faz isso: ele deixa o que estiver na tela, e a versão nova abre no **Super pulo**.
+
+## 25/11 — Exportar para o jogo
+
+- **Pedido:** o Sōkon FX tem de ser a ferramenta "suprema"; o primeiro passo combinado foi tirar a
+  conversão manual do caminho. Até aqui o dono exportava a folha 4×4 e uma sessão do jogo
+  convertia: recorte, origem, escala, "reforça o brilho" (alfa^0,5, feito à mão quatro vezes em
+  21/11), tempo e luz.
+- **Feito:** painel **Exportar para o jogo** (`15-jogo-export.js`): nome da pasta, origem marcada
+  na prévia (a cruz aparece com o painel aberto e não vai para o export), tamanho no jogo
+  (1x = pixelScale 1,5, o dos impactos v09), resolução da folha (100/75/50%), primeiro e último
+  quadro, segurar um quadro (`marcaMs`), reforço do brilho (alfa^(1/(1+v))), soma e luz no
+  lutador. Sai um `.zip` com `<nome>/folha.webp` (WebP sem perda) e `<nome>/efeito.json`. O
+  "Salvar tipo" guarda essas opções (`jogo`); tipos antigos abrem como antes.
+- **Conferido:** `testes/export.test.cjs` baixa o zip pela página em 3 casos (o tipo "H" do dono
+  com luz e reforço, uma fumaça do jogo com resolução 50%, trecho e quadro segurado, e a pressão
+  de ar com soma) e confere zip, os campos que o `EfeitosVideo.ler` exige e cada quadro da folha
+  decodificada contra o desenho. Fora do teste, o mesmo H passou pelo `tools/sprites/efeito_video.py`
+  do jogo (16 PNGs, origem 256,256, 1x): **efeito.json idêntico** (quadros, deslocamentos,
+  altura, tempos) e folha com o mesmo alfa (cor até 1 nível de diferença nos pixels visíveis).
+- **Falta:** ver um efeito exportado rodando no jogo (PC e celular) e o dono julgar o painel no
+  celular.

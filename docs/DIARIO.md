@@ -358,3 +358,24 @@ embaixo.
   quase não aparece no chão escuro do cenário. Celular não visto (7 folhas em 2x de uma vez: medir lá).
 - **Falta:** o dono julgar no vídeo e autorizar mandar o código (e o kit, se quiser) para a
   `game-luta-sprite-fable`.
+
+## 25/11 — Fazedor: efeito por ruído em degraus (WebGL)
+
+- **Por quê:** o dono quer um "fazedor" de efeito, porque conseguir um bom efeito em vídeo gerado
+  é difícil. Desenhar formas por código (estrela, lasca, e depois os "carimbos" com contorno e faixas)
+  não chegou perto da bola do Ryūga tirada de vídeo ("a intenção foi boa, mas n rolou"): os carimbos e
+  a "Bola de energia" foram descartados sem entrar no repositório.
+- **O jeito novo (o das ferramentas de efeito de jogo):** um campo (onde o efeito é forte) comido por
+  ruído animado e cortado em cinco degraus de cor chapada (contorno escuro, base, cor, meio, miolo),
+  com um véu de brilho em volta. Roda na placa de vídeo (WebGL2) e entra como o gerador **Fazedor**
+  (`09zb-gerador-fazedor.js`): formas Bola em voo (loop), Estouro, Coluna/labareda (loop) e Aura no
+  corpo (loop); matérias Fogo, Elétrico e Fumaça; tamanho, cauda/altura, força, tamanho e velocidade do
+  ruído, brilho, anéis, brasas (Partículas) e dois em dois. A cor da energia dá os degraus (quente puxa
+  o escuro para o vermelho; fria, para o anil). Loop sem emenda: dois ruídos que correm, misturados
+  pelo tempo. O estouro se desfaz quebrando (o ruído esticado nas pontas come a forma), não apagando.
+- **Conferido:** protótipo do S1 do Ryūga (voo e acerto) convertido com o `efeito_video.py` do jogo e
+  gravado na luta ao lado do de hoje (só na cópia de trabalho; a bola original voltou). Na tela da
+  ferramenta, `npm test`: 311 casos sem diferença, export, prévia, composição, geradores (com o
+  Fazedor exportando e sem encostar na borda) e editor.
+- **Falta:** o dono julgar; acertar luz e anéis da bola (a de hoje tem o miolo mais branco e anéis de
+  luz); mais formas (feixe, onda no chão, rastro do golpe) e matérias (água, gelo).

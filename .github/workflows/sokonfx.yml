@@ -35,7 +35,7 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - run: mkdir -p site && cp sokonfx/dist/SokonFX.html site/index.html
+      - run: mkdir -p site && cp sokonfx/dist/SokonFX.html site/index.html && cp sokonfx/site/* site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site

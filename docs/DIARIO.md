@@ -155,3 +155,14 @@ embaixo.
   referência com `CASOS=` no teste de pixels); `geradores.test.cjs` com os 6 geradores.
 - **Falta:** o dono julgar os 6 na prévia no jogo; a aura dos lutadores no jogo hoje é desenhada pelo
   código do jogo (`GameView`), então usar esta precisa de decisão dele.
+
+## 25/11 — Instalar no celular e usar sem internet
+
+- **Pedido:** o dono usa no PC e no celular ("às vezes eu posso estar fora do PC").
+- **Feito:** `sokonfx/site/` (manifesto, ícones feitos com o próprio gerador de Choque e um
+  service worker). O workflow do Pages publica `index.html` (o dist) com eles. Aberto pelo link, o
+  navegador oferece "instalar"/"adicionar à tela inicial" e o app abre sem internet; com internet,
+  baixa a versão nova por trás. Aberto como arquivo (file://), segue como antes.
+- **Conferido:** num servidor local, o service worker assume a página; com a rede desligada, a
+  página recarrega inteira (15 efeitos) e o manifesto responde.
+- **Falta (do dono):** juntar a branch na `main` e ligar Settings → Pages → Source: GitHub Actions.

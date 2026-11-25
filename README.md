@@ -8,6 +8,8 @@ celular.
 - **Usar:** abra [`sokonfx/dist/SokonFX.html`](sokonfx/dist/SokonFX.html) no navegador (ou o link do
   GitHub Pages, quando estiver ligado). Os tipos salvos ficam no navegador; use **Baixar todos os
   tipos** para guardar o JSON e importar em outro aparelho.
+- **No celular sem internet:** pelo link do GitHub Pages, use "instalar" ou "adicionar à tela
+  inicial"; o app passa a abrir offline (`sokonfx/site/`: manifesto, ícones e service worker).
 - **Para o jogo:** abra **Exportar para o jogo**, dê o nome da pasta, marque a origem tocando na
   prévia, escolha tamanho, quadros, tempo, reforço de brilho, soma e luz, e baixe o `.zip`. Ele traz
   a pasta `<nome>/` com `folha.webp` e `efeito.json` no formato que o jogo lê

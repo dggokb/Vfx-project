@@ -1,4 +1,4 @@
-<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sōkon FX</title>
+<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sōkon FX</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#12131a">
 <style>
 *{box-sizing:border-box}body{margin:0;background:#12131a;color:#edece9;font:16px "DM Sans",system-ui,sans-serif}main{max-width:970px;margin:auto;padding:28px}h1{letter-spacing:-.07em;font-size:42px;margin:0 0 22px}h1 i{color:#ffac48}section{display:grid;grid-template-columns:1fr 240px;gap:22px}canvas{width:100%;aspect-ratio:1;display:block;border-radius:12px;background:radial-gradient(ellipse,#30303d,#191921 70%)}aside{display:flex;flex-direction:column;gap:16px}label{display:grid;gap:6px;color:#c4c0c8;font-size:14px}select,input,button{font:inherit;max-width:100%;accent-color:#ffac48}select,button{padding:12px;border:1px solid #46444c;border-radius:7px;background:#25252d;color:inherit}button{cursor:pointer}button.primary{background:#ffac48;color:#251904;font-weight:700}input[type=color]{width:100%;height:35px}footer{display:flex;align-items:center;gap:12px;margin-top:10px}footer input{min-width:0;flex:1}output{font-variant-numeric:tabular-nums}@media(max-width:650px){main{padding:16px}section{grid-template-columns:1fr}aside{display:grid;grid-template-columns:1fr 1fr}}
 .opening-setting[hidden],.impact-setting[hidden]{display:none}.impact-setting{grid-template-columns:1fr auto}.impact-setting input{grid-column:1/-1;width:100%}
@@ -2518,6 +2518,9 @@ for(const tipo of ['input','change','click'])el('ajustes').addEventListener(tipo
 })();
 // Sem print, as silhuetas trocam de lado com quem bate: o ponto do golpe vai junto.
 el('previaEsquerda').addEventListener('input',()=>{if(!previa.cena){el('previaX').value=960-+el('previaX').value;previaAtualizar()}});
+// Instalado pelo GitHub Pages, o Sōkon FX funciona sem internet (site/sw.js). Aberto como arquivo
+// (file://), não há o que registrar.
+if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))navigator.serviceWorker.register('sw.js').catch(()=>{});
 el('smokeForm').value='jump';
 el('plumes').value='1';
 el('kind').value='Fumaça';

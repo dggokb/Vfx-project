@@ -14,6 +14,7 @@ uniform float t,T,R,L,amp,esc,vel,cresce,quebra,anel1,anel2,brilho,halo;
 uniform int forma,ruido,nemb;
 uniform vec4 emb[24];
 uniform vec3 cor[5];
+uniform sampler2D mA,mB;uniform float temB,mistura;uniform vec2 fluxo;   // o desenho do dono (começo e fim)
 vec3 mod289(vec3 x){return x-floor(x*(1./289.))*289.;}
 vec2 mod289(vec2 x){return x-floor(x*(1./289.))*289.;}
 vec3 permute(vec3 x){return mod289(((x*34.)+1.)*x);}
@@ -44,7 +45,7 @@ float segmento(vec2 p,vec2 a,vec2 b){vec2 pa=p-a,ba=b-a;float h=clamp(dot(pa,ba)
 void main(){
  vec2 px=vec2(gl_FragCoord.x,res.y-gl_FragCoord.y);
  vec2 p=vec2(dot(m0,vec3(px,1)),dot(m1,vec3(px,1)));
- float v,f,n;float r=length(p);
+ float v=-1.,f,n;float r=length(p);
  if(forma==0){
   // Bola em voo para a direita: bola + cauda que afina; o ruído corre para trás.
   float bola=1.-r/R,atras=clamp(-p.x/L,0.,1.),larg=R*(1.-.82*atras);
@@ -79,7 +80,7 @@ void main(){
   for(int k=0;k<24;k++){if(k>=nemb)break;f=max(f,(1.-length(p-emb[k].xy)/emb[k].z)*.75);}
   n=ruidoEm(vec2(p.x/(R*.67*esc),p.y/(R*1.85*esc)),vec2(0,vel*.42));
   v=f-.1*sobe+(n-.5)*amp*(.55+1.5*sobe)*clamp(f*3.+.35,0.,1.);
- }else{
+ }else if(forma==3){
   // Aura no corpo: a silhueta de um lutador (cápsula) um pouco maior que ele, com as chamas
   // subindo mais grossas em cima. No jogo vai atrás do lutador: só a borda aparece.
   vec2 q0=p-vec2(-44.,0.);float corpo=R*.95;
@@ -91,6 +92,15 @@ void main(){
   for(int k=0;k<24;k++){if(k>=nemb)break;f=max(f,(1.-length(p-emb[k].xy)/emb[k].z)*.75);}
   n=ruidoEm(vec2(p.x/(R*.67*esc),p.y/(R*1.85*esc)),vec2(0,vel*.42));
   v=f*.95+(n-.5)*amp*(.7+1.2*alto)*clamp(f*3.+.35,0.,1.);
+ }else if(forma==4){
+  // Desenhada: o campo é o desenho do dono (na tela, sem girar), e se tiver o desenho do fim, ele
+  // se transforma de um no outro. Traço grosso vira miolo claro; traço fino fica só na cor.
+  vec2 uv=px/res;float m=texture(mA,uv).a;if(temB>0.)m=mix(m,texture(mB,uv).a,mistura);
+  f=m*.95-.04-.4*(1.-smoothstep(0.,.12,m));
+  for(int k=0;k<24;k++){if(k>=nemb)break;f=max(f,(1.-length(p-emb[k].xy)/emb[k].z)*.75);}
+  vec2 ef=abs(fluxo.x)>abs(fluxo.y)?vec2(1.85,.67):abs(fluxo.y)>0.?vec2(.67,1.85):vec2(1.,1.);
+  n=ruidoEm(p/(R*ef*esc),fluxo*vel*.42);
+  v=f+(n-.5)*amp*1.1*clamp(f*3.+.35,0.,1.);
  }
  // Degraus chapados, com a beira de cada degrau macia em um pixel.
  float aa=max(fwidth(v)*.9,.004);vec3 c=cor[0];float al=smoothstep(LIM[0]-aa,LIM[0]+aa,v);
@@ -112,8 +122,10 @@ function fazedorContexto(){
  const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,FAZEDOR_VS));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,FAZEDOR_FS));gl.linkProgram(pr);gl.useProgram(pr);
  const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
  const a=gl.getAttribLocation(pr,'a');gl.enableVertexAttribArray(a);gl.vertexAttribPointer(a,2,gl.FLOAT,false,0,0);
- const u={};for(const n of ['res','m0','m1','t','T','R','L','amp','esc','vel','cresce','quebra','anel1','anel2','brilho','halo','forma','ruido','nemb','emb[0]','cor[0]'])u[n]=gl.getUniformLocation(pr,n);
- return fazedorGL={tela,gl,u};
+ const u={};for(const n of ['res','m0','m1','t','T','R','L','amp','esc','vel','cresce','quebra','anel1','anel2','brilho','halo','forma','ruido','nemb','emb[0]','cor[0]','mA','mB','temB','mistura','fluxo'])u[n]=gl.getUniformLocation(pr,n);
+ const textura=()=>{const x=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,x);for(const [k,v] of [[gl.TEXTURE_MIN_FILTER,gl.LINEAR],[gl.TEXTURE_MAG_FILTER,gl.LINEAR],[gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE],[gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE]])gl.texParameteri(gl.TEXTURE_2D,k,v);return x};
+ const texA=textura(),texB=textura();gl.uniform1i(u.mA,0);gl.uniform1i(u.mB,1);
+ return fazedorGL={tela,gl,u,texA,texB};
 }
 
 // Os cinco degraus de uma cor, do contorno ao miolo. Cor quente puxa o escuro para o vermelho
@@ -130,7 +142,8 @@ registrarGerador({
  perfil:{tint:'#ff7a12',particles:14},
  origem:{x:300,y:256},
  params:[
-  {id:'fzForma',rotulo:'Forma',tipo:'select',padrao:'voo',opcoes:[['voo','Bola em voo (loop)'],['estouro','Estouro'],['coluna','Coluna / labareda (loop)'],['aura','Aura no corpo (loop)']]},
+  {id:'fzForma',rotulo:'Forma',tipo:'select',padrao:'voo',opcoes:[['voo','Bola em voo (loop)'],['estouro','Estouro'],['coluna','Coluna / labareda (loop)'],['aura','Aura no corpo (loop)'],['desenho','Desenhada (o seu desenho)']]},
+  {id:'fzFluxo',rotulo:'Para onde a matéria corre',tipo:'select',padrao:'sobe',opcoes:[['sobe','Sobe'],['tras','Para trás (esquerda)'],['frente','Para a frente (direita)'],['desce','Desce'],['parado','Ferve no lugar']]},
   {id:'fzRuido',rotulo:'Matéria',tipo:'select',padrao:'fogo',opcoes:[['fogo','Fogo'],['eletrico','Elétrico'],['fumaca','Fumaça / vapor']]},
   {id:'fzTamanho',rotulo:'Tamanho',tipo:'range',min:40,max:200,padrao:100,unidade:'%'},
   {id:'fzAlcance',rotulo:'Cauda / altura',tipo:'range',min:40,max:400,padrao:260,unidade:' px'},
@@ -140,13 +153,15 @@ registrarGerador({
   {id:'fzBrilho',rotulo:'Brilho em volta',tipo:'range',min:0,max:200,padrao:100,unidade:'%'},
   {id:'fzAneis',rotulo:'Anéis em volta da bola',tipo:'checkbox',padrao:true},
   {id:'fzDois',rotulo:'Animar de dois em dois',tipo:'checkbox',padrao:false},
+  {id:'fzDesenhoA',tipo:'oculto',padrao:''},
+  {id:'fzDesenhoB',tipo:'oculto',padrao:''},
  ],
  desenhar(ctx,{i,n,p,aleatorio}){
   const g=fazedorContexto();
   if(!g){ctx.fillStyle='#fff';ctx.font='16px sans-serif';ctx.fillText('Este navegador não tem WebGL2 (o Fazedor precisa).',-200,0);return}
   const {tela,gl,u}=g,W=ctx.canvas.width,H=ctx.canvas.height;
   if(tela.width!==W||tela.height!==H){tela.width=W;tela.height=H}
-  const q=doisEmDois(i,p.fzDois),forma=['voo','estouro','coluna','aura'].indexOf(p.fzForma);
+  const q=doisEmDois(i,p.fzDois),forma=['voo','estouro','coluna','aura','desenho'].indexOf(p.fzForma);
   const forca=.75+p.forca/28,R=56*p.fzTamanho/100*forca*(forma===1?1.25:1),L=p.fzAlcance,ue=q/(n-1);
   // Brasas (partículas do mesmo material): correm com o efeito e encolhem.
   const emb=[],rnd=aleatorio(0xfa2e),nb=Math.min(24,p.particulas);
@@ -159,7 +174,19 @@ registrarGerador({
    else if(forma===2)emb.push(-44+lado*R*(.6+f*.8),180-f*L*1.1,R*.2*tam*(1-f)**.6,0);
    else emb.push(-44+lado*R*(1.2+f*.6),130-f*(300+L*.6),R*.18*tam*(1-f)**.6,0);
   }
-  const M=ctx.getTransform().inverse();
+  const M=ctx.getTransform().inverse(),kt=ctx.getTransform().a?Math.hypot(ctx.getTransform().a,ctx.getTransform().b):1;
+  const A=fazedorMascara('fzDesenhoA'),B=fazedorMascara('fzDesenhoB'),fl={sobe:[0,1],tras:[1,0],frente:[-1,0],desce:[0,-1],parado:[0,0]}[p.fzFluxo]||[0,1];
+  if(forma===4){
+   // Brasas do desenho: nascem nos pontos fortes dele e correm para onde a matéria corre.
+   emb.length=0;const pts=A.fortes;const r2=aleatorio(0xd35e);
+   for(let k=0;k<nb&&pts.length;k++){const [cx,cy]=pts[Math.floor(r2()*pts.length)],f=(r2()+q/n*2)%1,tam=.5+.6*r2();
+    const X=(cx-fl[0]*f*120+(r2()-.5)*20)*kt,Y=(cy-fl[1]*f*120+(r2()-.5)*20)*kt;
+    emb.push(M.a*X+M.c*Y+M.e,M.b*X+M.d*Y+M.f,R*.2*tam*(1-f)**.6,0)}
+  }
+  const {texA,texB}=g;
+  gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texA);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,A.c);
+  gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,texB);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,B.c);
+  gl.uniform1f(u.temB,B.vazio?0:1);gl.uniform1f(u.mistura,suave(ue));gl.uniform2f(u.fluxo,fl[0],fl[1]);
   gl.viewport(0,0,W,H);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);
   gl.uniform2f(u.res,W,H);gl.uniform3f(u.m0,M.a,M.c,M.e);gl.uniform3f(u.m1,M.b,M.d,M.f);
   gl.uniform1f(u.t,q);gl.uniform1f(u.T,n);gl.uniform1f(u.R,R);gl.uniform1f(u.L,L);
@@ -175,4 +202,85 @@ registrarGerador({
   gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
   ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.drawImage(tela,0,0);ctx.restore();
  }
+});
+
+// ---- O desenho do dono ----
+// Cada desenho é uma máscara de 512×512 (a prévia), guardada no tipo como PNG (fzDesenhoA/B).
+// Pinta-se com pincel macio direto na prévia: onde a tinta acumula o efeito é forte (miolo claro),
+// na beira do traço ele fica na cor. A prévia mostra o efeito pronto enquanto se desenha.
+const fazedorMascaras={};
+function fazedorMascara(campo){
+ let m=fazedorMascaras[campo];
+ if(!m){const c=document.createElement('canvas');c.width=c.height=512;m=fazedorMascaras[campo]={c,src:'',vazio:true,fortes:[],carregando:null}}
+ const valor=el(campo).value||'';
+ if(valor!==m.src&&valor!==m.carregando){
+  if(!valor){m.c.getContext('2d').clearRect(0,0,512,512);m.src='';m.vazio=true;m.fortes=[]}
+  else{m.carregando=valor;const img=new Image();img.onload=()=>{if(m.carregando!==valor)return;const x=m.c.getContext('2d');x.clearRect(0,0,512,512);x.drawImage(img,0,0,512,512);
+   m.src=valor;m.carregando=null;fazedorFortes(m);preview()};img.src=valor}
+ }
+ return m;
+}
+// Os pontos fortes do desenho (de onde saem as brasas) e se ele está vazio.
+function fazedorFortes(m){
+ const d=m.c.getContext('2d',{willReadFrequently:true}).getImageData(0,0,512,512).data;m.fortes=[];
+ for(let y=0;y<512;y+=8)for(let x=0;x<512;x+=8)if(d[(y*512+x)*4+3]>150)m.fortes.push([x,y]);
+ m.vazio=!m.fortes.length&&![...Array(4096).keys()].some(k=>d[k*256+3]>20);
+}
+{
+ const caixa=document.querySelector('.gerador-params[data-gerador="Fazedor"]'),bloco=document.createElement('div');bloco.className='fz-desenho';
+ bloco.innerHTML=`<p class="nota">Desenhe a forma: pinte onde o efeito é forte. Traço grosso vira miolo claro, traço fino fica só na cor. Com o desenho do fim, o efeito se transforma do primeiro no segundo ao longo dos quadros.</p>
+<button type="button" id="fzDesenhar">Desenhar na prévia</button>
+<label>Qual desenho<select id="fzQual"><option value="fzDesenhoA">O do começo</option><option value="fzDesenhoB">O do fim</option></select></label>
+<label>Tamanho do pincel <output id="fzPincelValor">40 px</output><input type="range" id="fzPincel" min="4" max="160" value="40"></label>
+<label>Força do pincel (quente) <output id="fzPincelForcaValor">70%</output><input type="range" id="fzPincelForca" min="5" max="100" value="70"></label>
+<label class="jogo-check">Borracha<input type="checkbox" id="fzBorracha"></label>
+<button type="button" id="fzLimpar">Apagar este desenho</button>`;
+ caixa.append(bloco);
+}
+let fazedorPintando=null,fazedorAtivo=false;
+el('fzPincel').oninput=()=>{el('fzPincelValor').value=el('fzPincel').value+' px'};
+el('fzPincelForca').oninput=()=>{el('fzPincelForcaValor').value=el('fzPincelForca').value+'%'};
+el('fzDesenhar').onclick=()=>{
+ fazedorAtivo=!fazedorAtivo;
+ el('fzDesenhar').textContent=fazedorAtivo?'Pintando na prévia · terminar':'Desenhar na prévia';
+ el('fzDesenhar').classList.toggle('primary',fazedorAtivo);
+ stage.style.touchAction=fazedorAtivo?'none':'';
+ if(fazedorAtivo&&el('fzForma').value!=='desenho'){el('fzForma').value='desenho';preview()}
+};
+el('fzLimpar').onclick=()=>{const campo=el('fzQual').value;el(campo).value='';fazedorMascara(campo);preview()};
+// Uma pincelada: o traço inteiro é montado à parte (manchas macias, que se juntam num traço com o
+// meio cheio e a beira macia) e entra no desenho com a força do pincel. Assim a força manda na cor:
+// fraca fica no vermelho e laranja, forte chega no miolo claro. Passar de novo por cima reforça.
+let fazedorAntes=null,fazedorTracoTela=null;
+function fazedorMancha(x,y){
+ const g=fazedorTracoTela.getContext('2d'),r=+el('fzPincel').value/2;
+ const gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,'rgba(255,255,255,1)');gr.addColorStop(1,'rgba(255,255,255,0)');
+ g.fillStyle=gr;g.beginPath();g.arc(x,y,r,0,Math.PI*2);g.fill();
+}
+function fazedorJuntar(){
+ const m=fazedorMascara(el('fzQual').value),g=m.c.getContext('2d');
+ g.save();g.globalCompositeOperation='copy';g.drawImage(fazedorAntes,0,0);g.restore();
+ g.save();g.globalAlpha=+el('fzPincelForca').value/100;g.globalCompositeOperation=el('fzBorracha').checked?'destination-out':'source-over';
+ g.drawImage(fazedorTracoTela,0,0);g.restore();m.vazio=false;
+}
+function fazedorTraco(p){
+ const u=fazedorPintando,passo=Math.max(1.5,+el('fzPincel').value*.18);
+ if(!u){fazedorMancha(p.x,p.y);fazedorPintando=p;fazedorJuntar();return}
+ const d=Math.hypot(p.x-u.x,p.y-u.y);if(d<passo)return;
+ for(let s=passo;s<=d;s+=passo)fazedorMancha(u.x+(p.x-u.x)*s/d,u.y+(p.y-u.y)*s/d);
+ fazedorPintando=p;fazedorJuntar();preview();
+}
+stage.addEventListener('pointerdown',e=>{
+ if(!fazedorAtivo||el('kind').value!=='Fazedor')return;
+ e.preventDefault();e.stopImmediatePropagation();stage.setPointerCapture(e.pointerId);fazedorPintando=null;
+ const m=fazedorMascara(el('fzQual').value);
+ fazedorAntes=document.createElement('canvas');fazedorAntes.width=fazedorAntes.height=512;fazedorAntes.getContext('2d').drawImage(m.c,0,0);
+ fazedorTracoTela=document.createElement('canvas');fazedorTracoTela.width=fazedorTracoTela.height=512;
+ fazedorTraco(canvasPoint(e));preview();
+},true);
+stage.addEventListener('pointermove',e=>{if(fazedorAtivo&&fazedorPintando)fazedorTraco(canvasPoint(e))});
+stage.addEventListener('pointerup',()=>{
+ if(!fazedorPintando)return;fazedorPintando=null;
+ const campo=el('fzQual').value,m=fazedorMascara(campo);fazedorFortes(m);
+ const url=m.vazio?'':m.c.toDataURL('image/png');el(campo).value=url;m.src=url;preview();
 });

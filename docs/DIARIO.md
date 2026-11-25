@@ -379,3 +379,10 @@ embaixo.
   Fazedor exportando e sem encostar na borda) e editor.
 - **Falta:** o dono julgar; acertar luz e anéis da bola (a de hoje tem o miolo mais branco e anéis de
   luz); mais formas (feixe, onda no chão, rastro do golpe) e matérias (água, gelo).
+- **Forma desenhada (25/11, pedido do dono: "faz uma forma de eu conseguir desenhar"):** a forma
+  "Desenhada" usa o desenho do dono como campo. "Desenhar na prévia" pinta direto na prévia (dedo ou
+  mouse) com pincel macio; a força do pincel manda na cor (fraca fica no vermelho e laranja, forte chega
+  no miolo claro; cada traço entra com a força dele, passar de novo reforça), borracha e apagar. Dois
+  desenhos: o do começo e, se quiser, o do fim (o efeito se transforma de um no outro ao longo dos
+  quadros). "Para onde a matéria corre" (sobe, para trás, para a frente, desce, ferve no lugar); as
+  brasas nascem nos pontos fortes do desenho. Os desenhos ficam no tipo salvo (PNG em fzDesenhoA/B).

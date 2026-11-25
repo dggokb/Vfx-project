@@ -4,7 +4,9 @@ Gerador de efeitos visuais 2D do **SŌKON: BLOODLINES**. Os efeitos saem de gera
 parâmetros e semente (impacto, corte, projétil, fogo, água, gosma, fumaça, ponto de luz, pressão
 de ar, defesa, choque, raio, linhas de mangá, aura, detritos, explosão, onda de choque,
 faíscas, gelo, vento e vórtices, feixe de energia, teletransporte, portal, gases e vapores,
-energia sombria, decal, rastro do golpe, poeira, partículas, brilhos e flashes, energia espiritual), não de desenho quadro a quadro. É um **HTML único que funciona offline**, no PC e no
+energia sombria, decal, rastro do golpe, poeira, partículas, brilhos e flashes, energia espiritual,
+afterimage). Os kits dos 16 personagens estão em `sokonfx/tipos/personagens.json` (importe em
+**Importar tipos**), não de desenho quadro a quadro. É um **HTML único que funciona offline**, no PC e no
 celular.
 
 - **Usar:** abra [`sokonfx/dist/SokonFX.html`](sokonfx/dist/SokonFX.html) no navegador (ou o link do
@@ -24,7 +26,8 @@ celular.
 - **Vários efeitos num só:** em **Composição de camadas**, adicione o efeito da tela (ou um tipo
   salvo) como camada, mude a tela, adicione outra. Cada camada tem início, posição, tamanho, giro,
   opacidade e soma como luz; a prévia, a prévia no jogo e o export passam a usar a composição.
-- **Editor:** **Vizinhos** (onion skin) na prévia; **Rampa de cor**, **Dissolver no fim** e **Sombra no
+- **Editor:** **Curva de tempo** (curvas prontas, segurar o contato, Bézier arrastável); **Vizinhos**
+  (onion skin) na prévia; **Rampa de cor**, **Dissolver no fim** e **Sombra no
   chão** nos geradores novos; **Baixar
   vários tipos salvos** num `.zip` só, em Exportar para o jogo.
 - **Para onde vai a ferramenta:** a [bíblia de VFX](docs/biblia/BIBLIA_DE_VFX.md) — 40 famílias de

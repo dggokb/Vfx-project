@@ -76,3 +76,32 @@ async function loteExportar(tipos){
   el('presetName').value=nomeTela;el('presetStatus').textContent=status;el('jogoLoteLista').hidden=true;preview();
  }
 }
+
+// ---- Caminho do rastro desenhado com o dedo ----
+// Botão na prévia: arrasta o dedo (ou o mouse) e o caminho vira o rasPontos do Rastro do golpe, no
+// espaço do gerador (centro do quadro, desfazendo a Direção, para o rastro cair onde se desenhou).
+let rastroDesenhando=null;
+el('rastroDesenhar').onclick=()=>{
+ rastroDesenhando=rastroDesenhando?null:[];
+ el('rastroDesenhar').textContent=rastroDesenhando?'Arraste na prévia o caminho do golpe · cancelar':'Desenhar o caminho na prévia';
+ if(rastroDesenhando&&playing)el('play').onclick();
+};
+stage.addEventListener('pointerdown',e=>{
+ if(!rastroDesenhando)return;
+ e.preventDefault();e.stopImmediatePropagation();stage.setPointerCapture(e.pointerId);rastroDesenhando=[canvasPoint(e)];
+},true);
+stage.addEventListener('pointermove',e=>{if(rastroDesenhando?.length){const p=canvasPoint(e),u=rastroDesenhando.at(-1);if(Math.hypot(p.x-u.x,p.y-u.y)>6)rastroDesenhando.push(p)}});
+stage.addEventListener('pointerup',()=>{
+ if(!rastroDesenhando?.length)return;
+ const a=-+el('angle').value*Math.PI/180,pts=rastroDesenhando.map(p=>{const x=p.x-256,y=p.y-256;return [Math.round(x*Math.cos(a)-y*Math.sin(a)),Math.round(x*Math.sin(a)+y*Math.cos(a))]});
+ rastroDesenhando=null;el('rastroDesenhar').textContent='Desenhar o caminho na prévia';
+ if(pts.length<2)return;
+ el('rasPontos').value=JSON.stringify(pts);el('rasCaminho').value='desenhado';preview();
+});
+
+// Depois de abrir um tipo: os números dos acabamentos e o gráfico da curva de tempo seguem os campos.
+function acabamentosAtualizar(){
+ for(const id of ['rampaLiga','dissLiga','dissBorda','sombraLiga']){const e=el(id);e.checked=e.value==='1'||e.value==='true'}
+ for(const [id,un] of [['rampaInicio','%'],['dissInicio','%'],['sombraY',''],['sombraForca','%']])el(id+'Valor').value=el(id).value+un;
+ tempoDesenharGrafico();
+}

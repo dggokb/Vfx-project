@@ -54,6 +54,38 @@ function lerZip(buf){const a={};let p=0;while(buf.readUInt32LE(p)===0x04034b50){
  ok(ex.soma===1&&Math.abs(ex.pixelScale-1)<1e-6&&/Explosão/.test(ex.video),'cada tipo com as opções de export dele '+JSON.stringify([ex.soma,ex.pixelScale,ex.video]));
  ok(JSON.parse(zip['choque_azul/efeito.json'].toString()).sokonfx.tipo.values.rampaLiga==='1','o choque vai com a rampa');
  ok(await p.evaluate(()=>JSON.stringify([tipoDaTela(),jogoLer()]))===telaAntes,'a tela volta ao que era depois do lote');
+ // Curva de tempo: normal não muda; segurar o contato repete o quadro; a livre muda o ritmo.
+ const mapa=await p.evaluate(()=>{const r={};const m=()=>[...Array(16).keys()].map(i=>tempoMapa(i,16));
+  el('tempoCurva').value='linear';r.normal=m();el('tempoCurva').value='contato';el('tempoContato').value=3;el('tempoSegura').value=4;r.contato=m();
+  el('tempoCurva').value='rapido';r.rapido=m();el('tempoCurva').value='livre';el('tempoX1').value=0;el('tempoY1').value=100;el('tempoX2').value=0;el('tempoY2').value=100;r.livre=m();
+  el('tempoCurva').value='linear';return r});
+ ok(JSON.stringify(mapa.normal)===JSON.stringify([...Array(16).keys()]),'curva normal não muda');
+ ok(JSON.stringify(mapa.contato.slice(0,8))==='[0,1,2,3,3,3,3,3]'&&mapa.contato[15]===15&&mapa.contato.every((v,i,a)=>!i||v>=a[i-1]),'segurar o contato '+mapa.contato);
+ ok(mapa.rapido[3]>3&&mapa.rapido[15]===15,'rápido no começo '+mapa.rapido);
+ ok(mapa.livre[2]>mapa.normal[2],'curva livre '+mapa.livre);
+ // Arrastar um ponto no gráfico muda a curva livre.
+ await p.click('#tempo summary');await p.selectOption('#tempoCurva','livre');await p.$eval('#tempoGrafico',e=>e.scrollIntoView({block:'center'}));
+ const g=await p.$eval('#tempoGrafico',e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width}});
+ const antesX=await p.$eval('#tempoX1',e=>e.value);
+ await p.mouse.move(g.x+g.w*(18+.3*204)/240,g.y+g.w*(18+.7*204)/240);await p.mouse.down();await p.mouse.move(g.x+g.w*.8,g.y+g.w*.2,{steps:4});await p.mouse.up();
+ ok(await p.$eval('#tempoX1',e=>e.value)!==antesX,'arrastar o ponto no gráfico');
+ await p.selectOption('#tempoCurva','linear');
+ // Caminho do rastro desenhado com o mouse na prévia.
+ await p.evaluate(()=>{el('kind').value='Rastro do golpe';el('kind').oninput({})});
+ await p.click('#rastroDesenhar');
+ const st=await p.$eval('#stage',e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height}});
+ const lado=Math.min(st.w,st.h),ox=st.x+(st.w-lado)/2,oy=st.y+(st.h-lado)/2;
+ await p.mouse.move(ox+lado*.2,oy+lado*.3);await p.mouse.down();
+ for(const [fx,fy] of [[.35,.2],[.55,.25],[.7,.45],[.75,.7]])await p.mouse.move(ox+lado*fx,oy+lado*fy,{steps:3});
+ await p.mouse.up();
+ const pontos=JSON.parse(await p.$eval('#rasPontos',e=>e.value));
+ ok(pontos.length>=4&&await p.$eval('#rasCaminho',e=>e.value)==='desenhado','caminho desenhado vira o rasPontos ('+pontos.length+' pontos)');
+ // Luz na prévia: com o "luz" do export, a cena clareia em volta do golpe.
+ const luz=await p.evaluate(async()=>{el('kind').value='Choque';el('kind').oninput({});el('jogoLuz').checked=true;jogoAtualizar();
+  el('gamePreview').open=true;await new Promise(r=>setTimeout(r,50));previa.parado=true;previa.sujo=true;
+  const soma=()=>{previaDesenhar(450);const d=palco.getContext('2d').getImageData(0,0,palco.width,palco.height).data;let s=0;for(let i=0;i<d.length;i+=16)s+=d[i]+d[i+1]+d[i+2];return s};
+  el('previaLuz').checked=false;const sem=soma();el('previaLuz').checked=true;const com=soma();el('gamePreview').open=false;return {sem,com}});
+ ok(luz.com>luz.sem*1.02,'luz do efeito clareia a cena '+JSON.stringify(luz));
  ok(erros.length===0,'erros '+erros);
  await b.close();fs.rmSync(tmp,{recursive:true});
  console.log(falhas?`${falhas} falhas`:'editor: tudo certo');process.exit(falhas?1:0);

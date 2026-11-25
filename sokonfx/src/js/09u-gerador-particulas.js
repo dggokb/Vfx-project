@@ -11,6 +11,8 @@ registrarGerador({
   {id:'parGiro',rotulo:'Giro',tipo:'range',min:0,max:200,padrao:60,unidade:'%'},
   {id:'parTamanho',rotulo:'Tamanho',tipo:'range',min:20,max:300,padrao:100,unidade:'%'},
   {id:'parVida',rotulo:'Vida',tipo:'range',min:20,max:100,padrao:80,unidade:'%'},
+  {id:'parEmissor',rotulo:'Emissor',tipo:'select',padrao:'ponto',opcoes:[['ponto','Ponto'],['linha','Linha (de pé)'],['chao','Linha no chão'],['circulo','Círculo']]},
+  {id:'parArea',rotulo:'Tamanho do emissor',tipo:'range',min:0,max:230,padrao:80,unidade:' px'},
  ],
  desenhar(ctx,{i,n,p,aleatorio}){
   const t=i/(n-1),pal=p.paleta,forca=.75+p.forca/28,rnd=aleatorio(0x9a47),leque=p.parLeque*Math.PI/180;
@@ -24,7 +26,8 @@ registrarGerador({
   for(let j=0;j<p.particulas;j++){
    const a=(rnd()-.5)*leque,v=(120+300*rnd())*p.parVelocidade/100*forca,vida=p.parVida/100*(.55+.45*rnd()),atraso=rnd()*.15;
    const T=(t-atraso)/vida;if(T<=0||T>=1)continue;
-   const tt=T*vida*.8,g=500*p.parGravidade/100,x=Math.cos(a)*v*tt*(1-tt*.3),y=Math.sin(a)*v*tt+g*tt*tt;
+   const e=rnd()-.5,ea=rnd()*Math.PI*2,[ex,ey]=p.parEmissor==='linha'?[0,e*p.parArea*2]:p.parEmissor==='chao'?[e*p.parArea*2,0]:p.parEmissor==='circulo'?[Math.cos(ea)*p.parArea,Math.sin(ea)*p.parArea]:[0,0];
+   const tt=T*vida*.8,g=500*p.parGravidade/100,x=ex+Math.cos(a)*v*tt*(1-tt*.3),y=ey+Math.sin(a)*v*tt+g*tt*tt;
    const s=(7+7*rnd())*p.parTamanho/100*forca*(1-T)**.6;if(s<.6)continue;
    ctx.save();ctx.translate(x,y);ctx.rotate(rnd()*6.28+tt*(rnd()-.5)*20*p.parGiro/100);
    faixas(ctx,k=>forma(s,k),[pal.borda,pal.cor,pal.miolo],[1,.78,.4]);ctx.restore();

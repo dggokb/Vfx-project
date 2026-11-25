@@ -102,6 +102,7 @@ function aplicarTipo(preset,{jogo=true}={}){
   el('kind').oninput();
   const ref=loadRef(preset.values.kind,preset.reference?.data,preset.reference?.name);
   if(jogo&&preset.jogo)jogoAplicar(preset.jogo);
+  try{acabamentosAtualizar()}catch{}
   return ref;
 }
 el('savedTypes').onchange=()=>{

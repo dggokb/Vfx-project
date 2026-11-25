@@ -27,6 +27,8 @@ function previaQuadroEm(duracoesMs,idade){
  let fim=0;for(let i=0;i<duracoesMs.length;i++){fim+=duracoesMs[i];if(idade<fim)return i}
  return -1;
 }
+// A vida da luz (0 a 1 do tempo do efeito): acende em 15% e apaga no resto (EfeitosVideo.vida).
+function previaVida(t){if(t<0||t>=1)return 0;const k=t<.15?t/.15:(1-t)/.85;return k*k}
 // Idade do efeito no passo n de 60 Hz, tendo nascido no passo n0.
 function previaIdade(n,n0,ritmo){return n<n0?-1:(n-n0)*PREVIA_PASSO_MS*ritmo}
 
@@ -105,7 +107,7 @@ async function previaCarregarEfeito(arquivos){
 
 const palco=el('palco');
 const previa={atual:null,sujo:true,cena:null,comparado:null,inicio:performance.now(),marcando:null,medida:[]};
-const previaCampos=['previaFundo','previaAltura','previaMedida','previaX','previaY','previaForca','previaPausa','previaRitmo','previaEsquerda','previaAngulo','previaLenta'];
+const previaCampos=['previaFundo','previaAltura','previaMedida','previaX','previaY','previaForca','previaPausa','previaRitmo','previaEsquerda','previaAngulo','previaLenta','previaLuz'];
 
 function previaAberta(){return el('gamePreview').open}
 
@@ -157,6 +159,14 @@ function previaPainel(ctx,c,efeito,n,n0,x0,larguraJanela,rotulo){
   const q=previaQuadroEm(efeito.dados.duracoesMs,previaIdade(n,n0,tempo.ritmo));
   if(q>=0&&n>=n0){
    visivel=true;
+   const luz=efeito.dados.luz;
+   if(luz&&el('previaLuz').checked){
+    const idade=previaIdade(n,n0,tempo.ritmo),total=efeito.dados.duracoesMs.reduce((a,b)=>a+b,0),vt=previaVida(idade/total);
+    const gx=+el('previaX').value,gy=+el('previaY').value,r=luz.alcance*c.alturaTela;
+    const g=ctx.createRadialGradient(gx,gy,0,gx,gy,r),a=Math.round(255*Math.min(1,luz.forca*vt*.85)).toString(16).padStart(2,'0');
+    g.addColorStop(0,luz.cor+a);g.addColorStop(1,luz.cor+'00');
+    ctx.save();ctx.globalCompositeOperation='screen';ctx.fillStyle=g;ctx.fillRect(gx-r,gy-r,2*r,2*r);ctx.restore();
+   }
    const k=forca.escala*c.px/efeito.dados.pixelScale;
    previaDesenharFolha(ctx,efeito.folha,efeito.dados,q,+el('previaX').value,+el('previaY').value,k,el('previaEsquerda').checked,+el('previaAngulo').value);
   }

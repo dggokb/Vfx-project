@@ -246,3 +246,39 @@ embaixo.
   HUD, cinematics e transições. **Fica para depois no editor:** keyframes, curvas, nós, caminhos,
   emissor visual e vínculo com parte do personagem. **Não começado:** o VFX próprio de cada
   personagem (precisa do dono).
+
+## 25/11 — Fechando o que faltava: curva de tempo, dissipação, luz, emissor, rastro, afterimage e os kits dos 16
+
+- **Pedido:** "faz tudo q falta".
+- **Curva de tempo** (o editor de curvas e de ritmo da bíblia; painel **Curva de tempo**): Normal
+  (não muda nada), Rápido no começo, Lento no começo, Segurar o contato (quadro e quantos quadros) e
+  Livre (Bézier com dois pontos que se arrastam no gráfico). Vale para todo efeito, antigo ou novo,
+  e para a composição e o export; salva no tipo. O gráfico mostra os quadros como degraus.
+- **Dissipação:** "Como dissolve": buracos espalhados, de fora para dentro, de dentro para fora, de
+  baixo para cima, de cima para baixo (o ruído quebra a borda da frente).
+- **Iluminação na prévia no jogo:** com o `"luz"` do export, uma luz da cor do efeito em volta do
+  golpe, somada à cena, que acende em 15% do tempo e apaga no resto como a do jogo
+  (`EfeitosVideo.vida`), com o alcance em alturas de tela. É aproximada: o jogo ilumina só os
+  lutadores e o chão (o print é uma imagem só).
+- **Partículas:** emissor em ponto, linha de pé, linha no chão ou círculo, com tamanho.
+- **Rastro do golpe:** estilos da proposta por personagem (arco limpo, riscos de garra, pincelada
+  larga, seda, arco rasgado, fogo, tinta que escorre, vapor, lâmina, leque, fita que muda de cor) e
+  **caminho desenhado com o dedo** na prévia (o traço vira o caminho, desfazendo a Direção).
+- **Afterimage:** o sprite do lutador carregado do aparelho (guardado no tipo, não no repositório)
+  deixa cópias tingidas que aparecem em sequência e somem em fatias que escorregam; sem sprite, uma
+  silhueta.
+- **Kits dos 16 personagens** (`sokonfx/tipos/personagens.json`, 48 tipos): rastro, faísca de acerto
+  e antecipação de cada um, a partir da tabela "Proposta de base: o kit de cada personagem" do
+  `docs/efeitos-referencia-tokon.md` do jogo. Faísca: a família do H do dono, com a cor e o material
+  de cada um. Os "a definir" da tabela ganharam a cor que a ficha já usa (pedra do Krüger, gelo do
+  p14, dourado da Natisuko, ciano da Bonnie). Cada tipo já vem com o nome da pasta de export
+  (`rastro_p01`, `faisca_p01`, `antecipacao_p01`...). São rascunho para o dono corrigir, como a
+  própria tabela diz.
+- **Conferido:** 303 casos na trava (os 220 de antes sem mudança; Rastro e Partículas mudaram de
+  propósito e os 48 tipos dos kits entraram); `editor.test.cjs` com a curva (inclusive arrastar o
+  ponto), o caminho desenhado com o mouse e a luz na prévia.
+- **O que não dá para fazer aqui:** distorção e deformação de tela, HUD, cinematics e transições
+  são do motor do jogo (shader e cenas no `GameView`), e o próprio `CLAUDE.md` do jogo deixa intro,
+  abertura e cinematics para depois de fechar a jogabilidade. O editor de nós e o vínculo com parte
+  do personagem também são do motor (a origem do export já é o ponto que o jogo prende na ponta do
+  golpe).

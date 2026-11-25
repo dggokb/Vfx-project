@@ -48,6 +48,7 @@ function composicaoDesenhar(ctx,camadas,quadrosDe,i){
 
 // O quadro i do que está valendo: a composição (se ligada) ou o efeito da tela.
 function desenharQuadro(ctx,i){
+ i=tempoMapa(i,quadrosTotais());
  if(composicao.ativa&&!compondo&&composicao.camadas.length)
   composicaoDesenhar(ctx,composicao.camadas,c=>composicao.cache.get(composicaoChave(c.tipo)),i);
  else draw(ctx,i);

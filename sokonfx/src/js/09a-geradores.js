@@ -11,8 +11,9 @@
 //  - aponta para a direita (o jogo espelha).
 
 const geradores={};
-const geradorCampos=['rampaLiga','rampaCor','rampaInicio','dissLiga','dissInicio','dissBorda','sombraLiga','sombraY','sombraForca'],
- geradorPadroes={rampaLiga:'',rampaCor:'#ffffff',rampaInicio:'40',dissLiga:'',dissInicio:'55',dissBorda:'1',sombraLiga:'',sombraY:'470',sombraForca:'35'};
+const geradorCampos=['rampaLiga','rampaCor','rampaInicio','dissLiga','dissInicio','dissBorda','dissModo','sombraLiga','sombraY','sombraForca','tempoCurva','tempoX1','tempoY1','tempoX2','tempoY2','tempoContato','tempoSegura'],
+ geradorPadroes={rampaLiga:'',rampaCor:'#ffffff',rampaInicio:'40',dissLiga:'',dissInicio:'55',dissBorda:'1',dissModo:'ruido',sombraLiga:'',sombraY:'470',sombraForca:'35',
+  tempoCurva:'linear',tempoX1:'30',tempoY1:'30',tempoX2:'70',tempoY2:'70',tempoContato:'2',tempoSegura:'0'};
 
 // Cores: mistura de duas cores #rrggbb (a de 0 a 1) e a paleta de faixas de uma cor.
 function corMistura(a,b,k){
@@ -52,6 +53,16 @@ function registrarGerador(g){
  for(const p of g.params){
   const l=document.createElement('label');
   let e;
+  if(p.tipo==='oculto'){e=document.createElement('input');e.type='hidden';e.id=p.id;e.value=p.padrao;caixa.append(e);continue}
+  if(p.tipo==='imagem'){
+   // A imagem do aparelho vira um data URL guardado no campo (vai junto no tipo salvo).
+   const guarda=document.createElement('input');guarda.type='hidden';guarda.id=p.id;guarda.value='';caixa.append(guarda);
+   const arq=document.createElement('input');arq.type='file';arq.accept='image/png,image/webp,image/jpeg';
+   arq.onchange=async()=>{const f=arq.files[0];if(!f)return;const img=new Image();img.src=URL.createObjectURL(f);await img.decode();
+    const k=Math.min(1,512/Math.max(img.width,img.height)),c=document.createElement('canvas');c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);
+    c.getContext('2d').drawImage(img,0,0,c.width,c.height);guarda.value=c.toDataURL('image/png');arq.value='';preview()};
+   l.append(p.rotulo,arq);caixa.append(l);continue;
+  }
   if(p.tipo==='select'){e=document.createElement('select');for(const [v,t] of p.opcoes)e.add(new Option(t,v))}
   else if(p.tipo==='checkbox'){e=document.createElement('input');e.type='checkbox';l.className='jogo-check'}
   else{e=document.createElement('input');Object.assign(e,{type:'range',min:p.min,max:p.max,step:p.passo||1})}
@@ -71,7 +82,7 @@ function registrarGerador(g){
 function geradorValor(p){
  const e=el(p.id);
  if(p.tipo==='checkbox'){e.checked=e.value==='1'||e.value==='true';return e.checked}
- return p.tipo==='select'?e.value:+e.value;
+ return p.tipo==='select'||p.tipo==='oculto'||p.tipo==='imagem'?e.value:+e.value;
 }
 
 // A beira do quadro: o desenho se apaga nos últimos 28 px (como o --borda do conversor do jogo),
@@ -102,7 +113,7 @@ function desenharGerador(ctx,index){
  g.desenhar(x,{i:index,t:index/(frames-1),n:frames,p,semente:seed,aleatorio:s=>generator((seed^s)>>>0)});
  x.restore();
  const liga=id=>{const e=el(id);e.checked=e.value==='1'||e.value==='true';return e.checked};
- if(liga('dissLiga'))geradorDissolver(x,index,+el('dissInicio').value/100,liga('dissBorda')?p.paleta.miolo:null);
+ if(liga('dissLiga'))geradorDissolver(x,index,+el('dissInicio').value/100,liga('dissBorda')?p.paleta.miolo:null,el('dissModo').value);
  x.save();x.globalCompositeOperation='destination-in';x.drawImage(geradorBeira(),0,0);x.restore();
  if(liga('sombraLiga'))geradorSombra(ctx,+el('sombraY').value,+el('sombraForca').value/100);
  ctx.drawImage(geradorTela,0,0);
@@ -118,7 +129,7 @@ function geradoresMostrar(kind){
  for(const c of document.querySelectorAll('.gerador-params'))c.hidden=c.dataset.gerador!==kind;
  el('rampaBloco').hidden=!g;
  if(!g)return;
- const manter=new Set((g.comuns||geradorComuns).concat(['kind','generate','presetName','keep','backup','restore','savedTypes','presetStatus','save','geradorParams','rampaBloco','composicao','gamePreview','gameExport','refUpload','refStatus','refClear','fps']));
+ const manter=new Set((g.comuns||geradorComuns).concat(['kind','generate','presetName','keep','backup','restore','savedTypes','presetStatus','save','geradorParams','rampaBloco','tempo','composicao','gamePreview','gameExport','refUpload','refStatus','refClear','fps']));
  for(const filho of el('ajustes').children){
   if(filho.hidden)continue;
   const ids=[filho.id,...[...filho.querySelectorAll('[id]')].map(e=>e.id)].filter(Boolean);
@@ -160,7 +171,7 @@ const suave=u=>u<=0?0:u>=1?1:u*u*(3-2*u);
 // Dissolução: o efeito é comido por um ruído fixo a partir de "Começa em" (some por buracos que
 // crescem, não por transparência); a beira dos buracos pode ficar acesa (o miolo da cor).
 let geradorRuido=null;
-function geradorDissolver(x,index,inicio,borda){
+function geradorDissolver(x,index,inicio,borda,modo='ruido'){
  const t=index/(frames-1),lim=Math.max(0,(t-inicio)/(1-inicio||1));
  if(lim<=0)return;
  if(!geradorRuido){
@@ -173,9 +184,12 @@ function geradorDissolver(x,index,inicio,borda){
  }
  const img=x.getImageData(0,0,512,512),d=img.data,faixa=.05;
  const rgb=borda?[1,3,5].map(i=>parseInt(borda.slice(i,i+2),16)):null;
+ // Com direção: o ruído só quebra a borda de uma frente que anda (de fora, de dentro, de baixo, de cima).
+ const frente=modo==='fora'?(xx,yy)=>1-Math.min(1,Math.hypot(xx-256,yy-256)/300):modo==='dentro'?(xx,yy)=>Math.min(1,Math.hypot(xx-256,yy-256)/300)
+  :modo==='baixo'?(xx,yy)=>yy/512:modo==='cima'?(xx,yy)=>1-yy/512:null;
  for(let k=0;k<geradorRuido.length;k++){
   if(!d[k*4+3])continue;
-  const nv=geradorRuido[k];
+  const nv=frente?.35*geradorRuido[k]+.65*frente(k%512,(k/512)|0):geradorRuido[k];
   if(nv<lim)d[k*4+3]=0;
   else if(rgb&&nv<lim+faixa){d[k*4]=rgb[0];d[k*4+1]=rgb[1];d[k*4+2]=rgb[2]}
  }
@@ -188,4 +202,14 @@ function geradorSombra(ctx,chao,forca){
  const s=geradorSombraTela.getContext('2d');s.clearRect(0,0,512,512);s.drawImage(geradorTela,0,0);
  s.save();s.globalCompositeOperation='source-in';s.fillStyle='#000';s.fillRect(0,0,512,512);s.restore();
  ctx.save();ctx.globalAlpha=forca;ctx.translate(0,chao);ctx.scale(1,-.16);ctx.translate(0,-chao);ctx.drawImage(geradorSombraTela,0,0);ctx.restore();
+}
+
+// Imagens dos geradores (data URL → imagem pronta). Enquanto carrega, devolve null e redesenha
+// a prévia quando chegar.
+const geradorImagens=new Map();
+function geradorImagem(url){
+ if(!url)return null;
+ let im=geradorImagens.get(url);
+ if(!im){im=new Image();im.onload=()=>{try{previa.sujo=true}catch{}preview()};im.src=url;geradorImagens.set(url,im)}
+ return im.complete&&im.naturalWidth?im:null;
 }

@@ -25,7 +25,7 @@ for(const airFlow of ['out','in','pulse'])for(const airEdge of ['round','spiked'
  casos.push(c(`Ar ${airFlow} ${airEdge}`,{kind:'Pressão de ar',airFlow,airEdge,airCopies:'14',airWaves:'4',airInterval:'1',airRingGap:'200',airParticleGap:'50',airWidth:'14'}));
 casos.push(c('Ponto de luz feixes',{kind:'Ponto de luz',beams:'12',beamWidth:'30',focusX:'200',focusY:'300'}));
 // Os geradores novos (registro em 09a-geradores.js): o padrão e as variações dos controles.
-for(const kind of ['Defesa','Choque','Raio','Linhas de mangá','Aura','Detritos','Explosão','Onda de choque','Faíscas','Gelo','Vento e vórtices','Feixe de energia','Teletransporte','Portal','Gases e vapores','Energia sombria','Decal (marca no chão)','Rastro do golpe','Poeira','Partículas','Brilhos e flashes','Energia espiritual'])for(const power of ['3','9','14'])
+for(const kind of ['Defesa','Choque','Raio','Linhas de mangá','Aura','Detritos','Explosão','Onda de choque','Faíscas','Gelo','Vento e vórtices','Feixe de energia','Teletransporte','Portal','Gases e vapores','Energia sombria','Decal (marca no chão)','Rastro do golpe','Poeira','Partículas','Brilhos e flashes','Energia espiritual','Afterimage'])for(const power of ['3','9','14'])
  casos.push(c(`${kind} força ${power}`,{kind,power}));
 for(const defForma of ['arco','duplo','anel'])casos.push(c(`Defesa ${defForma}`,{kind:'Defesa',defForma,defTamanho:'160',defAbertura:'150',defEspessura:'40',defQuebra:'4',defPedacos:'11',defBrilho:'0',defDois:''}));
 casos.push(c('Choque variado',{kind:'Choque',chqAbertura:'110',chqComprimento:'200',chqEspessura:'40',chqAnel:'',chqLinhas:'40',chqQuebra:'9',chqBrilho:'100',chqDois:''}));
@@ -50,6 +50,11 @@ for(const parForma of ['bola','estrela','lasca','pena','quadrado'])casos.push(c(
 casos.push(c('Clarão',{kind:'Brilhos e flashes',briTipo:'clarao',briTamanho:'250'}));
 casos.push(c('Espiritual variada',{kind:'Energia espiritual',espQtd:'20',espTamanho:'200',espLargura:'240',espAltura:'380',espCauda:'200',espDois:''}));
 casos.push(c('Explosão dissolve e sombra',{kind:'Explosão',dissLiga:'1',dissInicio:'20',dissBorda:'',sombraLiga:'1',sombraY:'300',sombraForca:'80'}));
+for(const rasEstilo of ['riscos','pincel','arco','seda','rasgado','fogo','tinta','vapor','lamina','leque','arcoiris'])casos.push(c(`Rastro ${rasEstilo}`,{kind:'Rastro do golpe',rasEstilo}));
+casos.push(c('Rastro desenhado',{kind:'Rastro do golpe',rasCaminho:'desenhado',rasPontos:'[[-180,-60],[-60,-140],[80,-90],[170,40],[120,160]]',rasEstilo:'rasgado'}));
+for(const dissModo of ['fora','dentro','baixo','cima'])casos.push(c(`Dissolver ${dissModo}`,{kind:'Choque',dissLiga:'1',dissInicio:'10',dissModo}));
+for(const parEmissor of ['linha','chao','circulo'])casos.push(c(`Partículas emissor ${parEmissor}`,{kind:'Partículas',parEmissor,parArea:'200'}));
+casos.push(c('Afterimage sem fatias',{kind:'Afterimage',aftCopias:'8',aftDistancia:'20',aftTinge:'0',aftFatias:'',aftOriginal:'1'}));
 for(const linTipo of ['concentracao','velocidade'])
  casos.push(c(`Linhas ${linTipo}`,{kind:'Linhas de mangá',linTipo,linQtd:'120',linMeio:'40',linComprimento:'220',linGrossura:'14',linBranco:'20',linSome:'3',linDois:''}));
 // Os tipos salvos do dono (sokonfx-types-v1).

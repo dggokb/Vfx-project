@@ -190,3 +190,16 @@ embaixo.
   com `CASOS=` antes de trocar a referência); `geradores.test.cjs` com os 12 geradores (painel,
   volta do painel antigo, export, nada na beira em todas as variações).
 - **Falta:** o dono julgar; o vórtice ainda está ralo no padrão.
+
+## 25/11 — Editor: vizinhos, rampa de cor e export em lote
+
+- **Vizinhos (onion skin):** botão **Vizinhos** embaixo da prévia: o quadro anterior (avermelhado)
+  e o seguinte (esverdeado), apagados, por baixo do quadro atual. Só na prévia; o export não muda
+  (conferido no teste).
+- **Rampa de cor:** nos geradores novos, **Rampa de cor** muda a Cor da energia até a **Cor no fim**,
+  a partir de "Começa a mudar em" (o calor que esfria, a energia que apaga). Salva no tipo; nos
+  efeitos antigos o bloco não aparece e nada muda (trava de pixels).
+- **Export em lote:** em Exportar para o jogo, **Baixar vários tipos salvos**: marca os tipos e baixa
+  um `sokonfx_lote.zip` com uma pasta por tipo, cada uma com as opções de export que o tipo guardou
+  (e a composição, se tiver). A tela volta ao que era (tipo, export e composição).
+- **Conferido:** `testes/editor.test.cjs`; a bateria inteira passa (183 casos sem diferença).

@@ -23,6 +23,8 @@ celular.
 - **Vários efeitos num só:** em **Composição de camadas**, adicione o efeito da tela (ou um tipo
   salvo) como camada, mude a tela, adicione outra. Cada camada tem início, posição, tamanho, giro,
   opacidade e soma como luz; a prévia, a prévia no jogo e o export passam a usar a composição.
+- **Editor:** **Vizinhos** (onion skin) na prévia; **Rampa de cor** nos geradores novos; **Baixar
+  vários tipos salvos** num `.zip` só, em Exportar para o jogo.
 - **Para onde vai a ferramenta:** a [bíblia de VFX](docs/biblia/BIBLIA_DE_VFX.md) — 40 famílias de
   geradores, compositor de camadas e preview de gameplay.
 

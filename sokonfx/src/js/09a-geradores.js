@@ -11,7 +11,7 @@
 //  - aponta para a direita (o jogo espelha).
 
 const geradores={};
-const geradorCampos=[],geradorPadroes={};
+const geradorCampos=['rampaLiga','rampaCor','rampaInicio'],geradorPadroes={rampaLiga:'',rampaCor:'#ffffff',rampaInicio:'40'};
 
 // Cores: mistura de duas cores #rrggbb (a de 0 a 1) e a paleta de faixas de uma cor.
 function corMistura(a,b,k){
@@ -90,7 +90,11 @@ function geradorBeira(){
 function desenharGerador(ctx,index){
  const g=geradores[el('kind').value];
  const p=Object.fromEntries(g.params.map(q=>[q.id,geradorValor(q)]));
- p.cor=el('tint').value;p.forca=+el('power').value;p.particulas=+el('particles').value;p.paleta=corPaleta(p.cor);
+ p.cor=el('tint').value;p.forca=+el('power').value;p.particulas=+el('particles').value;
+ // Rampa de cor: da Cor da energia até a Cor no fim, a partir de "Começa a mudar em".
+ const rampa=el('rampaLiga');rampa.checked=rampa.value==='1'||rampa.value==='true';
+ if(rampa.checked){const ini=+el('rampaInicio').value/100,t=index/(frames-1);p.cor=corMistura(p.cor,el('rampaCor').value,suave(Math.max(0,(t-ini)/(1-ini||1))))}
+ p.paleta=corPaleta(p.cor);
  if(!geradorTela){geradorTela=document.createElement('canvas');geradorTela.width=geradorTela.height=512}
  const x=geradorTela.getContext('2d');x.clearRect(0,0,512,512);x.save();
  x.translate(g.origem?.x??256,g.origem?.y??256);if(!g.semGiro)x.rotate(+el('angle').value*Math.PI/180);
@@ -107,8 +111,9 @@ function geradoresAntes(){for(const e of geradorEscondidos)e.hidden=false;gerado
 function geradoresMostrar(kind){
  const g=geradores[kind];
  for(const c of document.querySelectorAll('.gerador-params'))c.hidden=c.dataset.gerador!==kind;
+ el('rampaBloco').hidden=!g;
  if(!g)return;
- const manter=new Set((g.comuns||geradorComuns).concat(['kind','generate','presetName','keep','backup','restore','savedTypes','presetStatus','save','geradorParams','composicao','gamePreview','gameExport','refUpload','refStatus','refClear','fps']));
+ const manter=new Set((g.comuns||geradorComuns).concat(['kind','generate','presetName','keep','backup','restore','savedTypes','presetStatus','save','geradorParams','rampaBloco','composicao','gamePreview','gameExport','refUpload','refStatus','refClear','fps']));
  for(const filho of el('ajustes').children){
   if(filho.hidden)continue;
   const ids=[filho.id,...[...filho.querySelectorAll('[id]')].map(e=>e.id)].filter(Boolean);

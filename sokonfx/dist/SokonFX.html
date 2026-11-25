@@ -2532,7 +2532,7 @@ registrarGerador({
  perfil:{tint:'#ff7a12',particles:14},
  origem:{x:300,y:256},
  params:[
-  {id:'fzForma',rotulo:'Forma',tipo:'select',padrao:'voo',opcoes:[['voo','Bola em voo (loop)'],['estouro','Estouro'],['coluna','Coluna / labareda (loop)'],['aura','Aura no corpo (loop)'],['desenho','Desenhada (o seu desenho)']]},
+  {id:'fzForma',rotulo:'Forma',tipo:'select',padrao:'voo',opcoes:[['voo','Bola em voo (loop)'],['estouro','Estouro'],['coluna','Coluna / labareda (loop)'],['aura','Aura no corpo (loop)'],['desenho','Desenhada (o seu desenho)'],['hit','Hit em camadas (gerado)']]},
   {id:'fzFluxo',rotulo:'Para onde a matéria corre',tipo:'select',padrao:'sobe',opcoes:[['sobe','Sobe'],['tras','Para trás (esquerda)'],['frente','Para a frente (direita)'],['desce','Desce'],['fora','Para fora (do centro do desenho)'],['parado','Ferve no lugar']]},
   {id:'fzTempoDesenho',rotulo:'O desenho no tempo',tipo:'select',padrao:'ferve',opcoes:[['ferve','Ferve (loop)'],['estoura','Estoura e se quebra'],['transforma','Do desenho do começo ao do fim']]},
   {id:'fzRuido',rotulo:'Matéria',tipo:'select',padrao:'fogo',opcoes:[['fogo','Fogo'],['eletrico','Elétrico'],['fumaca','Fumaça / vapor']]},
@@ -2544,15 +2544,23 @@ registrarGerador({
   {id:'fzBrilho',rotulo:'Brilho em volta',tipo:'range',min:0,max:200,padrao:100,unidade:'%'},
   {id:'fzAneis',rotulo:'Anéis em volta da bola',tipo:'checkbox',padrao:true},
   {id:'fzDois',rotulo:'Animar de dois em dois',tipo:'checkbox',padrao:false},
+  {id:'fzPontas',rotulo:'Hit: pontas',tipo:'range',min:5,max:30,padrao:14},
+  {id:'fzComprimento',rotulo:'Hit: comprimento',tipo:'range',min:60,max:260,padrao:200,unidade:' px'},
+  {id:'fzCurva',rotulo:'Hit: curva das pontas',tipo:'range',min:0,max:100,padrao:45,unidade:'%'},
+  {id:'fzAbre',rotulo:'Hit: para onde abre',tipo:'range',min:-180,max:180,padrao:-35,unidade:'°'},
+  {id:'fzAbertura',rotulo:'Hit: abertura',tipo:'range',min:90,max:360,padrao:330,unidade:'°'},
+  {id:'fzRaios',rotulo:'Hit: raios de luz',tipo:'range',min:0,max:10,padrao:3},
+  {id:'fzContorno',rotulo:'Hit: contorno por dentro',tipo:'range',min:0,max:100,padrao:50,unidade:'%'},
+  {id:'fzCamadas',rotulo:'Hit: camadas',tipo:'range',min:1,max:3,padrao:3},
   {id:'fzDesenhoA',tipo:'oculto',padrao:''},
   {id:'fzDesenhoB',tipo:'oculto',padrao:''},
  ],
- desenhar(ctx,{i,n,p,aleatorio}){
+ desenhar(ctx,{i,n,p,aleatorio,semente}){
   const g=fazedorContexto();
   if(!g){ctx.fillStyle='#fff';ctx.font='16px sans-serif';ctx.fillText('Este navegador não tem WebGL2 (o Fazedor precisa).',-200,0);return}
   const {tela,gl,u}=g,W=ctx.canvas.width,H=ctx.canvas.height;
   if(tela.width!==W||tela.height!==H){tela.width=W;tela.height=H}
-  const q=doisEmDois(i,p.fzDois),forma=['voo','estouro','coluna','aura','desenho'].indexOf(p.fzForma);
+  const q=doisEmDois(i,p.fzDois),forma=['voo','estouro','coluna','aura','desenho','hit'].indexOf(p.fzForma);
   const forca=.75+p.forca/28,R=56*p.fzTamanho/100*forca*(forma===1?1.25:1),L=p.fzAlcance,ue=q/(n-1);
   // Brasas (partículas do mesmo material): correm com o efeito e encolhem.
   const emb=[],rnd=aleatorio(0xfa2e),nb=Math.min(24,p.particulas);
@@ -2566,9 +2574,10 @@ registrarGerador({
    else emb.push(-44+lado*R*(1.2+f*.6),130-f*(300+L*.6),R*.18*tam*(1-f)**.6,0);
   }
   const M=ctx.getTransform().inverse(),kt=ctx.getTransform().a?Math.hypot(ctx.getTransform().a,ctx.getTransform().b):1;
-  const A=fazedorMascara('fzDesenhoA'),B=fazedorMascara('fzDesenhoB'),fl={sobe:[0,1],tras:[1,0],frente:[-1,0],desce:[0,-1],parado:[0,0],fora:[0,0]}[p.fzFluxo]||[0,1];
-  const estoura=forma===4&&p.fzTempoDesenho==='estoura',ce=A.centro,cP=[(ce[0]*kt),(ce[1]*kt)];
-  if(forma===4){
+  const camadasHit=forma===5?fazedorHit(p,semente):null;
+  const A=camadasHit?camadasHit.at(-1).m:fazedorMascara('fzDesenhoA'),B=fazedorMascara('fzDesenhoB'),fl={sobe:[0,1],tras:[1,0],frente:[-1,0],desce:[0,-1],parado:[0,0],fora:[0,0]}[p.fzFluxo]||[0,1];
+  const estoura=forma===5||forma===4&&p.fzTempoDesenho==='estoura',ce=A.centro,cP=[(ce[0]*kt),(ce[1]*kt)];
+  if(forma>=4){
    // Brasas do desenho: nascem nos pontos fortes dele e correm para onde a matéria corre; estourando,
    // saem voando do centro na direção das pontas.
    emb.length=0;const pts=A.fortes;const r2=aleatorio(0xd35e);
@@ -2582,14 +2591,14 @@ registrarGerador({
   const {texA,texB}=g;
   gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texA);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,A.c);
   gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,texB);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,B.c);
-  gl.uniform1f(u.temB,B.vazio||p.fzTempoDesenho!=='transforma'?0:1);gl.uniform1f(u.mistura,suave(ue));gl.uniform2f(u.fluxo,fl[0],fl[1]);
+  gl.uniform1f(u.temB,B.vazio||forma===5||p.fzTempoDesenho!=='transforma'?0:1);gl.uniform1f(u.mistura,suave(ue));gl.uniform2f(u.fluxo,fl[0],fl[1]);
   gl.uniform2f(u.centroUV,ce[0]/512,ce[1]/512);gl.uniform2f(u.centroP,M.a*cP[0]+M.c*cP[1]+M.e,M.b*cP[0]+M.d*cP[1]+M.f);
-  gl.uniform1i(u.radial,p.fzFluxo==='fora'?1:0);gl.uniform1f(u.raioD,A.raio);
+  gl.uniform1i(u.radial,p.fzFluxo==='fora'||forma===5?1:0);gl.uniform1f(u.raioD,A.raio);
   gl.viewport(0,0,W,H);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);
   gl.uniform2f(u.res,W,H);gl.uniform3f(u.m0,M.a,M.c,M.e);gl.uniform3f(u.m1,M.b,M.d,M.f);
   gl.uniform1f(u.t,q);gl.uniform1f(u.T,n);gl.uniform1f(u.R,R);gl.uniform1f(u.L,L);
-  gl.uniform1f(u.amp,p.fzForca/100);gl.uniform1f(u.esc,p.fzEscala/100);gl.uniform1f(u.vel,p.fzVelocidade/100);
-  gl.uniform1i(u.forma,forma);gl.uniform1i(u.ruido,['fogo','eletrico','fumaca'].indexOf(p.fzRuido));
+  gl.uniform1f(u.amp,p.fzForca/100*(forma===5?.5:1));gl.uniform1f(u.esc,p.fzEscala/100);gl.uniform1f(u.vel,p.fzVelocidade/100);
+  gl.uniform1i(u.forma,Math.min(forma,4));gl.uniform1i(u.ruido,['fogo','eletrico','fumaca'].indexOf(p.fzRuido));
   const giro=q/n*Math.PI*4,aneis=forma===0&&p.fzAneis;
   gl.uniform1f(u.anel1,aneis?R*(.12+.5*Math.abs(Math.cos(giro))):0);gl.uniform1f(u.anel2,aneis?R*(.12+.5*Math.abs(Math.sin(giro))):0);
   gl.uniform1f(u.cresce,forma===1||estoura?(.4+.6*Math.min(1,1-(1-Math.min(1,ue/.18))**3))*(1+.3*ue):1);
@@ -2597,8 +2606,21 @@ registrarGerador({
   gl.uniform1f(u.brilho,p.fzBrilho/100);gl.uniform1f(u.halo,forma===0?p.fzBrilho/100:forma===1?p.fzBrilho/100*Math.max(0,1-ue*1.6):0);
   const e=new Float32Array(96);e.set(emb.slice(0,96));gl.uniform4fv(u['emb[0]'],e);gl.uniform1i(u.nemb,emb.length/4);
   gl.uniform3fv(u['cor[0]'],new Float32Array(fazedorDegraus(p.cor)));
-  gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
-  ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.drawImage(tela,0,0);ctx.restore();
+  const passada=()=>{gl.clear(gl.COLOR_BUFFER_BIT);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.drawImage(tela,0,0);ctx.restore()};
+  if(!camadasHit){passada();return}
+  // Hit: de trás para a frente. A de trás quebra um pouco depois (a última a sumir), a da frente antes;
+  // as brasas só na da frente.
+  const todas=camadasHit;
+  for(const {m,ci,total} of todas){
+   const atraso=(total-1-ci)*.08,u2=Math.max(0,Math.min(1,ue-atraso*.5));
+   gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texA);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,m.c);
+   gl.uniform1f(u.raioD,m.raio);
+   gl.uniform1f(u.cresce,(.4+.6*Math.min(1,1-(1-Math.min(1,u2/.18))**3))*(1+.3*u2));
+   gl.uniform1f(u.quebra,Math.max(0,(u2-.42-atraso)/(.58-atraso))**1.25);
+   gl.uniform1i(u.nemb,ci===total-1?emb.length/4:0);
+   gl.uniform1f(u.brilho,ci===total-1?p.fzBrilho/100*.6:0);
+   passada();
+  }
  }
 });
 
@@ -2666,19 +2688,19 @@ el('fzLimpar').onclick=()=>{const campo=el('fzQual').value;el(campo).value='';fa
 let fazedorAntes=null,fazedorTracoTela=null,fazedorPontos=[];
 // O traço inteiro é redesenhado dos pontos a cada movimento: com "afinar", ele sai grosso de onde
 // começou e afina até a ponta (a ponta acompanha o dedo); a caneta com pressão afina e engrossa.
-function fazedorRedesenhar(){
- const g=fazedorTracoTela.getContext('2d',{willReadFrequently:true}),r0=+el('fzPincel').value/2,afina=el('fzAfinar').checked,pts=fazedorPontos;
- // Cinza sobre preto, juntando as manchas pelo maior valor (lighten): o traço fica com o perfil de um
- // cone (forte no meio, fraco na beira), sem encher por acúmulo; depois o cinza vira a tinta.
+// O traço de cone: pontos -> um traço (cinza sobre preto juntando as manchas pelo maior valor, que
+// depois vira a tinta) no canvas t. Usado pelo pincel e pelo hit gerado.
+function fazedorCone(t,pts,r0,afina){
+ const g=t.getContext('2d',{willReadFrequently:true});
  g.globalCompositeOperation='source-over';g.fillStyle='#000';g.fillRect(0,0,512,512);g.globalCompositeOperation='lighten';
  const seg=[0];for(let i=1;i<pts.length;i++)seg.push(seg[i-1]+Math.hypot(pts[i].x-pts[i-1].x,pts[i].y-pts[i-1].y));
  const total=seg.at(-1);let proxima=0,i=0;
  const mancha=(x,y,r)=>{if(r<.4)return;const gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,'#ffffff');gr.addColorStop(1,'#000000');
   g.fillStyle=gr;g.beginPath();g.arc(x,y,r,0,Math.PI*2);g.fill()};
- if(pts.length===1)mancha(pts[0].x,pts[0].y,r0*pts[0].pr);
+ if(pts.length===1)mancha(pts[0].x,pts[0].y,r0*(pts[0].pr??1));
  for(let sd=0;pts.length>1&&sd<=total;sd+=.75){
   while(i<seg.length-2&&seg[i+1]<sd)i++;
-  const k=(sd-seg[i])/Math.max(1e-6,seg[i+1]-seg[i]),A=pts[i],B=pts[i+1],pr=A.pr+(B.pr-A.pr)*k;
+  const k=(sd-seg[i])/Math.max(1e-6,seg[i+1]-seg[i]),A=pts[i],B=pts[i+1],pr=(A.pr??1)+((B.pr??1)-(A.pr??1))*k;
   const r=r0*pr*(afina?Math.max(.03,1-sd/Math.max(total,1))**.8:1);
   if(sd>=proxima){mancha(A.x+(B.x-A.x)*k,A.y+(B.y-A.y)*k,r);proxima=sd+Math.max(.6,r*.22)}
  }
@@ -2686,6 +2708,7 @@ function fazedorRedesenhar(){
  const im=g.getImageData(0,0,512,512),d=im.data;for(let i=0;i<d.length;i+=4){d[i+3]=d[i];d[i]=d[i+1]=d[i+2]=255}
  g.putImageData(im,0,0);
 }
+function fazedorRedesenhar(){fazedorCone(fazedorTracoTela,fazedorPontos,+el('fzPincel').value/2,el('fzAfinar').checked)}
 function fazedorJuntar(){
  const m=fazedorMascara(el('fzQual').value),g=m.c.getContext('2d');
  g.save();g.globalCompositeOperation='copy';g.drawImage(fazedorAntes,0,0);g.restore();
@@ -2711,6 +2734,53 @@ stage.addEventListener('pointerup',()=>{
  const campo=el('fzQual').value,m=fazedorMascara(campo);fazedorFortes(m);
  const url=m.vazio?'':m.c.toDataURL('image/png');el(campo).value=url;m.src=url;if(url)fazedorGuardados.set(url,m);preview();
 });
+
+// ---- Hit em camadas (gerado, sem pincel) ----
+// Três camadas de pontas saindo do contato: atrás (maior, só até o laranja e amarelo), no meio e na
+// frente (curta, chega no branco), cada ponta comprida, curva e de tamanho diferente. Antes de cada
+// ponta entrar, um sulco com a forma dela (um pouco maior) é aberto no que já está desenhado: onde ela
+// passa por cima de outra, fica a linha vermelha entre as duas (o contorno por dentro). Na frente, os
+// raios de luz em zigue-zague. Cada "Gerar variação" (semente) dá outro hit; o resultado fica guardado.
+const fazedorHitGuardado=new Map();
+function fazedorHit(p,semente){
+ const chave=JSON.stringify([semente,p.fzPontas,p.fzComprimento,p.fzCurva,p.fzAbre,p.fzAbertura,p.fzRaios,p.fzContorno,p.fzCamadas,p.fzTamanho]);
+ if(fazedorHitGuardado.has(chave))return fazedorHitGuardado.get(chave);
+ const rnd=generator((semente^0x417)>>>0),C=[256,256],tam=p.fzTamanho/100,L0=p.fzComprimento*tam,W0=58*tam,base=p.fzAbre*Math.PI/180,abre=p.fzAbertura*Math.PI/180;
+ const tmp=document.createElement('canvas');tmp.width=tmp.height=512;
+ const pincelada=(alvo,pts,r,forca,apagar)=>{fazedorCone(tmp,pts,r,true);const g=alvo.getContext('2d');g.save();g.globalAlpha=forca;
+  g.globalCompositeOperation=apagar?'destination-out':'source-over';g.drawImage(tmp,0,0);g.restore()};
+ const ponta=(a,comp,curva,de)=>{const pts=[];for(let k=0;k<=14;k++){const u=k/14,aa=a+curva*u*u,d=de+comp*u;pts.push({x:C[0]+Math.cos(aa)*d,y:C[1]+Math.sin(aa)*d})}return pts};
+ const camadas=[];
+ const conf=[{esc:1.2,qtd:.8,larg:1.1,forca:.66,miolo:0},{esc:1,qtd:1,larg:.95,forca:.86,miolo:.9},{esc:.68,qtd:.7,larg:.85,forca:1,miolo:.8}].slice(3-p.fzCamadas);
+ for(const [ci,c] of conf.entries()){
+  const m=fazedorVazio(),n=Math.max(3,Math.round(p.fzPontas*c.qtd));
+  // miolo
+  if(c.miolo)pincelada(m.c,[{x:C[0],y:C[1]}],W0*2.4*c.miolo,c.forca,false);
+  const lista=[];
+  for(let k=0;k<n;k++){
+   const a=base+(k/n-.5)*abre+(rnd()-.5)*abre/n*1.4,lado=.55+.45*Math.cos(a-base);
+   const comp=L0*c.esc*(.3+.7*rnd()**.6)*lado,curva=(rnd()-.5)*p.fzCurva/100*1.1,larg=W0*c.larg*(.55+.6*rnd())*(comp/L0)**.25;
+   lista.push({a,comp,curva,larg,de:W0*(.3+.6*rnd())});
+  }
+  // as maiores primeiro (atrás), as menores por cima: os sulcos ficam nas pontas que cruzam
+  lista.sort((x,y)=>y.comp-x.comp);
+  for(const [j,q] of lista.entries()){
+   const pts=ponta(q.a,q.comp,q.curva,q.de);
+   if(j>0&&j<lista.length*.7&&p.fzContorno>0)pincelada(m.c,pts,q.larg*1.4,p.fzContorno/100*.38,true);
+   pincelada(m.c,pts,q.larg,c.forca,false);
+  }
+  // raios de luz em zigue-zague, na camada da frente
+  if(ci===conf.length-1)for(let k=0;k<p.fzRaios;k++){
+   const a=base+(rnd()-.5)*abre*.9,comp=L0*(1.1+.6*rnd()),pts=[],dobras=1+Math.floor(rnd()*2),sx=-Math.sin(a),sy=Math.cos(a);
+   for(let z=0;z<=dobras*2;z++){const u=z/(dobras*2),d=W0*.8+comp*u,off=(z%2?1:-1)*comp*.025*(z?1:0)*(1-u*.5);
+    pts.push({x:C[0]+Math.cos(a)*d+sx*off,y:C[1]+Math.sin(a)*d+sy*off})}
+   pincelada(m.c,pts,W0*.42,1,false);
+  }
+  fazedorFortes(m);m.centro=C;m.vazio=false;camadas.push({m,ci,total:conf.length});
+ }
+ if(fazedorHitGuardado.size>24)fazedorHitGuardado.delete(fazedorHitGuardado.keys().next().value);
+ fazedorHitGuardado.set(chave,camadas);return camadas;
+}
 function draw(ctx,index,local=false){
  if(geradores[el('kind').value]){desenharGerador(ctx,index);return}
  drawBase(ctx,index,local);

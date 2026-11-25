@@ -394,3 +394,11 @@ embaixo.
   e o chão do kit anterior (`sokonfx/tipos/fazedor_hit_concept.json` tem o tipo com o desenho). Gravado
   no PC no `kit_forte` (só na cópia de trabalho do jogo). Os desenhos agora ficam guardados por PNG e
   `aplicarTipo` espera eles carregarem (antes a composição montava a camada vazia).
+- **Hit em camadas, gerado (25/11, o dono: o pincel "depende muito de mim e faz a produção cair"):**
+  forma "Hit em camadas (gerado)" no Fazedor, sem pincel. Três camadas de pontas saindo do contato
+  (atrás maior e só até o amarelo, meio, frente curta que chega no branco), compridas, curvas e de
+  tamanhos diferentes; antes de cada ponta entrar, um sulco com a forma dela é aberto no que já está
+  desenhado, e onde ela cruza outra fica a linha vermelha entre as duas (contorno por dentro). Raios
+  de luz retos com uma ou duas dobras na frente. Controles: pontas, comprimento, curva, para onde abre,
+  abertura, raios, contorno por dentro, camadas. Cada "Gerar variação" dá outro hit (semente);
+  o resultado fica guardado. O brilho vai só na camada da frente (as de trás somavam uma mancha).

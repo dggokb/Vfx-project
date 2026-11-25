@@ -52,5 +52,9 @@ embaixo.
   decodificada contra o desenho. Fora do teste, o mesmo H passou pelo `tools/sprites/efeito_video.py`
   do jogo (16 PNGs, origem 256,256, 1x): **efeito.json idêntico** (quadros, deslocamentos,
   altura, tempos) e folha com o mesmo alfa (cor até 1 nível de diferença nos pixels visíveis).
-- **Falta:** ver um efeito exportado rodando no jogo (PC e celular) e o dono julgar o painel no
-  celular.
+- **No motor do jogo (PC):** o zip do H (reforço de brilho e luz `#F5C83E`) foi solto no lugar do
+  `impacto_v09_forte` numa cópia de trabalho do jogo, só para o teste, e gravado com
+  `gradle :pc:gravarLuta -Proteiro="segura:D espera:3.2 solta:D grava:55:g tecla:L fim"` (Ryūga
+  chuta o Kōga). O `EfeitosVideo` leu a pasta sem erro, a faísca nasceu na ponta do pé e a luz
+  apareceu no chão. Depois o jogo voltou ao que era (nada foi commitado lá).
+- **Falta:** ver no celular e o dono julgar o painel e o efeito no vídeo.

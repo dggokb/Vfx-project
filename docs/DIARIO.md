@@ -451,3 +451,9 @@ embaixo.
   contato, rachando). Na ferramenta: o tempo do "nasce cheio" divide melhor (estouro 2 desenhos, quebra
   mais longa), "quanto os pedaços voam" (35% neste), brilho somado no export (soma 0,35), e a cor do
   desenho tirado do fundo preto deixou de escurecer nas bordas (a cor é desfeita pelo próprio brilho).
+- **Rodada 5 (26/11; o dono: "muito grande e muito amarelo; não gosto quando abre e volta para o meio;
+  tem que abrir e explodir"):** folha nova do Codex com miolo branco pequeno, faixa fina de amarelo e
+  o resto laranja com pontas vermelho-alaranjadas; depois do estouro os pedaços se afastam do contato a
+  cada desenho (o meio fica vazio). Na ferramenta, "explode para fora depois do estouro" (a escala cresce
+  em volta do contato a partir do terceiro desenho; 45% neste) e os pedaços voam 100%. Tamanho no jogo
+  62%. Tipo em `sokonfx/tipos/fazedor_hit_explode.json`.

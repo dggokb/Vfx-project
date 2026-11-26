@@ -2586,6 +2586,7 @@ registrarGerador({
   {id:'fzImgSaida',rotulo:'Imagem: como some',tipo:'select',padrao:'estilhaca',opcoes:[['estilhaca','Estilhaça (pedaços voam)'],['come','O ruído come (antigo)']]},
   {id:'fzImgEsfria',rotulo:'Imagem: pedaços esfriam para o vermelho',tipo:'checkbox',padrao:true},
   {id:'fzImgCheio',rotulo:'Imagem: nasce cheio (sem crescer)',tipo:'checkbox',padrao:false},
+  {id:'fzImgExplode',rotulo:'Imagem: explode para fora depois do estouro',tipo:'range',min:0,max:100,padrao:0,unidade:'%'},
   {id:'fzImgVoo',rotulo:'Imagem: quanto os pedaços voam',tipo:'range',min:0,max:200,padrao:100,unidade:'%'},
   {id:'fzImgEntra',rotulo:'Imagem: quadros para abrir',tipo:'range',min:1,max:8,padrao:3},
   {id:'fzImgQuebra',rotulo:'Imagem: começa a quebrar em',tipo:'range',min:10,max:90,padrao:40,unidade:'%'},
@@ -2663,7 +2664,9 @@ registrarGerador({
     // cada desenho cresce enquanto está na tela (soco ao entrar), e depois do pico tudo segue indo
     // para fora: o efeito não fica parado como um recorte.
     const pico=Math.min(N-1,Math.max(1,Math.round((N-1)*.45)));
-    cresce=p.fzImgCheio?1+.05*ue:k<=pico?(.9+.12*(1-(1-lp)**2)):(1.02+.28*((k-pico)+lp)/Math.max(1,N-1-pico));
+    // Explode para fora: depois dos dois desenhos do estouro, tudo é empurrado para longe do contato
+    // (a escala cresce em volta dele), para nunca voltar para o meio.
+    cresce=p.fzImgCheio?1+.05*ue+p.fzImgExplode/100*.9*Math.max(0,(k-1+lp)/Math.max(1,N-2))**.8:k<=pico?(.9+.12*(1-(1-lp)**2)):(1.02+.28*((k-pico)+lp)/Math.max(1,N-1-pico));
     quebra=k===N-1?Math.max(0,(lp-.25)/.75):0;
    }
    // Estilhaço: o desenho da vez se parte em pedaços que voam do contato, giram, encolhem e esfriam

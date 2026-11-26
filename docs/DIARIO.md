@@ -438,3 +438,11 @@ embaixo.
   e halo da cor por baixo, e a saída "estilhaça" (o desenho se parte em células que voam do contato,
   giram, encolhem e esfriam para o vermelho) no lugar do ruído comendo a forma ("o ruído come" ficou
   como opção). Kit do forte sem o anel fino, gravado contra o hit de hoje.
+- **Rodada 3, comparado com um jogo profissional (26/11):** o dono mandou gravações do Marvel Tōkon
+  (Arc System Works). Lado a lado, o hit de lá: nasce cheio no primeiro quadro (sem crescer), placas
+  rasgadas em zigue-zague (não chama lisa), sem contorno escuro (amarelo-creme, amarelo, ponta laranja),
+  duas peças (estouro no contato e um jato fino na direção do golpe), e some em lascas amarelas que voam,
+  em uns 5 desenhos. O Codex desenhou uma folha 3×2 original com essas regras; a forma Imagem ganhou
+  "nasce cheio" (o estouro segura os dois primeiros desenhos) e "pedaços esfriam" (desligado: as lascas
+  ficam amarelas). Tipo em `sokonfx/tipos/fazedor_hit_amarelo.json`; gravado no chute forte (só cópia
+  de trabalho do jogo).

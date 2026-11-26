@@ -446,3 +446,8 @@ embaixo.
   "nasce cheio" (o estouro segura os dois primeiros desenhos) e "pedaços esfriam" (desligado: as lascas
   ficam amarelas). Tipo em `sokonfx/tipos/fazedor_hit_amarelo.json`; gravado no chute forte (só cópia
   de trabalho do jogo).
+- **Rodada 4 (26/11; o dono: "o melhor feito até agora, mas dá para melhorar"):** o Codex refez a
+  folha a partir da anterior (jato até a beira e grosso perto do estouro; a quebra lenta e perto do
+  contato, rachando). Na ferramenta: o tempo do "nasce cheio" divide melhor (estouro 2 desenhos, quebra
+  mais longa), "quanto os pedaços voam" (35% neste), brilho somado no export (soma 0,35), e a cor do
+  desenho tirado do fundo preto deixou de escurecer nas bordas (a cor é desfeita pelo próprio brilho).

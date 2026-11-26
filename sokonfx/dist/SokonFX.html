@@ -2385,7 +2385,7 @@ const FAZEDOR_FS=`#version 300 es
 precision highp float;
 out vec4 o;
 uniform vec2 res;uniform vec3 m0,m1;      // pixel da tela -> espaço do gerador
-uniform float t,T,R,L,amp,esc,vel,cresce,quebra,anel1,anel2,brilho,halo;
+uniform float t,T,R,L,amp,esc,vel,cresce,quebra,anel1,anel2,brilho,halo,flash;
 uniform int forma,ruido,nemb;
 uniform vec4 emb[24];
 uniform vec3 cor[5];
@@ -2510,7 +2510,13 @@ void main(){
   // borda dos pedaços: uma faixa escura onde a erosão está cortando
   float beira=(1.-smoothstep(0.,.07,v))*min(1.,quebra*8.);
   c2=mix(c2,cor[0],beira*.9);
-  o=vec4(c2*a2,a2);return;
+  // Flash do contato (branco por cima, nos primeiros quadros) e halo da cor por baixo.
+  float fl=flash*(exp(-rd*rd/(2.*pow(escImg*.045,2.)))+.35*exp(-rd*rd/(2.*pow(escImg*.1,2.))));
+  float hl=halo*.3*exp(-rd*rd/(2.*pow(escImg*.14,2.)))*(1.-a2);
+  vec4 forma=vec4(c2*a2,a2),fundo=vec4(cor[2]*hl,hl);
+  forma=forma+fundo*(1.-forma.a);
+  float fa=clamp(fl,0.,1.);
+  o=vec4(vec3(1.,.98,.9)*fa,fa)+forma*(1.-fa);return;
  }
  // Degraus chapados, com a beira de cada degrau macia em um pixel.
  float aa=max(fwidth(v)*.9,.004);vec3 c=cor[0];float al=smoothstep(LIM[0]-aa,LIM[0]+aa,v);
@@ -2534,7 +2540,7 @@ function fazedorContexto(){
  const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,FAZEDOR_VS));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,FAZEDOR_FS));gl.linkProgram(pr);gl.useProgram(pr);
  const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
  const a=gl.getAttribLocation(pr,'a');gl.enableVertexAttribArray(a);gl.vertexAttribPointer(a,2,gl.FLOAT,false,0,0);
- const u={};for(const n of ['res','m0','m1','t','T','R','L','amp','esc','vel','cresce','quebra','anel1','anel2','brilho','halo','forma','ruido','nemb','emb[0]','cor[0]','mA','mB','temB','mistura','fluxo','centroUV','centroP','radial','raioD','escImg','boil','ancora','recolor'])u[n]=gl.getUniformLocation(pr,n);
+ const u={};for(const n of ['res','m0','m1','t','T','R','L','amp','esc','vel','cresce','quebra','anel1','anel2','brilho','halo','forma','ruido','nemb','emb[0]','cor[0]','mA','mB','temB','mistura','fluxo','centroUV','centroP','radial','raioD','escImg','boil','ancora','recolor','flash'])u[n]=gl.getUniformLocation(pr,n);
  const textura=()=>{const x=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,x);for(const [k,v] of [[gl.TEXTURE_MIN_FILTER,gl.LINEAR],[gl.TEXTURE_MAG_FILTER,gl.LINEAR],[gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE],[gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE]])gl.texParameteri(gl.TEXTURE_2D,k,v);return x};
  const texA=textura(),texB=textura();gl.uniform1i(u.mA,0);gl.uniform1i(u.mB,1);
  return fazedorGL={tela,gl,u,texA,texB};
@@ -2577,6 +2583,7 @@ registrarGerador({
   {id:'fzImagem',rotulo:'Imagem da forma (efeito sobre fundo preto ou transparente)',tipo:'imagem',padrao:'',lado:1024},
   {id:'fzImgGrade',rotulo:'Imagem: desenhos na folha (colunas × linhas, lidos em linha)',tipo:'select',padrao:'1x1',opcoes:[['1x1','Um desenho só'],['2x1','2 × 1'],['3x1','3 × 1'],['4x1','4 × 1'],['2x2','2 × 2'],['3x2','3 × 2'],['3x3','3 × 3']]},
   {id:'fzImgCor',rotulo:'Imagem: cores',tipo:'select',padrao:'imagem',opcoes:[['imagem','As da imagem'],['energia','Os degraus da cor da energia']]},
+  {id:'fzImgSaida',rotulo:'Imagem: como some',tipo:'select',padrao:'estilhaca',opcoes:[['estilhaca','Estilhaça (pedaços voam)'],['come','O ruído come (antigo)']]},
   {id:'fzImgEntra',rotulo:'Imagem: quadros para abrir',tipo:'range',min:1,max:8,padrao:3},
   {id:'fzImgQuebra',rotulo:'Imagem: começa a quebrar em',tipo:'range',min:10,max:90,padrao:40,unidade:'%'},
   {id:'fzImgTremido',rotulo:'Imagem: tremido de desenho à mão',tipo:'range',min:0,max:100,padrao:35,unidade:'%'},
@@ -2641,20 +2648,33 @@ registrarGerador({
    // mais) e o último se desfaz rasgando; com um desenho só, ele abre do contato e depois rasga.
    const seq=fazedorImagem(p.fzImagem,p.fzImgGrade);if(!seq){return}
    const N=seq.length,S=470*p.fzTamanho/100*forca/1.4;
-   let im,cresce,quebra;
-   if(N===1){im=seq[0];const ab=Math.max(1,p.fzImgEntra)/(n-1),ini=p.fzImgQuebra/100,sx=Math.min(1,ue/ab);
-    cresce=(.45+.55*(1-(1-sx)**3))*(1+.12*ue);quebra=Math.max(0,(ue-ini)/(1-ini))**1.15}
+   let im,cresce,quebra,lp=0,k=0;
+   const est=p.fzImgSaida!=='come',ini=Math.max(.15,Math.min(.9,p.fzImgQuebra/100));
+   if(N===1){im=seq[0];const ab=Math.max(1,p.fzImgEntra)/(n-1),sx=Math.min(1,ue/ab);
+    // abre com um soco: passa do tamanho e volta
+    cresce=(.45+.55*(1-(1-sx)**3))*(1+.1*Math.sin(Math.min(1,sx)*Math.PI))*(1+.12*ue);quebra=Math.max(0,(ue-ini)/(1-ini))}
    else{
-    const pesos=seq.map((_,k)=>k===0?.6:k===1?1.2:k===N-1?3:2.6),tot=pesos.reduce((x,y)=>x+y,0);
-    let acc=0,k=0;for(;k<N-1;k++){if(ue*tot<acc+pesos[k])break;acc+=pesos[k]}
-    im=seq[k];cresce=1+.06*ue;
-    const iniUlt=(tot-pesos[N-1])/tot,meio=iniUlt+(1-iniUlt)*Math.max(.15,Math.min(.85,(p.fzImgQuebra/100)));
-    quebra=k===N-1?Math.max(0,(ue-meio)/(1-meio))**1.1:0;
+    const pesos=seq.map((_,j)=>j===0?.6:j===1?1:j===N-1?2.4:1.6),tot=pesos.reduce((x,y)=>x+y,0);
+    let acc=0;for(;k<N-1;k++){if(ue*tot<acc+pesos[k])break;acc+=pesos[k]}
+    im=seq[k];lp=Math.max(0,Math.min(1,(ue*tot-acc)/pesos[k]));
+    // cada desenho cresce enquanto está na tela (soco ao entrar), e depois do pico tudo segue indo
+    // para fora: o efeito não fica parado como um recorte.
+    const pico=Math.min(N-1,Math.max(1,Math.round((N-1)*.45)));
+    cresce=k<=pico?(.9+.12*(1-(1-lp)**2)):(1.02+.28*((k-pico)+lp)/Math.max(1,N-1-pico));
+    quebra=k===N-1?Math.max(0,(lp-.25)/.75):0;
+   }
+   // Estilhaço: o desenho da vez se parte em pedaços que voam do contato, giram, encolhem e esfriam
+   // (no lugar do ruído comendo a forma).
+   const flashV=ue<1.5/(n-1)?1-ue*(n-1)/1.5:0;
+   if(est&&quebra>0){
+    gl.uniform1f(u.flash,0);
+    fazedorEstilhacar(ctx,im,S*cresce,quebra,aleatorio(0x5a7e+k));
+    return;
    }
    gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texA);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,im.c);
    gl.uniform1i(u.forma,6);gl.uniform1f(u.escImg,S);gl.uniform2f(u.ancora,im.ancora[0],im.ancora[1]);gl.uniform1i(u.recolor,p.fzImgCor==='energia'?1:0);
    gl.uniform1f(u.boil,p.fzImgTremido/100);gl.uniform1f(u.amp,p.fzForca/100);
-   gl.uniform1f(u.cresce,cresce);gl.uniform1f(u.quebra,quebra);
+   gl.uniform1f(u.cresce,cresce);gl.uniform1f(u.quebra,est?0:quebra);gl.uniform1f(u.flash,flashV*p.fzBrilho/100);gl.uniform1f(u.halo,p.fzBrilho/100*Math.max(.15,1-ue*1.3));
    // brasas: saem dos pontos fortes do desenho da vez, voando do contato
    const eb=[],rb=aleatorio(0x1a9e);
    for(let j=0;j<nb&&im.fortes.length;j++){const [fx,fy]=im.fortes[Math.floor(rb()*im.fortes.length)],vida=.4+.5*rb(),T2=ue/vida;if(T2>=1||ue<.05)continue;
@@ -2877,6 +2897,44 @@ function fazedorImagemCarregar(url,grade='1x1'){
   fazedorImagens.set(chave,seq);fazedorImagensCarregando.delete(chave);ok();preview();
  };img.src=url});
  fazedorImagensCarregando.set(chave,pr);return pr;
+}
+
+// ---- Estilhaço ----
+// Os pedaços de um desenho (células em volta de pontos sorteados dentro dele), feitos uma vez e
+// guardados no próprio desenho: cada um com o seu recorte, uma versão "esfriada" (vermelha) e o centro.
+function fazedorPedacos(im){
+ if(im.pedacos)return im.pedacos;
+ const W=im.c.width,H=im.c.height,d=im.c.getContext('2d',{willReadFrequently:true}).getImageData(0,0,W,H).data;
+ const rnd=generator(0x9e37),sitios=[];
+ for(let t=0;t<4000&&sitios.length<48;t++){const x=Math.floor(rnd()*W),y=Math.floor(rnd()*H);if(d[(y*W+x)*4+3]>90)sitios.push([x,y])}
+ if(!sitios.length)return im.pedacos=[];
+ const dono=new Int16Array(W*H).fill(-1),caixa=sitios.map(()=>[W,H,0,0]);
+ for(let y=0;y<H;y++)for(let x=0;x<W;x++){const i=y*W+x;if(d[i*4+3]<8)continue;
+  let m=0,md=1e12;for(let k=0;k<sitios.length;k++){const dx=x-sitios[k][0],dy=y-sitios[k][1],dd=dx*dx+dy*dy;if(dd<md){md=dd;m=k}}
+  dono[i]=m;const c=caixa[m];if(x<c[0])c[0]=x;if(y<c[1])c[1]=y;if(x>c[2])c[2]=x;if(y>c[3])c[3]=y}
+ im.pedacos=sitios.map((s,k)=>{const [x0,y0,x1,y1]=caixa[k];if(x1<x0)return null;const w=x1-x0+1,h=y1-y0+1;
+  const a=document.createElement('canvas'),f=document.createElement('canvas');a.width=f.width=w;a.height=f.height=h;
+  const ia=a.getContext('2d').createImageData(w,h),ifr=f.getContext('2d').createImageData(w,h);
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){const i=(y0+y)*W+x0+x;if(dono[i]!==k)continue;const o=(y*w+x)*4,j=i*4;
+   ia.data.set([d[j],d[j+1],d[j+2],d[j+3]],o);ifr.data.set([Math.min(255,d[j]*.95+40),d[j+1]*.42,d[j+2]*.3,d[j+3]],o)}
+  a.getContext('2d').putImageData(ia,0,0);f.getContext('2d').putImageData(ifr,0,0);
+  return {a,f,cx:(x0+w/2)/W,cy:(y0+h/2)/H,x0:x0/W,y0:y0/H,w:w/W,h:h/H};
+ }).filter(Boolean);
+ return im.pedacos;
+}
+function fazedorEstilhacar(ctx,im,S,s,rnd){
+ const pedacos=fazedorPedacos(im),voa=1-(1-s)**2.2;
+ for(const q of pedacos){
+  const dx=q.cx-im.ancora[0],dy=q.cy-im.ancora[1],dist=Math.hypot(dx,dy)||1e-3,vel=(.35+.7*rnd())*(.5+dist*1.6),gira=(rnd()-.5)*2.4,tam=.85+.3*rnd();
+  const x=dx*S+dx/dist*vel*S*.45*voa,y=dy*S+dy/dist*vel*S*.45*voa+voa*voa*S*.06;
+  const e=Math.max(0,1-s*(.9+.5*rnd()))**.7*tam;if(e<.03)continue;
+  const al=1-Math.max(0,(s-.7)/.3);
+  ctx.save();ctx.translate(x,y);ctx.rotate(gira*voa);ctx.scale(e,e);
+  const w=q.w*S,h=q.h*S;
+  ctx.globalAlpha=al*(1-Math.min(1,s*1.4));ctx.drawImage(q.a,-w/2,-h/2,w,h);
+  ctx.globalAlpha=al*Math.min(1,s*1.4);ctx.drawImage(q.f,-w/2,-h/2,w,h);
+  ctx.restore();
+ }
 }
 function draw(ctx,index,local=false){
  if(geradores[el('kind').value]){desenharGerador(ctx,index);return}

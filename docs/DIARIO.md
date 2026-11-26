@@ -429,3 +429,12 @@ embaixo.
   origem guardada num tipo, diferente do contato, vale como marcada.
 - **No jogo (só na cópia de trabalho):** o kit do forte com a sequência, o anel centrado no contato e o
   chão, em 70% (perto de metade da altura do lutador), gravado num chute forte do Ryūga.
+- **Rodada 2 do forte (26/11; o dono: "o desenho está torto, a dissipação muito ruim, não explode,
+  aquilo faria com imagem recortada no Paint"):** o eixo do hit tem que seguir o golpe (o desenho aponta
+  reto para a frente; o jogo gira pelo ângulo do golpe) e explosão é movimento entre desenhos, não 4
+  recortes trocando. O Codex fez uma folha 3×3 de 9 desenhos na horizontal (clarão, explosão, pico,
+  pico redesenhado, pontas se partindo, pedaços, restos). A forma Imagem ganhou: cada desenho cresce
+  enquanto está na tela (soco ao entrar; depois do pico tudo segue para fora), flash branco no contato
+  e halo da cor por baixo, e a saída "estilhaça" (o desenho se parte em células que voam do contato,
+  giram, encolhem e esfriam para o vermelho) no lugar do ruído comendo a forma ("o ruído come" ficou
+  como opção). Kit do forte sem o anel fino, gravado contra o hit de hoje.

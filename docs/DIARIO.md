@@ -457,3 +457,9 @@ embaixo.
   cada desenho (o meio fica vazio). Na ferramenta, "explode para fora depois do estouro" (a escala cresce
   em volta do contato a partir do terceiro desenho; 45% neste) e os pedaços voam 100%. Tamanho no jogo
   62%. Tipo em `sokonfx/tipos/fazedor_hit_explode.json`.
+- **Rodada 6 (26/11; o dono: "pedaços na direção do golpe, brilho e pressão de ar"):** "pedaços
+  seguem o golpe" na forma Imagem (depois do estouro a imagem estica no eixo do golpe, achata no outro
+  e anda para a frente; no estilhaço os pedaços puxam para a frente), 75% neste; a imagem some aos
+  poucos na beira dela. Brilho do Fazedor em 90% (clarão no contato e halo) e o kit ganhou a pressão de
+  ar (anel pontudo branco somando luz, um quadro depois). O desenho dentro do quadro ficou menor (110%)
+  e o export maior (96%), para não cortar na beira do quadro de 512.

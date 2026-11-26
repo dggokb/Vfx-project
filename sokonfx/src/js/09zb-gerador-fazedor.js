@@ -14,7 +14,7 @@ uniform float t,T,R,L,amp,esc,vel,cresce,quebra,anel1,anel2,brilho,halo,flash;
 uniform int forma,ruido,nemb;
 uniform vec4 emb[24];
 uniform vec3 cor[5];
-uniform sampler2D mA,mB;uniform float temB,mistura,raioD,escImg,boil;uniform vec2 ancora;uniform int recolor;uniform vec2 fluxo,centroUV,centroP;uniform int radial;   // o desenho do dono (começo e fim)
+uniform sampler2D mA,mB;uniform float temB,mistura,raioD,escImg,boil,desloca;uniform vec2 estica;uniform vec2 ancora;uniform int recolor;uniform vec2 fluxo,centroUV,centroP;uniform int radial;   // o desenho do dono (começo e fim)
 vec3 mod289(vec3 x){return x-floor(x*(1./289.))*289.;}
 vec2 mod289(vec2 x){return x-floor(x*(1./289.))*289.;}
 vec3 permute(vec3 x){return mod289(((x*34.)+1.)*x);}
@@ -123,9 +123,13 @@ void main(){
   vec2 d=p;float rd=length(d);vec2 dir=d/max(rd,1e-3);
   float rr=rd/(R*.92*esc)-t/max(T-1.,1.)*1.6*vel;
   n=.5+.5*base(dir*2.6+vec2(rr,rr*.6)+dir*rr*.35);
-  vec2 q=d/(escImg*max(cresce,.05))+ancora;
+  // Para o lado do golpe: depois do estouro a imagem estica no eixo do golpe (+x), achata no outro e
+  // anda para a frente, então os pedaços saem na direção do golpe.
+  vec2 q=((d-vec2(desloca,0.))/estica)/(escImg*max(cresce,.05))+ancora;
   q+=(vec2(base(p*.02+t*.37),base(p*.02+vec2(9.,3.)-t*.37)))*boil*.006;
   vec4 im=(q.x<0.||q.y<0.||q.x>1.||q.y>1.)?vec4(0):texture(mA,q);
+  // some aos poucos na beira da imagem (sem corte reto quando ela estica ou anda)
+  float bx=min(min(q.x,1.-q.x),min(q.y,1.-q.y));im*=smoothstep(0.,.06,bx);
   float h=im.a*dot(im.rgb,vec3(.3,.55,.15));
   v=h+.1+(n-.5)*amp*.6*(.35+quebra*1.6)-quebra*1.3;
   float aa2=max(fwidth(v),.004),a2=smoothstep(-aa2,aa2,v)*smoothstep(.02,.12,im.a);
@@ -165,7 +169,7 @@ function fazedorContexto(){
  const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,FAZEDOR_VS));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,FAZEDOR_FS));gl.linkProgram(pr);gl.useProgram(pr);
  const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
  const a=gl.getAttribLocation(pr,'a');gl.enableVertexAttribArray(a);gl.vertexAttribPointer(a,2,gl.FLOAT,false,0,0);
- const u={};for(const n of ['res','m0','m1','t','T','R','L','amp','esc','vel','cresce','quebra','anel1','anel2','brilho','halo','forma','ruido','nemb','emb[0]','cor[0]','mA','mB','temB','mistura','fluxo','centroUV','centroP','radial','raioD','escImg','boil','ancora','recolor','flash'])u[n]=gl.getUniformLocation(pr,n);
+ const u={};for(const n of ['res','m0','m1','t','T','R','L','amp','esc','vel','cresce','quebra','anel1','anel2','brilho','halo','forma','ruido','nemb','emb[0]','cor[0]','mA','mB','temB','mistura','fluxo','centroUV','centroP','radial','raioD','escImg','boil','ancora','recolor','flash','desloca','estica'])u[n]=gl.getUniformLocation(pr,n);
  const textura=()=>{const x=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,x);for(const [k,v] of [[gl.TEXTURE_MIN_FILTER,gl.LINEAR],[gl.TEXTURE_MAG_FILTER,gl.LINEAR],[gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE],[gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE]])gl.texParameteri(gl.TEXTURE_2D,k,v);return x};
  const texA=textura(),texB=textura();gl.uniform1i(u.mA,0);gl.uniform1i(u.mB,1);
  return fazedorGL={tela,gl,u,texA,texB};
@@ -212,6 +216,7 @@ registrarGerador({
   {id:'fzImgEsfria',rotulo:'Imagem: pedaços esfriam para o vermelho',tipo:'checkbox',padrao:true},
   {id:'fzImgCheio',rotulo:'Imagem: nasce cheio (sem crescer)',tipo:'checkbox',padrao:false},
   {id:'fzImgExplode',rotulo:'Imagem: explode para fora depois do estouro',tipo:'range',min:0,max:100,padrao:0,unidade:'%'},
+  {id:'fzImgDirecao',rotulo:'Imagem: pedaços seguem o golpe',tipo:'range',min:0,max:100,padrao:0,unidade:'%'},
   {id:'fzImgVoo',rotulo:'Imagem: quanto os pedaços voam',tipo:'range',min:0,max:200,padrao:100,unidade:'%'},
   {id:'fzImgEntra',rotulo:'Imagem: quadros para abrir',tipo:'range',min:1,max:8,padrao:3},
   {id:'fzImgQuebra',rotulo:'Imagem: começa a quebrar em',tipo:'range',min:10,max:90,padrao:40,unidade:'%'},
@@ -299,12 +304,16 @@ registrarGerador({
    const flashV=ue<1.5/(n-1)?1-ue*(n-1)/1.5:0;
    if(est&&quebra>0){
     gl.uniform1f(u.flash,0);
-    fazedorEstilhacar(ctx,im,S*cresce,quebra,aleatorio(0x5a7e+k),p.fzImgEsfria,p.fzImgVoo/100);
+    gl.uniform2f(u.estica,1,1);gl.uniform1f(u.desloca,0);
+    fazedorEstilhacar(ctx,im,S*cresce,quebra,aleatorio(0x5a7e+k),p.fzImgEsfria,p.fzImgVoo/100,p.fzImgDirecao/100);
     return;
    }
    gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texA);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,im.c);
    gl.uniform1i(u.forma,6);gl.uniform1f(u.escImg,S);gl.uniform2f(u.ancora,im.ancora[0],im.ancora[1]);gl.uniform1i(u.recolor,p.fzImgCor==='energia'?1:0);
    gl.uniform1f(u.boil,p.fzImgTremido/100);gl.uniform1f(u.amp,p.fzForca/100);
+   // quanto do "explode" já aconteceu (0 no estouro, 1 no fim) puxa os pedaços para o lado do golpe
+   const ex=N>1&&p.fzImgCheio?Math.max(0,(k-1+lp)/Math.max(1,N-2)):Math.max(0,(ue-.3)/.7),dg=p.fzImgDirecao/100*ex;
+   gl.uniform2f(u.estica,1+.55*dg,1-.3*dg);gl.uniform1f(u.desloca,S*.18*dg);
    gl.uniform1f(u.cresce,cresce);gl.uniform1f(u.quebra,est?0:quebra);gl.uniform1f(u.flash,flashV*p.fzBrilho/100);gl.uniform1f(u.halo,p.fzBrilho/100*Math.max(.15,1-ue*1.3));
    // brasas: saem dos pontos fortes do desenho da vez, voando do contato
    const eb=[],rb=aleatorio(0x1a9e);
@@ -553,10 +562,10 @@ function fazedorPedacos(im){
  }).filter(Boolean);
  return im.pedacos;
 }
-function fazedorEstilhacar(ctx,im,S,s,rnd,esfria=true,voo=1){
+function fazedorEstilhacar(ctx,im,S,s,rnd,esfria=true,voo=1,golpe=0){
  const pedacos=fazedorPedacos(im),voa=1-(1-s)**2.2;
  for(const q of pedacos){
-  const dx=q.cx-im.ancora[0],dy=q.cy-im.ancora[1],dist=Math.hypot(dx,dy)||1e-3,vel=(.35+.7*rnd())*(.5+dist*1.6),gira=(rnd()-.5)*2.4,tam=.85+.3*rnd();
+  const dx0=q.cx-im.ancora[0],dy=(q.cy-im.ancora[1])*(1-.4*golpe),dx=dx0+golpe*.12,dist=Math.hypot(dx,dy)||1e-3,vel=(.35+.7*rnd())*(.5+dist*1.6),gira=(rnd()-.5)*2.4,tam=.85+.3*rnd();
   const x=dx*S+dx/dist*vel*S*.45*voa*voo,y=dy*S+dy/dist*vel*S*.45*voa*voo+voa*voa*S*.06*voo;
   const e=Math.max(0,1-s*(.9+.5*rnd()))**.7*tam;if(e<.03)continue;
   const al=1-Math.max(0,(s-.7)/.3);

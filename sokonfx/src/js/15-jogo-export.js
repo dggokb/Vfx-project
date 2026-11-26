@@ -152,6 +152,8 @@ function jogoAplicar(valores){
   if(valores?.[id]===undefined)continue;
   if(el(id).type==='checkbox')el(id).checked=!!valores[id];else el(id).value=valores[id];
  }
+ // Uma origem guardada diferente do contato do gerador vale como marcada à mão.
+ if(valores?.jogoOrigemX!==undefined&&typeof jogoOrigemDoGerador!=='undefined')jogoOrigemMarcada=+valores.jogoOrigemX!==jogoOrigemDoGerador[0]||+valores.jogoOrigemY!==jogoOrigemDoGerador[1];
  jogoAtualizar();
 }
 
@@ -194,7 +196,18 @@ el('jogoOrigemMarcar').onclick=()=>{
  el('jogoOrigemMarcar').textContent=jogoMarcandoOrigem?'Toque na prévia · cancelar':'Marcar origem na prévia';
  preview();
 };
-el('jogoOrigemCentro').onclick=()=>{el('jogoOrigemX').value=el('jogoOrigemY').value=256;jogoAtualizar()};
+el('jogoOrigemCentro').onclick=()=>{el('jogoOrigemX').value=el('jogoOrigemY').value=256;jogoOrigemMarcada=true;jogoAtualizar()};
+// A origem segue o ponto de contato do gerador (o Fazedor desenha o contato em 300, o Feixe em 52...)
+// enquanto ela não for marcada à mão; antes, ficava sempre no centro e o efeito saía deslocado no jogo.
+let jogoOrigemMarcada=false,jogoOrigemDoGerador=[256,256];
+function jogoOrigemSegue(kind){
+ const o=geradores[kind]?.origem,novo=[o?.x??256,o?.y??256];
+ const atual=[+el('jogoOrigemX').value,+el('jogoOrigemY').value];
+ if(!jogoOrigemMarcada||(atual[0]===jogoOrigemDoGerador[0]&&atual[1]===jogoOrigemDoGerador[1])){
+  el('jogoOrigemX').value=novo[0];el('jogoOrigemY').value=novo[1];jogoOrigemMarcada=false;jogoAtualizar();
+ }
+ jogoOrigemDoGerador=novo;
+}
 el('jogoExportar').onclick=jogoExportar;
 // O toque que marca a origem vem antes dos outros da prévia (vento, foco, dissipação).
 stage.addEventListener('pointerdown',e=>{
@@ -203,7 +216,7 @@ stage.addEventListener('pointerdown',e=>{
  const p=canvasPoint(e);
  el('jogoOrigemX').value=Math.round(Math.max(0,Math.min(512,p.x)));
  el('jogoOrigemY').value=Math.round(Math.max(0,Math.min(512,p.y)));
- el('jogoOrigemMarcar').onclick();jogoAtualizar();
+ el('jogoOrigemMarcar').onclick();jogoOrigemMarcada=true;jogoAtualizar();
 },true);
 // A cruz da origem na prévia, enquanto o painel está aberto (não vai para o export).
 function jogoGuia(ctx){

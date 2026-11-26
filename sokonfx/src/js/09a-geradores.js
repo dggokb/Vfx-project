@@ -127,6 +127,7 @@ let geradorEscondidos=[];
 function geradoresAntes(){for(const e of geradorEscondidos)e.hidden=false;geradorEscondidos=[]}
 function geradoresMostrar(kind){
  const g=geradores[kind];
+ if(typeof jogoOrigemSegue==='function')jogoOrigemSegue(kind);
  for(const c of document.querySelectorAll('.gerador-params'))c.hidden=c.dataset.gerador!==kind;
  el('rampaBloco').hidden=!g;
  if(!g)return;

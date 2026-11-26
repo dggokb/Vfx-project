@@ -200,6 +200,7 @@ registrarGerador({
   {id:'fzContorno',rotulo:'Hit: contorno por dentro',tipo:'range',min:0,max:100,padrao:50,unidade:'%'},
   {id:'fzCamadas',rotulo:'Hit: camadas',tipo:'range',min:1,max:3,padrao:3},
   {id:'fzImagem',rotulo:'Imagem da forma (efeito sobre fundo preto ou transparente)',tipo:'imagem',padrao:'',lado:1024},
+  {id:'fzImgGrade',rotulo:'Imagem: desenhos na folha (colunas × linhas, lidos em linha)',tipo:'select',padrao:'1x1',opcoes:[['1x1','Um desenho só'],['2x1','2 × 1'],['3x1','3 × 1'],['4x1','4 × 1'],['2x2','2 × 2'],['3x2','3 × 2'],['3x3','3 × 3']]},
   {id:'fzImgCor',rotulo:'Imagem: cores',tipo:'select',padrao:'imagem',opcoes:[['imagem','As da imagem'],['energia','Os degraus da cor da energia']]},
   {id:'fzImgEntra',rotulo:'Imagem: quadros para abrir',tipo:'range',min:1,max:8,padrao:3},
   {id:'fzImgQuebra',rotulo:'Imagem: começa a quebrar em',tipo:'range',min:10,max:90,padrao:40,unidade:'%'},
@@ -260,18 +261,28 @@ registrarGerador({
   gl.uniform3fv(u['cor[0]'],new Float32Array(fazedorDegraus(p.cor)));
   const passada=()=>{gl.clear(gl.COLOR_BUFFER_BIT);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.drawImage(tela,0,0);ctx.restore()};
   if(forma===6){
-   // A imagem: tratada uma vez (fundo preto vira transparente) e guardada.
-   const im=fazedorImagem(p.fzImagem);if(!im){return}
-   const S=470*p.fzTamanho/100*forca/1.4;
+   // A imagem (um desenho, ou uma folha de desenhos-chave tocados em sequência): tratada uma vez e
+   // guardada. Na sequência, cada desenho fica o seu tempo (o primeiro, o clarão, curto; os do meio,
+   // mais) e o último se desfaz rasgando; com um desenho só, ele abre do contato e depois rasga.
+   const seq=fazedorImagem(p.fzImagem,p.fzImgGrade);if(!seq){return}
+   const N=seq.length,S=470*p.fzTamanho/100*forca/1.4;
+   let im,cresce,quebra;
+   if(N===1){im=seq[0];const ab=Math.max(1,p.fzImgEntra)/(n-1),ini=p.fzImgQuebra/100,sx=Math.min(1,ue/ab);
+    cresce=(.45+.55*(1-(1-sx)**3))*(1+.12*ue);quebra=Math.max(0,(ue-ini)/(1-ini))**1.15}
+   else{
+    const pesos=seq.map((_,k)=>k===0?.6:k===1?1.2:k===N-1?3:2.6),tot=pesos.reduce((x,y)=>x+y,0);
+    let acc=0,k=0;for(;k<N-1;k++){if(ue*tot<acc+pesos[k])break;acc+=pesos[k]}
+    im=seq[k];cresce=1+.06*ue;
+    const iniUlt=(tot-pesos[N-1])/tot,meio=iniUlt+(1-iniUlt)*Math.max(.15,Math.min(.85,(p.fzImgQuebra/100)));
+    quebra=k===N-1?Math.max(0,(ue-meio)/(1-meio))**1.1:0;
+   }
    gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texA);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,im.c);
    gl.uniform1i(u.forma,6);gl.uniform1f(u.escImg,S);gl.uniform2f(u.ancora,im.ancora[0],im.ancora[1]);gl.uniform1i(u.recolor,p.fzImgCor==='energia'?1:0);
    gl.uniform1f(u.boil,p.fzImgTremido/100);gl.uniform1f(u.amp,p.fzForca/100);
-   const ab=Math.max(1,p.fzImgEntra)/(n-1),ini=p.fzImgQuebra/100,sx=Math.min(1,ue/ab);
-   gl.uniform1f(u.cresce,(.45+.55*(1-(1-sx)**3))*(1+.12*ue));
-   gl.uniform1f(u.quebra,Math.max(0,(ue-ini)/(1-ini))**1.15);
-   // brasas: saem dos pontos fortes da imagem, voando do contato
+   gl.uniform1f(u.cresce,cresce);gl.uniform1f(u.quebra,quebra);
+   // brasas: saem dos pontos fortes do desenho da vez, voando do contato
    const eb=[],rb=aleatorio(0x1a9e);
-   for(let k=0;k<nb&&im.fortes.length;k++){const [fx,fy]=im.fortes[Math.floor(rb()*im.fortes.length)],vida=.4+.5*rb(),T2=ue/vida;if(T2>=1||ue<.05)continue;
+   for(let j=0;j<nb&&im.fortes.length;j++){const [fx,fy]=im.fortes[Math.floor(rb()*im.fortes.length)],vida=.4+.5*rb(),T2=ue/vida;if(T2>=1||ue<.05)continue;
     const bx=(fx-im.ancora[0])*S,by=(fy-im.ancora[1])*S,a=Math.atan2(by,bx),v=S*(.25+.35*rb())*(1-(1-T2)**3);
     eb.push(bx+Math.cos(a)*v,by+Math.sin(a)*v+T2*T2*S*.12,R*.16*(1-T2)**.7*(.6+.6*rb()),0)}
    const e2=new Float32Array(96);e2.set(eb.slice(0,96));gl.uniform4fv(u['emb[0]'],e2);gl.uniform1i(u.nemb,eb.length/4);
@@ -318,8 +329,8 @@ function fazedorMascara(campo){
 }
 // Espera os desenhos que estão nos campos carregarem (aplicarTipo usa antes de montar ou exportar).
 function fazedorEsperar(){
- const im=el('fzImagem').value;
- return Promise.all(['fzDesenhoA','fzDesenhoB'].map(id=>{const v=el(id).value;return v&&!fazedorGuardados.has(v)?fazedorCarregar(v):null}).concat(im&&!fazedorImagens.has(im)?[fazedorImagemCarregar(im)]:[]));
+ const im=el('fzImagem').value,gr=el('fzImgGrade').value;
+ return Promise.all(['fzDesenhoA','fzDesenhoB'].map(id=>{const v=el(id).value;return v&&!fazedorGuardados.has(v)?fazedorCarregar(v):null}).concat(im&&!fazedorImagens.has(gr+'|'+im)?[fazedorImagemCarregar(im,gr)]:[]));
 }
 // Os pontos fortes do desenho (de onde saem as brasas) e se ele está vazio.
 function fazedorFortes(m){
@@ -458,26 +469,37 @@ function fazedorHit(p,semente){
 // a claridade vira o alfa e a cor é desfeita do preto (o efeito é luz). A âncora (o contato) é o meio
 // da parte mais clara (o miolo). Guardada pela própria imagem.
 const fazedorImagens=new Map(),fazedorImagensCarregando=new Map();
-function fazedorImagem(url){
- if(!url)return null;
- if(fazedorImagens.has(url))return fazedorImagens.get(url);
- fazedorImagemCarregar(url);return null;
+function fazedorImagem(url,grade='1x1'){
+ if(!url)return null;const chave=grade+'|'+url;
+ if(fazedorImagens.has(chave))return fazedorImagens.get(chave);
+ fazedorImagemCarregar(url,grade);return null;
 }
-function fazedorImagemCarregar(url){
- if(fazedorImagensCarregando.has(url))return fazedorImagensCarregando.get(url);
- const pr=new Promise(ok=>{const img=new Image();img.onerror=()=>{fazedorImagensCarregando.delete(url);ok()};img.onload=()=>{
-  const W=img.width,H=img.height,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d',{willReadFrequently:true});x.drawImage(img,0,0);
-  const d=x.getImageData(0,0,W,H),a=d.data;let transparente=false;for(let i=3;i<a.length;i+=16)if(a[i]<250){transparente=true;break}
-  let sx=0,sy=0,sn=0;const fortes=[];
-  for(let i=0,k=0;i<a.length;i+=4,k++){
-   if(!transparente){const m=Math.max(a[i],a[i+1],a[i+2]),al=Math.min(1,Math.max(0,(m/255-.04)/.3));
-    if(al>0){a[i]=Math.min(255,a[i]/Math.max(al,m/255));a[i+1]=Math.min(255,a[i+1]/Math.max(al,m/255));a[i+2]=Math.min(255,a[i+2]/Math.max(al,m/255))}a[i+3]=Math.round(al*255)}
-   const lum=(a[i]*.3+a[i+1]*.55+a[i+2]*.15)/255*a[i+3]/255;
-   if(lum>.9){sx+=k%W;sy+=Math.floor(k/W);sn++}
-   if(lum>.55&&k%37===0)fortes.push([(k%W)/W,Math.floor(k/W)/H]);
-  }
-  x.putImageData(d,0,0);
-  fazedorImagens.set(url,{c,ancora:sn?[sx/sn/W,sy/sn/H]:[.5,.5],fortes});fazedorImagensCarregando.delete(url);ok();preview();
+// Trata um desenho: fundo preto vira transparente (a claridade é o alfa e a cor é desfeita do preto);
+// a âncora é o meio da parte mais clara (o miolo; sem miolo, a do desenho anterior).
+function fazedorTratar(c,anterior){
+ const W=c.width,H=c.height,x=c.getContext('2d',{willReadFrequently:true});
+ const d=x.getImageData(0,0,W,H),a=d.data;let transparente=false;for(let i=3;i<a.length;i+=16)if(a[i]<250){transparente=true;break}
+ let sx=0,sy=0,sn=0,mx=0,my=0,mn=0;const fortes=[];
+ for(let i=0,k=0;i<a.length;i+=4,k++){
+  if(!transparente){const m=Math.max(a[i],a[i+1],a[i+2]),al=Math.min(1,Math.max(0,(m/255-.04)/.3));
+   if(al>0){const q=Math.max(al,m/255);a[i]=Math.min(255,a[i]/q);a[i+1]=Math.min(255,a[i+1]/q);a[i+2]=Math.min(255,a[i+2]/q)}a[i+3]=Math.round(al*255)}
+  const lum=(a[i]*.3+a[i+1]*.55+a[i+2]*.15)/255*a[i+3]/255;
+  if(lum>.9){sx+=k%W;sy+=Math.floor(k/W);sn++}
+  if(a[i+3]>128){mx+=k%W;my+=Math.floor(k/W);mn++}
+  if((lum>.55||lum>.25&&sn===0)&&k%37===0)fortes.push([(k%W)/W,Math.floor(k/W)/H]);
+ }
+ x.putImageData(d,0,0);
+ const ancora=sn>W*H*.002?[sx/sn/W,sy/sn/H]:anterior?anterior.ancora:mn?[mx/mn/W,my/mn/H]:[.5,.5];
+ return {c,ancora,fortes,cheio:mn};
+}
+function fazedorImagemCarregar(url,grade='1x1'){
+ const chave=grade+'|'+url;
+ if(fazedorImagensCarregando.has(chave))return fazedorImagensCarregando.get(chave);
+ const pr=new Promise(ok=>{const img=new Image();img.onerror=()=>{fazedorImagensCarregando.delete(chave);ok()};img.onload=()=>{
+  const [cols,lins]=grade.split('x').map(Number),w=Math.floor(img.width/cols),h=Math.floor(img.height/lins),seq=[];
+  for(let r=0;r<lins;r++)for(let q=0;q<cols;q++){const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,q*w,r*h,w,h,0,0,w,h);
+   const t=fazedorTratar(c,seq.at(-1));if(t.cheio>w*h*.002||seq.length===0)seq.push(t)}
+  fazedorImagens.set(chave,seq);fazedorImagensCarregando.delete(chave);ok();preview();
  };img.src=url});
- fazedorImagensCarregando.set(url,pr);return pr;
+ fazedorImagensCarregando.set(chave,pr);return pr;
 }

@@ -417,3 +417,15 @@ embaixo.
   desfaz em pedaços usando a própria claridade como mapa de erosão (contorno primeiro, miolo por
   último), com borda escura nos pedaços; cores da imagem ou os degraus da cor da energia; brasas dos
   pontos fortes. Imagem até 1024 px (o campo de imagem aceita `lado`).
+- **Guia e primeira forma "de verdade" (26/11):** `docs/GUIA_DE_EFEITOS.md` junta as quatro pesquisas
+  (forma, tempo, cor, tamanho por golpe, como produzimos, o que falta na ferramenta). Regra nº 1:
+  redesenhar a silhueta a cada desenho. O Codex desenhou a folha 2×2 de desenhos-chave do forte
+  (clarão, abertura, pico, quebra); a forma Imagem do Fazedor ganhou "desenhos na folha" (colunas ×
+  linhas): toca a sequência com exposição de anime (o clarão curto, o pico mais longo) e o último
+  desenho se desfaz rasgando. O tipo está em `sokonfx/tipos/fazedor_forte_codex.json`.
+- **Erro achado e corrigido:** a origem do export ficava sempre no centro (256), mas o Fazedor desenha o
+  contato em 300 (o Feixe em 52...): o efeito saía deslocado no jogo (o "acima e à direita" do hit
+  anterior). Agora a origem segue o ponto de contato do gerador enquanto não for marcada à mão; uma
+  origem guardada num tipo, diferente do contato, vale como marcada.
+- **No jogo (só na cópia de trabalho):** o kit do forte com a sequência, o anel centrado no contato e o
+  chão, em 70% (perto de metade da altura do lutador), gravado num chute forte do Ryūga.

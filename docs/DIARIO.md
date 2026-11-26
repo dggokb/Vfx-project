@@ -463,3 +463,10 @@ embaixo.
   poucos na beira dela. Brilho do Fazedor em 90% (clarão no contato e halo) e o kit ganhou a pressão de
   ar (anel pontudo branco somando luz, um quadro depois). O desenho dentro do quadro ficou menor (110%)
   e o export maior (96%), para não cortar na beira do quadro de 512.
+- **Rodada 7 (26/11):** o dono aprovou um hit desenhado pelo Codex em cima do chute (no estilo do concept
+  dele) e lembrou que quem anima tem que ser o Sōkon FX, não o Codex. A forma Imagem ganhou "como abre:
+  as pontas se desenham do centro" (um desenho só: a frente das pontas avança do contato, rasgada) e o
+  estilhaço passou a cortar em fatias de raio (setores e duas faixas), que voam cada uma na sua direção.
+  Erro meu: animei um desenho refeito pelo Codex, que saiu diferente do aprovado (menor, mais vermelho,
+  pontas finas); o dono: "nada a ver com o anterior". Próximo: usar o próprio desenho aprovado (o Codex só
+  apaga personagens e cenário dele).

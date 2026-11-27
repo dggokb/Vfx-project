@@ -350,20 +350,98 @@
      "bursts": [
       {
        "t": 0,
-       "n": 170
+       "n": 120
       }
      ],
-     "seed": 7
+     "seed": 7,
+     "sub": {
+      "on": true,
+      "emit": "death",
+      "count": 2,
+      "dir": "inherit",
+      "spread": 30,
+      "speed": 700,
+      "speedRnd": 0.6,
+      "inherit": 0.4,
+      "maxGen": 1,
+      "budget": 3000,
+      "pt": {
+       "life": 0.32,
+       "lifeRnd": 0.35,
+       "sprite": {
+        "kind": "shape",
+        "id": "dot",
+        "p": {}
+       },
+       "size": 6.75,
+       "sizeRnd": 0.6,
+       "sizeOL": {
+        "pts": [
+         {
+          "t": 0,
+          "v": 1
+         },
+         {
+          "t": 0.6,
+          "v": 0.8
+         },
+         {
+          "t": 1,
+          "v": 0
+         }
+        ]
+       },
+       "opacityOL": {
+        "pts": [
+         {
+          "t": 0,
+          "v": 1
+         },
+         {
+          "t": 1,
+          "v": 1
+         }
+        ]
+       },
+       "grad": {
+        "stops": [
+         {
+          "t": 0,
+          "c": [
+           252,
+           252,
+           255
+          ]
+         },
+         {
+          "t": 1,
+          "c": [
+           252,
+           252,
+           255
+          ]
+         }
+        ]
+       },
+       "alignVel": true,
+       "stretch": 2.6,
+       "drag": 3.5,
+       "gravY": 300,
+       "rotRnd": 0,
+       "spin": 0,
+       "spinRnd": 0
+      }
+     }
     },
     "pt": {
-     "life": 0.38,
+     "life": 0.1,
      "lifeRnd": 0.2,
      "sprite": {
       "kind": "shape",
       "id": "dot",
       "p": {}
      },
-     "size": 5.4,
+     "size": 6.3,
      "sizeRnd": 0.6,
      "sizeOL": {
       "pts": [
@@ -468,20 +546,98 @@
      "bursts": [
       {
        "t": 0,
-       "n": 170
+       "n": 120
       }
      ],
-     "seed": 7
+     "seed": 7,
+     "sub": {
+      "on": true,
+      "emit": "death",
+      "count": 2,
+      "dir": "inherit",
+      "spread": 30,
+      "speed": 700,
+      "speedRnd": 0.6,
+      "inherit": 0.4,
+      "maxGen": 1,
+      "budget": 3000,
+      "pt": {
+       "life": 0.32,
+       "lifeRnd": 0.35,
+       "sprite": {
+        "kind": "shape",
+        "id": "dot",
+        "p": {}
+       },
+       "size": 12.9,
+       "sizeRnd": 0.6,
+       "sizeOL": {
+        "pts": [
+         {
+          "t": 0,
+          "v": 1
+         },
+         {
+          "t": 0.6,
+          "v": 0.8
+         },
+         {
+          "t": 1,
+          "v": 0
+         }
+        ]
+       },
+       "opacityOL": {
+        "pts": [
+         {
+          "t": 0,
+          "v": 1
+         },
+         {
+          "t": 1,
+          "v": 1
+         }
+        ]
+       },
+       "grad": {
+        "stops": [
+         {
+          "t": 0,
+          "c": [
+           196,
+           203,
+           222
+          ]
+         },
+         {
+          "t": 1,
+          "c": [
+           196,
+           203,
+           222
+          ]
+         }
+        ]
+       },
+       "alignVel": true,
+       "stretch": 2.6,
+       "drag": 3.5,
+       "gravY": 300,
+       "rotRnd": 0,
+       "spin": 0,
+       "spinRnd": 0
+      }
+     }
     },
     "pt": {
-     "life": 0.38,
+     "life": 0.1,
      "lifeRnd": 0.2,
      "sprite": {
       "kind": "shape",
       "id": "dot",
       "p": {}
      },
-     "size": 10.32,
+     "size": 12.04,
      "sizeRnd": 0.6,
      "sizeOL": {
       "pts": [
@@ -586,20 +742,98 @@
      "bursts": [
       {
        "t": 0,
-       "n": 170
+       "n": 120
       }
      ],
-     "seed": 7
+     "seed": 7,
+     "sub": {
+      "on": true,
+      "emit": "death",
+      "count": 2,
+      "dir": "inherit",
+      "spread": 30,
+      "speed": 700,
+      "speedRnd": 0.6,
+      "inherit": 0.4,
+      "maxGen": 1,
+      "budget": 3000,
+      "pt": {
+       "life": 0.32,
+       "lifeRnd": 0.35,
+       "sprite": {
+        "kind": "shape",
+        "id": "dot",
+        "p": {}
+       },
+       "size": 15,
+       "sizeRnd": 0.6,
+       "sizeOL": {
+        "pts": [
+         {
+          "t": 0,
+          "v": 1
+         },
+         {
+          "t": 0.6,
+          "v": 0.8
+         },
+         {
+          "t": 1,
+          "v": 0
+         }
+        ]
+       },
+       "opacityOL": {
+        "pts": [
+         {
+          "t": 0,
+          "v": 1
+         },
+         {
+          "t": 1,
+          "v": 1
+         }
+        ]
+       },
+       "grad": {
+        "stops": [
+         {
+          "t": 0,
+          "c": [
+           92,
+           100,
+           132
+          ]
+         },
+         {
+          "t": 1,
+          "c": [
+           92,
+           100,
+           132
+          ]
+         }
+        ]
+       },
+       "alignVel": true,
+       "stretch": 2.6,
+       "drag": 3.5,
+       "gravY": 300,
+       "rotRnd": 0,
+       "spin": 0,
+       "spinRnd": 0
+      }
+     }
     },
     "pt": {
-     "life": 0.38,
+     "life": 0.1,
      "lifeRnd": 0.2,
      "sprite": {
       "kind": "shape",
       "id": "dot",
       "p": {}
      },
-     "size": 12,
+     "size": 14,
      "sizeRnd": 0.6,
      "sizeOL": {
       "pts": [
@@ -664,6 +898,6 @@
  },
  "sokon": {
   "thumbT": 0.2,
-  "nota": "Ar batendo na parede (27/11; o dono: \"anel circular\", \"oval\", \"mais fino, do tamanho do corpo, e spray; mais fino e maior\"): anel fino de bolotas pequenas que nasce no ponto da batida e se abre junto (uma rajada só, que freia), oco no meio, achatado em oval pela câmera; spray de riscos e gotas que espirram do anel para fora. Três tons. Aqui o oval é deitado: no jogo sai girado 90° (exporte com Direção 90), em pé contra a parede, da altura do corpo."
+  "nota": "Ar batendo na parede (27/11; o dono: \"anel circular\", \"oval\", \"mais fino, do tamanho do corpo, e spray; mais fino e maior\"): anel fino de bolotas pequenas que nasce no ponto da batida e se abre junto (uma rajada só, que freia), oco no meio, achatado em oval pela câmera; spray de riscos e gotas que espirram do anel para fora. Três tons. Aqui o oval é deitado: no jogo sai girado 90° (exporte com Direção 90), em pé contra a parede, da altura do corpo. Depois de 2 desenhos o anel vira splash (o dono: \"faz depois de 2 frames a fumaça virar splash\"): cada bolota morre e solta 2 gotas compridas (sub-emissor na morte) que espirram para fora e caem."
  }
 }

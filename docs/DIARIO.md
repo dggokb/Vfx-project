@@ -608,4 +608,7 @@ embaixo.
 - **Parede, mais fino e com spray (o dono: "tem que ser mais fino, do tamanho do corpo, e spray"):** anel de bolotas
   pequenas (mais juntas), spray de riscos e gotas que espirram do anel para fora; no jogo a 1,55× (oval da altura do
   corpo). Cópia de trabalho do jogo.
+- **Parede vira splash (o dono: "faz depois de 2 frames a fumaça virar splash"):** as bolotas do anel vivem 0,1 s e
+  na morte soltam 2 gotas compridas cada (sub-emissor do Arcadia, `emit: death`, `dir: inherit`), que espirram para fora
+  e caem. Cópia de trabalho do jogo.
 

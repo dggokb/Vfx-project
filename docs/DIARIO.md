@@ -501,4 +501,7 @@ embaixo.
   mais brasas e riscos, anel maior; 320 px no jogo) e `faisca_dourada_media.json` (a com anel, sem o anel; 260 px).
   Exportados pelo Sōkon (soma 55%) e postos no jogo como `kit_forte` e `kit_medio` (só na cópia de trabalho);
   gravados no chute forte (L) e no soco médio (K).
+- **Rodada 10, fraco (o dono: "faz um fraco agora"):** `faisca_dourada_fraca.json` (16 raios curtos, um par na
+  diagonal, núcleo e brilho pequenos, poucas brasas, sem anel, 0,45 s), 190 px no jogo, como `kit_fraco` (cópia de
+  trabalho). Gravados os três: soco fraco (J), soco médio (K), chute forte (L).
 

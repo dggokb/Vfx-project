@@ -576,4 +576,8 @@ embaixo.
   (trail) que disparam do centro e freiam; anel achatado rasgado no chão; as cabeças sobem nas pontas. Duas cores:
   bege como a referência (`fumaca_super_pulo.json`) e branca com sombra azulada (`fumaca_super_pulo_branca.json`); no
   cenário dourado a bege some. Na cópia de trabalho do jogo está a branca.
+- **Super pulo refinado (o dono: "vamos nos desprender da referência e seguir nosso caminho"):** branca, gomos de luz
+  menores (34% em vez de 42%), colunas sobem mais (cabeças mais rápidas e mais leves) e se quebram em pedaços no fim,
+  cunhas mais longas. O chão desceu 150 px no quadro para a subida caber; no export a origem Y vai para 406 (o
+  `sokon.origemY` do modelo guarda isso). Na cópia de trabalho do jogo.
 

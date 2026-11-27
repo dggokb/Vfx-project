@@ -57,39 +57,39 @@
     "start": 0,
     "end": 0.9,
     "em": {
-     "x": -155,
-     "y": -30,
+     "x": -154,
+     "y": 122,
      "shape": "circle",
      "sx": 26,
      "sy": 26,
      "dir": "dir",
      "angle": -98,
      "spread": 50,
-     "speed": 330,
+     "speed": 430,
      "speedRnd": 0.7,
      "rate": 0,
      "bursts": [
       {
        "t": 0.192,
-       "n": 16
+       "n": 20
       },
       {
        "t": 0.27599999999999997,
-       "n": 11
+       "n": 14
       }
      ],
      "seed": 21
     },
     "pt": {
-     "life": 0.6,
+     "life": 0.7,
      "lifeRnd": 0.2,
      "sprite": {
       "kind": "shape",
       "id": "dot",
       "p": {}
      },
-     "size": 23.52,
-     "sizeRnd": 0.5,
+     "size": 20.400000000000002,
+     "sizeRnd": 0.6,
      "sizeOL": {
       "pts": [
        {
@@ -143,7 +143,7 @@
       ]
      },
      "drag": 3.2,
-     "gravY": -340,
+     "gravY": -520,
      "turbMode": "curl",
      "turbAmp": 300,
      "turbScale": 40,
@@ -159,39 +159,39 @@
     "start": 0,
     "end": 0.9,
     "em": {
-     "x": 135,
-     "y": -30,
+     "x": 136,
+     "y": 122,
      "shape": "circle",
      "sx": 26,
      "sy": 26,
      "dir": "dir",
      "angle": -82,
      "spread": 50,
-     "speed": 330,
+     "speed": 430,
      "speedRnd": 0.7,
      "rate": 0,
      "bursts": [
       {
        "t": 0.192,
-       "n": 16
+       "n": 20
       },
       {
        "t": 0.27599999999999997,
-       "n": 11
+       "n": 14
       }
      ],
      "seed": 29
     },
     "pt": {
-     "life": 0.6,
+     "life": 0.7,
      "lifeRnd": 0.2,
      "sprite": {
       "kind": "shape",
       "id": "dot",
       "p": {}
      },
-     "size": 23.52,
-     "sizeRnd": 0.5,
+     "size": 20.400000000000002,
+     "sizeRnd": 0.6,
      "sizeOL": {
       "pts": [
        {
@@ -245,7 +245,7 @@
       ]
      },
      "drag": 3.2,
-     "gravY": -340,
+     "gravY": -520,
      "turbMode": "curl",
      "turbAmp": 300,
      "turbScale": 40,
@@ -261,19 +261,19 @@
     "start": 0,
     "end": 0.02,
     "em": {
-     "x": -28,
-     "y": -24,
+     "x": -27,
+     "y": 128,
      "shape": "point",
      "dir": "dir",
      "angle": 184,
      "spread": 10,
-     "speed": 675,
+     "speed": 750,
      "speedRnd": 0.25,
      "rate": 0,
      "bursts": [
       {
        "t": 0,
-       "n": 5
+       "n": 6
       }
      ],
      "seed": 31
@@ -282,7 +282,7 @@
      "life": 0.55,
      "lifeRnd": 0.15,
      "render": "trail",
-     "size": 15.959999999999999,
+     "size": 14.96,
      "sizeRnd": 0.4,
      "sizeOT": {
       "pts": [
@@ -364,19 +364,19 @@
     "start": 0,
     "end": 0.02,
     "em": {
-     "x": 8,
-     "y": -24,
+     "x": 9,
+     "y": 128,
      "shape": "point",
      "dir": "dir",
      "angle": -4,
      "spread": 10,
-     "speed": 675,
+     "speed": 750,
      "speedRnd": 0.25,
      "rate": 0,
      "bursts": [
       {
        "t": 0,
-       "n": 5
+       "n": 6
       }
      ],
      "seed": 37
@@ -385,7 +385,7 @@
      "life": 0.55,
      "lifeRnd": 0.15,
      "render": "trail",
-     "size": 15.959999999999999,
+     "size": 14.96,
      "sizeRnd": 0.4,
      "sizeOT": {
       "pts": [
@@ -471,7 +471,7 @@
       "keys": [
        {
         "t": 0,
-        "v": -28,
+        "v": -27,
         "i": {
          "m": "ease"
         },
@@ -481,7 +481,7 @@
        },
        {
         "t": 0.24,
-        "v": -145,
+        "v": -144,
         "i": {
          "m": "ease"
         },
@@ -495,7 +495,7 @@
       "keys": [
        {
         "t": 0,
-        "v": -24,
+        "v": 128,
         "i": {
          "m": "ease"
         },
@@ -505,7 +505,7 @@
        },
        {
         "t": 0.24,
-        "v": -30,
+        "v": 122,
         "i": {
          "m": "ease"
         },
@@ -537,7 +537,7 @@
       "keys": [
        {
         "t": 0,
-        "v": 1.68,
+        "v": 1.36,
         "i": {
          "m": "ease"
         },
@@ -547,7 +547,7 @@
        },
        {
         "t": 0.24,
-        "v": 14.28,
+        "v": 11.56,
         "i": {
          "m": "ease"
         },
@@ -557,7 +557,7 @@
        }
       ]
      },
-     "sizeRnd": 0.5,
+     "sizeRnd": 0.6,
      "sizeOL": {
       "pts": [
        {
@@ -627,7 +627,7 @@
       "keys": [
        {
         "t": 0,
-        "v": 8,
+        "v": 9,
         "i": {
          "m": "ease"
         },
@@ -637,7 +637,7 @@
        },
        {
         "t": 0.24,
-        "v": 125,
+        "v": 126,
         "i": {
          "m": "ease"
         },
@@ -651,7 +651,7 @@
       "keys": [
        {
         "t": 0,
-        "v": -24,
+        "v": 128,
         "i": {
          "m": "ease"
         },
@@ -661,7 +661,7 @@
        },
        {
         "t": 0.24,
-        "v": -30,
+        "v": 122,
         "i": {
          "m": "ease"
         },
@@ -693,7 +693,7 @@
       "keys": [
        {
         "t": 0,
-        "v": 1.68,
+        "v": 1.36,
         "i": {
          "m": "ease"
         },
@@ -703,7 +703,7 @@
        },
        {
         "t": 0.24,
-        "v": 14.28,
+        "v": 11.56,
         "i": {
          "m": "ease"
         },
@@ -713,7 +713,7 @@
        }
       ]
      },
-     "sizeRnd": 0.5,
+     "sizeRnd": 0.6,
      "sizeOL": {
       "pts": [
        {
@@ -809,38 +809,38 @@
     "end": 0.9,
     "em": {
      "x": -145,
-     "y": -14,
+     "y": 136,
      "shape": "circle",
      "sx": 26,
      "sy": 26,
      "dir": "dir",
      "angle": -98,
      "spread": 50,
-     "speed": 330,
+     "speed": 430,
      "speedRnd": 0.7,
      "rate": 0,
      "bursts": [
       {
        "t": 0.192,
-       "n": 16
+       "n": 20
       },
       {
        "t": 0.27599999999999997,
-       "n": 11
+       "n": 14
       }
      ],
      "seed": 21
     },
     "pt": {
-     "life": 0.6,
+     "life": 0.7,
      "lifeRnd": 0.2,
      "sprite": {
       "kind": "shape",
       "id": "dot",
       "p": {}
      },
-     "size": 49.28,
-     "sizeRnd": 0.5,
+     "size": 52.8,
+     "sizeRnd": 0.6,
      "sizeOL": {
       "pts": [
        {
@@ -894,7 +894,7 @@
       ]
      },
      "drag": 3.2,
-     "gravY": -340,
+     "gravY": -520,
      "turbMode": "curl",
      "turbAmp": 300,
      "turbScale": 40,
@@ -911,38 +911,38 @@
     "end": 0.9,
     "em": {
      "x": 145,
-     "y": -14,
+     "y": 136,
      "shape": "circle",
      "sx": 26,
      "sy": 26,
      "dir": "dir",
      "angle": -82,
      "spread": 50,
-     "speed": 330,
+     "speed": 430,
      "speedRnd": 0.7,
      "rate": 0,
      "bursts": [
       {
        "t": 0.192,
-       "n": 16
+       "n": 20
       },
       {
        "t": 0.27599999999999997,
-       "n": 11
+       "n": 14
       }
      ],
      "seed": 29
     },
     "pt": {
-     "life": 0.6,
+     "life": 0.7,
      "lifeRnd": 0.2,
      "sprite": {
       "kind": "shape",
       "id": "dot",
       "p": {}
      },
-     "size": 49.28,
-     "sizeRnd": 0.5,
+     "size": 52.8,
+     "sizeRnd": 0.6,
      "sizeOL": {
       "pts": [
        {
@@ -996,7 +996,7 @@
       ]
      },
      "drag": 3.2,
-     "gravY": -340,
+     "gravY": -520,
      "turbMode": "curl",
      "turbAmp": 300,
      "turbScale": 40,
@@ -1013,18 +1013,18 @@
     "end": 0.02,
     "em": {
      "x": -18,
-     "y": -8,
+     "y": 142,
      "shape": "point",
      "dir": "dir",
      "angle": 184,
      "spread": 10,
-     "speed": 675,
+     "speed": 750,
      "speedRnd": 0.25,
      "rate": 0,
      "bursts": [
       {
        "t": 0,
-       "n": 5
+       "n": 6
       }
      ],
      "seed": 31
@@ -1033,7 +1033,7 @@
      "life": 0.55,
      "lifeRnd": 0.15,
      "render": "trail",
-     "size": 33.44,
+     "size": 38.72,
      "sizeRnd": 0.4,
      "sizeOT": {
       "pts": [
@@ -1116,18 +1116,18 @@
     "end": 0.02,
     "em": {
      "x": 18,
-     "y": -8,
+     "y": 142,
      "shape": "point",
      "dir": "dir",
      "angle": -4,
      "spread": 10,
-     "speed": 675,
+     "speed": 750,
      "speedRnd": 0.25,
      "rate": 0,
      "bursts": [
       {
        "t": 0,
-       "n": 5
+       "n": 6
       }
      ],
      "seed": 37
@@ -1136,7 +1136,7 @@
      "life": 0.55,
      "lifeRnd": 0.15,
      "render": "trail",
-     "size": 33.44,
+     "size": 38.72,
      "sizeRnd": 0.4,
      "sizeOT": {
       "pts": [
@@ -1246,7 +1246,7 @@
       "keys": [
        {
         "t": 0,
-        "v": -8,
+        "v": 142,
         "i": {
          "m": "ease"
         },
@@ -1256,7 +1256,7 @@
        },
        {
         "t": 0.24,
-        "v": -14,
+        "v": 136,
         "i": {
          "m": "ease"
         },
@@ -1308,7 +1308,7 @@
        }
       ]
      },
-     "sizeRnd": 0.5,
+     "sizeRnd": 0.6,
      "sizeOL": {
       "pts": [
        {
@@ -1402,7 +1402,7 @@
       "keys": [
        {
         "t": 0,
-        "v": -8,
+        "v": 142,
         "i": {
          "m": "ease"
         },
@@ -1412,7 +1412,7 @@
        },
        {
         "t": 0.24,
-        "v": -14,
+        "v": 136,
         "i": {
          "m": "ease"
         },
@@ -1464,7 +1464,7 @@
        }
       ]
      },
-     "sizeRnd": 0.5,
+     "sizeRnd": 0.6,
      "sizeOL": {
       "pts": [
        {
@@ -1560,38 +1560,38 @@
     "end": 0.9,
     "em": {
      "x": -139,
-     "y": -7,
+     "y": 143,
      "shape": "circle",
      "sx": 26,
      "sy": 26,
      "dir": "dir",
      "angle": -98,
      "spread": 50,
-     "speed": 330,
+     "speed": 430,
      "speedRnd": 0.7,
      "rate": 0,
      "bursts": [
       {
        "t": 0.192,
-       "n": 16
+       "n": 20
       },
       {
        "t": 0.27599999999999997,
-       "n": 11
+       "n": 14
       }
      ],
      "seed": 21
     },
     "pt": {
-     "life": 0.6,
+     "life": 0.7,
      "lifeRnd": 0.2,
      "sprite": {
       "kind": "shape",
       "id": "dot",
       "p": {}
      },
-     "size": 56,
-     "sizeRnd": 0.5,
+     "size": 60,
+     "sizeRnd": 0.6,
      "sizeOL": {
       "pts": [
        {
@@ -1645,7 +1645,7 @@
       ]
      },
      "drag": 3.2,
-     "gravY": -340,
+     "gravY": -520,
      "turbMode": "curl",
      "turbAmp": 300,
      "turbScale": 40,
@@ -1662,38 +1662,38 @@
     "end": 0.9,
     "em": {
      "x": 151,
-     "y": -7,
+     "y": 143,
      "shape": "circle",
      "sx": 26,
      "sy": 26,
      "dir": "dir",
      "angle": -82,
      "spread": 50,
-     "speed": 330,
+     "speed": 430,
      "speedRnd": 0.7,
      "rate": 0,
      "bursts": [
       {
        "t": 0.192,
-       "n": 16
+       "n": 20
       },
       {
        "t": 0.27599999999999997,
-       "n": 11
+       "n": 14
       }
      ],
      "seed": 29
     },
     "pt": {
-     "life": 0.6,
+     "life": 0.7,
      "lifeRnd": 0.2,
      "sprite": {
       "kind": "shape",
       "id": "dot",
       "p": {}
      },
-     "size": 56,
-     "sizeRnd": 0.5,
+     "size": 60,
+     "sizeRnd": 0.6,
      "sizeOL": {
       "pts": [
        {
@@ -1747,7 +1747,7 @@
       ]
      },
      "drag": 3.2,
-     "gravY": -340,
+     "gravY": -520,
      "turbMode": "curl",
      "turbAmp": 300,
      "turbScale": 40,
@@ -1764,18 +1764,18 @@
     "end": 0.02,
     "em": {
      "x": -12,
-     "y": -1,
+     "y": 149,
      "shape": "point",
      "dir": "dir",
      "angle": 184,
      "spread": 10,
-     "speed": 675,
+     "speed": 750,
      "speedRnd": 0.25,
      "rate": 0,
      "bursts": [
       {
        "t": 0,
-       "n": 5
+       "n": 6
       }
      ],
      "seed": 31
@@ -1784,7 +1784,7 @@
      "life": 0.55,
      "lifeRnd": 0.15,
      "render": "trail",
-     "size": 38,
+     "size": 44,
      "sizeRnd": 0.4,
      "sizeOT": {
       "pts": [
@@ -1867,18 +1867,18 @@
     "end": 0.02,
     "em": {
      "x": 24,
-     "y": -1,
+     "y": 149,
      "shape": "point",
      "dir": "dir",
      "angle": -4,
      "spread": 10,
-     "speed": 675,
+     "speed": 750,
      "speedRnd": 0.25,
      "rate": 0,
      "bursts": [
       {
        "t": 0,
-       "n": 5
+       "n": 6
       }
      ],
      "seed": 37
@@ -1887,7 +1887,7 @@
      "life": 0.55,
      "lifeRnd": 0.15,
      "render": "trail",
-     "size": 38,
+     "size": 44,
      "sizeRnd": 0.4,
      "sizeOT": {
       "pts": [
@@ -1997,7 +1997,7 @@
       "keys": [
        {
         "t": 0,
-        "v": -1,
+        "v": 149,
         "i": {
          "m": "ease"
         },
@@ -2007,7 +2007,7 @@
        },
        {
         "t": 0.24,
-        "v": -7,
+        "v": 143,
         "i": {
          "m": "ease"
         },
@@ -2059,7 +2059,7 @@
        }
       ]
      },
-     "sizeRnd": 0.5,
+     "sizeRnd": 0.6,
      "sizeOL": {
       "pts": [
        {
@@ -2153,7 +2153,7 @@
       "keys": [
        {
         "t": 0,
-        "v": -1,
+        "v": 149,
         "i": {
          "m": "ease"
         },
@@ -2163,7 +2163,7 @@
        },
        {
         "t": 0.24,
-        "v": -7,
+        "v": 143,
         "i": {
          "m": "ease"
         },
@@ -2215,7 +2215,7 @@
        }
       ]
      },
-     "sizeRnd": 0.5,
+     "sizeRnd": 0.6,
      "sizeOL": {
       "pts": [
        {
@@ -2282,7 +2282,7 @@
     "end": 0.1,
     "em": {
      "x": 0,
-     "y": -4,
+     "y": 146,
      "shape": "point",
      "dir": "dir",
      "angle": 0,
@@ -2368,7 +2368,7 @@
     "end": 0.1,
     "em": {
      "x": 0,
-     "y": -4,
+     "y": 146,
      "shape": "point",
      "dir": "dir",
      "angle": 180,
@@ -2542,7 +2542,7 @@
      },
      "size": 70,
      "x": 0,
-     "y": -8,
+     "y": 142,
      "aspect": 3.4,
      "scale": {
       "keys": [
@@ -2580,6 +2580,7 @@
  },
  "sokon": {
   "thumbT": 0.3,
-  "nota": "A fumaça do super pulo (estilo da referência) em branco com sombra azulada, para ler sobre cenário quente."
+  "nota": "Fumaça do super pulo, branca com sombra azulada (27/11, refinada pelo nosso olho): massas em três tons deslocados (escura embaixo à direita, média, gomos claros pequenos em cima à esquerda), cunhas longas para o centro, anel rasgado no chão, colunas que sobem alto e se quebram em pedaços. O chão fica 150 px abaixo do centro do quadro (cabe a subida): exporte com a origem Y em 406.",
+  "origemY": 406
  }
 }

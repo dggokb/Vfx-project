@@ -470,3 +470,20 @@ embaixo.
   Erro meu: animei um desenho refeito pelo Codex, que saiu diferente do aprovado (menor, mais vermelho,
   pontas finas); o dono: "nada a ver com o anterior". Próximo: usar o próprio desenho aprovado (o Codex só
   apaga personagens e cenário dele).
+- **Rodada 8 (27/11; o dono: "eu já saí do Codex para fazer uma coisa decente, por que voltaria para ele?",
+  e depois "Arcadia: pode rodar, testa o hit nele"):** montei o hit aprovado no Arcadia Effector (editor de
+  partículas MIT), sem Codex. Receita: pontas em três tamanhos (5 grandes deslocadas para o lado do golpe, 9
+  médias, 20 pequenas, sementes escolhidas numa grade), cada grupo em 4 camadas aninhadas com a mesma semente
+  (tamanhos 100/80/60/38%) em tons de cinza; nascem num anel em volta do núcleo, apontando para fora, e esticam
+  pela velocidade. A pixelização de 1 px troca cada cinza por uma faixa da rampa de fogo (vermelho-escuro,
+  vermelho, laranja, amarelo, branco) e corta a borda seca; um rasgo (displace tear) come a borda e outro, mais
+  forte, o núcleo; raios, anel dourado e clarão por cima, sem faixas. Gravado no chute forte ao lado dos
+  desenhos do Codex: nasce cheio, esfria e se quebra para fora sem voltar ao meio; perde em massa (o do Codex
+  tem núcleo branco maior e mais pontas finas). O dono: "o mais perto de algo que chegamos"; pediu o motor
+  inteiro no Sōkon.
+- **Rodada 8, integração:** o Arcadia inteiro entrou em `sokonfx/vendor/arcadia/` e virou o gerador
+  **Arcadia (partículas)**: o build embute a página dele (iframe srcdoc, sem servidor), o gerador desenha cada
+  quadro com o motor dele e o editor abre por cima ("Usar no Sōkon" grava o efeito no tipo). O hit forte é o
+  primeiro modelo de fábrica (`vendor/arcadia/sokon/hit_forte.json`). Teste novo `testes/arcadia.test.cjs` no
+  `npm test`. Falta: o dono julgar no celular e afinar o hit (núcleo maior, mais pontas finas, menor no jogo).
+

@@ -103,8 +103,9 @@ function aplicarTipo(preset,{jogo=true}={}){
   const ref=loadRef(preset.values.kind,preset.reference?.data,preset.reference?.name);
   if(jogo&&preset.jogo)jogoAplicar(preset.jogo);
   try{acabamentosAtualizar()}catch{}
-  // Os desenhos do Fazedor vêm como PNG: quem monta camadas ou exporta espera eles carregarem.
-  return Promise.all([ref,typeof fazedorEsperar==='function'?fazedorEsperar():null]);
+  // Os desenhos do Fazedor vêm como PNG e o editor do Arcadia abre num quadro à parte: quem monta
+  // camadas ou exporta espera os dois ficarem prontos.
+  return Promise.all([ref,typeof fazedorEsperar==='function'?fazedorEsperar():null,typeof arcadiaEsperar==='function'?arcadiaEsperar():null]);
 }
 el('savedTypes').onchange=()=>{
  try{

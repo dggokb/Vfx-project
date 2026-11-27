@@ -1,0 +1,2028 @@
+{
+ "app": "arcadia-effects",
+ "v": 1,
+ "doc": {
+  "id": "fx_sokon_hit",
+  "name": "Sōkon — Hit forte",
+  "comp": {
+   "w": 512,
+   "h": 512,
+   "dur": 0.56,
+   "fps": 60
+  },
+  "exp": {
+   "cols": 6,
+   "rows": 4,
+   "frames": 24,
+   "cellW": 256,
+   "cellH": 256,
+   "mode": "rgba",
+   "ss": 2
+  },
+  "layers": [
+   {
+    "id": "lr_sk_rays",
+    "type": "emitter",
+    "name": "rays",
+    "blend": "add",
+    "start": 0,
+    "end": 0.02,
+    "em": {
+     "shape": "point",
+     "dir": "dir",
+     "angle": -15,
+     "spread": 160,
+     "speed": 2600,
+     "speedRnd": 0.4,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 6
+      }
+     ],
+     "seed": 3
+    },
+    "pt": {
+     "life": 0.11,
+     "lifeRnd": 0.3,
+     "sprite": {
+      "kind": "shape",
+      "id": "streak",
+      "p": {}
+     },
+     "size": 120,
+     "sizeRnd": 0.5,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.6
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.75
+       },
+       {
+        "t": 0.5,
+        "v": 0.5
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         255,
+         250,
+         225
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         255,
+         190,
+         70
+        ]
+       }
+      ]
+     },
+     "alignVel": true,
+     "stretch": 2,
+     "drag": 7,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0
+    }
+   },
+   {
+    "id": "lr_sk_arc",
+    "type": "sprite",
+    "name": "arc",
+    "blend": "add",
+    "start": 0.03,
+    "end": 0.3,
+    "opacity": {
+     "keys": [
+      {
+       "t": 0,
+       "v": 0.8,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.18,
+       "v": 0.5,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.27,
+       "v": 0,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      }
+     ]
+    },
+    "sp": {
+     "sprite": {
+      "kind": "shape",
+      "id": "ring",
+      "p": {
+       "th": 0.02
+      }
+     },
+     "size": 300,
+     "scale": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 0.6,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.25,
+        "v": 1.15,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "color": [
+      255,
+      200,
+      90
+     ],
+     "glow": 0.6
+    }
+   },
+   {
+    "id": "lr_sk_flash",
+    "type": "sprite",
+    "name": "flash",
+    "blend": "add",
+    "start": 0,
+    "end": 0.05,
+    "opacity": {
+     "keys": [
+      {
+       "t": 0,
+       "v": 0.9,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.05,
+       "v": 0,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      }
+     ]
+    },
+    "sp": {
+     "sprite": {
+      "kind": "shape",
+      "id": "soft",
+      "p": {}
+     },
+     "size": 260,
+     "scale": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 0.6,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.08,
+        "v": 1.2,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "color": [
+      255,
+      230,
+      170
+     ]
+    }
+   },
+   {
+    "id": "lr_sk_px",
+    "type": "postfx",
+    "name": "bands",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.56,
+    "fx": {
+     "effect": "pixelate",
+     "pxW": 512,
+     "pxSnap": true,
+     "pxSample": "point",
+     "pxGain": 1,
+     "pxAlpha": "cut",
+     "pxThr": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 0.3,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.30800000000000005,
+        "v": 0.4,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.56,
+        "v": 0.95,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "pxSat": 1,
+     "pxCon": 1,
+     "pxColor": "ramp",
+     "pxRamp": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         70,
+         8,
+         6
+        ]
+       },
+       {
+        "t": 0.25,
+        "c": [
+         205,
+         35,
+         10
+        ]
+       },
+       {
+        "t": 0.5,
+        "c": [
+         255,
+         122,
+         18
+        ]
+       },
+       {
+        "t": 0.75,
+        "c": [
+         255,
+         214,
+         60
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         255,
+         251,
+         234
+        ]
+       }
+      ]
+     },
+     "pxRampN": 5,
+     "pxOut": 0
+    }
+   },
+   {
+    "id": "lr_sk_tear",
+    "type": "postfx",
+    "name": "tear",
+    "start": 0,
+    "end": 0.56,
+    "fx": {
+     "effect": "displace",
+     "field": "tear",
+     "amount": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 3,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.56,
+        "v": 10,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "scale": 26,
+     "aspect": 1,
+     "oct": 2,
+     "evo": 3,
+     "rise": 0,
+     "ramp": 0,
+     "seed": 4
+    }
+   },
+   {
+    "id": "lr_sk_coretear",
+    "type": "postfx",
+    "name": "core tear",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.56,
+    "targets": [
+     "lr_sk_core_out",
+     "lr_sk_core_in"
+    ],
+    "fx": {
+     "effect": "displace",
+     "field": "tear",
+     "amount": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 10,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.22,
+        "v": 34,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "scale": 16,
+     "aspect": 1,
+     "oct": 2,
+     "evo": 4,
+     "rise": 0,
+     "ramp": 0,
+     "seed": 9
+    }
+   },
+   {
+    "id": "lr_sk_core_out",
+    "type": "sprite",
+    "name": "core out",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.56,
+    "sp": {
+     "sprite": {
+      "kind": "shape",
+      "id": "star",
+      "p": {
+       "n": 11,
+       "inr": 0.6
+      }
+     },
+     "size": 170,
+     "scale": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 0.55,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.04,
+        "v": 1.05,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.13,
+        "v": 1.3,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "rot": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 0,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.3,
+        "v": 20,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "color": {
+      "keys": [
+       {
+        "t": 0,
+        "v": [
+         255,
+         255,
+         255
+        ],
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.06,
+        "v": [
+         225,
+         225,
+         225
+        ],
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.11,
+        "v": [
+         170,
+         170,
+         170
+        ],
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     }
+    },
+    "opacity": {
+     "keys": [
+      {
+       "t": 0,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.11,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.13,
+       "v": 0,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      }
+     ]
+    }
+   },
+   {
+    "id": "lr_sk_core_in",
+    "type": "sprite",
+    "name": "core in",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.56,
+    "sp": {
+     "sprite": {
+      "kind": "shape",
+      "id": "soft",
+      "p": {}
+     },
+     "size": 136,
+     "scale": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 0.6,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.04,
+        "v": 1.1,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.12,
+        "v": 1.2,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "color": {
+      "keys": [
+       {
+        "t": 0,
+        "v": [
+         255,
+         255,
+         255
+        ],
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.07,
+        "v": [
+         255,
+         255,
+         255
+        ],
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.13,
+        "v": [
+         170,
+         170,
+         170
+        ],
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     }
+    },
+    "opacity": {
+     "keys": [
+      {
+       "t": 0,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.12,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.13,
+       "v": 0,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      }
+     ]
+    }
+   },
+   {
+    "id": "lr_sk_big_3",
+    "type": "emitter",
+    "name": "big 3",
+    "blend": "normal",
+    "start": -0.02,
+    "end": 0.02,
+    "em": {
+     "shape": "ring",
+     "sx": 123.5,
+     "sy": 0,
+     "x": 30,
+     "y": -18,
+     "dir": "out",
+     "angle": -15,
+     "speed": 420,
+     "speedRnd": 0.45,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 5
+      }
+     ],
+     "seed": 10
+    },
+    "pt": {
+     "life": 0.5,
+     "lifeRnd": 0.25,
+     "sprite": {
+      "kind": "shape",
+      "id": "flame",
+      "p": {
+       "taper": 0.22
+      }
+     },
+     "size": 36.1,
+     "sizeRnd": 0.55,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.6
+       },
+       {
+        "t": 0.08,
+        "v": 1.05
+       },
+       {
+        "t": 0.55,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.35
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         255,
+         255,
+         255
+        ]
+       },
+       {
+        "t": 0.45,
+        "c": [
+         255,
+         255,
+         255
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         170,
+         170,
+         170
+        ]
+       }
+      ]
+     },
+     "rot": 0,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0,
+     "alignVel": true,
+     "stretch": 12,
+     "drag": 2.2,
+     "gravY": 0
+    }
+   },
+   {
+    "id": "lr_sk_big_2",
+    "type": "emitter",
+    "name": "big 2",
+    "blend": "normal",
+    "start": -0.02,
+    "end": 0.02,
+    "em": {
+     "shape": "ring",
+     "sx": 123.5,
+     "sy": 0,
+     "x": 30,
+     "y": -18,
+     "dir": "out",
+     "angle": -15,
+     "speed": 420,
+     "speedRnd": 0.45,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 5
+      }
+     ],
+     "seed": 10
+    },
+    "pt": {
+     "life": 0.5,
+     "lifeRnd": 0.25,
+     "sprite": {
+      "kind": "shape",
+      "id": "flame",
+      "p": {
+       "taper": 0.22
+      }
+     },
+     "size": 57,
+     "sizeRnd": 0.55,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.6
+       },
+       {
+        "t": 0.08,
+        "v": 1.05
+       },
+       {
+        "t": 0.55,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.35
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         195,
+         195,
+         195
+        ]
+       },
+       {
+        "t": 0.45,
+        "c": [
+         195,
+         195,
+         195
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         120,
+         120,
+         120
+        ]
+       }
+      ]
+     },
+     "rot": 0,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0,
+     "alignVel": true,
+     "stretch": 12,
+     "drag": 2.2,
+     "gravY": 0
+    }
+   },
+   {
+    "id": "lr_sk_big_1",
+    "type": "emitter",
+    "name": "big 1",
+    "blend": "normal",
+    "start": -0.02,
+    "end": 0.02,
+    "em": {
+     "shape": "ring",
+     "sx": 123.5,
+     "sy": 0,
+     "x": 30,
+     "y": -18,
+     "dir": "out",
+     "angle": -15,
+     "speed": 420,
+     "speedRnd": 0.45,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 5
+      }
+     ],
+     "seed": 10
+    },
+    "pt": {
+     "life": 0.5,
+     "lifeRnd": 0.25,
+     "sprite": {
+      "kind": "shape",
+      "id": "flame",
+      "p": {
+       "taper": 0.22
+      }
+     },
+     "size": 76,
+     "sizeRnd": 0.55,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.6
+       },
+       {
+        "t": 0.08,
+        "v": 1.05
+       },
+       {
+        "t": 0.55,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.35
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         120,
+         120,
+         120
+        ]
+       },
+       {
+        "t": 0.45,
+        "c": [
+         120,
+         120,
+         120
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         60,
+         60,
+         60
+        ]
+       }
+      ]
+     },
+     "rot": 0,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0,
+     "alignVel": true,
+     "stretch": 12,
+     "drag": 2.2,
+     "gravY": 0
+    }
+   },
+   {
+    "id": "lr_sk_big_0",
+    "type": "emitter",
+    "name": "big 0",
+    "blend": "normal",
+    "start": -0.02,
+    "end": 0.02,
+    "em": {
+     "shape": "ring",
+     "sx": 123.5,
+     "sy": 0,
+     "x": 30,
+     "y": -18,
+     "dir": "out",
+     "angle": -15,
+     "speed": 420,
+     "speedRnd": 0.45,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 5
+      }
+     ],
+     "seed": 10
+    },
+    "pt": {
+     "life": 0.5,
+     "lifeRnd": 0.25,
+     "sprite": {
+      "kind": "shape",
+      "id": "flame",
+      "p": {
+       "taper": 0.22
+      }
+     },
+     "size": 95,
+     "sizeRnd": 0.55,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.6
+       },
+       {
+        "t": 0.08,
+        "v": 1.05
+       },
+       {
+        "t": 0.55,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.35
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         30,
+         30,
+         30
+        ]
+       },
+       {
+        "t": 0.45,
+        "c": [
+         30,
+         30,
+         30
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         10,
+         10,
+         10
+        ]
+       }
+      ]
+     },
+     "rot": 0,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0,
+     "alignVel": true,
+     "stretch": 12,
+     "drag": 2.2,
+     "gravY": 0
+    }
+   },
+   {
+    "id": "lr_sk_mid_3",
+    "type": "emitter",
+    "name": "mid 3",
+    "blend": "normal",
+    "start": -0.02,
+    "end": 0.02,
+    "em": {
+     "shape": "ring",
+     "sx": 67.60000000000001,
+     "sy": 0,
+     "x": 0,
+     "y": 0,
+     "dir": "out",
+     "angle": -15,
+     "speed": 380,
+     "speedRnd": 0.45,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 9
+      }
+     ],
+     "seed": 11
+    },
+    "pt": {
+     "life": 0.42,
+     "lifeRnd": 0.25,
+     "sprite": {
+      "kind": "shape",
+      "id": "flame",
+      "p": {
+       "taper": 0.25
+      }
+     },
+     "size": 19.76,
+     "sizeRnd": 0.55,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.6
+       },
+       {
+        "t": 0.08,
+        "v": 1.05
+       },
+       {
+        "t": 0.55,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.35
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         255,
+         255,
+         255
+        ]
+       },
+       {
+        "t": 0.45,
+        "c": [
+         255,
+         255,
+         255
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         170,
+         170,
+         170
+        ]
+       }
+      ]
+     },
+     "rot": 0,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0,
+     "alignVel": true,
+     "stretch": 12,
+     "drag": 2.2,
+     "gravY": 0
+    }
+   },
+   {
+    "id": "lr_sk_mid_2",
+    "type": "emitter",
+    "name": "mid 2",
+    "blend": "normal",
+    "start": -0.02,
+    "end": 0.02,
+    "em": {
+     "shape": "ring",
+     "sx": 67.60000000000001,
+     "sy": 0,
+     "x": 0,
+     "y": 0,
+     "dir": "out",
+     "angle": -15,
+     "speed": 380,
+     "speedRnd": 0.45,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 9
+      }
+     ],
+     "seed": 11
+    },
+    "pt": {
+     "life": 0.42,
+     "lifeRnd": 0.25,
+     "sprite": {
+      "kind": "shape",
+      "id": "flame",
+      "p": {
+       "taper": 0.25
+      }
+     },
+     "size": 31.2,
+     "sizeRnd": 0.55,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.6
+       },
+       {
+        "t": 0.08,
+        "v": 1.05
+       },
+       {
+        "t": 0.55,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.35
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         195,
+         195,
+         195
+        ]
+       },
+       {
+        "t": 0.45,
+        "c": [
+         195,
+         195,
+         195
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         120,
+         120,
+         120
+        ]
+       }
+      ]
+     },
+     "rot": 0,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0,
+     "alignVel": true,
+     "stretch": 12,
+     "drag": 2.2,
+     "gravY": 0
+    }
+   },
+   {
+    "id": "lr_sk_mid_1",
+    "type": "emitter",
+    "name": "mid 1",
+    "blend": "normal",
+    "start": -0.02,
+    "end": 0.02,
+    "em": {
+     "shape": "ring",
+     "sx": 67.60000000000001,
+     "sy": 0,
+     "x": 0,
+     "y": 0,
+     "dir": "out",
+     "angle": -15,
+     "speed": 380,
+     "speedRnd": 0.45,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 9
+      }
+     ],
+     "seed": 11
+    },
+    "pt": {
+     "life": 0.42,
+     "lifeRnd": 0.25,
+     "sprite": {
+      "kind": "shape",
+      "id": "flame",
+      "p": {
+       "taper": 0.25
+      }
+     },
+     "size": 41.6,
+     "sizeRnd": 0.55,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.6
+       },
+       {
+        "t": 0.08,
+        "v": 1.05
+       },
+       {
+        "t": 0.55,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.35
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         120,
+         120,
+         120
+        ]
+       },
+       {
+        "t": 0.45,
+        "c": [
+         120,
+         120,
+         120
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         60,
+         60,
+         60
+        ]
+       }
+      ]
+     },
+     "rot": 0,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0,
+     "alignVel": true,
+     "stretch": 12,
+     "drag": 2.2,
+     "gravY": 0
+    }
+   },
+   {
+    "id": "lr_sk_mid_0",
+    "type": "emitter",
+    "name": "mid 0",
+    "blend": "normal",
+    "start": -0.02,
+    "end": 0.02,
+    "em": {
+     "shape": "ring",
+     "sx": 67.60000000000001,
+     "sy": 0,
+     "x": 0,
+     "y": 0,
+     "dir": "out",
+     "angle": -15,
+     "speed": 380,
+     "speedRnd": 0.45,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 9
+      }
+     ],
+     "seed": 11
+    },
+    "pt": {
+     "life": 0.42,
+     "lifeRnd": 0.25,
+     "sprite": {
+      "kind": "shape",
+      "id": "flame",
+      "p": {
+       "taper": 0.25
+      }
+     },
+     "size": 52,
+     "sizeRnd": 0.55,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.6
+       },
+       {
+        "t": 0.08,
+        "v": 1.05
+       },
+       {
+        "t": 0.55,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.35
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         30,
+         30,
+         30
+        ]
+       },
+       {
+        "t": 0.45,
+        "c": [
+         30,
+         30,
+         30
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         10,
+         10,
+         10
+        ]
+       }
+      ]
+     },
+     "rot": 0,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0,
+     "alignVel": true,
+     "stretch": 12,
+     "drag": 2.2,
+     "gravY": 0
+    }
+   },
+   {
+    "id": "lr_sk_small_3",
+    "type": "emitter",
+    "name": "small 3",
+    "blend": "normal",
+    "start": -0.02,
+    "end": 0.02,
+    "em": {
+     "shape": "ring",
+     "sx": 35.1,
+     "sy": 0,
+     "x": 0,
+     "y": 0,
+     "dir": "out",
+     "angle": -15,
+     "speed": 360,
+     "speedRnd": 0.45,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 20
+      }
+     ],
+     "seed": 21
+    },
+    "pt": {
+     "life": 0.34,
+     "lifeRnd": 0.25,
+     "sprite": {
+      "kind": "shape",
+      "id": "flame",
+      "p": {
+       "taper": 0.3
+      }
+     },
+     "size": 10.26,
+     "sizeRnd": 0.55,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.6
+       },
+       {
+        "t": 0.08,
+        "v": 1.05
+       },
+       {
+        "t": 0.55,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.35
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         255,
+         255,
+         255
+        ]
+       },
+       {
+        "t": 0.45,
+        "c": [
+         255,
+         255,
+         255
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         170,
+         170,
+         170
+        ]
+       }
+      ]
+     },
+     "rot": 0,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0,
+     "alignVel": true,
+     "stretch": 12,
+     "drag": 2.2,
+     "gravY": 0
+    }
+   },
+   {
+    "id": "lr_sk_small_2",
+    "type": "emitter",
+    "name": "small 2",
+    "blend": "normal",
+    "start": -0.02,
+    "end": 0.02,
+    "em": {
+     "shape": "ring",
+     "sx": 35.1,
+     "sy": 0,
+     "x": 0,
+     "y": 0,
+     "dir": "out",
+     "angle": -15,
+     "speed": 360,
+     "speedRnd": 0.45,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 20
+      }
+     ],
+     "seed": 21
+    },
+    "pt": {
+     "life": 0.34,
+     "lifeRnd": 0.25,
+     "sprite": {
+      "kind": "shape",
+      "id": "flame",
+      "p": {
+       "taper": 0.3
+      }
+     },
+     "size": 16.2,
+     "sizeRnd": 0.55,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.6
+       },
+       {
+        "t": 0.08,
+        "v": 1.05
+       },
+       {
+        "t": 0.55,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.35
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         195,
+         195,
+         195
+        ]
+       },
+       {
+        "t": 0.45,
+        "c": [
+         195,
+         195,
+         195
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         120,
+         120,
+         120
+        ]
+       }
+      ]
+     },
+     "rot": 0,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0,
+     "alignVel": true,
+     "stretch": 12,
+     "drag": 2.2,
+     "gravY": 0
+    }
+   },
+   {
+    "id": "lr_sk_small_1",
+    "type": "emitter",
+    "name": "small 1",
+    "blend": "normal",
+    "start": -0.02,
+    "end": 0.02,
+    "em": {
+     "shape": "ring",
+     "sx": 35.1,
+     "sy": 0,
+     "x": 0,
+     "y": 0,
+     "dir": "out",
+     "angle": -15,
+     "speed": 360,
+     "speedRnd": 0.45,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 20
+      }
+     ],
+     "seed": 21
+    },
+    "pt": {
+     "life": 0.34,
+     "lifeRnd": 0.25,
+     "sprite": {
+      "kind": "shape",
+      "id": "flame",
+      "p": {
+       "taper": 0.3
+      }
+     },
+     "size": 21.6,
+     "sizeRnd": 0.55,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.6
+       },
+       {
+        "t": 0.08,
+        "v": 1.05
+       },
+       {
+        "t": 0.55,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.35
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         120,
+         120,
+         120
+        ]
+       },
+       {
+        "t": 0.45,
+        "c": [
+         120,
+         120,
+         120
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         60,
+         60,
+         60
+        ]
+       }
+      ]
+     },
+     "rot": 0,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0,
+     "alignVel": true,
+     "stretch": 12,
+     "drag": 2.2,
+     "gravY": 0
+    }
+   },
+   {
+    "id": "lr_sk_small_0",
+    "type": "emitter",
+    "name": "small 0",
+    "blend": "normal",
+    "start": -0.02,
+    "end": 0.02,
+    "em": {
+     "shape": "ring",
+     "sx": 35.1,
+     "sy": 0,
+     "x": 0,
+     "y": 0,
+     "dir": "out",
+     "angle": -15,
+     "speed": 360,
+     "speedRnd": 0.45,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 20
+      }
+     ],
+     "seed": 21
+    },
+    "pt": {
+     "life": 0.34,
+     "lifeRnd": 0.25,
+     "sprite": {
+      "kind": "shape",
+      "id": "flame",
+      "p": {
+       "taper": 0.3
+      }
+     },
+     "size": 27,
+     "sizeRnd": 0.55,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.6
+       },
+       {
+        "t": 0.08,
+        "v": 1.05
+       },
+       {
+        "t": 0.55,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.35
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         30,
+         30,
+         30
+        ]
+       },
+       {
+        "t": 0.45,
+        "c": [
+         30,
+         30,
+         30
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         10,
+         10,
+         10
+        ]
+       }
+      ]
+     },
+     "rot": 0,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0,
+     "alignVel": true,
+     "stretch": 12,
+     "drag": 2.2,
+     "gravY": 0
+    }
+   }
+  ],
+  "v": 1
+ },
+ "sokon": {
+  "thumbT": 0.07,
+  "nota": "Hit forte do Sōkon (27/11): pontas em 3 tamanhos (grandes, médias, pequenas) feitas de 4 camadas aninhadas em cinza; a pixelização em 1 px troca cada cinza por uma faixa da rampa de fogo e corta a borda; rasgo (displace tear) na borda e no núcleo; raios, anel e clarão por cima, sem faixas."
+ }
+}

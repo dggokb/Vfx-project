@@ -30,6 +30,12 @@ celular.
   (onion skin) na prévia; **Rampa de cor**, **Dissolver no fim** e **Sombra no
   chão** nos geradores novos; **Baixar
   vários tipos salvos** num `.zip` só, em Exportar para o jogo.
+- **Editor de partículas (Arcadia):** escolha o efeito **Arcadia (partículas)** e toque em **Abrir o editor
+  de partículas**. Abre por cima o [Arcadia Effector](https://github.com/xaidan777/Arcadia-Effects), de Anton
+  Chuev (MIT), inteiro: camadas de emissores, sprites, pós-efeitos e campos de força, linha do tempo com
+  chaves e curvas, desfazer, catálogo e modelos prontos. O primeiro modelo é o **hit forte do Sōkon**. Em
+  **Usar no Sōkon** o efeito volta para cá, vai junto no tipo salvo e passa pela composição, pela prévia no
+  jogo e pelo export como qualquer outro.
 - **Para onde vai a ferramenta:** a [bíblia de VFX](docs/biblia/BIBLIA_DE_VFX.md) — 40 famílias de
   geradores, compositor de camadas e preview de gameplay.
 
@@ -46,6 +52,7 @@ npm test                    # dist em dia + trava de pixels
 | `sokonfx/src/pagina.html`, `estilo.css` | marcação e estilo |
 | `sokonfx/src/js/*.js` | o código, juntado em ordem de nome num `<script>` só |
 | `sokonfx/src/js/09a-geradores.js` | registro dos geradores novos (um arquivo `09x-gerador-*.js` por gerador) |
+| `sokonfx/vendor/arcadia/` | o editor Arcadia (MIT); o build o embute; `ORIGEM.md` diz de onde veio e o que mudamos; `sokon/*.json` são os nossos modelos |
 | `sokonfx/src/assets/` | imagens embutidas no HTML (`ASSET("nome")` no código) |
 | `sokonfx/dist/SokonFX.html` | o que se abre; gerado, nunca editado à mão |
 | `sokonfx/tipos/` | tipos salvos do dono e os que estão no jogo |
@@ -73,5 +80,6 @@ commit `d9d100f` (`git checkout d9d100f`).
 
 ## Licença
 
-Código MIT ([LICENSE](LICENSE)). As referências visuais de terceiros usadas para estudo **não** ficam
+Código MIT ([LICENSE](LICENSE)). O editor de partículas em `sokonfx/vendor/arcadia/` é de Anton Chuev,
+também MIT ([licença dele](sokonfx/vendor/arcadia/LICENSE)). As referências visuais de terceiros usadas para estudo **não** ficam
 neste repositório (ele é público).

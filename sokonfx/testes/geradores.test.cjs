@@ -14,9 +14,10 @@ const ok=(cond,msg)=>{if(!cond){falhas++;console.log('FALHOU',msg)}};
  const erros=[];p.on('pageerror',e=>erros.push(e.message));
  await p.goto('file://'+html);
  const visiveis=()=>p.evaluate(()=>[...el('ajustes').querySelectorAll('label,button,details,.gerador-params')].filter(e=>e.offsetParent!==null).map(e=>e.id||e.textContent.trim().slice(0,30)).join('|'));
- const troca=k=>p.evaluate(k=>{el('kind').value=k;el('kind').oninput({})},k);
+ // O Arcadia abre num quadro à parte: a troca espera ele ficar pronto.
+ const troca=k=>p.evaluate(async k=>{el('kind').value=k;el('kind').oninput({});await arcadiaEsperar()},k);
  const novos=await p.evaluate(()=>Object.keys(geradores));
- ok(JSON.stringify(novos)==='["Defesa","Choque","Raio","Linhas de mangá","Aura","Detritos","Explosão","Onda de choque","Faíscas","Gelo","Vento e vórtices","Feixe de energia","Teletransporte","Portal","Gases e vapores","Energia sombria","Decal (marca no chão)","Rastro do golpe","Poeira","Partículas","Brilhos e flashes","Energia espiritual","Afterimage","Hit (à mão)","Estilhaços","Fazedor"]','geradores registrados '+novos);
+ ok(JSON.stringify(novos)==='["Defesa","Choque","Raio","Linhas de mangá","Aura","Detritos","Explosão","Onda de choque","Faíscas","Gelo","Vento e vórtices","Feixe de energia","Teletransporte","Portal","Gases e vapores","Energia sombria","Decal (marca no chão)","Rastro do golpe","Poeira","Partículas","Brilhos e flashes","Energia espiritual","Afterimage","Hit (à mão)","Estilhaços","Fazedor","Arcadia (partículas)"]','geradores registrados '+novos);
  for(const antigo of ['Impacto','Fumaça','Pressão de ar','Ponto de luz']){
   await troca(antigo);const antes=await visiveis();
   for(const novo of novos){
@@ -24,7 +25,8 @@ const ok=(cond,msg)=>{if(!cond){falhas++;console.log('FALHOU',msg)}};
    const painel=await p.evaluate(k=>[...document.querySelectorAll('.gerador-params')].filter(c=>!c.hidden).map(c=>c.dataset.gerador),novo);
    ok(JSON.stringify(painel)===JSON.stringify([novo]),`${novo}: só o painel dele (${painel})`);
    ok(!(await p.$eval('#styleMix',e=>e.offsetParent!==null)),`${novo}: controles antigos escondidos`);
-   ok(await p.$eval('#tint',e=>e.offsetParent!==null)&&await p.$eval('#power',e=>e.offsetParent!==null),`${novo}: cor e intensidade à vista`);
+   // As cores do Arcadia vêm do editor dele (semCor): ali a cor e a intensidade do Sōkon não valem.
+   if(!(await p.evaluate(k=>!!geradores[k].semCor,novo)))ok(await p.$eval('#tint',e=>e.offsetParent!==null)&&await p.$eval('#power',e=>e.offsetParent!==null),`${novo}: cor e intensidade à vista`);
   }
   await troca(antigo);
   ok(await visiveis()===antes,`${antigo}: o painel volta igual depois dos geradores novos`);

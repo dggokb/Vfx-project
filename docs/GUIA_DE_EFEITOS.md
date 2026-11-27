@@ -74,9 +74,23 @@ do mundo.
 - **Tremor:** quem apanha treme mais que quem bate; na horizontal no chão, na vertical no ar; o
   tremor diminui aos poucos.
 
-## 5. Como produzimos (a partir de 26/11)
+## 5. Como produzimos
 
-1. **Forma:** desenhos-chave gerados pelo Codex (`codex exec`, imagem), isolados em fundo preto e
+**A partir de 27/11 (sem Codex):** no gerador **Arcadia (partículas)**. A receita do hit forte
+(`sokonfx/vendor/arcadia/sokon/hit_forte.json`):
+
+1. **Pontas são partículas**, então a silhueta muda sozinha a cada quadro (regra 1). Três grupos (grande,
+   médio, pequeno; regra 2), forma "chama" afinada, esticadas pela velocidade, nascendo num anel em volta do
+   núcleo e apontando para fora (sem rabo para trás). O grupo grande tem o centro deslocado para o lado do
+   golpe (regra 3).
+2. **Faixas chapadas (seção 3):** cada grupo em 4 camadas com a mesma semente e tamanhos menores, em cinza
+   do escuro (fora) ao branco (dentro). Uma pixelização de 1 px por cima troca cada cinza por uma faixa da
+   rampa de fogo e corta a borda seca.
+3. **Quebra rasgando:** um rasgo (displace tear) na borda; o corte da transparência sobe no fim e come as
+   lascas. O núcleo é clarão de 1 a 2 desenhos e some (não encolhe de volta).
+4. **Por cima, sem faixas:** raios, anel fino dourado e clarão somando luz.
+
+**26/11 (abandonado pelo dono em 27/11):** desenhos-chave gerados pelo Codex (`codex exec`, imagem), isolados em fundo preto e
    pedidos com as regras 1 a 6. Para cada efeito, uma **sequência de 3 a 5 desenhos** (clarão,
    abertura, pico, quebra), feita a partir do primeiro para manter o desenho.
 2. **Vida:** o Sōkon FX (Fazedor, forma Imagem) toca a sequência com exposição de anime, treme como

@@ -554,4 +554,7 @@ embaixo.
   inclinado vira barra diagonal), com velocidades espalhadas (85%) para encher da base ao topo (sem isso o topo se
   solta), curvando para fora no alto; tudo desbota junto no fim. Exportada no `super_pulo_v01` (340 px), só na cópia de
   trabalho do jogo; gravado no super pulo.
+- **Super pulo, dissipação:** ao sumir, o ponto mais fino (a frente do anel) partia a peça em duas. Uma base de
+  partículas engrossa a frente, e anel, base e colunas desbotam juntos pela opacidade da camada: a fumaça some inteira.
+  Conferido quadro a quadro no modelo (do estouro ao fim) e na gravação (peça única até sair da tela).
 

@@ -325,6 +325,40 @@
     "blend": "normal",
     "start": 0,
     "end": 0.2,
+    "opacity": {
+     "keys": [
+      {
+       "t": 0,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.4,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.8,
+       "v": 0,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      }
+     ]
+    },
     "em": {
      "x": {
       "keys": [
@@ -362,7 +396,7 @@
      "seed": 11
     },
     "pt": {
-     "life": 0.52,
+     "life": 1.2,
      "lifeRnd": 0.2,
      "sprite": {
       "kind": "shape",
@@ -399,7 +433,7 @@
        },
        {
         "t": 1,
-        "v": 0
+        "v": 1
        }
       ]
      },
@@ -440,6 +474,40 @@
     "blend": "normal",
     "start": 0,
     "end": 0.2,
+    "opacity": {
+     "keys": [
+      {
+       "t": 0,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.4,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.8,
+       "v": 0,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      }
+     ]
+    },
     "em": {
      "x": {
       "keys": [
@@ -477,7 +545,7 @@
      "seed": 17
     },
     "pt": {
-     "life": 0.52,
+     "life": 1.2,
      "lifeRnd": 0.2,
      "sprite": {
       "kind": "shape",
@@ -514,7 +582,7 @@
        },
        {
         "t": 1,
-        "v": 0
+        "v": 1
        }
       ]
      },
@@ -549,12 +617,172 @@
     }
    },
    {
+    "id": "lr_s_base2",
+    "type": "emitter",
+    "name": "base 2",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.02,
+    "opacity": {
+     "keys": [
+      {
+       "t": 0,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.4,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.8,
+       "v": 0,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      }
+     ]
+    },
+    "em": {
+     "x": 0,
+     "y": 38,
+     "shape": "box",
+     "sx": 95,
+     "sy": 6,
+     "dir": "dir",
+     "angle": 90,
+     "spread": 160,
+     "speed": 90,
+     "speedRnd": 0.5,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 30
+      }
+     ],
+     "seed": 23
+    },
+    "pt": {
+     "life": 1.2,
+     "lifeRnd": 0.15,
+     "sprite": {
+      "kind": "shape",
+      "id": "soft",
+      "p": {}
+     },
+     "size": 45.263999999999996,
+     "sizeRnd": 0.25,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.5
+       },
+       {
+        "t": 0.2,
+        "v": 1
+       },
+       {
+        "t": 0.7,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.6
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         250,
+         250,
+         250
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         250,
+         250,
+         250
+        ]
+       }
+      ]
+     },
+     "drag": 5,
+     "squash": 0
+    }
+   },
+   {
     "id": "lr_s_anel2",
     "type": "emitter",
     "name": "ring 2",
     "blend": "normal",
     "start": 0,
     "end": 0.02,
+    "opacity": {
+     "keys": [
+      {
+       "t": 0,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.4,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.8,
+       "v": 0,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      }
+     ]
+    },
     "em": {
      "x": 0,
      "y": -7,
@@ -574,7 +802,7 @@
      "seed": 5
     },
     "pt": {
-     "life": 0.72,
+     "life": 1.2,
      "lifeRnd": 0.15,
      "sprite": {
       "kind": "shape",
@@ -610,7 +838,7 @@
         "v": 1
        },
        {
-        "t": 0.55,
+        "t": 0.99,
         "v": 1
        },
        {
@@ -650,6 +878,40 @@
     "blend": "normal",
     "start": 0,
     "end": 0.2,
+    "opacity": {
+     "keys": [
+      {
+       "t": 0,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.4,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.8,
+       "v": 0,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      }
+     ]
+    },
     "em": {
      "x": {
       "keys": [
@@ -687,7 +949,7 @@
      "seed": 11
     },
     "pt": {
-     "life": 0.52,
+     "life": 1.2,
      "lifeRnd": 0.2,
      "sprite": {
       "kind": "shape",
@@ -724,7 +986,7 @@
        },
        {
         "t": 1,
-        "v": 0
+        "v": 1
        }
       ]
      },
@@ -765,6 +1027,40 @@
     "blend": "normal",
     "start": 0,
     "end": 0.2,
+    "opacity": {
+     "keys": [
+      {
+       "t": 0,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.4,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.8,
+       "v": 0,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      }
+     ]
+    },
     "em": {
      "x": {
       "keys": [
@@ -802,7 +1098,7 @@
      "seed": 17
     },
     "pt": {
-     "life": 0.52,
+     "life": 1.2,
      "lifeRnd": 0.2,
      "sprite": {
       "kind": "shape",
@@ -839,7 +1135,7 @@
        },
        {
         "t": 1,
-        "v": 0
+        "v": 1
        }
       ]
      },
@@ -874,12 +1170,172 @@
     }
    },
    {
+    "id": "lr_s_base1",
+    "type": "emitter",
+    "name": "base 1",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.02,
+    "opacity": {
+     "keys": [
+      {
+       "t": 0,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.4,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.8,
+       "v": 0,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      }
+     ]
+    },
+    "em": {
+     "x": 0,
+     "y": 35,
+     "shape": "box",
+     "sx": 95,
+     "sy": 6,
+     "dir": "dir",
+     "angle": 90,
+     "spread": 160,
+     "speed": 90,
+     "speedRnd": 0.5,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 30
+      }
+     ],
+     "seed": 23
+    },
+    "pt": {
+     "life": 1.2,
+     "lifeRnd": 0.15,
+     "sprite": {
+      "kind": "shape",
+      "id": "soft",
+      "p": {}
+     },
+     "size": 55.199999999999996,
+     "sizeRnd": 0.25,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.5
+       },
+       {
+        "t": 0.2,
+        "v": 1
+       },
+       {
+        "t": 0.7,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.6
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         160,
+         160,
+         160
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         160,
+         160,
+         160
+        ]
+       }
+      ]
+     },
+     "drag": 5,
+     "squash": 0
+    }
+   },
+   {
     "id": "lr_s_anel1",
     "type": "emitter",
     "name": "ring 1",
     "blend": "normal",
     "start": 0,
     "end": 0.02,
+    "opacity": {
+     "keys": [
+      {
+       "t": 0,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.4,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.8,
+       "v": 0,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      }
+     ]
+    },
     "em": {
      "x": 0,
      "y": -10,
@@ -899,7 +1355,7 @@
      "seed": 5
     },
     "pt": {
-     "life": 0.72,
+     "life": 1.2,
      "lifeRnd": 0.15,
      "sprite": {
       "kind": "shape",
@@ -935,7 +1391,7 @@
         "v": 1
        },
        {
-        "t": 0.55,
+        "t": 0.99,
         "v": 1
        },
        {
@@ -975,6 +1431,40 @@
     "blend": "normal",
     "start": 0,
     "end": 0.2,
+    "opacity": {
+     "keys": [
+      {
+       "t": 0,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.4,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.8,
+       "v": 0,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      }
+     ]
+    },
     "em": {
      "x": {
       "keys": [
@@ -1012,7 +1502,7 @@
      "seed": 11
     },
     "pt": {
-     "life": 0.52,
+     "life": 1.2,
      "lifeRnd": 0.2,
      "sprite": {
       "kind": "shape",
@@ -1049,7 +1539,7 @@
        },
        {
         "t": 1,
-        "v": 0
+        "v": 1
        }
       ]
      },
@@ -1090,6 +1580,40 @@
     "blend": "normal",
     "start": 0,
     "end": 0.2,
+    "opacity": {
+     "keys": [
+      {
+       "t": 0,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.4,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.8,
+       "v": 0,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      }
+     ]
+    },
     "em": {
      "x": {
       "keys": [
@@ -1127,7 +1651,7 @@
      "seed": 17
     },
     "pt": {
-     "life": 0.52,
+     "life": 1.2,
      "lifeRnd": 0.2,
      "sprite": {
       "kind": "shape",
@@ -1164,7 +1688,7 @@
        },
        {
         "t": 1,
-        "v": 0
+        "v": 1
        }
       ]
      },
@@ -1199,12 +1723,172 @@
     }
    },
    {
+    "id": "lr_s_base0",
+    "type": "emitter",
+    "name": "base 0",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.02,
+    "opacity": {
+     "keys": [
+      {
+       "t": 0,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.4,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.8,
+       "v": 0,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      }
+     ]
+    },
+    "em": {
+     "x": 0,
+     "y": 45,
+     "shape": "box",
+     "sx": 95,
+     "sy": 6,
+     "dir": "dir",
+     "angle": 90,
+     "spread": 160,
+     "speed": 90,
+     "speedRnd": 0.5,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 30
+      }
+     ],
+     "seed": 23
+    },
+    "pt": {
+     "life": 1.2,
+     "lifeRnd": 0.15,
+     "sprite": {
+      "kind": "shape",
+      "id": "soft",
+      "p": {}
+     },
+     "size": 66.24,
+     "sizeRnd": 0.25,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.5
+       },
+       {
+        "t": 0.2,
+        "v": 1
+       },
+       {
+        "t": 0.7,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.6
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         60,
+         60,
+         60
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         60,
+         60,
+         60
+        ]
+       }
+      ]
+     },
+     "drag": 5,
+     "squash": 0
+    }
+   },
+   {
     "id": "lr_s_anel0",
     "type": "emitter",
     "name": "ring 0",
     "blend": "normal",
     "start": 0,
     "end": 0.02,
+    "opacity": {
+     "keys": [
+      {
+       "t": 0,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.4,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.8,
+       "v": 0,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      }
+     ]
+    },
     "em": {
      "x": 0,
      "y": 0,
@@ -1224,7 +1908,7 @@
      "seed": 5
     },
     "pt": {
-     "life": 0.72,
+     "life": 1.2,
      "lifeRnd": 0.15,
      "sprite": {
       "kind": "shape",
@@ -1260,7 +1944,7 @@
         "v": 1
        },
        {
-        "t": 0.55,
+        "t": 0.99,
         "v": 1
        },
        {
@@ -1298,6 +1982,6 @@
  },
  "sokon": {
   "thumbT": 0.2,
-  "nota": "Fumaça do super pulo coesa (27/11; silhuetas de exemplo do dono). Partículas macias (soft) que se fundem quando a pixelização corta a borda (metabolas): um anel no chão que abre para fora (achatado pela câmera, cam.comp 73°, o meio fica vazio) e duas colunas que nascem na borda do anel, sobem e se curvam para fora, formando uma peça só em U. Três tons: sombra maior embaixo, meio, luz menor por cima. Espinhos rente ao chão. O corte da transparência sobe no fim e desfaz tudo junto. A câmera achata o que sobe: as velocidades para cima são compensadas. Colunas quase verticais (a compensação da câmera só na subida), velocidades espalhadas para encher da base ao topo, curvando para fora no alto; tudo desbota junto no fim."
+  "nota": "Fumaça do super pulo coesa (27/11; silhuetas de exemplo do dono). Partículas macias (soft) que se fundem quando a pixelização corta a borda (metabolas): um anel no chão que abre para fora (achatado pela câmera, cam.comp 73°, o meio fica vazio) e duas colunas que nascem na borda do anel, sobem e se curvam para fora, formando uma peça só em U. Três tons: sombra maior embaixo, meio, luz menor por cima. Espinhos rente ao chão. O corte da transparência sobe no fim e desfaz tudo junto. A câmera achata o que sobe: as velocidades para cima são compensadas. Colunas quase verticais (a compensação da câmera só na subida), velocidades espalhadas para encher da base ao topo, curvando para fora no alto. A frente do anel é engrossada por uma base de partículas (o ponto mais fino partia a peça ao sumir) e todas as camadas desbotam juntas pela opacidade da camada: some inteira, sem se dividir."
  }
 }

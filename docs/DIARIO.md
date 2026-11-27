@@ -504,4 +504,10 @@ embaixo.
 - **Rodada 10, fraco (o dono: "faz um fraco agora"):** `faisca_dourada_fraca.json` (16 raios curtos, um par na
   diagonal, núcleo e brilho pequenos, poucas brasas, sem anel, 0,45 s), 190 px no jogo, como `kit_fraco` (cópia de
   trabalho). Gravados os três: soco fraco (J), soco médio (K), chute forte (L).
+- **Rodada 11 (27/11; o dono: "faz os dois", o Super e o acerto do poder):** `faisca_dourada_super.json` (a forte
+  maior: 56 raios, 9+9 diagonais, núcleo branco grande, 100 brasas, segundo anel que sai depois; 340 px, e o jogo
+  ainda põe 1,25× no Super) como `kit_super`, e `onda_acerto_fogo.json` (leque de raios laranja aberto para a
+  frente, no sentido da bola, com brasas e riscos no mesmo leque; 210 px) no lugar do `onda_acerto_player_base`
+  (o acerto do projétil do Ryūga; o da Yin-lu, azul, ficou). O gerador ganhou o segundo anel e direção e cor
+  próprias para raios, riscos e brasas. Gravados no jogo (Super com 5 pancadas e a onda).
 

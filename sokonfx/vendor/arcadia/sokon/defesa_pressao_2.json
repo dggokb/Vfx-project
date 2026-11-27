@@ -23,7 +23,7 @@
    {
     "id": "lr_m_gotas",
     "type": "emitter",
-    "name": "air specks",
+    "name": "lr_m_gotas",
     "blend": "add",
     "start": 0.01,
     "end": 0.16,
@@ -42,7 +42,7 @@
      "bursts": [
       {
        "t": 0.04,
-       "n": 12
+       "n": 6
       }
      ],
      "path": {
@@ -56,7 +56,7 @@
          "keys": [
           {
            "t": 0,
-           "v": 42.52444315316471,
+           "v": 40.69401899225546,
            "i": {
             "m": "ease"
            },
@@ -66,7 +66,7 @@
           },
           {
            "t": 0.16,
-           "v": 54.153128026237454,
+           "v": 49.49386652574116,
            "i": {
             "m": "ease"
            },
@@ -80,7 +80,7 @@
          "keys": [
           {
            "t": 0,
-           "v": -51.683094143224956,
+           "v": -53.12592044589876,
            "i": {
             "m": "ease"
            },
@@ -90,7 +90,7 @@
           },
           {
            "t": 0.16,
-           "v": -131.55696691002717,
+           "v": -135.22961568046955,
            "i": {
             "m": "ease"
            },
@@ -106,7 +106,7 @@
          "keys": [
           {
            "t": 0,
-           "v": 48.39275143819185,
+           "v": 46,
            "i": {
             "m": "ease"
            },
@@ -116,7 +116,7 @@
           },
           {
            "t": 0.16,
-           "v": 69.09064002448835,
+           "v": 63.00000000000001,
            "i": {
             "m": "ease"
            },
@@ -130,7 +130,7 @@
          "keys": [
           {
            "t": 0,
-           "v": -43.63443371601793,
+           "v": -47.63139720814412,
            "i": {
             "m": "ease"
            },
@@ -140,7 +140,7 @@
           },
           {
            "t": 0.16,
-           "v": -111.06946764077293,
+           "v": -121.2435565298214,
            "i": {
             "m": "ease"
            },
@@ -156,7 +156,7 @@
          "keys": [
           {
            "t": 0,
-           "v": 53.02134497435782,
+           "v": 50.55634918610404,
            "i": {
             "m": "ease"
            },
@@ -166,7 +166,7 @@
           },
           {
            "t": 0.16,
-           "v": 80.87251448018354,
+           "v": 74.59797974644667,
            "i": {
             "m": "ease"
            },
@@ -180,7 +180,7 @@
          "keys": [
           {
            "t": 0,
-           "v": -31.54670399930753,
+           "v": -38.89087296526011,
            "i": {
             "m": "ease"
            },
@@ -190,7 +190,7 @@
           },
           {
            "t": 0.16,
-           "v": -80.30070108914644,
+           "v": -98.99494936611664,
            "i": {
             "m": "ease"
            },
@@ -206,7 +206,7 @@
          "keys": [
           {
            "t": 0,
-           "v": 55.981772916461,
+           "v": 54.05255888325765,
            "i": {
             "m": "ease"
            },
@@ -216,7 +216,7 @@
           },
           {
            "t": 0.16,
-           "v": 88.4081492419007,
+           "v": 83.49742261192857,
            "i": {
             "m": "ease"
            },
@@ -230,7 +230,7 @@
          "keys": [
           {
            "t": 0,
-           "v": -16.538818972735022,
+           "v": -27.499999999999996,
            "i": {
             "m": "ease"
            },
@@ -240,7 +240,7 @@
           },
           {
            "t": 0.16,
-           "v": -42.09881193059824,
+           "v": -69.99999999999999,
            "i": {
             "m": "ease"
            },
@@ -256,7 +256,7 @@
          "keys": [
           {
            "t": 0,
-           "v": 57,
+           "v": 56.2503681783595,
            "i": {
             "m": "ease"
            },
@@ -266,7 +266,7 @@
           },
           {
            "t": 0.16,
-           "v": 91,
+           "v": 89.09184627218782,
            "i": {
             "m": "ease"
            },
@@ -280,7 +280,7 @@
          "keys": [
           {
            "t": 0,
-           "v": 0,
+           "v": -14.235047480638642,
            "i": {
             "m": "ease"
            },
@@ -290,207 +290,7 @@
           },
           {
            "t": 0.16,
-           "v": 0,
-           "i": {
-            "m": "ease"
-           },
-           "o": {
-            "m": "ease"
-           }
-          }
-         ]
-        }
-       },
-       {
-        "x": {
-         "keys": [
-          {
-           "t": 0,
-           "v": 55.981772916461,
-           "i": {
-            "m": "ease"
-           },
-           "o": {
-            "m": "ease"
-           }
-          },
-          {
-           "t": 0.16,
-           "v": 88.4081492419007,
-           "i": {
-            "m": "ease"
-           },
-           "o": {
-            "m": "ease"
-           }
-          }
-         ]
-        },
-        "y": {
-         "keys": [
-          {
-           "t": 0,
-           "v": 16.538818972735022,
-           "i": {
-            "m": "ease"
-           },
-           "o": {
-            "m": "ease"
-           }
-          },
-          {
-           "t": 0.16,
-           "v": 42.09881193059824,
-           "i": {
-            "m": "ease"
-           },
-           "o": {
-            "m": "ease"
-           }
-          }
-         ]
-        }
-       },
-       {
-        "x": {
-         "keys": [
-          {
-           "t": 0,
-           "v": 53.02134497435782,
-           "i": {
-            "m": "ease"
-           },
-           "o": {
-            "m": "ease"
-           }
-          },
-          {
-           "t": 0.16,
-           "v": 80.87251448018354,
-           "i": {
-            "m": "ease"
-           },
-           "o": {
-            "m": "ease"
-           }
-          }
-         ]
-        },
-        "y": {
-         "keys": [
-          {
-           "t": 0,
-           "v": 31.54670399930753,
-           "i": {
-            "m": "ease"
-           },
-           "o": {
-            "m": "ease"
-           }
-          },
-          {
-           "t": 0.16,
-           "v": 80.30070108914644,
-           "i": {
-            "m": "ease"
-           },
-           "o": {
-            "m": "ease"
-           }
-          }
-         ]
-        }
-       },
-       {
-        "x": {
-         "keys": [
-          {
-           "t": 0,
-           "v": 48.39275143819185,
-           "i": {
-            "m": "ease"
-           },
-           "o": {
-            "m": "ease"
-           }
-          },
-          {
-           "t": 0.16,
-           "v": 69.09064002448835,
-           "i": {
-            "m": "ease"
-           },
-           "o": {
-            "m": "ease"
-           }
-          }
-         ]
-        },
-        "y": {
-         "keys": [
-          {
-           "t": 0,
-           "v": 43.63443371601793,
-           "i": {
-            "m": "ease"
-           },
-           "o": {
-            "m": "ease"
-           }
-          },
-          {
-           "t": 0.16,
-           "v": 111.06946764077293,
-           "i": {
-            "m": "ease"
-           },
-           "o": {
-            "m": "ease"
-           }
-          }
-         ]
-        }
-       },
-       {
-        "x": {
-         "keys": [
-          {
-           "t": 0,
-           "v": 42.52444315316471,
-           "i": {
-            "m": "ease"
-           },
-           "o": {
-            "m": "ease"
-           }
-          },
-          {
-           "t": 0.16,
-           "v": 54.153128026237454,
-           "i": {
-            "m": "ease"
-           },
-           "o": {
-            "m": "ease"
-           }
-          }
-         ]
-        },
-        "y": {
-         "keys": [
-          {
-           "t": 0,
-           "v": 51.683094143224956,
-           "i": {
-            "m": "ease"
-           },
-           "o": {
-            "m": "ease"
-           }
-          },
-          {
-           "t": 0.16,
-           "v": 131.55696691002717,
+           "v": -36.23466631435291,
            "i": {
             "m": "ease"
            },
@@ -512,7 +312,7 @@
      "seed": 20
     },
     "pt": {
-     "life": 0.34,
+     "life": 0.32,
      "lifeRnd": 0.45,
      "sprite": {
       "kind": "shape",
@@ -572,7 +372,363 @@
      "alignVel": true,
      "stretch": 1.6,
      "drag": 2.5,
-     "gravY": 900,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0
+    }
+   },
+   {
+    "id": "lr_m_gotas_b",
+    "type": "emitter",
+    "name": "lr_m_gotas_b",
+    "blend": "add",
+    "start": 0.01,
+    "end": 0.16,
+    "glowL": 0.3,
+    "glowLR": 5,
+    "em": {
+     "x": -50,
+     "y": 0,
+     "shape": "point",
+     "dir": "dir",
+     "angle": 35,
+     "spread": 8,
+     "speed": 560,
+     "speedRnd": 0.6,
+     "rate": 0,
+     "bursts": [
+      {
+       "t": 0.04,
+       "n": 6
+      }
+     ],
+     "path": {
+      "on": true,
+      "mode": "emit",
+      "closed": false,
+      "smooth": true,
+      "nodes": [
+       {
+        "x": {
+         "keys": [
+          {
+           "t": 0,
+           "v": 56.2503681783595,
+           "i": {
+            "m": "ease"
+           },
+           "o": {
+            "m": "ease"
+           }
+          },
+          {
+           "t": 0.16,
+           "v": 89.09184627218782,
+           "i": {
+            "m": "ease"
+           },
+           "o": {
+            "m": "ease"
+           }
+          }
+         ]
+        },
+        "y": {
+         "keys": [
+          {
+           "t": 0,
+           "v": 14.235047480638642,
+           "i": {
+            "m": "ease"
+           },
+           "o": {
+            "m": "ease"
+           }
+          },
+          {
+           "t": 0.16,
+           "v": 36.23466631435291,
+           "i": {
+            "m": "ease"
+           },
+           "o": {
+            "m": "ease"
+           }
+          }
+         ]
+        }
+       },
+       {
+        "x": {
+         "keys": [
+          {
+           "t": 0,
+           "v": 54.05255888325765,
+           "i": {
+            "m": "ease"
+           },
+           "o": {
+            "m": "ease"
+           }
+          },
+          {
+           "t": 0.16,
+           "v": 83.49742261192857,
+           "i": {
+            "m": "ease"
+           },
+           "o": {
+            "m": "ease"
+           }
+          }
+         ]
+        },
+        "y": {
+         "keys": [
+          {
+           "t": 0,
+           "v": 27.499999999999996,
+           "i": {
+            "m": "ease"
+           },
+           "o": {
+            "m": "ease"
+           }
+          },
+          {
+           "t": 0.16,
+           "v": 69.99999999999999,
+           "i": {
+            "m": "ease"
+           },
+           "o": {
+            "m": "ease"
+           }
+          }
+         ]
+        }
+       },
+       {
+        "x": {
+         "keys": [
+          {
+           "t": 0,
+           "v": 50.55634918610404,
+           "i": {
+            "m": "ease"
+           },
+           "o": {
+            "m": "ease"
+           }
+          },
+          {
+           "t": 0.16,
+           "v": 74.59797974644667,
+           "i": {
+            "m": "ease"
+           },
+           "o": {
+            "m": "ease"
+           }
+          }
+         ]
+        },
+        "y": {
+         "keys": [
+          {
+           "t": 0,
+           "v": 38.89087296526011,
+           "i": {
+            "m": "ease"
+           },
+           "o": {
+            "m": "ease"
+           }
+          },
+          {
+           "t": 0.16,
+           "v": 98.99494936611664,
+           "i": {
+            "m": "ease"
+           },
+           "o": {
+            "m": "ease"
+           }
+          }
+         ]
+        }
+       },
+       {
+        "x": {
+         "keys": [
+          {
+           "t": 0,
+           "v": 46,
+           "i": {
+            "m": "ease"
+           },
+           "o": {
+            "m": "ease"
+           }
+          },
+          {
+           "t": 0.16,
+           "v": 63.00000000000001,
+           "i": {
+            "m": "ease"
+           },
+           "o": {
+            "m": "ease"
+           }
+          }
+         ]
+        },
+        "y": {
+         "keys": [
+          {
+           "t": 0,
+           "v": 47.63139720814412,
+           "i": {
+            "m": "ease"
+           },
+           "o": {
+            "m": "ease"
+           }
+          },
+          {
+           "t": 0.16,
+           "v": 121.2435565298214,
+           "i": {
+            "m": "ease"
+           },
+           "o": {
+            "m": "ease"
+           }
+          }
+         ]
+        }
+       },
+       {
+        "x": {
+         "keys": [
+          {
+           "t": 0,
+           "v": 40.69401899225546,
+           "i": {
+            "m": "ease"
+           },
+           "o": {
+            "m": "ease"
+           }
+          },
+          {
+           "t": 0.16,
+           "v": 49.49386652574116,
+           "i": {
+            "m": "ease"
+           },
+           "o": {
+            "m": "ease"
+           }
+          }
+         ]
+        },
+        "y": {
+         "keys": [
+          {
+           "t": 0,
+           "v": 53.12592044589876,
+           "i": {
+            "m": "ease"
+           },
+           "o": {
+            "m": "ease"
+           }
+          },
+          {
+           "t": 0.16,
+           "v": 135.22961568046955,
+           "i": {
+            "m": "ease"
+           },
+           "o": {
+            "m": "ease"
+           }
+          }
+         ]
+        }
+       }
+      ],
+      "along": "random",
+      "jitter": 4,
+      "aim": "none",
+      "attract": 0,
+      "lock": 0,
+      "flow": 0
+     },
+     "seed": 24
+    },
+    "pt": {
+     "life": 0.32,
+     "lifeRnd": 0.45,
+     "sprite": {
+      "kind": "shape",
+      "id": "streak",
+      "p": {}
+     },
+     "size": 18,
+     "sizeRnd": 0.6,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.4
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.95
+       },
+       {
+        "t": 0.6,
+        "v": 0.7
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         255,
+         255,
+         255
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         205,
+         220,
+         245
+        ]
+       }
+      ]
+     },
+     "alignVel": true,
+     "stretch": 1.6,
+     "drag": 2.5,
      "rotRnd": 0,
      "spin": 0,
      "spinRnd": 0
@@ -1905,6 +2061,6 @@
  },
  "sokon": {
   "thumbT": 0.12,
-  "nota": "Pressão de ar da defesa (27/11, refeita lendo a referência do dono: um anel de ar grosso em 3/4, quase fechado, com o buraco escuro rasgado por dentro). Massa cinza-clara (anel com espessura 85%) e faixa branca colada na borda, as duas pesando para o lado de quem defende (máscara deslocada); rasgo (displace tear) para o buraco ficar irregular; desfoque radial a partir do buraco faz as fibras da massa; rastros finos passam da borda; borda branca lisa. A borda encosta na origem e o anel fica do lado de quem bate (o jogo espelha: DEFESA_ESPELHADA). Algumas partículas de ar (12) nascem um pouco afastadas da borda e vão todas na mesma direção, subindo na diagonal (−35°) e caindo em arco, para o lado oposto ao anel. Variação 2 de 3."
+  "nota": "Pressão de ar da defesa (27/11, refeita lendo a referência do dono: um anel de ar grosso em 3/4, quase fechado, com o buraco escuro rasgado por dentro). Massa cinza-clara (anel com espessura 85%) e faixa branca colada na borda, as duas pesando para o lado de quem defende (máscara deslocada); rasgo (displace tear) para o buraco ficar irregular; desfoque radial a partir do buraco faz as fibras da massa; rastros finos passam da borda; borda branca lisa. A borda encosta na origem e o anel fica do lado de quem bate (o jogo espelha: DEFESA_ESPELHADA). Algumas partículas de ar (6+6) nascem um pouco afastadas da borda, para o lado oposto ao anel: as da metade de cima sobem na diagonal (35°), as de baixo descem. Variação 2 de 3."
  }
 }

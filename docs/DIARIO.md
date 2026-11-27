@@ -517,4 +517,11 @@ embaixo.
   direção fixa elas se cruzavam); brilho azulado e clarão curto no contato. Exportadas (270 px, soma 50%, luz
   #E6F0FF) no lugar das `defesa_brilho_spray_aneis*` (as três que o jogo alterna), só na cópia de trabalho do jogo.
   Gravado no chute forte defendido.
+- **Rodada 12, ajustes (o dono: "miolo muito fino; a referência é uma coisa só; posição ruim"; "menos redondo";
+  "muito vertical, tem que ficar levemente 3/4"):** a meia-lua ganhou uma faixa grossa cinza-clara (anel largo com
+  máscara) rasgada em fibras por uma distorção esticada (displace tear, aspect 0,14, só na faixa), borda de fora lisa
+  e mais brilhante, e uma massa densa de fibras curtas presas à frente; os pontinhos soltos saíram. A frente fica 35 px
+  à frente do contato (na guarda de quem defende, não em cima da perna de quem bate). Curva aberta: raio 300 com 40°
+  para cada lado (antes 175 com 70°). Exportada com Direção −20° no Sōkon (gira em volta do contato: a ponta de cima
+  para trás). Só na cópia de trabalho do jogo, no lugar das três `defesa_brilho_spray_aneis*`.
 

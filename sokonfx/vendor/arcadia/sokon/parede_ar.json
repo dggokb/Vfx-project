@@ -145,7 +145,7 @@
      "bursts": [
       {
        "t": 0.02,
-       "n": 30
+       "n": 12
       }
      ],
      "seed": 51
@@ -236,7 +236,7 @@
      "bursts": [
       {
        "t": 0.03,
-       "n": 30
+       "n": 10
       }
      ],
      "seed": 53
@@ -350,14 +350,14 @@
      "bursts": [
       {
        "t": 0,
-       "n": 120
+       "n": 56
       }
      ],
      "seed": 7,
      "sub": {
       "on": true,
       "emit": "death",
-      "count": 2,
+      "count": 1,
       "dir": "inherit",
       "spread": 30,
       "speed": 700,
@@ -441,7 +441,7 @@
       "id": "dot",
       "p": {}
      },
-     "size": 6.3,
+     "size": 7.2,
      "sizeRnd": 0.6,
      "sizeOL": {
       "pts": [
@@ -546,14 +546,14 @@
      "bursts": [
       {
        "t": 0,
-       "n": 120
+       "n": 56
       }
      ],
      "seed": 7,
      "sub": {
       "on": true,
       "emit": "death",
-      "count": 2,
+      "count": 1,
       "dir": "inherit",
       "spread": 30,
       "speed": 700,
@@ -637,7 +637,7 @@
       "id": "dot",
       "p": {}
      },
-     "size": 12.04,
+     "size": 13.76,
      "sizeRnd": 0.6,
      "sizeOL": {
       "pts": [
@@ -742,14 +742,14 @@
      "bursts": [
       {
        "t": 0,
-       "n": 120
+       "n": 56
       }
      ],
      "seed": 7,
      "sub": {
       "on": true,
       "emit": "death",
-      "count": 2,
+      "count": 1,
       "dir": "inherit",
       "spread": 30,
       "speed": 700,
@@ -833,7 +833,7 @@
       "id": "dot",
       "p": {}
      },
-     "size": 14,
+     "size": 16,
      "sizeRnd": 0.6,
      "sizeOL": {
       "pts": [
@@ -898,6 +898,6 @@
  },
  "sokon": {
   "thumbT": 0.2,
-  "nota": "Ar batendo na parede (27/11; o dono: \"anel circular\", \"oval\", \"mais fino, do tamanho do corpo, e spray; mais fino e maior\"): anel fino de bolotas pequenas que nasce no ponto da batida e se abre junto (uma rajada só, que freia), oco no meio, achatado em oval pela câmera; spray de riscos e gotas que espirram do anel para fora. Três tons. Aqui o oval é deitado: no jogo sai girado 90° (exporte com Direção 90), em pé contra a parede, da altura do corpo. Depois de 2 desenhos o anel vira splash (o dono: \"faz depois de 2 frames a fumaça virar splash\"): cada bolota morre e solta 2 gotas compridas (sub-emissor na morte) que espirram para fora e caem."
+  "nota": "Ar batendo na parede (27/11; o dono: \"anel circular\", \"oval\", \"mais fino, do tamanho do corpo, e spray; mais fino e maior\"): anel fino de bolotas pequenas que nasce no ponto da batida e se abre junto (uma rajada só, que freia), oco no meio, achatado em oval pela câmera; spray de riscos e gotas que espirram do anel para fora. Três tons. Aqui o oval é deitado: no jogo sai girado 90° (exporte com Direção 90), em pé contra a parede, da altura do corpo. Depois de 2 desenhos o anel vira splash (o dono: \"faz depois de 2 frames a fumaça virar splash\"): cada bolota morre e solta 2 gotas compridas (sub-emissor na morte) que espirram para fora e caem. Menos partículas (o dono: \"muito, tem que ser menos partícula\"): 56 bolotas, 1 gota cada, pouco spray."
  }
 }

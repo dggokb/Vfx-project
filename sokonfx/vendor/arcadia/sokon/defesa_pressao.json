@@ -35,14 +35,14 @@
      "shape": "point",
      "dir": "dir",
      "angle": 0,
-     "spread": 120,
-     "speed": 560,
+     "spread": 8,
+     "speed": 480,
      "speedRnd": 0.6,
-     "rate": 700,
+     "rate": 0,
      "bursts": [
       {
-       "t": 0.01,
-       "n": 50
+       "t": 0.04,
+       "n": 12
       }
      ],
      "path": {
@@ -56,7 +56,7 @@
          "keys": [
           {
            "t": 0,
-           "v": 7.900665310822949,
+           "v": 42.90066531082295,
            "i": {
             "m": "ease"
            },
@@ -66,7 +66,7 @@
           },
           {
            "t": 0.16,
-           "v": 21.547269029517135,
+           "v": 56.54726902951714,
            "i": {
             "m": "ease"
            },
@@ -106,7 +106,7 @@
          "keys": [
           {
            "t": 0,
-           "v": 14.062389010101446,
+           "v": 49.06238901010145,
            "i": {
             "m": "ease"
            },
@@ -116,7 +116,7 @@
           },
           {
            "t": 0.16,
-           "v": 38.3519700275494,
+           "v": 73.3519700275494,
            "i": {
             "m": "ease"
            },
@@ -156,7 +156,7 @@
          "keys": [
           {
            "t": 0,
-           "v": 18.92241222307571,
+           "v": 53.92241222307571,
            "i": {
             "m": "ease"
            },
@@ -166,7 +166,7 @@
           },
           {
            "t": 0.16,
-           "v": 51.606578790206484,
+           "v": 86.60657879020648,
            "i": {
             "m": "ease"
            },
@@ -206,7 +206,7 @@
          "keys": [
           {
            "t": 0,
-           "v": 22.03086156228404,
+           "v": 57.030861562284045,
            "i": {
             "m": "ease"
            },
@@ -216,7 +216,7 @@
           },
           {
            "t": 0.16,
-           "v": 60.08416789713829,
+           "v": 95.08416789713829,
            "i": {
             "m": "ease"
            },
@@ -256,7 +256,7 @@
          "keys": [
           {
            "t": 0,
-           "v": 23.099999999999998,
+           "v": 58.099999999999994,
            "i": {
             "m": "ease"
            },
@@ -266,7 +266,7 @@
           },
           {
            "t": 0.16,
-           "v": 63,
+           "v": 98,
            "i": {
             "m": "ease"
            },
@@ -306,7 +306,7 @@
          "keys": [
           {
            "t": 0,
-           "v": 22.03086156228404,
+           "v": 57.030861562284045,
            "i": {
             "m": "ease"
            },
@@ -316,7 +316,7 @@
           },
           {
            "t": 0.16,
-           "v": 60.08416789713829,
+           "v": 95.08416789713829,
            "i": {
             "m": "ease"
            },
@@ -356,7 +356,7 @@
          "keys": [
           {
            "t": 0,
-           "v": 18.92241222307571,
+           "v": 53.92241222307571,
            "i": {
             "m": "ease"
            },
@@ -366,7 +366,7 @@
           },
           {
            "t": 0.16,
-           "v": 51.606578790206484,
+           "v": 86.60657879020648,
            "i": {
             "m": "ease"
            },
@@ -406,7 +406,7 @@
          "keys": [
           {
            "t": 0,
-           "v": 14.062389010101446,
+           "v": 49.06238901010145,
            "i": {
             "m": "ease"
            },
@@ -416,7 +416,7 @@
           },
           {
            "t": 0.16,
-           "v": 38.3519700275494,
+           "v": 73.3519700275494,
            "i": {
             "m": "ease"
            },
@@ -456,7 +456,7 @@
          "keys": [
           {
            "t": 0,
-           "v": 7.900665310822949,
+           "v": 42.90066531082295,
            "i": {
             "m": "ease"
            },
@@ -466,7 +466,7 @@
           },
           {
            "t": 0.16,
-           "v": 21.547269029517135,
+           "v": 56.54726902951714,
            "i": {
             "m": "ease"
            },
@@ -571,7 +571,7 @@
      },
      "alignVel": true,
      "stretch": 1.6,
-     "drag": 3.5,
+     "drag": 3,
      "rotRnd": 0,
      "spin": 0,
      "spinRnd": 0
@@ -1904,6 +1904,6 @@
  },
  "sokon": {
   "thumbT": 0.12,
-  "nota": "Pressão de ar da defesa (27/11, refeita lendo a referência do dono: um anel de ar grosso em 3/4, quase fechado, com o buraco escuro rasgado por dentro). Massa cinza-clara (anel com espessura 85%) e faixa branca colada na borda, as duas pesando para o lado de quem defende (máscara deslocada); rasgo (displace tear) para o buraco ficar irregular; desfoque radial a partir do buraco faz as fibras da massa; rastros finos passam da borda; borda branca lisa. A borda encosta na origem e o anel fica do lado de quem bate (o jogo espelha: DEFESA_ESPELHADA). Partículas pequenas de ar saem da borda para o lado oposto ao anel. Variação 1 de 3."
+  "nota": "Pressão de ar da defesa (27/11, refeita lendo a referência do dono: um anel de ar grosso em 3/4, quase fechado, com o buraco escuro rasgado por dentro). Massa cinza-clara (anel com espessura 85%) e faixa branca colada na borda, as duas pesando para o lado de quem defende (máscara deslocada); rasgo (displace tear) para o buraco ficar irregular; desfoque radial a partir do buraco faz as fibras da massa; rastros finos passam da borda; borda branca lisa. A borda encosta na origem e o anel fica do lado de quem bate (o jogo espelha: DEFESA_ESPELHADA). Algumas partículas de ar (12) nascem um pouco afastadas da borda e vão todas na mesma direção, para o lado oposto ao anel. Variação 1 de 3."
  }
 }

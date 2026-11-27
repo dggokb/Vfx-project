@@ -510,4 +510,11 @@ embaixo.
   frente, no sentido da bola, com brasas e riscos no mesmo leque; 210 px) no lugar do `onda_acerto_player_base`
   (o acerto do projétil do Ryūga; o da Yin-lu, azul, ficou). O gerador ganhou o segundo anel e direção e cor
   próprias para raios, riscos e brasas. Gravados no jogo (Super com 5 pancadas e a onda).
+- **Rodada 12 (27/11; o dono: "pressão de ar na defesa melhor que a nossa de hoje, nesse estilo", com uma
+  referência de meia-lua de ar com fibras):** `defesa_ar.json`, `_2`, `_3` (três sementes e aberturas). Uma frente
+  curva (anel com máscara radial: só a parte da frente fica) avança contra a guarda e cresce; fibras em rastro nascem
+  ao longo dela (caminho animado com o raio) e abrem em leque para trás a partir de um foco atrás da frente (com
+  direção fixa elas se cruzavam); brilho azulado e clarão curto no contato. Exportadas (270 px, soma 50%, luz
+  #E6F0FF) no lugar das `defesa_brilho_spray_aneis*` (as três que o jogo alterna), só na cópia de trabalho do jogo.
+  Gravado no chute forte defendido.
 

@@ -569,4 +569,11 @@ embaixo.
   azulada e luz deslocada), com controles no editor (bolinhas, tom, frieza e lado da sombra, tamanho da sombra e da luz),
   4 variações, desenhada em 256 px e pintada multiplicando a cor da partícula (a sombra continua mais escura em qualquer
   cor). A fumaça do super pulo passou a usar essa forma, sem imagem importada; pode ser ajustada inteira no editor.
+- **Super pulo no estilo da referência (o dono: "ainda não parece fumaça", com um GIF de poeira de super pulo e uma folha
+  de fumaças de desenho):** a cara de fumaça vem da luz de cima em cada massa. Cada parte (rastro, cunhas, cabeças) é
+  feita três vezes com a mesma semente, deslocada e cortada na borda: escura embaixo à direita, média, clara menor em
+  cima à esquerda. Discos de borda dura formam os gomos (partícula macia fundida fica lisa). Cunhas afiadas = rastros
+  (trail) que disparam do centro e freiam; anel achatado rasgado no chão; as cabeças sobem nas pontas. Duas cores:
+  bege como a referência (`fumaca_super_pulo.json`) e branca com sombra azulada (`fumaca_super_pulo_branca.json`); no
+  cenário dourado a bege some. Na cópia de trabalho do jogo está a branca.
 

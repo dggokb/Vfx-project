@@ -605,4 +605,7 @@ embaixo.
   parede). No jogo (cópia de trabalho): o motor grava a batida no lutador (`paredeQuadro`, `paredeX`, `paredeLado`) e o
   `GameView` toca `parede_ar` no aviso `WALL_BOUNCE`, no plano da parede atrás das costas, na altura do peito.
   Gravado no combo L, M, H do Ryūga encostado na parede.
+- **Parede, mais fino e com spray (o dono: "tem que ser mais fino, do tamanho do corpo, e spray"):** anel de bolotas
+  pequenas (mais juntas), spray de riscos e gotas que espirram do anel para fora; no jogo a 1,55× (oval da altura do
+  corpo). Cópia de trabalho do jogo.
 

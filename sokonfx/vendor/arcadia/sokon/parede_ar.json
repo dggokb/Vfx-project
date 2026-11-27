@@ -1,0 +1,464 @@
+{
+ "app": "arcadia-effects",
+ "v": 1,
+ "doc": {
+  "id": "fx_sokon_parede",
+  "name": "Sōkon — Ar batendo na parede",
+  "comp": {
+   "w": 512,
+   "h": 512,
+   "dur": 0.5,
+   "fps": 60
+  },
+  "cam": {
+   "comp": 65
+  },
+  "exp": {
+   "cols": 6,
+   "rows": 4,
+   "frames": 24,
+   "cellW": 256,
+   "cellH": 256,
+   "mode": "rgba",
+   "ss": 2
+  },
+  "layers": [
+   {
+    "id": "lr_p_lascas",
+    "type": "emitter",
+    "name": "chips",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.04,
+    "em": {
+     "x": -14,
+     "y": 0,
+     "shape": "point",
+     "dir": "dir",
+     "angle": 180,
+     "spread": 120,
+     "speed": 520,
+     "speedRnd": 0.5,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 0
+      }
+     ],
+     "seed": 41
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.3,
+     "sprite": {
+      "kind": "shape",
+      "id": "shard",
+      "p": {}
+     },
+     "size": 11,
+     "sizeRnd": 0.5,
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 0.8,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         196,
+         203,
+         222
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         196,
+         203,
+         222
+        ]
+       }
+      ]
+     },
+     "gravY": 1300,
+     "drag": 1,
+     "rotRnd": 1,
+     "spin": 400,
+     "spinRnd": 1
+    }
+   },
+   {
+    "id": "lr_p_corte_cla",
+    "type": "postfx",
+    "name": "cut cla",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.5,
+    "targets": [
+     "lr_p_anel_cla"
+    ],
+    "fx": {
+     "effect": "pixelate",
+     "pxW": 512,
+     "pxSnap": true,
+     "pxSample": "point",
+     "pxGain": 1,
+     "pxAlpha": "cut",
+     "pxThr": 0.5,
+     "pxSat": 1,
+     "pxCon": 1,
+     "pxColor": "none",
+     "pxOut": 0
+    }
+   },
+   {
+    "id": "lr_p_anel_cla",
+    "type": "emitter",
+    "name": "ring cla",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.1,
+    "em": {
+     "x": -9,
+     "y": -5,
+     "shape": "ring",
+     "sx": 10,
+     "sy": 4,
+     "dir": "out",
+     "spread": 0,
+     "speed": 625,
+     "speedRnd": 0.12,
+     "rate": 0,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 64
+      }
+     ],
+     "seed": 7
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.2,
+     "sprite": {
+      "kind": "shape",
+      "id": "dot",
+      "p": {}
+     },
+     "size": 18,
+     "sizeRnd": 0.6,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.3
+       },
+       {
+        "t": 0.2,
+        "v": 0.9
+       },
+       {
+        "t": 0.65,
+        "v": 1.15
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         252,
+         252,
+         255
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         252,
+         252,
+         255
+        ]
+       }
+      ]
+     },
+     "drag": 5,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0
+    }
+   },
+   {
+    "id": "lr_p_corte_med",
+    "type": "postfx",
+    "name": "cut med",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.5,
+    "targets": [
+     "lr_p_anel_med"
+    ],
+    "fx": {
+     "effect": "pixelate",
+     "pxW": 512,
+     "pxSnap": true,
+     "pxSample": "point",
+     "pxGain": 1,
+     "pxAlpha": "cut",
+     "pxThr": 0.5,
+     "pxSat": 1,
+     "pxCon": 1,
+     "pxColor": "none",
+     "pxOut": 0
+    }
+   },
+   {
+    "id": "lr_p_anel_med",
+    "type": "emitter",
+    "name": "ring med",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.1,
+    "em": {
+     "x": -14,
+     "y": 0,
+     "shape": "ring",
+     "sx": 10,
+     "sy": 4,
+     "dir": "out",
+     "spread": 0,
+     "speed": 625,
+     "speedRnd": 0.12,
+     "rate": 0,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 64
+      }
+     ],
+     "seed": 7
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.2,
+     "sprite": {
+      "kind": "shape",
+      "id": "dot",
+      "p": {}
+     },
+     "size": 34.4,
+     "sizeRnd": 0.6,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.3
+       },
+       {
+        "t": 0.2,
+        "v": 0.9
+       },
+       {
+        "t": 0.65,
+        "v": 1.15
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         196,
+         203,
+         222
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         196,
+         203,
+         222
+        ]
+       }
+      ]
+     },
+     "drag": 5,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0
+    }
+   },
+   {
+    "id": "lr_p_corte_esc",
+    "type": "postfx",
+    "name": "cut esc",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.5,
+    "targets": [
+     "lr_p_anel_esc"
+    ],
+    "fx": {
+     "effect": "pixelate",
+     "pxW": 512,
+     "pxSnap": true,
+     "pxSample": "point",
+     "pxGain": 1,
+     "pxAlpha": "cut",
+     "pxThr": 0.5,
+     "pxSat": 1,
+     "pxCon": 1,
+     "pxColor": "none",
+     "pxOut": 0
+    }
+   },
+   {
+    "id": "lr_p_anel_esc",
+    "type": "emitter",
+    "name": "ring esc",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.1,
+    "em": {
+     "x": -21,
+     "y": 3,
+     "shape": "ring",
+     "sx": 10,
+     "sy": 4,
+     "dir": "out",
+     "spread": 0,
+     "speed": 625,
+     "speedRnd": 0.12,
+     "rate": 0,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 64
+      }
+     ],
+     "seed": 7
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.2,
+     "sprite": {
+      "kind": "shape",
+      "id": "dot",
+      "p": {}
+     },
+     "size": 40,
+     "sizeRnd": 0.6,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.3
+       },
+       {
+        "t": 0.2,
+        "v": 0.9
+       },
+       {
+        "t": 0.65,
+        "v": 1.15
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         92,
+         100,
+         132
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         92,
+         100,
+         132
+        ]
+       }
+      ]
+     },
+     "drag": 5,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0
+    }
+   }
+  ],
+  "v": 1
+ },
+ "sokon": {
+  "thumbT": 0.18,
+  "nota": "Ar batendo na parede (27/11; o dono: \"não vai usar a mesma pressão de ar\"; \"em formato de anel circular\"; \"tem que ser oval\"): um anel de bolotas de ar que nasce no ponto da batida e se abre junto (uma rajada só, que freia), oco no meio, achatado em oval pela câmera (cam.comp 65°) e se quebra em pedaços. Três tons. Aqui o oval é deitado: no jogo sai girado 90° (exporte com Direção 90), em pé contra a parede."
+ }
+}

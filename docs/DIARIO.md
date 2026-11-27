@@ -599,4 +599,10 @@ embaixo.
 - **Dash, tamanho e lado (o dono: "deixa a fumaça menor e tem que sair de trás quando vai para a frente e na frente quando
   dá backdash"):** no jogo (cópia de trabalho) a fumaça do dash toca a 70% e afastada 34 px dos pés, do lado de onde ele
   parte (`DASH_FUMACA_ESCALA`, `DASH_FUMACA_ATRAS`).
+- **Ar batendo na parede (o dono: "pressão de ar batendo na parede"; "não vai usar a mesma pressão de ar"; "em formato de
+  anel circular"; "tem que ser oval"):** `parede_ar.json`: anel de bolotas de ar que nasce no ponto da batida e se abre
+  junto (uma rajada só, que freia), oco no meio, achatado em oval pela câmera e exportado girado 90° (em pé contra a
+  parede). No jogo (cópia de trabalho): o motor grava a batida no lutador (`paredeQuadro`, `paredeX`, `paredeLado`) e o
+  `GameView` toca `parede_ar` no aviso `WALL_BOUNCE`, no plano da parede atrás das costas, na altura do peito.
+  Gravado no combo L, M, H do Ryūga encostado na parede.
 

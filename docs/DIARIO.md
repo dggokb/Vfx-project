@@ -492,4 +492,8 @@ embaixo.
   volta do núcleo na radial); riscos e brasas nascem num anel em volta do núcleo (no ponto exato eles enchiam o
   centro); cores âmbar escuras porque a soma de luz clareia sozinha; anel fino (8% do raio) com pouco brilho; na
   com anel, 4+4 raios longos na diagonal dão a direção. Comparado lado a lado com a imagem do dono.
+- **Rodada 9, no jogo (o dono: "isso tá INCRÍVEL"):** a faísca com anel exportada pelo "Exportar para o jogo"
+  (Arcadia, 16 quadros a 30 fps até 85% do efeito, 260 px de altura) no lugar do kit do chute forte, só na cópia de
+  trabalho do jogo. Com soma 100% o dourado lavava para branco no cenário claro; ficou soma 55%. O anel some com os
+  raios (antes ficava no ar como um círculo pálido): modelo ajustado.
 

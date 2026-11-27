@@ -486,4 +486,10 @@ embaixo.
   quadro com o motor dele e o editor abre por cima ("Usar no Sōkon" grava o efeito no tipo). O hit forte é o
   primeiro modelo de fábrica (`vendor/arcadia/sokon/hit_forte.json`). Teste novo `testes/arcadia.test.cjs` no
   `npm test`. Falta: o dono julgar no celular e afinar o hit (núcleo maior, mais pontas finas, menor no jogo).
+- **Rodada 9 (27/11; o dono trocou a prova de conceito: uma imagem de duas faíscas douradas, uma radial e
+  uma com anel):** feitas no Arcadia, sem Codex, e guardadas como modelos (`vendor/arcadia/sokon/faisca_dourada*.json`).
+  Receita: raios são rastros (trail) que saem do centro, em fuso, com o primeiro terço apagado (o espaço escuro em
+  volta do núcleo na radial); riscos e brasas nascem num anel em volta do núcleo (no ponto exato eles enchiam o
+  centro); cores âmbar escuras porque a soma de luz clareia sozinha; anel fino (8% do raio) com pouco brilho; na
+  com anel, 4+4 raios longos na diagonal dão a direção. Comparado lado a lado com a imagem do dono.
 

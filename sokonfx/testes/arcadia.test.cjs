@@ -28,6 +28,10 @@ const ok=(cond,msg)=>{if(!cond){falhas++;console.log('FALHOU',msg)}};
  // Modelo: o hit do Sōkon.
  const modelo=await p.evaluate(()=>{const e=arcadiaEfeito(el('arcEfeito').value);return e&&e.doc.id+'|'+e.doc.name});
  ok(modelo==='fx_sokon_hit|Sōkon — Hit forte','campo vazio = hit do Sōkon ('+modelo+')');
+ // Os modelos do jogo (vendor/arcadia/sokon/*.json) no topo da lista de fábrica, e cada um desenha.
+ const fabrica=await p.evaluate(()=>{const A=arcadia.janela.AFX;return A.Factory.filter(f=>f.sokon).map(f=>{const d=f.build(),e=new A.Engine(),c=arcadia.janela.document.createElement('canvas');
+  c.width=d.comp.w;c.height=d.comp.h;const x=c.getContext('2d');e.render(d,.08,x);const px=x.getImageData(0,0,c.width,c.height).data;let n=0;for(let k=3;k<px.length;k+=4)if(px[k]>40)n++;return f.id+':'+(n>3000)})});
+ ok(JSON.stringify(fabrica)==='["fx_sokon_ouro:true","fx_sokon_ouro_anel:true","fx_sokon_hit:true"]','modelos do jogo na fábrica '+fabrica);
  const pico=await cores(2);
  ok(pico.cheios>20000,'o hit enche o quadro no pico ('+pico.cheios+' px)');
  ok(pico.faixas>=4,'faixas de cor chapadas no pico ('+pico.faixas+')');

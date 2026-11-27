@@ -496,4 +496,9 @@ embaixo.
   (Arcadia, 16 quadros a 30 fps até 85% do efeito, 260 px de altura) no lugar do kit do chute forte, só na cópia de
   trabalho do jogo. Com soma 100% o dourado lavava para branco no cenário claro; ficou soma 55%. O anel some com os
   raios (antes ficava no ar como um círculo pálido): modelo ajustado.
+- **Rodada 10 (27/11; o dono: "aumentar o volume no forte e deixar esse volume sem o círculo no médio"):** dois
+  modelos novos, `faisca_dourada_forte.json` (44 raios, 7+7 diagonais mais grossos, núcleo, cruz e brilho maiores,
+  mais brasas e riscos, anel maior; 320 px no jogo) e `faisca_dourada_media.json` (a com anel, sem o anel; 260 px).
+  Exportados pelo Sōkon (soma 55%) e postos no jogo como `kit_forte` e `kit_medio` (só na cópia de trabalho);
+  gravados no chute forte (L) e no soco médio (K).
 

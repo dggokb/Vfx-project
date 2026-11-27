@@ -1,0 +1,942 @@
+{
+ "app": "arcadia-effects",
+ "v": 1,
+ "doc": {
+  "id": "fx_sokon_ouro_forte",
+  "name": "Sōkon — Faísca dourada forte",
+  "comp": {
+   "w": 512,
+   "h": 512,
+   "dur": 0.6,
+   "fps": 60
+  },
+  "exp": {
+   "cols": 6,
+   "rows": 4,
+   "frames": 24,
+   "cellW": 256,
+   "cellH": 256,
+   "mode": "rgba",
+   "ss": 2
+  },
+  "layers": [
+   {
+    "id": "lr_o_cruz",
+    "type": "sprite",
+    "name": "glint",
+    "blend": "add",
+    "start": 0,
+    "end": 0.3,
+    "opacity": {
+     "keys": [
+      {
+       "t": 0,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.3,
+       "v": 0,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      }
+     ]
+    },
+    "sp": {
+     "sprite": {
+      "kind": "shape",
+      "id": "spark",
+      "p": {}
+     },
+     "size": 210,
+     "scale": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 0.7,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.05,
+        "v": 1.1,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.3,
+        "v": 0.6,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "rot": 15,
+     "color": [
+      255,
+      235,
+      190
+     ]
+    }
+   },
+   {
+    "id": "lr_o_nucleo",
+    "type": "sprite",
+    "name": "core",
+    "blend": "add",
+    "start": 0,
+    "end": 0.6,
+    "opacity": {
+     "keys": [
+      {
+       "t": 0,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.1,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.36,
+       "v": 0,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      }
+     ]
+    },
+    "sp": {
+     "sprite": {
+      "kind": "shape",
+      "id": "ember",
+      "p": {}
+     },
+     "size": 95,
+     "scale": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 0.6,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.04,
+        "v": 1.15,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.36,
+        "v": 0.5,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "color": [
+      255,
+      245,
+      215
+     ]
+    }
+   },
+   {
+    "id": "lr_o_anel",
+    "type": "sprite",
+    "name": "ring",
+    "blend": "add",
+    "start": 0.02,
+    "end": 0.6,
+    "glowL": 0.15,
+    "glowLR": 5,
+    "opacity": {
+     "keys": [
+      {
+       "t": 0,
+       "v": 0.6,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.18,
+       "v": 0.4,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.33,
+       "v": 0,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      }
+     ]
+    },
+    "sp": {
+     "sprite": {
+      "kind": "shape",
+      "id": "ring",
+      "p": {
+       "th": 0.008
+      }
+     },
+     "size": 380,
+     "scale": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 0.75,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.12,
+        "v": 1,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.6,
+        "v": 1.12,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "color": [
+      255,
+      200,
+      100
+     ]
+    }
+   },
+   {
+    "id": "lr_o_diag_a",
+    "type": "emitter",
+    "name": "long rays a",
+    "blend": "add",
+    "start": 0,
+    "end": 0.02,
+    "glowL": 0.8,
+    "glowLR": 10,
+    "em": {
+     "shape": "point",
+     "dir": "dir",
+     "angle": -38,
+     "spread": 34,
+     "speed": 3400,
+     "speedRnd": 0.35,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 7
+      }
+     ],
+     "seed": 43
+    },
+    "pt": {
+     "life": 0.34,
+     "lifeRnd": 0.3,
+     "render": "trail",
+     "trailCore": 0.5,
+     "size": 8,
+     "sizeRnd": 0.4,
+     "sizeOT": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0
+       },
+       {
+        "t": 0.25,
+        "v": 0.1
+       },
+       {
+        "t": 0.7,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.5
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 0.45,
+        "v": 0.9
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         250,
+         160,
+         55
+        ]
+       },
+       {
+        "t": 0.3,
+        "c": [
+         230,
+         115,
+         22
+        ]
+       },
+       {
+        "t": 0.7,
+        "c": [
+         185,
+         70,
+         12
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         110,
+         30,
+         5
+        ]
+       }
+      ]
+     },
+     "drag": 5,
+     "glow": 0.2
+    }
+   },
+   {
+    "id": "lr_o_diag_b",
+    "type": "emitter",
+    "name": "long rays b",
+    "blend": "add",
+    "start": 0,
+    "end": 0.02,
+    "glowL": 0.8,
+    "glowLR": 10,
+    "em": {
+     "shape": "point",
+     "dir": "dir",
+     "angle": 142,
+     "spread": 34,
+     "speed": 3400,
+     "speedRnd": 0.35,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 7
+      }
+     ],
+     "seed": 53
+    },
+    "pt": {
+     "life": 0.34,
+     "lifeRnd": 0.3,
+     "render": "trail",
+     "trailCore": 0.5,
+     "size": 8,
+     "sizeRnd": 0.4,
+     "sizeOT": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0
+       },
+       {
+        "t": 0.25,
+        "v": 0.1
+       },
+       {
+        "t": 0.7,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.5
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 0.45,
+        "v": 0.9
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         250,
+         160,
+         55
+        ]
+       },
+       {
+        "t": 0.3,
+        "c": [
+         230,
+         115,
+         22
+        ]
+       },
+       {
+        "t": 0.7,
+        "c": [
+         185,
+         70,
+         12
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         110,
+         30,
+         5
+        ]
+       }
+      ]
+     },
+     "drag": 5,
+     "glow": 0.2
+    }
+   },
+   {
+    "id": "lr_o_raios",
+    "type": "emitter",
+    "name": "rays",
+    "blend": "add",
+    "start": 0,
+    "end": 0.02,
+    "glowL": 0.5,
+    "glowLR": 10,
+    "em": {
+     "shape": "point",
+     "dir": "dir",
+     "angle": -30,
+     "spread": 300,
+     "speed": 2000,
+     "speedRnd": 0.55,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 44
+      }
+     ],
+     "seed": 3
+    },
+    "pt": {
+     "life": 0.32,
+     "lifeRnd": 0.35,
+     "render": "trail",
+     "trailCore": 0.25,
+     "size": 6,
+     "sizeRnd": 0.5,
+     "sizeOT": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0
+       },
+       {
+        "t": 0.3,
+        "v": 0.06
+       },
+       {
+        "t": 0.72,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.5
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.9
+       },
+       {
+        "t": 0.45,
+        "v": 0.8
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         250,
+         160,
+         55
+        ]
+       },
+       {
+        "t": 0.3,
+        "c": [
+         230,
+         115,
+         22
+        ]
+       },
+       {
+        "t": 0.7,
+        "c": [
+         185,
+         70,
+         12
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         110,
+         30,
+         5
+        ]
+       }
+      ]
+     },
+     "drag": 5,
+     "glow": 0.2
+    }
+   },
+   {
+    "id": "lr_o_riscos",
+    "type": "emitter",
+    "name": "streaks",
+    "blend": "add",
+    "start": 0,
+    "end": 0.04,
+    "glowL": 0.5,
+    "glowLR": 8,
+    "em": {
+     "shape": "point",
+     "sx": 0,
+     "sy": 0,
+     "dir": "omni",
+     "speed": 900,
+     "speedRnd": 0.6,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 44
+      }
+     ],
+     "seed": 13
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.4,
+     "sprite": {
+      "kind": "shape",
+      "id": "streak",
+      "p": {}
+     },
+     "size": 32,
+     "sizeRnd": 0.6,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.3
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 0.6,
+        "v": 0.8
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         250,
+         160,
+         55
+        ]
+       },
+       {
+        "t": 0.3,
+        "c": [
+         230,
+         115,
+         22
+        ]
+       },
+       {
+        "t": 0.7,
+        "c": [
+         185,
+         70,
+         12
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         110,
+         30,
+         5
+        ]
+       }
+      ]
+     },
+     "alignVel": true,
+     "stretch": 3,
+     "drag": 3.5,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0
+    }
+   },
+   {
+    "id": "lr_o_brasas",
+    "type": "emitter",
+    "name": "embers",
+    "blend": "add",
+    "start": 0,
+    "end": 0.06,
+    "em": {
+     "shape": "point",
+     "sx": 0,
+     "sy": 0,
+     "dir": "omni",
+     "speed": 560,
+     "speedRnd": 0.8,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 75
+      },
+      {
+       "t": 0.05,
+       "n": 15
+      }
+     ],
+     "seed": 23
+    },
+    "pt": {
+     "life": 0.7,
+     "lifeRnd": 0.4,
+     "sprite": {
+      "kind": "shape",
+      "id": "ember",
+      "p": {}
+     },
+     "size": 9,
+     "sizeRnd": 0.6,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.4
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 0.7,
+        "v": 0.9
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         255,
+         200,
+         110
+        ]
+       },
+       {
+        "t": 0.4,
+        "c": [
+         245,
+         130,
+         35
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         190,
+         60,
+         12
+        ]
+       }
+      ]
+     },
+     "drag": 2.2,
+     "gravY": 120,
+     "turbAmp": 60,
+     "turbFreq": 2
+    }
+   },
+   {
+    "id": "lr_o_brilho",
+    "type": "sprite",
+    "name": "core glow",
+    "blend": "add",
+    "start": 0,
+    "end": 0.6,
+    "opacity": {
+     "keys": [
+      {
+       "t": 0,
+       "v": 1,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.08,
+       "v": 0.9,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      },
+      {
+       "t": 0.42,
+       "v": 0,
+       "i": {
+        "m": "ease"
+       },
+       "o": {
+        "m": "ease"
+       }
+      }
+     ]
+    },
+    "sp": {
+     "sprite": {
+      "kind": "shape",
+      "id": "soft",
+      "p": {}
+     },
+     "size": 330,
+     "scale": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 0.5,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.05,
+        "v": 1,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.42,
+        "v": 0.8,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "color": [
+      200,
+      95,
+      20
+     ]
+    }
+   }
+  ],
+  "v": 1
+ },
+ "sokon": {
+  "thumbT": 0.08,
+  "nota": "Faísca dourada forte (27/11, o dono: \"aumentar o volume no forte\"): a com anel com mais raios (44), raios diagonais mais grossos (7 de cada lado), núcleo, cruz e brilho maiores, mais brasas e riscos, anel maior. Kit do golpe forte."
+ }
+}

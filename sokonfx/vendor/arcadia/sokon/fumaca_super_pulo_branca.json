@@ -2446,9 +2446,9 @@
     }
    },
    {
-    "id": "lr_n_rasgo",
+    "id": "lr_n_corte_anel",
     "type": "postfx",
-    "name": "tear",
+    "name": "cut ring",
     "blend": "normal",
     "start": 0,
     "end": 0.9,
@@ -2456,39 +2456,17 @@
      "lr_n_anel"
     ],
     "fx": {
-     "effect": "displace",
-     "field": "tear",
-     "amount": {
-      "keys": [
-       {
-        "t": 0,
-        "v": 3,
-        "i": {
-         "m": "ease"
-        },
-        "o": {
-         "m": "ease"
-        }
-       },
-       {
-        "t": 0.5,
-        "v": 9,
-        "i": {
-         "m": "ease"
-        },
-        "o": {
-         "m": "ease"
-        }
-       }
-      ]
-     },
-     "scale": 12,
-     "aspect": 0.6,
-     "oct": 2,
-     "evo": 3,
-     "rise": 0,
-     "ramp": 0,
-     "seed": 4
+     "effect": "pixelate",
+     "pxW": 512,
+     "pxSnap": true,
+     "pxSample": "point",
+     "pxGain": 1,
+     "pxAlpha": "cut",
+     "pxThr": 0.45,
+     "pxSat": 1,
+     "pxCon": 1,
+     "pxColor": "none",
+     "pxOut": 0
     }
    },
    {
@@ -2537,7 +2515,7 @@
       "kind": "shape",
       "id": "ring",
       "p": {
-       "th": 0.1
+       "th": 0.09
       }
      },
      "size": 70,
@@ -2580,7 +2558,7 @@
  },
  "sokon": {
   "thumbT": 0.3,
-  "nota": "Fumaça do super pulo, branca com sombra azulada (27/11, refinada pelo nosso olho): massas em três tons deslocados (escura embaixo à direita, média, gomos claros pequenos em cima à esquerda), cunhas longas para o centro, anel rasgado no chão, colunas que sobem alto e se quebram em pedaços. O chão fica 150 px abaixo do centro do quadro (cabe a subida): exporte com a origem Y em 406.",
+  "nota": "Fumaça do super pulo, branca com sombra azulada (27/11, refinada pelo nosso olho): massas em três tons deslocados (escura embaixo à direita, média, gomos claros pequenos em cima à esquerda), cunhas longas para o centro, anel liso no chão, colunas que sobem alto e se quebram em pedaços. O chão fica 150 px abaixo do centro do quadro (cabe a subida): exporte com a origem Y em 406.",
   "origemY": 406
  }
 }

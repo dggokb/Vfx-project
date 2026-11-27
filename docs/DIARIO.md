@@ -580,4 +580,6 @@ embaixo.
   menores (34% em vez de 42%), colunas sobem mais (cabeças mais rápidas e mais leves) e se quebram em pedaços no fim,
   cunhas mais longas. O chão desceu 150 px no quadro para a subida caber; no export a origem Y vai para 406 (o
   `sokon.origemY` do modelo guarda isso). Na cópia de trabalho do jogo.
+- **Anel do chão liso (o dono: "esse círculo que faz tremido, vamos fazer liso"):** saiu a distorção do anel e entrou um
+  corte de borda só nele (fica uma linha branca limpa, sem o degradê da forma de anel). Na cópia de trabalho do jogo.
 

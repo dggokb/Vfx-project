@@ -582,4 +582,8 @@ embaixo.
   `sokon.origemY` do modelo guarda isso). Na cópia de trabalho do jogo.
 - **Anel do chão liso (o dono: "esse círculo que faz tremido, vamos fazer liso"):** saiu a distorção do anel e entrou um
   corte de borda só nele (fica uma linha branca limpa, sem o degradê da forma de anel). Na cópia de trabalho do jogo.
+- **Pulo comum próprio (o dono: "pulo comum vamos ter que fazer um mais simples"; "tira o círculo da simples"):**
+  `fumaca_pulo_comum.json`: a do super pulo menor e mais curta, cunhas e duas bolotas pequenas, sem o anel. No jogo,
+  o pulo comum toca `fumaca_pulo_comum` (GameView) antes da fumaça do super pulo. Super pulo e pulo comum enviados para a
+  `game-luta-sprite-fable`.
 

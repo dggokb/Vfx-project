@@ -1,0 +1,2456 @@
+{
+ "app": "arcadia-effects",
+ "v": 1,
+ "doc": {
+  "id": "fx_sokon_pulo_comum",
+  "name": "Sōkon — Fumaça do pulo comum",
+  "comp": {
+   "w": 512,
+   "h": 512,
+   "dur": 0.55,
+   "fps": 60
+  },
+  "exp": {
+   "cols": 6,
+   "rows": 4,
+   "frames": 24,
+   "cellW": 256,
+   "cellH": 256,
+   "mode": "rgba",
+   "ss": 2
+  },
+  "layers": [
+   {
+    "id": "lr_n_corte_cla",
+    "type": "postfx",
+    "name": "cut cla",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.55,
+    "targets": [
+     "lr_n_cla_e",
+     "lr_n_cla_e_cunha",
+     "lr_n_cla_e_cab",
+     "lr_n_cla_d",
+     "lr_n_cla_d_cunha",
+     "lr_n_cla_d_cab"
+    ],
+    "fx": {
+     "effect": "pixelate",
+     "pxW": 512,
+     "pxSnap": true,
+     "pxSample": "point",
+     "pxGain": 1,
+     "pxAlpha": "cut",
+     "pxThr": 0.5,
+     "pxSat": 1,
+     "pxCon": 1,
+     "pxColor": "none",
+     "pxOut": 0
+    }
+   },
+   {
+    "id": "lr_n_cla_e_cab",
+    "type": "emitter",
+    "name": "head cla e",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.55,
+    "em": {
+     "x": -114,
+     "y": 32,
+     "shape": "circle",
+     "sx": 14,
+     "sy": 14,
+     "dir": "dir",
+     "angle": -98,
+     "spread": 50,
+     "speed": 160,
+     "speedRnd": 0.7,
+     "rate": 0,
+     "bursts": [
+      {
+       "t": 0.128,
+       "n": 8
+      },
+      {
+       "t": 0.184,
+       "n": 6
+      }
+     ],
+     "seed": 21
+    },
+    "pt": {
+     "life": 0.42,
+     "lifeRnd": 0.2,
+     "sprite": {
+      "kind": "shape",
+      "id": "dot",
+      "p": {}
+     },
+     "size": 11.56,
+     "sizeRnd": 0.6,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.4
+       },
+       {
+        "t": 0.2,
+        "v": 1
+       },
+       {
+        "t": 0.65,
+        "v": 1.3
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         252,
+         252,
+         255
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         252,
+         252,
+         255
+        ]
+       }
+      ]
+     },
+     "drag": 3.2,
+     "gravY": -120,
+     "turbMode": "curl",
+     "turbAmp": 300,
+     "turbScale": 40,
+     "turbOct": 2,
+     "squash": 0
+    }
+   },
+   {
+    "id": "lr_n_cla_d_cab",
+    "type": "emitter",
+    "name": "head cla d",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.55,
+    "em": {
+     "x": 96,
+     "y": 32,
+     "shape": "circle",
+     "sx": 14,
+     "sy": 14,
+     "dir": "dir",
+     "angle": -82,
+     "spread": 50,
+     "speed": 160,
+     "speedRnd": 0.7,
+     "rate": 0,
+     "bursts": [
+      {
+       "t": 0.128,
+       "n": 8
+      },
+      {
+       "t": 0.184,
+       "n": 6
+      }
+     ],
+     "seed": 29
+    },
+    "pt": {
+     "life": 0.42,
+     "lifeRnd": 0.2,
+     "sprite": {
+      "kind": "shape",
+      "id": "dot",
+      "p": {}
+     },
+     "size": 11.56,
+     "sizeRnd": 0.6,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.4
+       },
+       {
+        "t": 0.2,
+        "v": 1
+       },
+       {
+        "t": 0.65,
+        "v": 1.3
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         252,
+         252,
+         255
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         252,
+         252,
+         255
+        ]
+       }
+      ]
+     },
+     "drag": 3.2,
+     "gravY": -120,
+     "turbMode": "curl",
+     "turbAmp": 300,
+     "turbScale": 40,
+     "turbOct": 2,
+     "squash": 0
+    }
+   },
+   {
+    "id": "lr_n_cla_e_cunha",
+    "type": "emitter",
+    "name": "wedge cla e",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.02,
+    "em": {
+     "x": -27,
+     "y": 38,
+     "shape": "point",
+     "dir": "dir",
+     "angle": 184,
+     "spread": 10,
+     "speed": 525,
+     "speedRnd": 0.25,
+     "rate": 0,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 4
+      }
+     ],
+     "seed": 31
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.15,
+     "render": "trail",
+     "size": 8.84,
+     "sizeRnd": 0.4,
+     "sizeOT": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0
+       },
+       {
+        "t": 0.5,
+        "v": 0.35
+       },
+       {
+        "t": 0.85,
+        "v": 0.85
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 0.6,
+        "v": 0.9
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         252,
+         252,
+         255
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         252,
+         252,
+         255
+        ]
+       }
+      ]
+     },
+     "drag": 5,
+     "gravY": -40
+    }
+   },
+   {
+    "id": "lr_n_cla_d_cunha",
+    "type": "emitter",
+    "name": "wedge cla d",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.02,
+    "em": {
+     "x": 9,
+     "y": 38,
+     "shape": "point",
+     "dir": "dir",
+     "angle": -4,
+     "spread": 10,
+     "speed": 525,
+     "speedRnd": 0.25,
+     "rate": 0,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 4
+      }
+     ],
+     "seed": 37
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.15,
+     "render": "trail",
+     "size": 8.84,
+     "sizeRnd": 0.4,
+     "sizeOT": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0
+       },
+       {
+        "t": 0.5,
+        "v": 0.35
+       },
+       {
+        "t": 0.85,
+        "v": 0.85
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 0.6,
+        "v": 0.9
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         252,
+         252,
+         255
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         252,
+         252,
+         255
+        ]
+       }
+      ]
+     },
+     "drag": 5,
+     "gravY": -40
+    }
+   },
+   {
+    "id": "lr_n_cla_e",
+    "type": "emitter",
+    "name": "trail cla e",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.16,
+    "em": {
+     "x": {
+      "keys": [
+       {
+        "t": 0,
+        "v": -27,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.16,
+        "v": -104,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "y": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 38,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.16,
+        "v": 32,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "shape": "point",
+     "dir": "dir",
+     "angle": 180,
+     "spread": 40,
+     "speed": 60,
+     "speedRnd": 0.6,
+     "rate": 90,
+     "bursts": [],
+     "seed": 7
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.2,
+     "sprite": {
+      "kind": "shape",
+      "id": "dot",
+      "p": {}
+     },
+     "size": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 1.36,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.16,
+        "v": 8.16,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "sizeRnd": 0.6,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.5
+       },
+       {
+        "t": 0.2,
+        "v": 1
+       },
+       {
+        "t": 0.65,
+        "v": 1.1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         252,
+         252,
+         255
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         252,
+         252,
+         255
+        ]
+       }
+      ]
+     },
+     "drag": 3,
+     "gravY": -60,
+     "squash": 0
+    }
+   },
+   {
+    "id": "lr_n_cla_d",
+    "type": "emitter",
+    "name": "trail cla d",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.16,
+    "em": {
+     "x": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 9,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.16,
+        "v": 86,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "y": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 38,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.16,
+        "v": 32,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "shape": "point",
+     "dir": "dir",
+     "angle": 0,
+     "spread": 40,
+     "speed": 60,
+     "speedRnd": 0.6,
+     "rate": 90,
+     "bursts": [],
+     "seed": 13
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.2,
+     "sprite": {
+      "kind": "shape",
+      "id": "dot",
+      "p": {}
+     },
+     "size": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 1.36,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.16,
+        "v": 8.16,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "sizeRnd": 0.6,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.5
+       },
+       {
+        "t": 0.2,
+        "v": 1
+       },
+       {
+        "t": 0.65,
+        "v": 1.1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         252,
+         252,
+         255
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         252,
+         252,
+         255
+        ]
+       }
+      ]
+     },
+     "drag": 3,
+     "gravY": -60,
+     "squash": 0
+    }
+   },
+   {
+    "id": "lr_n_corte_med",
+    "type": "postfx",
+    "name": "cut med",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.55,
+    "targets": [
+     "lr_n_med_e",
+     "lr_n_med_e_cunha",
+     "lr_n_med_e_cab",
+     "lr_n_med_d",
+     "lr_n_med_d_cunha",
+     "lr_n_med_d_cab"
+    ],
+    "fx": {
+     "effect": "pixelate",
+     "pxW": 512,
+     "pxSnap": true,
+     "pxSample": "point",
+     "pxGain": 1,
+     "pxAlpha": "cut",
+     "pxThr": 0.5,
+     "pxSat": 1,
+     "pxCon": 1,
+     "pxColor": "none",
+     "pxOut": 0
+    }
+   },
+   {
+    "id": "lr_n_med_e_cab",
+    "type": "emitter",
+    "name": "head med e",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.55,
+    "em": {
+     "x": -105,
+     "y": 46,
+     "shape": "circle",
+     "sx": 14,
+     "sy": 14,
+     "dir": "dir",
+     "angle": -98,
+     "spread": 50,
+     "speed": 160,
+     "speedRnd": 0.7,
+     "rate": 0,
+     "bursts": [
+      {
+       "t": 0.128,
+       "n": 8
+      },
+      {
+       "t": 0.184,
+       "n": 6
+      }
+     ],
+     "seed": 21
+    },
+    "pt": {
+     "life": 0.42,
+     "lifeRnd": 0.2,
+     "sprite": {
+      "kind": "shape",
+      "id": "dot",
+      "p": {}
+     },
+     "size": 29.92,
+     "sizeRnd": 0.6,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.4
+       },
+       {
+        "t": 0.2,
+        "v": 1
+       },
+       {
+        "t": 0.65,
+        "v": 1.3
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         196,
+         203,
+         222
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         196,
+         203,
+         222
+        ]
+       }
+      ]
+     },
+     "drag": 3.2,
+     "gravY": -120,
+     "turbMode": "curl",
+     "turbAmp": 300,
+     "turbScale": 40,
+     "turbOct": 2,
+     "squash": 0
+    }
+   },
+   {
+    "id": "lr_n_med_d_cab",
+    "type": "emitter",
+    "name": "head med d",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.55,
+    "em": {
+     "x": 105,
+     "y": 46,
+     "shape": "circle",
+     "sx": 14,
+     "sy": 14,
+     "dir": "dir",
+     "angle": -82,
+     "spread": 50,
+     "speed": 160,
+     "speedRnd": 0.7,
+     "rate": 0,
+     "bursts": [
+      {
+       "t": 0.128,
+       "n": 8
+      },
+      {
+       "t": 0.184,
+       "n": 6
+      }
+     ],
+     "seed": 29
+    },
+    "pt": {
+     "life": 0.42,
+     "lifeRnd": 0.2,
+     "sprite": {
+      "kind": "shape",
+      "id": "dot",
+      "p": {}
+     },
+     "size": 29.92,
+     "sizeRnd": 0.6,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.4
+       },
+       {
+        "t": 0.2,
+        "v": 1
+       },
+       {
+        "t": 0.65,
+        "v": 1.3
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         196,
+         203,
+         222
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         196,
+         203,
+         222
+        ]
+       }
+      ]
+     },
+     "drag": 3.2,
+     "gravY": -120,
+     "turbMode": "curl",
+     "turbAmp": 300,
+     "turbScale": 40,
+     "turbOct": 2,
+     "squash": 0
+    }
+   },
+   {
+    "id": "lr_n_med_e_cunha",
+    "type": "emitter",
+    "name": "wedge med e",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.02,
+    "em": {
+     "x": -18,
+     "y": 52,
+     "shape": "point",
+     "dir": "dir",
+     "angle": 184,
+     "spread": 10,
+     "speed": 525,
+     "speedRnd": 0.25,
+     "rate": 0,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 4
+      }
+     ],
+     "seed": 31
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.15,
+     "render": "trail",
+     "size": 22.88,
+     "sizeRnd": 0.4,
+     "sizeOT": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0
+       },
+       {
+        "t": 0.5,
+        "v": 0.35
+       },
+       {
+        "t": 0.85,
+        "v": 0.85
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 0.6,
+        "v": 0.9
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         196,
+         203,
+         222
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         196,
+         203,
+         222
+        ]
+       }
+      ]
+     },
+     "drag": 5,
+     "gravY": -40
+    }
+   },
+   {
+    "id": "lr_n_med_d_cunha",
+    "type": "emitter",
+    "name": "wedge med d",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.02,
+    "em": {
+     "x": 18,
+     "y": 52,
+     "shape": "point",
+     "dir": "dir",
+     "angle": -4,
+     "spread": 10,
+     "speed": 525,
+     "speedRnd": 0.25,
+     "rate": 0,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 4
+      }
+     ],
+     "seed": 37
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.15,
+     "render": "trail",
+     "size": 22.88,
+     "sizeRnd": 0.4,
+     "sizeOT": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0
+       },
+       {
+        "t": 0.5,
+        "v": 0.35
+       },
+       {
+        "t": 0.85,
+        "v": 0.85
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 0.6,
+        "v": 0.9
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         196,
+         203,
+         222
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         196,
+         203,
+         222
+        ]
+       }
+      ]
+     },
+     "drag": 5,
+     "gravY": -40
+    }
+   },
+   {
+    "id": "lr_n_med_e",
+    "type": "emitter",
+    "name": "trail med e",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.16,
+    "em": {
+     "x": {
+      "keys": [
+       {
+        "t": 0,
+        "v": -18,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.16,
+        "v": -95,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "y": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 52,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.16,
+        "v": 46,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "shape": "point",
+     "dir": "dir",
+     "angle": 180,
+     "spread": 40,
+     "speed": 60,
+     "speedRnd": 0.6,
+     "rate": 90,
+     "bursts": [],
+     "seed": 7
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.2,
+     "sprite": {
+      "kind": "shape",
+      "id": "dot",
+      "p": {}
+     },
+     "size": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 3.52,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.16,
+        "v": 21.12,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "sizeRnd": 0.6,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.5
+       },
+       {
+        "t": 0.2,
+        "v": 1
+       },
+       {
+        "t": 0.65,
+        "v": 1.1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         196,
+         203,
+         222
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         196,
+         203,
+         222
+        ]
+       }
+      ]
+     },
+     "drag": 3,
+     "gravY": -60,
+     "squash": 0
+    }
+   },
+   {
+    "id": "lr_n_med_d",
+    "type": "emitter",
+    "name": "trail med d",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.16,
+    "em": {
+     "x": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 18,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.16,
+        "v": 95,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "y": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 52,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.16,
+        "v": 46,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "shape": "point",
+     "dir": "dir",
+     "angle": 0,
+     "spread": 40,
+     "speed": 60,
+     "speedRnd": 0.6,
+     "rate": 90,
+     "bursts": [],
+     "seed": 13
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.2,
+     "sprite": {
+      "kind": "shape",
+      "id": "dot",
+      "p": {}
+     },
+     "size": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 3.52,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.16,
+        "v": 21.12,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "sizeRnd": 0.6,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.5
+       },
+       {
+        "t": 0.2,
+        "v": 1
+       },
+       {
+        "t": 0.65,
+        "v": 1.1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         196,
+         203,
+         222
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         196,
+         203,
+         222
+        ]
+       }
+      ]
+     },
+     "drag": 3,
+     "gravY": -60,
+     "squash": 0
+    }
+   },
+   {
+    "id": "lr_n_corte_esc",
+    "type": "postfx",
+    "name": "cut esc",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.55,
+    "targets": [
+     "lr_n_esc_e",
+     "lr_n_esc_e_cunha",
+     "lr_n_esc_e_cab",
+     "lr_n_esc_d",
+     "lr_n_esc_d_cunha",
+     "lr_n_esc_d_cab"
+    ],
+    "fx": {
+     "effect": "pixelate",
+     "pxW": 512,
+     "pxSnap": true,
+     "pxSample": "point",
+     "pxGain": 1,
+     "pxAlpha": "cut",
+     "pxThr": 0.5,
+     "pxSat": 1,
+     "pxCon": 1,
+     "pxColor": "none",
+     "pxOut": 0
+    }
+   },
+   {
+    "id": "lr_n_esc_e_cab",
+    "type": "emitter",
+    "name": "head esc e",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.55,
+    "em": {
+     "x": -99,
+     "y": 53,
+     "shape": "circle",
+     "sx": 14,
+     "sy": 14,
+     "dir": "dir",
+     "angle": -98,
+     "spread": 50,
+     "speed": 160,
+     "speedRnd": 0.7,
+     "rate": 0,
+     "bursts": [
+      {
+       "t": 0.128,
+       "n": 8
+      },
+      {
+       "t": 0.184,
+       "n": 6
+      }
+     ],
+     "seed": 21
+    },
+    "pt": {
+     "life": 0.42,
+     "lifeRnd": 0.2,
+     "sprite": {
+      "kind": "shape",
+      "id": "dot",
+      "p": {}
+     },
+     "size": 34,
+     "sizeRnd": 0.6,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.4
+       },
+       {
+        "t": 0.2,
+        "v": 1
+       },
+       {
+        "t": 0.65,
+        "v": 1.3
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         92,
+         100,
+         132
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         92,
+         100,
+         132
+        ]
+       }
+      ]
+     },
+     "drag": 3.2,
+     "gravY": -120,
+     "turbMode": "curl",
+     "turbAmp": 300,
+     "turbScale": 40,
+     "turbOct": 2,
+     "squash": 0
+    }
+   },
+   {
+    "id": "lr_n_esc_d_cab",
+    "type": "emitter",
+    "name": "head esc d",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.55,
+    "em": {
+     "x": 111,
+     "y": 53,
+     "shape": "circle",
+     "sx": 14,
+     "sy": 14,
+     "dir": "dir",
+     "angle": -82,
+     "spread": 50,
+     "speed": 160,
+     "speedRnd": 0.7,
+     "rate": 0,
+     "bursts": [
+      {
+       "t": 0.128,
+       "n": 8
+      },
+      {
+       "t": 0.184,
+       "n": 6
+      }
+     ],
+     "seed": 29
+    },
+    "pt": {
+     "life": 0.42,
+     "lifeRnd": 0.2,
+     "sprite": {
+      "kind": "shape",
+      "id": "dot",
+      "p": {}
+     },
+     "size": 34,
+     "sizeRnd": 0.6,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.4
+       },
+       {
+        "t": 0.2,
+        "v": 1
+       },
+       {
+        "t": 0.65,
+        "v": 1.3
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         92,
+         100,
+         132
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         92,
+         100,
+         132
+        ]
+       }
+      ]
+     },
+     "drag": 3.2,
+     "gravY": -120,
+     "turbMode": "curl",
+     "turbAmp": 300,
+     "turbScale": 40,
+     "turbOct": 2,
+     "squash": 0
+    }
+   },
+   {
+    "id": "lr_n_esc_e_cunha",
+    "type": "emitter",
+    "name": "wedge esc e",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.02,
+    "em": {
+     "x": -12,
+     "y": 59,
+     "shape": "point",
+     "dir": "dir",
+     "angle": 184,
+     "spread": 10,
+     "speed": 525,
+     "speedRnd": 0.25,
+     "rate": 0,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 4
+      }
+     ],
+     "seed": 31
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.15,
+     "render": "trail",
+     "size": 26,
+     "sizeRnd": 0.4,
+     "sizeOT": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0
+       },
+       {
+        "t": 0.5,
+        "v": 0.35
+       },
+       {
+        "t": 0.85,
+        "v": 0.85
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 0.6,
+        "v": 0.9
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         92,
+         100,
+         132
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         92,
+         100,
+         132
+        ]
+       }
+      ]
+     },
+     "drag": 5,
+     "gravY": -40
+    }
+   },
+   {
+    "id": "lr_n_esc_d_cunha",
+    "type": "emitter",
+    "name": "wedge esc d",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.02,
+    "em": {
+     "x": 24,
+     "y": 59,
+     "shape": "point",
+     "dir": "dir",
+     "angle": -4,
+     "spread": 10,
+     "speed": 525,
+     "speedRnd": 0.25,
+     "rate": 0,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 4
+      }
+     ],
+     "seed": 37
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.15,
+     "render": "trail",
+     "size": 26,
+     "sizeRnd": 0.4,
+     "sizeOT": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0
+       },
+       {
+        "t": 0.5,
+        "v": 0.35
+       },
+       {
+        "t": 0.85,
+        "v": 0.85
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 0.6,
+        "v": 0.9
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         92,
+         100,
+         132
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         92,
+         100,
+         132
+        ]
+       }
+      ]
+     },
+     "drag": 5,
+     "gravY": -40
+    }
+   },
+   {
+    "id": "lr_n_esc_e",
+    "type": "emitter",
+    "name": "trail esc e",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.16,
+    "em": {
+     "x": {
+      "keys": [
+       {
+        "t": 0,
+        "v": -12,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.16,
+        "v": -89,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "y": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 59,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.16,
+        "v": 53,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "shape": "point",
+     "dir": "dir",
+     "angle": 180,
+     "spread": 40,
+     "speed": 60,
+     "speedRnd": 0.6,
+     "rate": 90,
+     "bursts": [],
+     "seed": 7
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.2,
+     "sprite": {
+      "kind": "shape",
+      "id": "dot",
+      "p": {}
+     },
+     "size": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 4,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.16,
+        "v": 24,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "sizeRnd": 0.6,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.5
+       },
+       {
+        "t": 0.2,
+        "v": 1
+       },
+       {
+        "t": 0.65,
+        "v": 1.1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         92,
+         100,
+         132
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         92,
+         100,
+         132
+        ]
+       }
+      ]
+     },
+     "drag": 3,
+     "gravY": -60,
+     "squash": 0
+    }
+   },
+   {
+    "id": "lr_n_esc_d",
+    "type": "emitter",
+    "name": "trail esc d",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.16,
+    "em": {
+     "x": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 24,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.16,
+        "v": 101,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "y": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 59,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.16,
+        "v": 53,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "shape": "point",
+     "dir": "dir",
+     "angle": 0,
+     "spread": 40,
+     "speed": 60,
+     "speedRnd": 0.6,
+     "rate": 90,
+     "bursts": [],
+     "seed": 13
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.2,
+     "sprite": {
+      "kind": "shape",
+      "id": "dot",
+      "p": {}
+     },
+     "size": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 4,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.16,
+        "v": 24,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "sizeRnd": 0.6,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.5
+       },
+       {
+        "t": 0.2,
+        "v": 1
+       },
+       {
+        "t": 0.65,
+        "v": 1.1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         92,
+         100,
+         132
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         92,
+         100,
+         132
+        ]
+       }
+      ]
+     },
+     "drag": 3,
+     "gravY": -60,
+     "squash": 0
+    }
+   },
+   {
+    "id": "lr_n_risco_d",
+    "type": "emitter",
+    "name": "lr_n_risco_d",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.1,
+    "em": {
+     "x": 0,
+     "y": 56,
+     "shape": "point",
+     "dir": "dir",
+     "angle": 0,
+     "spread": 5,
+     "speed": 1100,
+     "speedRnd": 0.4,
+     "rate": 40,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 4
+      }
+     ],
+     "seed": 41
+    },
+    "pt": {
+     "life": 0.28,
+     "lifeRnd": 0.3,
+     "render": "trail",
+     "size": 4,
+     "sizeRnd": 0.5,
+     "sizeOT": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0
+       },
+       {
+        "t": 0.7,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.2
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 0.7,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         245,
+         247,
+         255
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         245,
+         247,
+         255
+        ]
+       }
+      ]
+     },
+     "drag": 5
+    }
+   },
+   {
+    "id": "lr_n_risco_e",
+    "type": "emitter",
+    "name": "lr_n_risco_e",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.1,
+    "em": {
+     "x": 0,
+     "y": 56,
+     "shape": "point",
+     "dir": "dir",
+     "angle": 180,
+     "spread": 5,
+     "speed": 1100,
+     "speedRnd": 0.4,
+     "rate": 40,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 4
+      }
+     ],
+     "seed": 43
+    },
+    "pt": {
+     "life": 0.28,
+     "lifeRnd": 0.3,
+     "render": "trail",
+     "size": 4,
+     "sizeRnd": 0.5,
+     "sizeOT": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0
+       },
+       {
+        "t": 0.7,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0.2
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 0.7,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         245,
+         247,
+         255
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         245,
+         247,
+         255
+        ]
+       }
+      ]
+     },
+     "drag": 5
+    }
+   }
+  ],
+  "v": 1
+ },
+ "sokon": {
+  "thumbT": 0.2,
+  "origemY": 316,
+  "nota": "Fumaça do pulo comum (27/11, o dono: \"pulo comum vamos ter que fazer um mais simples\"): a do super pulo menor e mais curta (0,55 s), cunhas (sem o anel), duas bolotas pequenas nas pontas que sobem pouco. O chão fica 60 px abaixo do centro: exporte com a origem Y em 316."
+ }
+}

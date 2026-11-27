@@ -34,9 +34,9 @@
      "y": 0,
      "shape": "point",
      "dir": "dir",
-     "angle": 0,
+     "angle": -35,
      "spread": 8,
-     "speed": 480,
+     "speed": 560,
      "speedRnd": 0.6,
      "rate": 0,
      "bursts": [
@@ -512,7 +512,7 @@
      "seed": 28
     },
     "pt": {
-     "life": 0.3,
+     "life": 0.34,
      "lifeRnd": 0.45,
      "sprite": {
       "kind": "shape",
@@ -571,7 +571,8 @@
      },
      "alignVel": true,
      "stretch": 1.6,
-     "drag": 3,
+     "drag": 2.5,
+     "gravY": 900,
      "rotRnd": 0,
      "spin": 0,
      "spinRnd": 0
@@ -1904,6 +1905,6 @@
  },
  "sokon": {
   "thumbT": 0.12,
-  "nota": "Pressão de ar da defesa (27/11, refeita lendo a referência do dono: um anel de ar grosso em 3/4, quase fechado, com o buraco escuro rasgado por dentro). Massa cinza-clara (anel com espessura 85%) e faixa branca colada na borda, as duas pesando para o lado de quem defende (máscara deslocada); rasgo (displace tear) para o buraco ficar irregular; desfoque radial a partir do buraco faz as fibras da massa; rastros finos passam da borda; borda branca lisa. A borda encosta na origem e o anel fica do lado de quem bate (o jogo espelha: DEFESA_ESPELHADA). Algumas partículas de ar (12) nascem um pouco afastadas da borda e vão todas na mesma direção, para o lado oposto ao anel. Variação 3 de 3."
+  "nota": "Pressão de ar da defesa (27/11, refeita lendo a referência do dono: um anel de ar grosso em 3/4, quase fechado, com o buraco escuro rasgado por dentro). Massa cinza-clara (anel com espessura 85%) e faixa branca colada na borda, as duas pesando para o lado de quem defende (máscara deslocada); rasgo (displace tear) para o buraco ficar irregular; desfoque radial a partir do buraco faz as fibras da massa; rastros finos passam da borda; borda branca lisa. A borda encosta na origem e o anel fica do lado de quem bate (o jogo espelha: DEFESA_ESPELHADA). Algumas partículas de ar (12) nascem um pouco afastadas da borda e vão todas na mesma direção, subindo na diagonal (−35°) e caindo em arco, para o lado oposto ao anel. Variação 3 de 3."
  }
 }

@@ -592,4 +592,8 @@ embaixo.
   jogo, o `GameView` passou a tocar `fumaca_dash_v05` na largada do dash pelo estado do lutador (frente e para trás,
   espelhada pelo sentido do movimento); o motor, se ligado, não toca de novo. O teste do Arcadia confere cada modelo no
   instante da miniatura dele.
+- **Dash refeito (o dono: "tá igual ao pulo, vamos fazer outra"; "pega das referências que mandei"; "mais fino na ponta"):**
+  `fumaca_dash.json` novo, das referências de onda rasante e rastro de bolotas: línguas em rastro que disparam dos pés para
+  trás (finas no pé, grossas atrás) e um rastro de bolotas que cresce para trás e se funde numa massa só; ponta fina nos pés.
+  No jogo (cópia de trabalho) é o `fumaca_dash_v05`, tocado na largada do dash pelo estado do lutador.
 

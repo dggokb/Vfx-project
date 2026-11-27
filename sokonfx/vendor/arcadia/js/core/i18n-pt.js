@@ -1015,3 +1015,17 @@ window.AFX_PT = {
         'Mostra esta curva da vida no gráfico (eixo X — vida da partícula 0..1)'
  }
 };
+// Sōkon FX: a forma "Bolota com sombra" (sprites.js).
+Object.assign(window.AFX_PT.ui, {
+ 'Shaded Puff': 'Bolota com sombra', 'Bumps': 'Bolinhas', 'Shadow tone': 'Tom da sombra', 'Cool shadow': 'Sombra fria',
+ 'Shadow side': 'Lado da sombra', 'Shadow size': 'Tamanho da sombra', 'Light size': 'Tamanho da luz'
+});
+Object.assign(window.AFX_PT.dicas, {
+ 'Cartoon smoke puff in two tones: light on top, a darker shadow on one side': 'Bolota de fumaça de desenho em dois tons: luz por cima e sombra mais escura de um lado',
+ 'How many round bumps make the outline of the puff': 'Quantas bolinhas redondas formam o contorno da bolota',
+ 'Brightness of the shadow side: lower is a darker shadow': 'Claridade do lado da sombra: quanto menor, mais escura a sombra',
+ 'How much the shadow leans to blue (0 keeps it neutral gray)': 'Quanto a sombra puxa para o azul (0 deixa cinza neutro)',
+ 'Direction of the shadow in degrees: 90 is below, 0 is to the right': 'Direção da sombra em graus: 90 é embaixo, 0 é à direita',
+ 'How far the light part moves away, showing more shadow': 'Quanto a parte clara se afasta, deixando aparecer mais sombra',
+ 'Size of the light part relative to the whole puff': 'Tamanho da parte clara em relação à bolota inteira'
+});

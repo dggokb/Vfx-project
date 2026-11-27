@@ -137,6 +137,39 @@ const drawers = {
             ctx.beginPath(); ctx.arc(64 + Math.cos(a) * d, 64 + Math.sin(a) * d, r, 0, Math.PI * 2); ctx.fill();
         }
     },
+    // Sōkon FX: BOLOTA COM SOMBRA (fumaça de desenho). A partícula já sai em dois tons: a sombra (cinza
+    // levemente azulado) na forma inteira e a luz (branco) por cima, menor e deslocada para o lado oposto ao
+    // da sombra. A cor da partícula MULTIPLICA o desenho (tintMul): a luz fica na cor dela e a sombra numa
+    // versão mais escura da mesma cor. Desenhada em 256 px (res) para a borda ficar limpa em tamanho grande.
+    puff: function (ctx, p) {
+        const k = ctx.canvas.width / 128;
+        ctx.save(); ctx.scale(k, k);
+        const rng = AFX.mulberry32(700 + (p.var || 0) * 41);
+        const n = Math.round(AFX.clamp(p.n == null ? 9 : p.n, 4, 16));
+        const R = 36;
+        const lumps = [];
+        for (let i = 0; i < n; i++) {
+            const a = i / n * Math.PI * 2 + rng() * 0.5;
+            lumps.push([Math.cos(a) * R * 0.74, Math.sin(a) * R * 0.74, R * (0.4 + rng() * 0.16)]);
+        }
+        const forma = function (c, dx, dy, esc) {
+            c.beginPath();
+            c.moveTo(64 + dx + R * esc, 64 + dy); c.arc(64 + dx, 64 + dy, R * esc, 0, Math.PI * 2);
+            lumps.forEach(l => { c.moveTo(64 + dx + (l[0] + l[2]) * esc, 64 + dy + l[1] * esc); c.arc(64 + dx + l[0] * esc, 64 + dy + l[1] * esc, l[2] * esc, 0, Math.PI * 2); });
+            c.fill();
+        };
+        const sh = AFX.clamp(p.sh == null ? 0.62 : p.sh, 0.1, 0.98), az = AFX.clamp(p.az == null ? 0.55 : p.az, 0, 1);
+        const g = Math.round(255 * sh);
+        ctx.fillStyle = 'rgb(' + Math.round(g * (1 - 0.3 * az)) + ',' + Math.round(g * (1 - 0.16 * az)) + ',' + g + ')';
+        forma(ctx, 0, 0, 1);
+        // luz: a mesma forma menor, deslocada para longe da sombra, recortada pela forma inteira
+        const ang = (p.ang == null ? 45 : p.ang) * Math.PI / 180, off = AFX.clamp(p.off == null ? 0.18 : p.off, 0, 0.5) * R;
+        const luz = cnv(128); const lc = luz.getContext('2d');
+        lc.fillStyle = '#fff'; forma(lc, -Math.cos(ang) * off, -Math.sin(ang) * off, AFX.clamp(p.lz == null ? 0.86 : p.lz, 0.4, 1));
+        lc.globalCompositeOperation = 'destination-in'; lc.fillStyle = '#fff'; forma(lc, 0, 0, 1);
+        ctx.drawImage(luz, 0, 0);
+        ctx.restore();
+    },
     // ЯЗЫК ПЛАМЕНИ: капля, острый конец смотрит в +X (как streak) — с alignVel
     // частица ложится по скорости и «лижет» вдоль потока. Кромка мягкая: жёсткий
     // силуэт на add даёт картонную аппликацию, а не огонь.
@@ -208,6 +241,13 @@ S.shapeDefs = [
     { id: 'ember',  label: 'Ember', tip: 'Hot white core with a soft halo — embers that burn white on Add' },
     { id: 'smoke',  label: 'Smoke Puff', tip: 'Cluster of soft blobs, 4 variants — smoke, dust and clouds', variants: 4 },
     { id: 'blob',   label: 'Cartoon Puff', tip: 'Bumpy cartoon puff with a crisp edge, 4 variants — stylized smoke', variants: 4 },
+    { id: 'puff',   label: 'Shaded Puff', tip: 'Cartoon smoke puff in two tones: light on top, a darker shadow on one side', variants: 4, res: 256, tintMul: true,
+        params: [{ k: 'n', label: 'Bumps', tip: 'How many round bumps make the outline of the puff', min: 4, max: 16, step: 1, def: 9 },
+            { k: 'sh', label: 'Shadow tone', tip: 'Brightness of the shadow side: lower is a darker shadow', min: 0.1, max: 0.98, step: 0.01, def: 0.62 },
+            { k: 'az', label: 'Cool shadow', tip: 'How much the shadow leans to blue (0 keeps it neutral gray)', min: 0, max: 1, step: 0.01, def: 0.55 },
+            { k: 'ang', label: 'Shadow side', tip: 'Direction of the shadow in degrees: 90 is below, 0 is to the right', min: 0, max: 360, step: 1, def: 45 },
+            { k: 'off', label: 'Shadow size', tip: 'How far the light part moves away, showing more shadow', min: 0, max: 0.5, step: 0.01, def: 0.18 },
+            { k: 'lz', label: 'Light size', tip: 'Size of the light part relative to the whole puff', min: 0.4, max: 1, step: 0.01, def: 0.86 }] },
     { id: 'shard',  label: 'Shard', tip: 'Irregular sharp shard, 4 variants — debris, glass and rocks', variants: 4 }
 ];
 S.shapeDef = id => S.shapeDefs.find(d => d.id === id);
@@ -256,7 +296,8 @@ S.getBase = function (sig) {
     const parts = sig.split('|');
     const id = parts[1];
     const p = JSON.parse(parts[2] || '{}');
-    c = cnv(BASE);
+    const defR = S.shapeDef(id);
+    c = cnv(defR && defR.res ? defR.res : BASE);
     const ctx = c.getContext('2d');
     (drawers[id] || drawers.soft)(ctx, p);
     baseCache.set(sig, c);
@@ -275,9 +316,18 @@ S.getTinted = function (sig, hex) {
     c = cnv(w, h);
     const ctx = c.getContext('2d');
     ctx.drawImage(base, 0, 0, w, h);
-    ctx.globalCompositeOperation = 'source-in';
-    ctx.fillStyle = hex;
-    ctx.fillRect(0, 0, w, h);
+    const defT = sig.indexOf('shape|') === 0 ? S.shapeDef(sig.split('|')[1]) : null;
+    if (defT && defT.tintMul) {
+        // Sōkon FX: multiplica (a sombra continua mais escura que a luz) e devolve a transparência do desenho
+        ctx.globalCompositeOperation = 'multiply';
+        ctx.fillStyle = hex; ctx.fillRect(0, 0, w, h);
+        ctx.globalCompositeOperation = 'destination-in';
+        ctx.drawImage(base, 0, 0, w, h);
+    } else {
+        ctx.globalCompositeOperation = 'source-in';
+        ctx.fillStyle = hex;
+        ctx.fillRect(0, 0, w, h);
+    }
     tintCache.set(key, c);
     trimCache(tintCache);
     return c;

@@ -20,3 +20,7 @@ As mudanças feitas aqui (tradução para o português, o hit do Sōkon na lista
   fábrica e liga `AFX.semServidor`.
 - `js/ui/catalog.js`: com `AFX.semServidor`, o catálogo vai direto para o armazenamento do navegador, sem procurar o servidor.
 - `sokon/hit_forte.json` (novo): o hit forte do Sōkon.
+- `js/core/sprites.js`: forma nova **Bolota com sombra** (`puff`): bolota de fumaça de desenho em dois tons (sombra
+  levemente azulada na forma inteira, luz por cima deslocada), 4 variações, controles de bolinhas, tom e lado da sombra,
+  tamanho da sombra e da luz; desenhada em 256 px (`res`) e pintada multiplicando a cor (`tintMul`), para a sombra
+  continuar mais escura que a luz em qualquer cor. Nomes em português em `i18n-pt.js`.

@@ -565,4 +565,8 @@ embaixo.
   anel de bolotas no chão e duas colunas de bolotas que crescem no alto e curvam para fora, tamanhos variados. Para
   isso o Arcadia no Sōkon passou a restaurar texturas embutidas dos modelos (`sokon-modelos.js`) e o gerador espera
   as texturas antes de desenhar ou exportar (`arcadiaTexturas`). Só na cópia de trabalho do jogo.
+- **Motor do Arcadia ganhou a "Bolota com sombra" (o dono: "faz"):** forma `puff` em `sprites.js`, em dois tons (sombra
+  azulada e luz deslocada), com controles no editor (bolinhas, tom, frieza e lado da sombra, tamanho da sombra e da luz),
+  4 variações, desenhada em 256 px e pintada multiplicando a cor da partícula (a sombra continua mais escura em qualquer
+  cor). A fumaça do super pulo passou a usar essa forma, sem imagem importada; pode ser ajustada inteira no editor.
 

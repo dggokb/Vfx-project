@@ -243,10 +243,18 @@
      "life": 0.62,
      "lifeRnd": 0,
      "sprite": {
-      "kind": "tex",
-      "texId": "tex_sokon_bolota"
+      "kind": "shape",
+      "id": "puff",
+      "p": {
+       "n": 9,
+       "sh": 0.68,
+       "az": 0.9,
+       "ang": 45,
+       "off": 0.18,
+       "lz": 0.86,
+       "var": -1
+      }
      },
-     "tintTex": false,
      "size": 70,
      "sizeRnd": 0.6,
      "sizeOL": {
@@ -338,10 +346,18 @@
      "life": 0.62,
      "lifeRnd": 0,
      "sprite": {
-      "kind": "tex",
-      "texId": "tex_sokon_bolota"
+      "kind": "shape",
+      "id": "puff",
+      "p": {
+       "n": 9,
+       "sh": 0.68,
+       "az": 0.9,
+       "ang": 45,
+       "off": 0.18,
+       "lz": 0.86,
+       "var": -1
+      }
      },
-     "tintTex": false,
      "size": 70,
      "sizeRnd": 0.6,
      "sizeOL": {
@@ -433,10 +449,18 @@
      "life": 0.7,
      "lifeRnd": 0,
      "sprite": {
-      "kind": "tex",
-      "texId": "tex_sokon_bolota"
+      "kind": "shape",
+      "id": "puff",
+      "p": {
+       "n": 9,
+       "sh": 0.68,
+       "az": 0.9,
+       "ang": 45,
+       "off": 0.18,
+       "lz": 0.86,
+       "var": -1
+      }
      },
-     "tintTex": false,
      "size": 80,
      "sizeRnd": 0.55,
      "sizeOL": {
@@ -500,20 +524,10 @@
     }
    }
   ],
-  "textures": [
-   {
-    "id": "tex_sokon_bolota",
-    "name": "bolota",
-    "sheet": null
-   }
-  ],
   "v": 1
- },
- "tex": {
-  "tex_sokon_bolota": "data:image/png;base64,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"
  },
  "sokon": {
   "thumbT": 0.25,
-  "nota": "Fumaça do super pulo em bolotas de desenho (27/11; o dono achou feia a versão em massa única). Partícula = uma bolota desenhada (textura embutida: contorno de bolinhas, branco com sombra azul-acinzentada embaixo à direita). Anel de bolotas no chão (achatado pela câmera) e duas colunas de bolotas que sobem das pontas, crescem no alto e curvam para fora; tamanhos variados; borda seca."
+  "nota": "Fumaça do super pulo em bolotas de desenho (27/11). Partícula = a forma Bolota com sombra do motor (dois tons: luz branca e sombra azulada embaixo à direita), sem imagem importada. Anel de bolotas no chão (achatado pela câmera) e duas colunas de bolotas que sobem das pontas, crescem no alto e curvam para fora; tamanhos variados; borda seca."
  }
 }

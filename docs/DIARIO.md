@@ -547,4 +547,11 @@ embaixo.
 - **Defeito achado e corrigido:** folha com 256 cores ou menos (faixas chapadas) o WebP grava em modo paleta, e o leitor
   de WebP do jogo no PC (TwelveMonkeys) a mostra como um retângulo branco. `jogoSemPaleta` no export (e no lote e no
   kit) varia até 2 tons nos pixels com cor quando a folha tem poucas cores. Visto na gravação antes e depois.
+- **Rodada 13, super pulo coeso (o dono, objetivo: "faça até ficar uma fumaça coesa de super pulo"):**
+  `fumaca_super_pulo.json`. A técnica que deu coesão: partículas macias (soft) que se fundem quando a pixelização corta
+  a borda (metabolas), em três tons (sombra maior embaixo, meio, luz menor). Anel no chão achatado pela câmera, com o
+  buraco; duas colunas que nascem na borda do anel, quase verticais (a compensação da câmera só na subida; o ângulo
+  inclinado vira barra diagonal), com velocidades espalhadas (85%) para encher da base ao topo (sem isso o topo se
+  solta), curvando para fora no alto; tudo desbota junto no fim. Exportada no `super_pulo_v01` (340 px), só na cópia de
+  trabalho do jogo; gravado no super pulo.
 

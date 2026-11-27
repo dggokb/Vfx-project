@@ -282,3 +282,7 @@ embaixo.
   abertura e cinematics para depois de fechar a jogabilidade. O editor de nós e o vínculo com parte
   do personagem também são do motor (a origem do export já é o ponto que o jogo prende na ponta do
   golpe).
+
+
+## 27/11/2026 — Arcadia Lab (branch experimental)
+Importação do código MIT upstream fixado em ed2bd1b371ecdaae9274f207c77535c61610f0f8, sem assets externos. Editor isolado, formas de ar/impacto/fumaça e cinco presets, preview com print local e ponte de exportação EfeitosVideo. Teste de navegador adicionado à CI. Ambiente de edição sem rede no terminal: build/testes ainda precisam rodar na CI; main, dist e referência de pixels não alterados. Aprovação artística e validação dentro do jogo pendentes.

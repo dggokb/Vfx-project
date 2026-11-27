@@ -1,0 +1,17 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+const root=path.dirname(fileURLToPath(import.meta.url)), up=path.join(root,'upstream');
+const read=p=>fs.readFileSync(path.join(up,p),'utf8');
+let html=read('index.html').replace('<html lang="en">','<html lang="pt-BR">').replace('<title>Arcaidia Effector</title>','<title>SōkonFX — Arcadia Lab</title>');
+html=html.replace('<link rel="stylesheet" href="css/editor.css">','<style>'+read('css/editor.css')+'\n'+fs.readFileSync(path.join(root,'lab.css'),'utf8')+'</style>');
+html=html.replace('<script src="js/core/fxpresets.js"></script>','<script src="js/core/fxpresets.js"></script>\n<script src="js/core/sokon-presets.js"></script>');
+html=html.replace(/<script src="([^"]+)"><\/script>/g,(_,p)=>'<script>\n'+read(p).replace(/<\/script/gi,'<\\/script')+'\n</script>');
+const source=fs.readFileSync(path.join(root,'../sokonfx/src/js/15-jogo-export.js'),'utf8');
+const pure=source.slice(0,source.indexOf('// ---- Na página ----'));
+if(!pure.includes('function jogoDados')||!pure.includes('function jogoZip'))throw Error('Contrato do export mudou');
+const inline=p=>fs.readFileSync(path.join(root,p),'utf8').replace(/<\/script/gi,'<\\/script');
+html=html.replace('</body>','<script>\n'+pure+'\n'+inline('lab.js')+'\n</script>\n</body>');
+html='<!-- MIT: Anton Chuev (Arcadia Effects), SōkonFX contributors.\n'+read('LICENSE')+'\n-->\n'+html;
+fs.mkdirSync(path.join(root,'dist'),{recursive:true});fs.writeFileSync(path.join(root,'dist','SokonArcadia.html'),html);
+console.log('arcadia-lab/dist/SokonArcadia.html');

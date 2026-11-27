@@ -1,0 +1,7 @@
+#sokon-lab-tools{display:flex;gap:6px;align-items:center;flex-wrap:wrap;padding:6px;background:#1b2636;color:#f4f7fb;font:12px system-ui}
+#sokon-lab-tools button,#sokon-lab-tools select,#sokon-lab-preview button{font:inherit;padding:5px;color:#fff;background:#293b54;border:1px solid #6882a5;border-radius:4px}
+#sokon-lab-status{max-width:40vw;overflow-wrap:anywhere}
+#sokon-lab-preview{position:fixed;inset:5%;z-index:9999;background:#18212c;color:white;border:1px solid #8399b5;padding:14px;overflow:auto;font:14px system-ui}
+#sokon-lab-preview[hidden]{display:none}
+#sokon-lab-preview canvas{width:100%;height:auto;max-height:70vh;object-fit:contain;display:block;background:#101520;touch-action:none}
+@media(max-width:700px){#sokon-lab-tools{font-size:11px}#sokon-lab-preview{inset:1%}}

@@ -5,7 +5,9 @@
   "scripts": {
     "build": "node sokonfx/build.mjs",
     "conferir": "node sokonfx/build.mjs --conferir",
-    "test": "node sokonfx/build.mjs --conferir && node sokonfx/testes/pixels.test.cjs && node sokonfx/testes/export.test.cjs && node sokonfx/testes/previa.test.cjs && node sokonfx/testes/composicao.test.cjs && node sokonfx/testes/geradores.test.cjs && node sokonfx/testes/editor.test.cjs"
+    "test": "node sokonfx/build.mjs --conferir && node sokonfx/testes/pixels.test.cjs && node sokonfx/testes/export.test.cjs && node sokonfx/testes/previa.test.cjs && node sokonfx/testes/composicao.test.cjs && node sokonfx/testes/geradores.test.cjs && node sokonfx/testes/editor.test.cjs && npm run arcadia:test",
+    "arcadia:build": "node arcadia-lab/build.mjs",
+    "arcadia:test": "node arcadia-lab/test.mjs"
   },
   "devDependencies": {
     "playwright": "1.63.0"

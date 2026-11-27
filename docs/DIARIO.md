@@ -529,4 +529,9 @@ embaixo.
   partículas macias de ar que andam para fora esticadas, frente mais cheia, beira de dentro mais clara, distorção
   leve em fiapos. No jogo (giro −15°, soma 40%) parece vapor subindo e cobre o rosto de quem defende: mostrado ao
   dono para decidir a direção antes de refinar. O teste do Arcadia passou a conferir que todo modelo do jogo desenha.
+- **Rodada 12, releitura da referência (o dono: "eu te mandei a imagem do que é"):** `defesa_pressao*.json`: anel de ar
+  grosso em 3/4, quase fechado, com o buraco escuro rasgado por dentro, faixa branca colada na borda, desfoque radial a
+  partir do buraco (as fibras são a textura da massa) e rastros finos passando da borda. No fundo preto ficou perto da
+  referência; no jogo a massa se perde (somando luz vira um risco claro; opaca vira uma mancha cinza sobre o rosto).
+  Não aprovado; o jogo voltou à defesa de antes.
 

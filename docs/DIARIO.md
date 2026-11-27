@@ -539,4 +539,12 @@ embaixo.
   altura dos braços (68% da altura em pé, 60% agachado), e não na ponta do golpe. Os modelos `defesa_pressao*` têm a
   borda na origem e o anel do lado de quem bate, massa mais branca; exportados com soma 15%. `testarMotor`: só as 3
   falhas antigas.
+- **Rodada 13 (27/11; o dono: "manda para o Fable; vamos tentar agora fumaças de pulo", com silhuetas de exemplo):**
+  a defesa nova foi para a `game-luta-sprite-fable`. `fumaca_pulo.json`: rajada de bolotas (blob) num anel que voa
+  para fora e freia, achatada em elipse pela câmera (cam.comp 73°, o meio fica vazio), sombra azul-acinzentada e branco
+  em faixas, espinhos rente ao chão e bolotas que sobem nas pontas (a câmera achata o que sobe: velocidades para cima
+  ~3×). Posta no lugar do `super_pulo_v01` (pulo comum e super pulo), só na cópia de trabalho.
+- **Defeito achado e corrigido:** folha com 256 cores ou menos (faixas chapadas) o WebP grava em modo paleta, e o leitor
+  de WebP do jogo no PC (TwelveMonkeys) a mostra como um retângulo branco. `jogoSemPaleta` no export (e no lote e no
+  kit) varia até 2 tons nos pixels com cor quando a folha tem poucas cores. Visto na gravação antes e depois.
 

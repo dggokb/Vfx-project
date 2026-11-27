@@ -62,6 +62,7 @@ async function loteExportar(tipos){
    composicaoAplicar(t.composicao||null);await composicaoFila;
    const nome=loteNome(t,usados);el('jogoNome').value=nome;
    const {folha,dados}=jogoMontar({...jogoOpcoes(),nome});
+   jogoSemPaleta(folha);
    const webp=await new Promise(r=>folha.toBlob(r,'image/webp',1));
    if(!webp||webp.type!=='image/webp')throw Error('este navegador não grava WebP (use o Chrome)');
    arquivos.push({nome:nome+'/folha.webp',dados:new Uint8Array(await webp.arrayBuffer())},{nome:nome+'/efeito.json',dados:new TextEncoder().encode(JSON.stringify(dados,null,1)+'\n')});
@@ -135,6 +136,7 @@ async function kitExportar(){
    const origem=c.ancora==='chao'?{origemX:256+c.dx,origemY:(g?.origem?.y??256)+c.dy}:{};
    const {folha,dados}=jogoMontar({...op,...origem,nome,inicio:0,fim:frames-1,segurar:-1,soma:c.soma?1:op.soma,luz:n===0?op.luz:null,
     desenhar:kitPecaDesenho(c),descricao:`Sōkon FX: peça ${n+1} do kit ${op.nome} (${c.nome})`});
+   jogoSemPaleta(folha);
    const webp=await new Promise(r=>folha.toBlob(r,'image/webp',1));
    if(!webp||webp.type!=='image/webp')throw Error('este navegador não grava WebP (use o Chrome)');
    arquivos.push({nome:nome+'/folha.webp',dados:new Uint8Array(await webp.arrayBuffer())},{nome:nome+'/efeito.json',dados:new TextEncoder().encode(JSON.stringify(dados,null,1)+'\n')});

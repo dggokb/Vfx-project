@@ -1,0 +1,688 @@
+{
+ "app": "arcadia-effects",
+ "v": 1,
+ "doc": {
+  "id": "fx_sokon_pulo",
+  "name": "Sōkon — Fumaça do pulo",
+  "comp": {
+   "w": 512,
+   "h": 512,
+   "dur": 0.6,
+   "fps": 60
+  },
+  "cam": {
+   "comp": 73
+  },
+  "exp": {
+   "cols": 6,
+   "rows": 4,
+   "frames": 24,
+   "cellW": 256,
+   "cellH": 256,
+   "mode": "rgba",
+   "ss": 2
+  },
+  "layers": [
+   {
+    "id": "lr_q_faixas",
+    "type": "postfx",
+    "name": "bands",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.6,
+    "fx": {
+     "effect": "pixelate",
+     "pxW": 512,
+     "pxSnap": true,
+     "pxSample": "point",
+     "pxGain": 1,
+     "pxAlpha": "cut",
+     "pxThr": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 0.4,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.6,
+        "v": 0.5,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "pxSat": 1,
+     "pxCon": 1,
+     "pxColor": "ramp",
+     "pxRamp": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         150,
+         160,
+         185
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         252,
+         252,
+         255
+        ]
+       }
+      ]
+     },
+     "pxRampN": 3,
+     "pxOut": 0
+    }
+   },
+   {
+    "id": "lr_q_esp_d",
+    "type": "emitter",
+    "name": "lr_q_esp_d",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.06,
+    "em": {
+     "x": 0,
+     "y": -10,
+     "shape": "point",
+     "dir": "dir",
+     "angle": 0,
+     "spread": 16,
+     "speed": 2200,
+     "speedRnd": 0.4,
+     "bursts": [
+      {
+       "t": 0.03,
+       "n": 5
+      }
+     ],
+     "seed": 41
+    },
+    "pt": {
+     "life": 0.24,
+     "lifeRnd": 0.3,
+     "render": "trail",
+     "size": 10,
+     "sizeRnd": 0.5,
+     "sizeOT": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0
+       },
+       {
+        "t": 0.6,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 0.7,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         250,
+         250,
+         250
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         250,
+         250,
+         250
+        ]
+       }
+      ]
+     },
+     "drag": 5
+    }
+   },
+   {
+    "id": "lr_q_esp_e",
+    "type": "emitter",
+    "name": "lr_q_esp_e",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.06,
+    "em": {
+     "x": 0,
+     "y": -10,
+     "shape": "point",
+     "dir": "dir",
+     "angle": 180,
+     "spread": 16,
+     "speed": 2200,
+     "speedRnd": 0.4,
+     "bursts": [
+      {
+       "t": 0.03,
+       "n": 5
+      }
+     ],
+     "seed": 43
+    },
+    "pt": {
+     "life": 0.24,
+     "lifeRnd": 0.3,
+     "render": "trail",
+     "size": 10,
+     "sizeRnd": 0.5,
+     "sizeOT": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0
+       },
+       {
+        "t": 0.6,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 0.7,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         250,
+         250,
+         250
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         250,
+         250,
+         250
+        ]
+       }
+      ]
+     },
+     "drag": 5
+    }
+   },
+   {
+    "id": "lr_q_sobe_e",
+    "type": "emitter",
+    "name": "lr_q_sobe_e",
+    "blend": "normal",
+    "start": 0.03,
+    "end": 0.16,
+    "em": {
+     "x": {
+      "keys": [
+       {
+        "t": 0,
+        "v": -20,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.22,
+        "v": -112.5,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "y": -14,
+     "shape": "point",
+     "dir": "dir",
+     "angle": -115,
+     "spread": 18,
+     "speed": 2000,
+     "speedRnd": 0.4,
+     "rate": 120,
+     "bursts": [],
+     "seed": 61
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.3,
+     "sprite": {
+      "kind": "shape",
+      "id": "blob",
+      "p": {}
+     },
+     "size": 40,
+     "sizeRnd": 0.4,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.6
+       },
+       {
+        "t": 0.3,
+        "v": 1
+       },
+       {
+        "t": 0.75,
+        "v": 0.9
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         240,
+         240,
+         240
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         240,
+         240,
+         240
+        ]
+       }
+      ]
+     },
+     "rotRnd": 1,
+     "spin": 30,
+     "spinRnd": 1,
+     "drag": 3.5,
+     "gravX": -1300,
+     "gravY": 0,
+     "turbMode": "curl",
+     "turbAmp": 120,
+     "turbScale": 40
+    }
+   },
+   {
+    "id": "lr_q_sobe_d",
+    "type": "emitter",
+    "name": "lr_q_sobe_d",
+    "blend": "normal",
+    "start": 0.03,
+    "end": 0.16,
+    "em": {
+     "x": {
+      "keys": [
+       {
+        "t": 0,
+        "v": 20,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       },
+       {
+        "t": 0.22,
+        "v": 112.5,
+        "i": {
+         "m": "ease"
+        },
+        "o": {
+         "m": "ease"
+        }
+       }
+      ]
+     },
+     "y": -14,
+     "shape": "point",
+     "dir": "dir",
+     "angle": -65,
+     "spread": 18,
+     "speed": 2000,
+     "speedRnd": 0.4,
+     "rate": 120,
+     "bursts": [],
+     "seed": 67
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.3,
+     "sprite": {
+      "kind": "shape",
+      "id": "blob",
+      "p": {}
+     },
+     "size": 40,
+     "sizeRnd": 0.4,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.6
+       },
+       {
+        "t": 0.3,
+        "v": 1
+       },
+       {
+        "t": 0.75,
+        "v": 0.9
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         240,
+         240,
+         240
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         240,
+         240,
+         240
+        ]
+       }
+      ]
+     },
+     "rotRnd": 1,
+     "spin": 30,
+     "spinRnd": 1,
+     "drag": 3.5,
+     "gravX": 1300,
+     "gravY": 0,
+     "turbMode": "curl",
+     "turbAmp": 120,
+     "turbScale": 40
+    }
+   },
+   {
+    "id": "lr_q_anel",
+    "type": "emitter",
+    "name": "lr_q_anel",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.02,
+    "em": {
+     "x": 0,
+     "y": -17,
+     "shape": "ring",
+     "sx": 20,
+     "sy": 6,
+     "dir": "out",
+     "spread": 0,
+     "speed": 900,
+     "speedRnd": 0.2,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 44
+      }
+     ],
+     "seed": 5
+    },
+    "pt": {
+     "life": 0.45,
+     "lifeRnd": 0.2,
+     "sprite": {
+      "kind": "shape",
+      "id": "blob",
+      "p": {}
+     },
+     "size": 36.08,
+     "sizeRnd": 0.3,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.4
+       },
+       {
+        "t": 0.25,
+        "v": 1
+       },
+       {
+        "t": 0.7,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         245,
+         245,
+         245
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         245,
+         245,
+         245
+        ]
+       }
+      ]
+     },
+     "rotRnd": 1,
+     "spin": 20,
+     "spinRnd": 1,
+     "drag": 6,
+     "squash": 0
+    }
+   },
+   {
+    "id": "lr_q_anel_s",
+    "type": "emitter",
+    "name": "lr_q_anel_s",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.02,
+    "em": {
+     "x": 0,
+     "y": -12,
+     "shape": "ring",
+     "sx": 20,
+     "sy": 6,
+     "dir": "out",
+     "spread": 0,
+     "speed": 900,
+     "speedRnd": 0.2,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 44
+      }
+     ],
+     "seed": 5
+    },
+    "pt": {
+     "life": 0.45,
+     "lifeRnd": 0.2,
+     "sprite": {
+      "kind": "shape",
+      "id": "blob",
+      "p": {}
+     },
+     "size": 44,
+     "sizeRnd": 0.3,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.4
+       },
+       {
+        "t": 0.25,
+        "v": 1
+       },
+       {
+        "t": 0.7,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         70,
+         70,
+         70
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         70,
+         70,
+         70
+        ]
+       }
+      ]
+     },
+     "rotRnd": 1,
+     "spin": 20,
+     "spinRnd": 1,
+     "drag": 6,
+     "squash": 0
+    }
+   }
+  ],
+  "v": 1
+ },
+ "sokon": {
+  "thumbT": 0.15,
+  "nota": "Fumaça do pulo (27/11; silhuetas de exemplo do dono: anel de fumaça no chão, espinhos, caracóis subindo). Rajada de bolotas (blob) num anel que voa para fora e freia, achatada em elipse pela câmera (cam.comp 73°): o meio fica vazio; sombra azul-acinzentada embaixo e branco por cima, cortados em faixas de tom; espinhos rente ao chão para os dois lados; bolotas que sobem nas duas pontas e se curvam. (0,0) é o chão. A câmera achata o que sobe: as velocidades para cima são ~3× maiores para compensar."
+ }
+}

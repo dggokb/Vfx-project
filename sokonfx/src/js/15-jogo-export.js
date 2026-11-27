@@ -157,12 +157,26 @@ function jogoAplicar(valores){
  jogoAtualizar();
 }
 
+// Folha com 256 cores ou menos (faixas chapadas) o WebP grava em modo paleta, e o leitor de WebP do
+// jogo no PC (TwelveMonkeys) erra nesse modo: a folha vira um retângulo branco. Variação de até 2 tons
+// (invisível) nos pixels com cor tira a folha do modo paleta. Devolve se precisou.
+function jogoSemPaleta(folha){
+ const x=folha.getContext('2d',{willReadFrequently:true}),img=x.getImageData(0,0,folha.width,folha.height),d=img.data;
+ const cores=new Set();
+ for(let i=0;i<d.length&&cores.size<=256;i+=4)cores.add((d[i]<<24|d[i+1]<<16|d[i+2]<<8|d[i+3])>>>0);
+ if(cores.size>256)return false;
+ let s=12345;const r=()=>((s=(s*1103515245+12345)>>>0)>>>16)%5-2;
+ for(let i=0;i<d.length;i+=4)if(d[i+3])for(let c=0;c<3;c++)d[i+c]=Math.max(0,Math.min(255,d[i+c]+r()));
+ x.putImageData(img,0,0);return true;
+}
+
 async function jogoExportar(){
  const op=jogoOpcoes();
  if(!jogoNomeValido(op.nome)){el('jogoStatus').value='Nome só com letras minúsculas, números e _ (é o nome da pasta no jogo).';return}
  try{
   el('jogoStatus').value='Montando…';
   const {folha,dados}=jogoMontar(op);
+  jogoSemPaleta(folha);
   // Qualidade 1 no WebP do Chrome é sem perda (conferido no teste).
   const webp=await new Promise(r=>folha.toBlob(r,'image/webp',1));
   if(!webp||webp.type!=='image/webp')throw Error('este navegador não grava WebP (use o Chrome)');

@@ -586,4 +586,10 @@ embaixo.
   `fumaca_pulo_comum.json`: a do super pulo menor e mais curta, cunhas e duas bolotas pequenas, sem o anel. No jogo,
   o pulo comum toca `fumaca_pulo_comum` (GameView) antes da fumaça do super pulo. Super pulo e pulo comum enviados para a
   `game-luta-sprite-fable`.
+- **Fumaça do dash (o dono: "vamos fazer do dash agora"):** `fumaca_dash.json`, a do pulo com um lado só (massa chutada
+  para trás dos pés, cunha apontando para o lutador, cabeça que sobe fofa e se quebra). Achado: no jogo o dash estava sem
+  fumaça nenhuma, porque ela só saía pela poeira do motor de animação, desligado desde 21/11. Na cópia de trabalho do
+  jogo, o `GameView` passou a tocar `fumaca_dash_v05` na largada do dash pelo estado do lutador (frente e para trás,
+  espelhada pelo sentido do movimento); o motor, se ligado, não toca de novo. O teste do Arcadia confere cada modelo no
+  instante da miniatura dele.
 

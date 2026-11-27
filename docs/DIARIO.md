@@ -596,4 +596,7 @@ embaixo.
   `fumaca_dash.json` novo, das referências de onda rasante e rastro de bolotas: línguas em rastro que disparam dos pés para
   trás (finas no pé, grossas atrás) e um rastro de bolotas que cresce para trás e se funde numa massa só; ponta fina nos pés.
   No jogo (cópia de trabalho) é o `fumaca_dash_v05`, tocado na largada do dash pelo estado do lutador.
+- **Dash, tamanho e lado (o dono: "deixa a fumaça menor e tem que sair de trás quando vai para a frente e na frente quando
+  dá backdash"):** no jogo (cópia de trabalho) a fumaça do dash toca a 70% e afastada 34 px dos pés, do lado de onde ele
+  parte (`DASH_FUMACA_ESCALA`, `DASH_FUMACA_ATRAS`).
 

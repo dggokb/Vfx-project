@@ -560,4 +560,9 @@ embaixo.
 - **Super pulo, folha completa:** o export cortava em 85% da duração (a folha acabava com o U ainda cheio e no jogo ele
   sumiria de repente); exportada até 100%. Conferidos os 16 quadros da folha (o que o jogo toca): peça única do estouro ao
   U fino e esburacado do quadro 15; o 16 é vazio.
+- **Super pulo refeito (o dono: "tá feio"; "só refaz"):** a massa única virou gosma em U. Nova: partícula = uma bolota
+  desenhada (textura embutida no modelo: contorno de bolinhas, branco com sombra azul-acinzentada embaixo à direita);
+  anel de bolotas no chão e duas colunas de bolotas que crescem no alto e curvam para fora, tamanhos variados. Para
+  isso o Arcadia no Sōkon passou a restaurar texturas embutidas dos modelos (`sokon-modelos.js`) e o gerador espera
+  as texturas antes de desenhar ou exportar (`arcadiaTexturas`). Só na cópia de trabalho do jogo.
 

@@ -39,7 +39,14 @@ function arcadiaEfeito(texto){
 // Espera o editor e o efeito do campo ficarem prontos (aplicarTipo usa antes de montar ou exportar).
 function arcadiaEsperar(){
  if(el('kind').value!=='Arcadia (partículas)')return null;
- return arcadiaAbrir().then(()=>new Promise(res=>{if(arcadiaEfeito(el('arcEfeito').value))res();else arcadia.esperas.push(res)}));
+ return arcadiaAbrir().then(()=>new Promise(res=>{if(arcadiaEfeito(el('arcEfeito').value))res();else arcadia.esperas.push(res)})).then(arcadiaTexturas);
+}
+// As texturas do efeito (data URL) carregam à parte: espera estarem prontas antes de desenhar ou exportar.
+function arcadiaTexturas(){
+ const W=arcadia.janela,e=arcadiaEfeito(el('arcEfeito').value);if(!W||!e)return;
+ const faltam=()=>(e.doc.textures||[]).some(t=>!W.AFX.Sprites.texs.has(t.id));
+ if(!faltam())return;
+ return new Promise(res=>{let n=0;const v=()=>{if(!faltam()||++n>200)res();else setTimeout(v,25)};v()});
 }
 
 registrarGerador({

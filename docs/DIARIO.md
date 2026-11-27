@@ -557,4 +557,7 @@ embaixo.
 - **Super pulo, dissipação:** ao sumir, o ponto mais fino (a frente do anel) partia a peça em duas. Uma base de
   partículas engrossa a frente, e anel, base e colunas desbotam juntos pela opacidade da camada: a fumaça some inteira.
   Conferido quadro a quadro no modelo (do estouro ao fim) e na gravação (peça única até sair da tela).
+- **Super pulo, folha completa:** o export cortava em 85% da duração (a folha acabava com o U ainda cheio e no jogo ele
+  sumiria de repente); exportada até 100%. Conferidos os 16 quadros da folha (o que o jogo toca): peça única do estouro ao
+  U fino e esburacado do quadro 15; o 16 é vazio.
 

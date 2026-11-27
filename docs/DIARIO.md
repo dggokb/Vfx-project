@@ -524,4 +524,9 @@ embaixo.
   à frente do contato (na guarda de quem defende, não em cima da perna de quem bate). Curva aberta: raio 300 com 40°
   para cada lado (antes 175 com 70°). Exportada com Direção −20° no Sōkon (gira em volta do contato: a ponta de cima
   para trás). Só na cópia de trabalho do jogo, no lugar das três `defesa_brilho_spray_aneis*`.
+- **Rodada 12, nova leitura (o dono: "por que meia-lua?"; "pensa que um buraco se faz e o anel faz a pressão de ar;
+  não são riscos, é efeito de ar"):** `defesa_anel_ar*.json`: elipse em pé (3/4) em volta de um buraco vazio, feita de
+  partículas macias de ar que andam para fora esticadas, frente mais cheia, beira de dentro mais clara, distorção
+  leve em fiapos. No jogo (giro −15°, soma 40%) parece vapor subindo e cobre o rosto de quem defende: mostrado ao
+  dono para decidir a direção antes de refinar. O teste do Arcadia passou a conferir que todo modelo do jogo desenha.
 

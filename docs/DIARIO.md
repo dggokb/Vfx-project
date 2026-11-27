@@ -534,4 +534,9 @@ embaixo.
   partir do buraco (as fibras são a textura da massa) e rastros finos passando da borda. No fundo preto ficou perto da
   referência; no jogo a massa se perde (somando luz vira um risco claro; opaca vira uma mancha cinza sobre o rosto).
   Não aprovado; o jogo voltou à defesa de antes.
+- **Rodada 12, posição (o dono: "é reto na defesa, não na posição do golpe"; "vai ajustando, está indo bem"):** no
+  jogo (cópia de trabalho), `DEFESA_NA_GUARDA` em `GameView`: a defesa nasce na frente do desenho de quem defende, na
+  altura dos braços (68% da altura em pé, 60% agachado), e não na ponta do golpe. Os modelos `defesa_pressao*` têm a
+  borda na origem e o anel do lado de quem bate, massa mais branca; exportados com soma 15%. `testarMotor`: só as 3
+  falhas antigas.
 

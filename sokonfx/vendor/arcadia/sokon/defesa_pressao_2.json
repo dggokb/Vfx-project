@@ -64,7 +64,7 @@
       "keys": [
        {
         "t": 0,
-        "v": 31,
+        "v": -39,
         "i": {
          "m": "ease"
         },
@@ -74,7 +74,7 @@
        },
        {
         "t": 0.16,
-        "v": 48,
+        "v": -22,
         "i": {
          "m": "ease"
         },
@@ -103,7 +103,7 @@
      "keys": [
       {
        "t": 0,
-       "v": 69.5,
+       "v": -0.5,
        "i": {
         "m": "ease"
        },
@@ -113,7 +113,7 @@
       },
       {
        "t": 0.16,
-       "v": 146,
+       "v": 76,
        "i": {
         "m": "ease"
        },
@@ -188,7 +188,7 @@
       "kind": "shape",
       "id": "ring",
       "p": {
-       "th": 0.07
+       "th": 0.08
       }
      },
      "size": 298.6666666666667,
@@ -216,7 +216,7 @@
        }
       ]
      },
-     "x": 20,
+     "x": -50,
      "y": 0,
      "aspect": 0.4,
      "rot": 0,
@@ -286,7 +286,7 @@
      "keys": [
       {
        "t": 0,
-       "v": 75,
+       "v": 5,
        "i": {
         "m": "ease"
        },
@@ -296,7 +296,7 @@
       },
       {
        "t": 0.16,
-       "v": 160,
+       "v": 90,
        "i": {
         "m": "ease"
        },
@@ -336,7 +336,7 @@
      "keys": [
       {
        "t": 0,
-       "v": 0.9,
+       "v": 1,
        "i": {
         "m": "ease"
        },
@@ -346,7 +346,7 @@
       },
       {
        "t": 0.16,
-       "v": 0.9,
+       "v": 1,
        "i": {
         "m": "ease"
        },
@@ -371,7 +371,7 @@
       "kind": "shape",
       "id": "ring",
       "p": {
-       "th": 0.35
+       "th": 0.42
       }
      },
      "size": 298.6666666666667,
@@ -399,7 +399,7 @@
        }
       ]
      },
-     "x": 20,
+     "x": -50,
      "y": 0,
      "aspect": 0.4,
      "rot": 0,
@@ -422,7 +422,7 @@
      "keys": [
       {
        "t": 0,
-       "v": 58.5,
+       "v": -11.5,
        "i": {
         "m": "ease"
        },
@@ -432,7 +432,7 @@
       },
       {
        "t": 0.16,
-       "v": 118,
+       "v": 48,
        "i": {
         "m": "ease"
        },
@@ -535,14 +535,14 @@
        }
       ]
      },
-     "x": 20,
+     "x": -50,
      "y": 0,
      "aspect": 0.4,
      "rot": 0,
      "color": [
-      215,
-      220,
-      230
+      232,
+      236,
+      244
      ]
     }
    },
@@ -554,7 +554,7 @@
     "start": 0,
     "end": 0.12,
     "em": {
-     "x": 48,
+     "x": -22,
      "y": 0,
      "shape": "point",
      "dir": "out",
@@ -1347,6 +1347,6 @@
  },
  "sokon": {
   "thumbT": 0.12,
-  "nota": "Pressão de ar da defesa (27/11, refeita lendo a referência do dono: um anel de ar grosso em 3/4, quase fechado, com o buraco escuro rasgado por dentro). Massa cinza-clara (anel com espessura 85%) e faixa branca colada na borda, as duas pesando para o lado de quem defende (máscara deslocada); rasgo (displace tear) para o buraco ficar irregular; desfoque radial a partir do buraco faz as fibras da massa; rastros finos passam da borda; borda branca lisa. Variação 2 de 3."
+  "nota": "Pressão de ar da defesa (27/11, refeita lendo a referência do dono: um anel de ar grosso em 3/4, quase fechado, com o buraco escuro rasgado por dentro). Massa cinza-clara (anel com espessura 85%) e faixa branca colada na borda, as duas pesando para o lado de quem defende (máscara deslocada); rasgo (displace tear) para o buraco ficar irregular; desfoque radial a partir do buraco faz as fibras da massa; rastros finos passam da borda; borda branca lisa. A borda encosta na origem (a guarda de quem defende) e o anel fica do lado de quem bate. Variação 2 de 3."
  }
 }

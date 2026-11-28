@@ -619,3 +619,11 @@ embaixo.
   (nuvem bege com ondas pontudas, queda) e `fumaca_destrocos.json` (fumaça escura com pedras, queda pesada e quique).
   Correções: as línguas caíam abaixo do chão (menos gravidade) e a fumaça escura acabava cortada (vida menor).
 
+- **Poeiras desfeitas (o dono: "Horrível"; "desfaz e faz um de cada vez"):** saíram `poeira_baixo.json` e
+  `fumaca_destrocos.json`; fica só a da queda (nº 19), refeita no estilo de placas: poucas chapas retas e afiadas.
+- **Poeira da queda no corpo caindo (o dono: "coloca em um corpo em queda e vê se faz sentido"):** do jeito que estava
+  não fazia: saía para um lado só, na cabeça, pequena, abaixo do corpo e ainda aparecia quando ele levantava. A causa de
+  estar abaixo: o export usava a origem no centro do quadro, e o chão do modelo fica 80 px abaixo (origem Y 336). Refeita
+  como faixa baixa e larga, do comprimento do corpo deitado, com placas rentes ao chão para os dois lados, nuvem baixa
+  para não esconder o corpo, 0,36 s. No jogo: 62 px de altura, uma vez só, na batida (sem a segunda depois do quique),
+  30 px acima da linha do chão (o corpo deitado fica desenhado acima dela). Cópia de trabalho do jogo.

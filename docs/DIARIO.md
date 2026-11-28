@@ -611,4 +611,7 @@ embaixo.
 - **Parede vira splash (o dono: "faz depois de 2 frames a fumaça virar splash"):** as bolotas do anel vivem 0,1 s e
   na morte soltam 2 gotas compridas cada (sub-emissor do Arcadia, `emit: death`, `dir: inherit`), que espirram para fora
   e caem. Cópia de trabalho do jogo.
+- **28/11 (o dono testou o APK: "dash e backdash não apareceu"; "o super pulo fumaça ficou muito grande"):** o dash não
+  estava no APK (esperava a aprovação dele); foi para a `game-luta-sprite-fable` junto com o super pulo exportado a 320 px
+  (era 480).
 

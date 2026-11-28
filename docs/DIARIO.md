@@ -629,3 +629,6 @@ embaixo.
   30 px acima da linha do chão (o corpo deitado fica desenhado acima dela). Cópia de trabalho do jogo.
 - **Poeira da queda menor e mais solta (o dono: "muito grande e muito sólido"):** menos gomos (14), menores, com
   buracos entre eles; placas finas; 30% menor no jogo (39 px de altura), 0,34 s.
+- **Poeira da queda parada (o dono: "tá estranho e muito sólido"; depois, numa versão macia semitransparente, "pode
+  parar que tá ruim"):** nenhuma versão foi para o jogo. O modelo `poeira_queda.json` fica no estilo de placas só como
+  registro; não usar sem pedido do dono.

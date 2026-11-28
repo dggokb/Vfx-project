@@ -632,3 +632,10 @@ embaixo.
 - **Poeira da queda parada (o dono: "tá estranho e muito sólido"; depois, numa versão macia semitransparente, "pode
   parar que tá ruim"):** nenhuma versão foi para o jogo. O modelo `poeira_queda.json` fica no estilo de placas só como
   registro; não usar sem pedido do dono.
+- **App Android do Sōkon FX (28/11; o dono: "consegue fazer um APK para eu executar e tentar fazer pelo
+  celular?"):** `sokonfx/android/` (manifesto, `MainActivity.java`, ícone, `ponte.js`, `build-apk.sh`). O APK é o
+  `dist/SokonFX.html` num WebView, montado só com o SDK (aapt2, javac, d8, zipalign, apksigner). A ponte troca o
+  clique nos links de download (blob/data) por uma chamada ao app, que grava em Download/SokonFX; vale também
+  dentro do editor do Arcadia (iframe). Escolher arquivo usa o seletor do Android. Testado no navegador com o app
+  simulado: tipos, export para o jogo e efeito do Arcadia chegam à ponte. A chave de assinatura fica fora do
+  repositório (`~/.sokonfx-apk.jks`): um APK montado em outra sessão sai com outra chave e pede desinstalar antes.

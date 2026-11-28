@@ -12,6 +12,9 @@ celular.
 - **Usar:** abra [`sokonfx/dist/SokonFX.html`](sokonfx/dist/SokonFX.html) no navegador (ou o link do
   GitHub Pages, quando estiver ligado). Os tipos salvos ficam no navegador; use **Baixar todos os
   tipos** para guardar o JSON e importar em outro aparelho.
+- **App Android (APK):** `sokonfx/android/build-apk.sh` monta o APK com o SDK do Android (sem Gradle): o
+  mesmo HTML num WebView, com uma ponte para baixar (vai para **Download/SokonFX**) e escolher arquivos. O
+  editor de partículas (Arcadia) foi feito para tela de computador: no celular fica apertado (melhor deitado).
 - **No celular sem internet:** pelo link do GitHub Pages, use "instalar" ou "adicionar à tela
   inicial"; o app passa a abrir offline (`sokonfx/site/`: manifesto, ícones e service worker).
 - **Para o jogo:** abra **Exportar para o jogo**, dê o nome da pasta, marque a origem tocando na

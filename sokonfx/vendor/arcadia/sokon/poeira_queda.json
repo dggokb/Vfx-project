@@ -7,7 +7,7 @@
   "comp": {
    "w": 512,
    "h": 512,
-   "dur": 0.36,
+   "dur": 0.34,
    "fps": 60
   },
   "exp": {
@@ -26,7 +26,7 @@
     "name": "cut luz",
     "blend": "normal",
     "start": 0,
-    "end": 0.36,
+    "end": 0.34,
     "targets": [
      "lr_c_placa_luz_e",
      "lr_c_placa_luz_d",
@@ -54,27 +54,27 @@
     "start": 0,
     "end": 0.02,
     "em": {
-     "x": -43,
+     "x": -39,
      "y": 73,
      "shape": "point",
      "dir": "dir",
      "angle": 189,
-     "spread": 12,
-     "speed": 1980,
+     "spread": 14,
+     "speed": 1890,
      "speedRnd": 0.4,
      "bursts": [
       {
        "t": 0,
-       "n": 4
+       "n": 3
       }
      ],
-     "seed": 5
+     "seed": 7
     },
     "pt": {
-     "life": 0.26,
+     "life": 0.24,
      "lifeRnd": 0.15,
      "render": "trail",
-     "size": 20.8,
+     "size": 14.4,
      "sizeRnd": 0.35,
      "sizeOT": {
       "pts": [
@@ -152,27 +152,27 @@
     "start": 0,
     "end": 0.02,
     "em": {
-     "x": 37,
+     "x": 33,
      "y": 73,
      "shape": "point",
      "dir": "dir",
      "angle": -9,
-     "spread": 12,
-     "speed": 1980,
+     "spread": 14,
+     "speed": 1890,
      "speedRnd": 0.4,
      "bursts": [
       {
        "t": 0,
-       "n": 4
+       "n": 3
       }
      ],
-     "seed": 11
+     "seed": 13
     },
     "pt": {
-     "life": 0.26,
+     "life": 0.24,
      "lifeRnd": 0.15,
      "render": "trail",
-     "size": 20.8,
+     "size": 14.4,
      "sizeRnd": 0.35,
      "sizeOT": {
       "pts": [
@@ -251,32 +251,32 @@
     "end": 0.02,
     "em": {
      "x": -3,
-     "y": 71,
+     "y": 72,
      "shape": "box",
-     "sx": 140,
+     "sx": 130,
      "sy": 4,
      "dir": "dir",
      "angle": -90,
      "spread": 180,
-     "speed": 30,
+     "speed": 45,
      "speedRnd": 0.6,
      "bursts": [
       {
        "t": 0,
-       "n": 30
+       "n": 14
       }
      ],
      "seed": 31
     },
     "pt": {
-     "life": 0.26,
+     "life": 0.24,
      "lifeRnd": 0.2,
      "sprite": {
       "kind": "shape",
       "id": "dot",
       "p": {}
      },
-     "size": 24,
+     "size": 20.8,
      "sizeRnd": 0.5,
      "sizeOL": {
       "pts": [
@@ -331,7 +331,7 @@
       ]
      },
      "drag": 4,
-     "gravY": -2,
+     "gravY": -4,
      "rotRnd": 0,
      "spin": 0,
      "spinRnd": 0
@@ -343,7 +343,7 @@
     "name": "cut som",
     "blend": "normal",
     "start": 0,
-    "end": 0.36,
+    "end": 0.34,
     "targets": [
      "lr_c_placa_som_e",
      "lr_c_placa_som_d",
@@ -371,27 +371,27 @@
     "start": 0,
     "end": 0.02,
     "em": {
-     "x": -36,
+     "x": -32,
      "y": 80,
      "shape": "point",
      "dir": "dir",
      "angle": 189,
-     "spread": 12,
-     "speed": 1980,
+     "spread": 14,
+     "speed": 1890,
      "speedRnd": 0.4,
      "bursts": [
       {
        "t": 0,
-       "n": 4
+       "n": 3
       }
      ],
-     "seed": 5
+     "seed": 7
     },
     "pt": {
-     "life": 0.26,
+     "life": 0.24,
      "lifeRnd": 0.15,
      "render": "trail",
-     "size": 26,
+     "size": 18,
      "sizeRnd": 0.35,
      "sizeOT": {
       "pts": [
@@ -469,27 +469,27 @@
     "start": 0,
     "end": 0.02,
     "em": {
-     "x": 44,
+     "x": 40,
      "y": 80,
      "shape": "point",
      "dir": "dir",
      "angle": -9,
-     "spread": 12,
-     "speed": 1980,
+     "spread": 14,
+     "speed": 1890,
      "speedRnd": 0.4,
      "bursts": [
       {
        "t": 0,
-       "n": 4
+       "n": 3
       }
      ],
-     "seed": 11
+     "seed": 13
     },
     "pt": {
-     "life": 0.26,
+     "life": 0.24,
      "lifeRnd": 0.15,
      "render": "trail",
-     "size": 26,
+     "size": 18,
      "sizeRnd": 0.35,
      "sizeOT": {
       "pts": [
@@ -568,32 +568,32 @@
     "end": 0.02,
     "em": {
      "x": 4,
-     "y": 78,
+     "y": 79,
      "shape": "box",
-     "sx": 140,
+     "sx": 130,
      "sy": 4,
      "dir": "dir",
      "angle": -90,
      "spread": 180,
-     "speed": 30,
+     "speed": 45,
      "speedRnd": 0.6,
      "bursts": [
       {
        "t": 0,
-       "n": 30
+       "n": 14
       }
      ],
      "seed": 31
     },
     "pt": {
-     "life": 0.26,
+     "life": 0.24,
      "lifeRnd": 0.2,
      "sprite": {
       "kind": "shape",
       "id": "dot",
       "p": {}
      },
-     "size": 30,
+     "size": 26,
      "sizeRnd": 0.5,
      "sizeOL": {
       "pts": [
@@ -648,7 +648,7 @@
       ]
      },
      "drag": 4,
-     "gravY": -2,
+     "gravY": -4,
      "rotRnd": 0,
      "spin": 0,
      "spinRnd": 0
@@ -660,6 +660,6 @@
  "sokon": {
   "thumbT": 0.18,
   "origemY": 336,
-  "nota": "Poeira da queda (28/11; referência do dono nº 19, refeita depois do teste no corpo caindo): faixa baixa e larga, do comprimento do corpo deitado, com placas retas e afiadas saindo rente ao chão para os dois lados; nuvem baixa para não esconder o corpo; some em 0,36 s, antes de ele levantar. Dois tons bege chapados. O chão fica 80 px abaixo do centro: origem Y 336."
+  "nota": "Poeira da queda (28/11; referência do dono nº 19, refeita depois do teste no corpo caindo): faixa baixa e larga, do comprimento do corpo deitado, com placas retas e afiadas saindo rente ao chão para os dois lados; nuvem baixa de gomos soltos, com buracos (o dono: \"muito grande e muito sólido\"); some em 0,34 s, antes de ele levantar. Dois tons bege chapados. O chão fica 80 px abaixo do centro: origem Y 336."
  }
 }

@@ -1,0 +1,758 @@
+{
+ "app": "arcadia-effects",
+ "v": 1,
+ "doc": {
+  "id": "fx_sokon_destrocos",
+  "name": "Sōkon — Fumaça de destroços",
+  "comp": {
+   "w": 512,
+   "h": 512,
+   "dur": 0.75,
+   "fps": 60
+  },
+  "exp": {
+   "cols": 6,
+   "rows": 4,
+   "frames": 24,
+   "cellW": 256,
+   "cellH": 256,
+   "mode": "rgba",
+   "ss": 2
+  },
+  "layers": [
+   {
+    "id": "lr_q_pedras",
+    "type": "emitter",
+    "name": "pebbles",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.03,
+    "em": {
+     "x": 0,
+     "y": 144,
+     "shape": "box",
+     "sx": 24,
+     "sy": 2,
+     "dir": "dir",
+     "angle": -90,
+     "spread": 120,
+     "speed": 700,
+     "speedRnd": 0.5,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 16
+      }
+     ],
+     "seed": 41
+    },
+    "pt": {
+     "life": 0.45,
+     "lifeRnd": 0.3,
+     "sprite": {
+      "kind": "shape",
+      "id": "shard",
+      "p": {}
+     },
+     "size": 18,
+     "sizeRnd": 0.5,
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 0.8,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         110,
+         80,
+         60
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         110,
+         80,
+         60
+        ]
+       }
+      ]
+     },
+     "gravY": 1500,
+     "drag": 1,
+     "rotRnd": 1,
+     "spin": 500,
+     "spinRnd": 1
+    }
+   },
+   {
+    "id": "lr_q_corte_cla",
+    "type": "postfx",
+    "name": "cut cla",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.75,
+    "targets": [
+     "lr_q_base_cla",
+     "lr_q_nuvem_cla"
+    ],
+    "fx": {
+     "effect": "pixelate",
+     "pxW": 512,
+     "pxSnap": true,
+     "pxSample": "point",
+     "pxGain": 1,
+     "pxAlpha": "cut",
+     "pxThr": 0.5,
+     "pxSat": 1,
+     "pxCon": 1,
+     "pxColor": "none",
+     "pxOut": 0
+    }
+   },
+   {
+    "id": "lr_q_base_cla",
+    "type": "emitter",
+    "name": "base cla",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.02,
+    "em": {
+     "x": -2,
+     "y": 141,
+     "shape": "box",
+     "sx": 50,
+     "sy": 3,
+     "dir": "dir",
+     "angle": -90,
+     "spread": 60,
+     "speed": 90,
+     "speedRnd": 0.5,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 12
+      }
+     ],
+     "seed": 23
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.2,
+     "sprite": {
+      "kind": "shape",
+      "id": "dot",
+      "p": {}
+     },
+     "size": 25,
+     "sizeRnd": 0.4,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.5
+       },
+       {
+        "t": 0.25,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         132,
+         126,
+         134
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         132,
+         126,
+         134
+        ]
+       }
+      ]
+     },
+     "drag": 4,
+     "gravY": 200,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0
+    }
+   },
+   {
+    "id": "lr_q_nuvem_cla",
+    "type": "emitter",
+    "name": "cloud cla",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.1,
+    "em": {
+     "x": -2,
+     "y": 131,
+     "shape": "box",
+     "sx": 90,
+     "sy": 6,
+     "dir": "dir",
+     "angle": -90,
+     "spread": 90,
+     "speed": 380,
+     "speedRnd": 0.6,
+     "rate": 220,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 34
+      }
+     ],
+     "seed": 31
+    },
+    "pt": {
+     "life": 0.5,
+     "lifeRnd": 0.25,
+     "sprite": {
+      "kind": "shape",
+      "id": "dot",
+      "p": {}
+     },
+     "size": 50,
+     "sizeRnd": 0.5,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.4
+       },
+       {
+        "t": 0.25,
+        "v": 1
+       },
+       {
+        "t": 0.7,
+        "v": 1.25
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         132,
+         126,
+         134
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         132,
+         126,
+         134
+        ]
+       }
+      ]
+     },
+     "drag": 3,
+     "gravY": -260,
+     "turbMode": "curl",
+     "turbAmp": 200,
+     "turbScale": 40,
+     "turbOct": 2,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0
+    }
+   },
+   {
+    "id": "lr_q_corte_med",
+    "type": "postfx",
+    "name": "cut med",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.75,
+    "targets": [
+     "lr_q_base_med",
+     "lr_q_nuvem_med"
+    ],
+    "fx": {
+     "effect": "pixelate",
+     "pxW": 512,
+     "pxSnap": true,
+     "pxSample": "point",
+     "pxGain": 1,
+     "pxAlpha": "cut",
+     "pxThr": 0.5,
+     "pxSat": 1,
+     "pxCon": 1,
+     "pxColor": "none",
+     "pxOut": 0
+    }
+   },
+   {
+    "id": "lr_q_base_med",
+    "type": "emitter",
+    "name": "base med",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.02,
+    "em": {
+     "x": 0,
+     "y": 146,
+     "shape": "box",
+     "sx": 50,
+     "sy": 3,
+     "dir": "dir",
+     "angle": -90,
+     "spread": 60,
+     "speed": 90,
+     "speedRnd": 0.5,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 12
+      }
+     ],
+     "seed": 23
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.2,
+     "sprite": {
+      "kind": "shape",
+      "id": "dot",
+      "p": {}
+     },
+     "size": 41,
+     "sizeRnd": 0.4,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.5
+       },
+       {
+        "t": 0.25,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         78,
+         74,
+         82
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         78,
+         74,
+         82
+        ]
+       }
+      ]
+     },
+     "drag": 4,
+     "gravY": 200,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0
+    }
+   },
+   {
+    "id": "lr_q_nuvem_med",
+    "type": "emitter",
+    "name": "cloud med",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.1,
+    "em": {
+     "x": 0,
+     "y": 136,
+     "shape": "box",
+     "sx": 90,
+     "sy": 6,
+     "dir": "dir",
+     "angle": -90,
+     "spread": 90,
+     "speed": 380,
+     "speedRnd": 0.6,
+     "rate": 220,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 34
+      }
+     ],
+     "seed": 31
+    },
+    "pt": {
+     "life": 0.5,
+     "lifeRnd": 0.25,
+     "sprite": {
+      "kind": "shape",
+      "id": "dot",
+      "p": {}
+     },
+     "size": 82,
+     "sizeRnd": 0.5,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.4
+       },
+       {
+        "t": 0.25,
+        "v": 1
+       },
+       {
+        "t": 0.7,
+        "v": 1.25
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         78,
+         74,
+         82
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         78,
+         74,
+         82
+        ]
+       }
+      ]
+     },
+     "drag": 3,
+     "gravY": -260,
+     "turbMode": "curl",
+     "turbAmp": 200,
+     "turbScale": 40,
+     "turbOct": 2,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0
+    }
+   },
+   {
+    "id": "lr_q_corte_esc",
+    "type": "postfx",
+    "name": "cut esc",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.75,
+    "targets": [
+     "lr_q_base_esc",
+     "lr_q_nuvem_esc"
+    ],
+    "fx": {
+     "effect": "pixelate",
+     "pxW": 512,
+     "pxSnap": true,
+     "pxSample": "point",
+     "pxGain": 1,
+     "pxAlpha": "cut",
+     "pxThr": 0.5,
+     "pxSat": 1,
+     "pxCon": 1,
+     "pxColor": "none",
+     "pxOut": 0
+    }
+   },
+   {
+    "id": "lr_q_base_esc",
+    "type": "emitter",
+    "name": "base esc",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.02,
+    "em": {
+     "x": 3,
+     "y": 152,
+     "shape": "box",
+     "sx": 50,
+     "sy": 3,
+     "dir": "dir",
+     "angle": -90,
+     "spread": 60,
+     "speed": 90,
+     "speedRnd": 0.5,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 12
+      }
+     ],
+     "seed": 23
+    },
+    "pt": {
+     "life": 0.4,
+     "lifeRnd": 0.2,
+     "sprite": {
+      "kind": "shape",
+      "id": "dot",
+      "p": {}
+     },
+     "size": 50,
+     "sizeRnd": 0.4,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.5
+       },
+       {
+        "t": 0.25,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         38,
+         36,
+         42
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         38,
+         36,
+         42
+        ]
+       }
+      ]
+     },
+     "drag": 4,
+     "gravY": 200,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0
+    }
+   },
+   {
+    "id": "lr_q_nuvem_esc",
+    "type": "emitter",
+    "name": "cloud esc",
+    "blend": "normal",
+    "start": 0,
+    "end": 0.1,
+    "em": {
+     "x": 3,
+     "y": 142,
+     "shape": "box",
+     "sx": 90,
+     "sy": 6,
+     "dir": "dir",
+     "angle": -90,
+     "spread": 90,
+     "speed": 380,
+     "speedRnd": 0.6,
+     "rate": 220,
+     "bursts": [
+      {
+       "t": 0,
+       "n": 34
+      }
+     ],
+     "seed": 31
+    },
+    "pt": {
+     "life": 0.5,
+     "lifeRnd": 0.25,
+     "sprite": {
+      "kind": "shape",
+      "id": "dot",
+      "p": {}
+     },
+     "size": 100,
+     "sizeRnd": 0.5,
+     "sizeOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 0.4
+       },
+       {
+        "t": 0.25,
+        "v": 1
+       },
+       {
+        "t": 0.7,
+        "v": 1.25
+       },
+       {
+        "t": 1,
+        "v": 0
+       }
+      ]
+     },
+     "opacityOL": {
+      "pts": [
+       {
+        "t": 0,
+        "v": 1
+       },
+       {
+        "t": 1,
+        "v": 1
+       }
+      ]
+     },
+     "grad": {
+      "stops": [
+       {
+        "t": 0,
+        "c": [
+         38,
+         36,
+         42
+        ]
+       },
+       {
+        "t": 1,
+        "c": [
+         38,
+         36,
+         42
+        ]
+       }
+      ]
+     },
+     "drag": 3,
+     "gravY": -260,
+     "turbMode": "curl",
+     "turbAmp": 200,
+     "turbScale": 40,
+     "turbOct": 2,
+     "rotRnd": 0,
+     "spin": 0,
+     "spinRnd": 0
+    }
+   }
+  ],
+  "v": 1
+ },
+ "sokon": {
+  "thumbT": 0.22,
+  "origemY": 406,
+  "nota": "Fumaça de destroços (28/11, referência nº 20): nuvem cinza-escura em três tons que sobe e incha, com pedras marrons voando e caindo. Para a queda pesada e o quique no chão. O chão fica 150 px abaixo do centro: origem Y 406."
+ }
+}

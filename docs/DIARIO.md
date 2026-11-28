@@ -614,4 +614,8 @@ embaixo.
 - **28/11 (o dono testou o APK: "dash e backdash não apareceu"; "o super pulo fumaça ficou muito grande"):** o dash não
   estava no APK (esperava a aprovação dele); foi para a `game-luta-sprite-fable` junto com o super pulo exportado a 320 px
   (era 480).
+- **Poeiras (28/11; o dono: "estilo mais pontiagudo em ondas"; depois a lista de efeitos de um vídeo de referência,
+  "18 19 20 vamos fazer e colocar"):** modelos `poeira_baixo.json` (espinhos em leque, golpe baixo), `poeira_queda.json`
+  (nuvem bege com ondas pontudas, queda) e `fumaca_destrocos.json` (fumaça escura com pedras, queda pesada e quique).
+  Correções: as línguas caíam abaixo do chão (menos gravidade) e a fumaça escura acabava cortada (vida menor).
 
